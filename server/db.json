@@ -1,0 +1,68 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    },
+    {
+      "name": "sample",
+      "time": "Wed, 21 Oct 2015 18:27:50 GMT",
+      "id": 2
+    },
+    {
+      "name": "sample",
+      "time": "Wed, 21 Oct 2015 18:27:50 GMT",
+      "id": 3
+    },
+    {
+      "name": "sample",
+      "time": "Wed, 21 Oct 2015 18:27:50 GMT",
+      "id": 4
+    },
+    {
+      "name": "sample",
+      "time": "Wed, 21 Oct 2015 18:27:50 GMT",
+      "id": 5
+    },
+    {
+      "name": "sample",
+      "time": "Wed, 21 Oct 2015 18:27:50 GMT",
+      "id": 6
+    },
+    {
+      "name": "sample",
+      "time": "Wed, 21 Oct 2015 18:27:50 GMT",
+      "id": 7
+    }
+  ],
+  "layers": [
+    {
+      "name": "sample",
+      "time": "Wed, 21 Oct 2015 18:27:50 GMT",
+      "id": 1
+    },
+    {
+      "id": 2
+    },
+    {
+      "id": 3
+    },
+    {
+      "id": 4
+    },
+    {
+      "id": 5
+    },
+    {
+      "id": 6
+    }
+  ]
+}

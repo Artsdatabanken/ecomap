@@ -1,0 +1,29 @@
+<testsuites name="jest tests">
+  <testsuite name="undefined" tests="2" errors="0" failures="1" skipped="0" timestamp="2017-06-29T09:58:15" time="0.198">
+    <testcase classname=" renders ok" name=" renders ok" time="0.002">
+    </testcase>
+    <testcase classname=" renders ok" name=" renders ok" time="0.007">
+      <failure message="TypeError: Cannot set property &apos;fillStyle&apos; of null
+    at createColorTexture (/home/b/src/Naturtypekart/web/Nin/src/graphics/color/ColorRamp.test.js:30:23)
+    at Object.&lt;anonymous&gt;.it (/home/b/src/Naturtypekart/web/Nin/src/graphics/color/ColorRamp.test.js:69:18)
+    at Object.asyncFn (/home/b/src/Naturtypekart/web/Nin/node_modules/jest-jasmine2/build/jasmine-async.js:68:30)
+    at e (/home/b/src/Naturtypekart/web/Nin/node_modules/jest-jasmine2/build/queueRunner.js:38:12)
+    at mapper (/home/b/src/Naturtypekart/web/Nin/node_modules/jest-jasmine2/build/queueRunner.js:31:21)
+    at Promise.resolve.then.el (/home/b/src/Naturtypekart/web/Nin/node_modules/p-map/index.js:42:16)
+    at process._tickCallback (internal/process/next_tick.js:109:7)">
+      </failure>
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-06-29T09:58:15" time="0.646">
+    <testcase classname=" renders correctly" name=" renders correctly" time="0.048">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-06-29T09:58:16" time="0.256">
+    <testcase classname=" renders ok" name=" renders ok" time="0.058">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-06-29T09:58:16" time="0.082">
+    <testcase classname=" renders ok" name=" renders ok" time="0.008">
+    </testcase>
+  </testsuite>
+</testsuites>

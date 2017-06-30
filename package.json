@@ -1,0 +1,61 @@
+{
+  "name": "Nin",
+  "version": "0.2.0",
+  "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom|| exit 0",
+    "ci_test": "react-scripts test --env=jsdom --coverage --testResultsProcessor jest-junit|| exit 0",
+    "eject": "react-scripts eject",
+    "lint": "./node_modules/.bin/standard",
+    "lint-fix": "./node_modules/.bin/standard --fix",
+    "lint_old": "eslint -c .eslintrc src/**/*.js*",
+    "lint-report": "standard | standard-reporter --checkstyle >lint-report.xml || exit 0",
+    "lint-report_old": "eslint -c .eslintrc -f checkstyle -o lint-report.xml src/**/*.js* > eslint.log|| exit 0",
+    "storybook": "start-storybook -p 9009 -s public",
+    "test-storybook": "storyshots",
+    "build-storybook": "build-storybook -s public -o build/storybook",
+    "validate": "npm ls"
+  },
+  "dependencies": {
+    "canvas-prebuilt": "^1.6.5-prerelease.1",
+    "color_ramps": "^1.0.4",
+    "mapbox-gl": "^0.38.0",
+    "material-ui": "^0.18.1",
+    "prop-types": "^15.5.10",
+    "react": "^15.5.4",
+    "react-color": "^2.11.7",
+    "react-dom": "^15.5.4",
+    "react-mapbox-gl": "^2.0.3",
+    "react-router-dom": "^4.0.0",
+    "react-tap-event-plugin": "^2.0.1",
+    "recharts": "^1.0.0-alpha.0"
+  },
+  "devDependencies": {
+    "@storybook/addon-storyshots": "^3.0.0",
+    "@storybook/react": "^3.0.1",
+    "babel-eslint": "^7.2.3",
+    "flow-bin": "^0.47.0",
+    "jest-junit": "^1.2.0",
+    "pixelmatch": "^4.0.2",
+    "precommit-hook": "^3.0.0",
+    "react-scripts": "^1.0.0",
+    "react-test-renderer": "^15.4.2",
+    "standard": "^10.0.2",
+    "standard-reporter": "^1.0.5",
+    "storybook-addon-material-ui": "^0.7.9"
+  },
+  "homepage": ".",
+  "standard": {
+    "parser": "babel-eslint",
+    "globals": [
+      "it",
+      "expect"
+    ]
+  },
+  "pre-commit": [
+    "ci_test",
+    "lint"
+  ]
+}
