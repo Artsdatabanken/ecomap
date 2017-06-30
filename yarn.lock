@@ -1639,6 +1639,14 @@ canvas-prebuilt@^1.6.5-prerelease.1:
     parse-css-font "^2.0.2"
     units-css "^0.4.0"
 
+canvas@^1.6.5:
+  version "1.6.5"
+  resolved "https://registry.yarnpkg.com/canvas/-/canvas-1.6.5.tgz#557f9988f5d2c95fdc247c61a5ee43de52f6717c"
+  dependencies:
+    nan "^2.4.0"
+    parse-css-font "^2.0.2"
+    units-css "^0.4.0"
+
 capture-stack-trace@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/capture-stack-trace/-/capture-stack-trace-1.0.0.tgz#4a6fa07399c26bba47f0b2496b4d0fb408c5550d"
@@ -4980,7 +4988,7 @@ mute-stream@0.0.7:
   version "0.0.7"
   resolved "https://registry.yarnpkg.com/mute-stream/-/mute-stream-0.0.7.tgz#3075ce93bc21b8fab43e1bc4da7e8115ed1e7bab"
 
-nan@^2.3.0:
+nan@^2.3.0, nan@^2.4.0:
   version "2.6.2"
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.6.2.tgz#e4ff34e6c95fdfb5aecc08de6596f43605a7db45"
 
