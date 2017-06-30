@@ -71,7 +71,7 @@ class Kalkkort extends React.Component {
     kode: PropTypes.string.isRequired,
     properties: PropTypes.any.isRequired
   }
-  static listProperties(props) {
+  static listProperties (props) {
     return Object.keys(props)
       .filter(x => props[x])
       .filter(
@@ -92,22 +92,23 @@ class Kalkkort extends React.Component {
       )
   }
 
-  static describe(key, value) {
+  static describe (key, value) {
     switch (key) {
       case 'HOVEDBER_1':
       case 'TILLEGGS_1':
       case 'TILLEGGS_3':
-      const url = "https://www.ngu.no/emne/"+value.toLowerCase()
+        const url = 'https://www.ngu.no/emne/' + value.toLowerCase()
         return (
-          <a target="#top" href={url}>
+          <a target='#top' href={url}>
             {Kalkkort.encodingHack(value)}
           </a>
         )
+      default:
+        return value
     }
-    return value
   }
 
-  static prettifyKey(key) {
+  static prettifyKey (key) {
     switch (key) {
       case 'HOVEDBERGA':
         return 'Hovedbergart nr'
@@ -127,14 +128,15 @@ class Kalkkort extends React.Component {
         return 'Kalkinnhold tilleggsbergart (1-5)'
       case 'KALKINNH_2':
         return 'Kalkinnhold tilleggsbergart 2 (1-5)'
+      default:
+        return key
     }
-    return key
   }
 
-  static encodingHack(input) {
+  static encodingHack (input) {
     return input.replace('�', 'å').replace('�', 'ø').replace('�', 'ø')
   }
-  render() {
+  render () {
     console.log(this.props.kode)
     const data = koder[this.props.kode]
     if (!data) {
@@ -149,27 +151,25 @@ class Kalkkort extends React.Component {
         <CardMedia
           actAsExpander
           showExpandableButton
-          overlay={
-            <CardTitle title={title} subtitle={subtitle}>
-            </CardTitle>
-          }
+          overlay={<CardTitle title={title} subtitle={subtitle} />}
         >
-          <img src={data.foto} width={'25%'} alt="todo" />
+          <img src={data.foto} width={'25%'} alt='todo' />
         </CardMedia>
         <CardText expandable>
           {data.ingress}
           <br />
-          <a target="#top" href="http://artsdatabanken.no/Pages/179743">
+          <a target='#top' href='http://artsdatabanken.no/Pages/179743'>
             http://artsdatabanken.no/Pages/179743
           </a>
         </CardText>
         <CardText expandable>
           <div style={{ textAlign: 'center' }}>
             Data levert 2016 av<br />
-            <a href="http://www.ngu.no/" target="#top">
+            <a href='http://www.ngu.no/' target='#top'>
               <img
-                width="25%"
-                src="https://www.ngu.no/sites/all/themes/ngu/images/ngulogo.svg"
+                width='25%'
+                src='https://www.ngu.no/sites/all/themes/ngu/images/ngulogo.svg'
+                alt='logo'
               />
             </a>
           </div>
@@ -190,8 +190,8 @@ class Kalkkort extends React.Component {
           </Table>
         </CardText>
         <CardActions expandable>
-          <FlatButton label="Gjør noe" />
-          <FlatButton label="Eller ikke" />
+          <FlatButton label='Gjør noe' />
+          <FlatButton label='Eller ikke' />
         </CardActions>
       </Card>
     )

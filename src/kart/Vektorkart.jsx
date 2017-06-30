@@ -161,6 +161,7 @@ export default class Vektorkart extends React.Component {
   render () {
     return (
       <Map
+        // eslint-disable-next-line react/style-prop-object
         style='mapbox://styles/bjreppen/cj06jt53u00gh2rl5r30vi8br'
         onStyleLoad={(s, t) => this.handleStyleLoad(s, t)}
         containerStyle={{
