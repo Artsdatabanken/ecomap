@@ -8,3 +8,5 @@ deploy:
   project: ./build/
   domain: outgoing-front.surge.sh
   skip_cleanup: true
+after_success:
+- npm run coveralls

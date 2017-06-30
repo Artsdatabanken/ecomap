@@ -6,6 +6,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
+    "coveralls": "npm run test && cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "ci_test": "react-scripts test --env=jsdom --coverage --testResultsProcessor jest-junit|| exit 0",
     "eject": "react-scripts eject",
     "lint": "./node_modules/.bin/standard",
@@ -37,6 +38,7 @@
     "babel-eslint": "^7.2.3",
     "canvas": "^1.6.5",
     "canvas-prebuilt": "^1.6.5-prerelease.1",
+    "coveralls": "^2.13.1",
     "flow-bin": "^0.47.0",
     "jest-junit": "^1.2.0",
     "pixelmatch": "^4.0.2",
@@ -50,12 +52,18 @@
   "homepage": ".",
   "standard": {
     "parser": "babel-eslint",
-    "globals": ["it", "expect"]
+    "globals": [
+      "it",
+      "expect"
+    ]
   },
   "eslintConfig": {
-     "rules": {
-       "react/style-prop-object": "off"
-     }
+    "rules": {
+      "react/style-prop-object": "off"
+    }
   },
-  "pre-commit": ["ci_test", "lint"]
+  "pre-commit": [
+    "ci_test",
+    "lint"
+  ]
 }
