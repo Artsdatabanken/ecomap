@@ -3,6 +3,7 @@ node_js:
   - "node"
 script:
  - "yarn build"
+ - "yarn build-storybook"
 deploy:
   provider: surge
   project: ./build/
