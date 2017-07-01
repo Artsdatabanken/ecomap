@@ -4,14 +4,15 @@ node_js:
 install:
   - snyk test
 script:
- - "yarn build"
- - "yarn build-storybook"
+  - "yarn build"
+  - "yarn build-storybook"
 deploy:
   provider: surge
   project: ./build/
   domain: outgoing-front.surge.sh
   skip_cleanup: true
 after_success:
-- npm run coveralls
- notifications:
-    slack: artsdatabanken:rh4c12CWpgRBDQWWhCPY2h8E
+  - npm run coveralls
+  - snyk monitor
+notifications:
+  slack: artsdatabanken:rh4c12CWpgRBDQWWhCPY2h8E
