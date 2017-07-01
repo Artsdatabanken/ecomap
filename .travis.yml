@@ -11,3 +11,5 @@ deploy:
   skip_cleanup: true
 after_success:
 - npm run coveralls
+ notifications:
+    slack: artsdatabanken:rh4c12CWpgRBDQWWhCPY2h8E
