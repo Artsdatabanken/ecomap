@@ -47,7 +47,8 @@
     "react-test-renderer": "^15.4.2",
     "standard": "^10.0.2",
     "standard-reporter": "^1.0.5",
-    "storybook-addon-material-ui": "^0.7.9"
+    "storybook-addon-material-ui": "^0.7.9",
+    "snyk": "^1.33.0"
   },
   "homepage": ".",
   "standard": {
