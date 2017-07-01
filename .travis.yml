@@ -1,8 +1,6 @@
 language: node_js
 node_js:
   - "node"
-install:
-  - snyk test
 script:
   - "yarn build"
   - "yarn build-storybook"
@@ -13,6 +11,5 @@ deploy:
   skip_cleanup: true
 after_success:
   - npm run coveralls
-  - snyk monitor
 notifications:
   slack: artsdatabanken:rh4c12CWpgRBDQWWhCPY2h8E
