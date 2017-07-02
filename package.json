@@ -1,5 +1,5 @@
 {
-  "name": "EcoMap",
+  "name": "ecomap",
   "version": "0.2.0",
   "private": true,
   "scripts": {
@@ -47,24 +47,17 @@
     "react-test-renderer": "^15.4.2",
     "standard": "^10.0.2",
     "standard-reporter": "^1.0.5",
-    "storybook-addon-material-ui": "^0.7.9",
-    "snyk": "^1.33.0"
+    "storybook-addon-material-ui": "^0.7.9"
   },
   "homepage": ".",
   "standard": {
     "parser": "babel-eslint",
-    "globals": [
-      "it",
-      "expect"
-    ]
+    "globals": ["it", "expect"]
   },
   "eslintConfig": {
     "rules": {
       "react/style-prop-object": "off"
     }
   },
-  "pre-commit": [
-    "ci_test",
-    "lint"
-  ]
+  "pre-commit": ["ci_test", "lint"]
 }
