@@ -1,8 +1,8 @@
 // import ColorRamp from './ColorRamp'
-import Color from 'color'
+// import Color from 'color'
 // import fs from 'fs'
 // import serializer from './png-serializer-module'
-var PNG = require('pngjs').PNG
+// var PNG = require('pngjs').PNG
 
 // var imageDiff = require('image-diff')
 
@@ -17,6 +17,7 @@ it('renders ok', () => {
   }) */
 })
 
+/*
 function map (steps, i) {
   const offset = i / 255 * (steps.length - 1.0)
   const base = Math.trunc(offset)
@@ -24,7 +25,8 @@ function map (steps, i) {
 
   return 'rgba(' + color.values.rgb.toString() + ', 1.0)'
 }
-
+*/
+/*
 function createColorTexture (context, width, height, colorFunction = () => 'transparent') {
   for (let i = 0; i < width; i++) {
     context.fillStyle = colorFunction(i)
@@ -49,21 +51,23 @@ function createColorTexture (context, width, height, colorFunction = () => 'tran
 
  //    let out = fs.createWriteStream(__dirname + '/text.png')
 //     let stream = canvas.pngStream()
-
+/*
   return context.getImageData(0, 0, width, height)
 }
+*/
 
+/*
 function mix (color1, color2, weight) {
   if (color2 === undefined) color2 = color1
   let c1 = new Color(color1)
   let c2 = new Color(color2)
   return c2.mix(c1, weight)
 }
-
+*/
 it('renders ok', () => {
 //  const snapshotDir = __dirname + '/__snapshots__/'
-  return // no luck with canvas so far..
-  const canvas = document.createElement('canvas')
+   // no luck with canvas so far..
+/*  const canvas = document.createElement('canvas')
   canvas.width = 256
   canvas.height = 16
   const context = canvas.getContext('2d')
@@ -73,6 +77,8 @@ it('renders ok', () => {
   diff.data = actual
 //  expect.addSnapshotSerializer(serializer)
   expect(actual).toMatchSnapshot()
+  */
+
 /*
   var data = fs.readFileSync('in.png');
   var png = PNG.sync.read(data);
