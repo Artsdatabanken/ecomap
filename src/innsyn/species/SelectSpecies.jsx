@@ -11,7 +11,6 @@ import SpeciesGridList from './SpeciesGridList'
 import SearchBar from './SearchBar'
 import Paper from 'material-ui/Paper'
 
-// http://webtjenester.artsdatabanken.no/Artskart/api/taxon/?term=Aglaothamnion%20halliae
 export default class SelectSpecies extends React.Component {
   constructor () {
     super()
@@ -77,11 +76,6 @@ export default class SelectSpecies extends React.Component {
     })
   }
 
-  /*
-<Genus>Elfvingia</Genus>
-Lilje
-<Id>39702</Id>
-  */
   lookupCoverPhoto (scientificName) {
     return new Promise(function (resolve, reject) {
       const url =
@@ -175,35 +169,3 @@ class SpeciesSimpleList extends React.Component {
     )
   }
 }
-
-// http://api.inaturalist.org/v1/taxa/autocomplete?q=syringa%20vulgaris
-// http://eol.org/api/pages/1.0?id=1045608&details=true&licenses=public+domain&language=en&format=json
-/*
-CategoryValue:"genus"
-Class:"Mammalia"
-DateTimeUpdated:"2015-10-25T00:18:01.383597"
-ExistsInCountry:false
-Family:"Canidae"
-Genus:"Vulpes"
-Id:31173
-IsDeleted:false
-Kingdom:"Animalia"
-Order:"Carnivora"
-Phylum:"Chordata"
-PopularNames:Array(0)
-length:0
-__proto__:Array(0)
-PrefferedPopularname:null
-scientificNameIdHiarchy:Array(8)
-scientificNames:Array(2)
-Species:null
-SubSpecies:null
-TaxonGroup:"Pattedyr"
-TaxonGroupId:23
-TaxonId:31173
-TaxonIdHiarchy:Array(8)
-TaxonTags:Array(0)
-ValidscientificName:"Vulpes"
-ValidscientificNameAuthorship:"Frisch, 1775"
-ValidscientificNameId:48030
-*/
