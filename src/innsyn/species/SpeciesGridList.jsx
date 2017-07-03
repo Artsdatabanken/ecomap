@@ -34,7 +34,7 @@ const SpeciesGridItem = ({tile}) =>
     subtitle={tile.popularName}
     actionIcon={
       <IconButton>
-        <StarBorder color="white" />
+        <StarBorder color='white' />
       </IconButton>
     }
     cols={tile.featured ? 2 : 1}

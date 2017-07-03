@@ -12,7 +12,7 @@ import SearchBar from './SearchBar'
 import Paper from 'material-ui/Paper'
 
 export default class SelectSpecies extends React.Component {
-  constructor() {
+  constructor () {
     super()
     this.state = {}
   }
@@ -26,12 +26,13 @@ export default class SelectSpecies extends React.Component {
       let r = json.map(x => this.mapSpecies(x))
       this.setState({
         species: r.sort((a, b) => {
-          if(a.level != b.level) return a.level - b.level
-          return b.scientificName - a.scientificName})
+          if (a.level !== b.level) return a.level - b.level
+          return b.scientificName - a.scientificName
+        })
       })
     })
   }
-  mapSpecies(s) {
+  mapSpecies (s) {
     let r = {
       id: s.TaxonId,
       taxonGroup: s.TaxonGroup,
@@ -50,9 +51,9 @@ export default class SelectSpecies extends React.Component {
     return r
   }
 
-  getCoverPhoto2(scientificName, parentTaxonId) {
+  getCoverPhoto2 (scientificName, parentTaxonId) {
     const that = this
-    return new Promise(function(resolve, reject) {
+    return new Promise(function (resolve, reject) {
       that
         .lookupCoverPhoto(scientificName)
         .then(photo => {
@@ -79,8 +80,8 @@ export default class SelectSpecies extends React.Component {
     })
   }
 
-  lookupCoverPhoto(scientificName) {
-    return new Promise(function(resolve, reject) {
+  lookupCoverPhoto (scientificName) {
+    return new Promise(function (resolve, reject) {
       const url =
         'http://api.inaturalist.org/v1/taxa/autocomplete?q=' + scientificName
       fetch(url).then(response => response.json()).then(json => {
@@ -99,7 +100,7 @@ export default class SelectSpecies extends React.Component {
     })
   }
 
-  attachPhoto(scientificName, photo) {
+  attachPhoto (scientificName, photo) {
     let species = this.state.species
     if (species === null) return
     if (photo === null) {
@@ -118,7 +119,7 @@ export default class SelectSpecies extends React.Component {
     })
   }
 
-  render() {
+  render () {
     return (
       <Paper zDepth={4} style={{ padding: 16 }}>
         <SearchBar onChange={v => this.handleChange(v)} />
@@ -134,7 +135,7 @@ export default class SelectSpecies extends React.Component {
 }
 
 class SpeciesSimpleList extends React.Component {
-  render() {
+  render () {
     return (
       <Table onRowSelection={this.handleRowSelection}>
         <TableHeader>
