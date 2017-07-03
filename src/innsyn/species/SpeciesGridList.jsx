@@ -23,27 +23,27 @@ const SpeciesGridList = props =>
   <div style={styles.root}>
     <GridList cellHeight={220} cols={4} style={styles.gridList}>
       <Subheader>Subheader</Subheader>
-      {props.species.map(tile =>
-        <GridTile
-          featured
-          key={tile.id}
-          title={tile.scientific_name}
-          subtitle={tile.popular_name}
-          actionIcon={
-            <IconButton>
-              <StarBorder color='white' />
-            </IconButton>
-          }
-          cols={tile.featured ? 2 : 1}
-          rows={tile.featured ? 2 : 1}
-        >
-          <img
-            src={tile.image_url}
-            title={tile.image_scientific_name + ' - ' + tile.image_attribution}
-          />
-        </GridTile>
-      )}
+      {props.species.map(tile => <SpeciesGridItem tile={tile} />)}
     </GridList>
   </div>
+
+const SpeciesGridItem = ({tile}) =>
+  <GridTile
+    key={tile.id}
+    title={tile.level + ' ' + tile.scientificName}
+    subtitle={tile.popularName}
+    actionIcon={
+      <IconButton>
+        <StarBorder color="white" />
+      </IconButton>
+    }
+    cols={tile.featured ? 2 : 1}
+    rows={tile.featured ? 2 : 1}
+  >
+    <img
+      src={tile.imageUrl}
+      title={tile.imageScientificName + ' - ' + tile.imageAttribution}
+    />
+  </GridTile>
 
 export default SpeciesGridList

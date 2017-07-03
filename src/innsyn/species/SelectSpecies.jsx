@@ -12,7 +12,7 @@ import SearchBar from './SearchBar'
 import Paper from 'material-ui/Paper'
 
 export default class SelectSpecies extends React.Component {
-  constructor () {
+  constructor() {
     super()
     this.state = {}
   }
@@ -23,22 +23,26 @@ export default class SelectSpecies extends React.Component {
       'http://webtjenester.artsdatabanken.no/Artskart/api/taxon/?term=' +
       searchCriteria
     fetch(url).then(response => response.json()).then(json => {
+      let r = json.map(x => this.mapSpecies(x))
       this.setState({
-        species: json.map(x => this.mapSpecies(x))
+        species: r.sort((a, b) => {
+          if(a.level != b.level) return a.level - b.level
+          return b.scientificName - a.scientificName})
       })
     })
   }
-  mapSpecies (s) {
+  mapSpecies(s) {
     let r = {
       id: s.TaxonId,
-      taxon_group: s.TaxonGroup,
+      taxonGroup: s.TaxonGroup,
       scientificName: s.ValidScientificName,
-      popular_name: s.PrefferedPopularname,
+      popularName: s.PrefferedPopularname,
+      level: s.TaxonIdHiarchy.length,
       featured: s.TaxonId % 4 === 1
     }
 
     this.getCoverPhoto2(
-      r.scientificName,
+      s.ValidScientificName,
       s.TaxonIdHiarchy.length > 1 ? s.TaxonIdHiarchy[1] : null
     ).then(photo => {
       this.attachPhoto(r.scientificName, photo)
@@ -46,10 +50,11 @@ export default class SelectSpecies extends React.Component {
     return r
   }
 
-  getCoverPhoto2 (scientificName, parentTaxonId) {
+  getCoverPhoto2(scientificName, parentTaxonId) {
     const that = this
-    return new Promise(function (resolve, reject) {
-      that.lookupCoverPhoto(scientificName)
+    return new Promise(function(resolve, reject) {
+      that
+        .lookupCoverPhoto(scientificName)
         .then(photo => {
           resolve(photo)
         })
@@ -62,22 +67,20 @@ export default class SelectSpecies extends React.Component {
           const parentUrl =
             'http://webtjenester.artsdatabanken.no/Artskart/api/taxon/' +
             parentTaxonId
-          fetch(parentUrl)
-            .then(response => response.json())
-            .then(json => {
-              that
-                .getCoverPhoto2(
-                  json.ValidScientificName,
-                  json.TaxonIdHiarchy.length > 1 ? json.TaxonIdHiarchy[1] : null
-                )
-                .then(photo => resolve(photo))
-            })
+          fetch(parentUrl).then(response => response.json()).then(json => {
+            that
+              .getCoverPhoto2(
+                json.ValidScientificName,
+                json.TaxonIdHiarchy.length > 1 ? json.TaxonIdHiarchy[1] : null
+              )
+              .then(photo => resolve(photo))
+          })
         })
     })
   }
 
-  lookupCoverPhoto (scientificName) {
-    return new Promise(function (resolve, reject) {
+  lookupCoverPhoto(scientificName) {
+    return new Promise(function(resolve, reject) {
       const url =
         'http://api.inaturalist.org/v1/taxa/autocomplete?q=' + scientificName
       fetch(url).then(response => response.json()).then(json => {
@@ -96,7 +99,7 @@ export default class SelectSpecies extends React.Component {
     })
   }
 
-  attachPhoto (scientificName, photo) {
+  attachPhoto(scientificName, photo) {
     let species = this.state.species
     if (species === null) return
     if (photo === null) {
@@ -105,9 +108,9 @@ export default class SelectSpecies extends React.Component {
     }
     const updatedSpecies = species.map(x => {
       if (x.scientificName !== scientificName) return x
-      x.image_scientificName = photo.scientificName
-      x.image_url = photo.medium_url
-      x.image_attribution = photo.attribution
+      x.imageScientificName = photo.scientificName
+      x.imageUrl = photo.medium_url
+      x.imageAttribution = photo.attribution
       return x
     })
     this.setState({
@@ -115,7 +118,7 @@ export default class SelectSpecies extends React.Component {
     })
   }
 
-  render () {
+  render() {
     return (
       <Paper zDepth={4} style={{ padding: 16 }}>
         <SearchBar onChange={v => this.handleChange(v)} />
@@ -131,7 +134,7 @@ export default class SelectSpecies extends React.Component {
 }
 
 class SpeciesSimpleList extends React.Component {
-  render () {
+  render() {
     return (
       <Table onRowSelection={this.handleRowSelection}>
         <TableHeader>
@@ -151,16 +154,16 @@ class SpeciesSimpleList extends React.Component {
               <TableRowColumn>
                 {s.popularName &&
                   <div>
-                    {s.popular_name}
+                    {s.popularName}
                     <br />
                   </div>}
                 {s.scientificName}
               </TableRowColumn>
               <TableRowColumn>
-                {s.taxon_group}
+                {s.taxonGroup}
               </TableRowColumn>
               <TableRowColumn>
-                <img src={s.image_url} title={s.image_attribution} />
+                <img src={s.imageUrl} title={s.imageAttribution} />
               </TableRowColumn>
             </TableRow>
           )}
