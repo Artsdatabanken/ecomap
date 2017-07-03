@@ -1,5 +1,4 @@
 import React from 'react'
-import TextField from 'material-ui/TextField'
 import {
   Table,
   TableBody,
@@ -24,7 +23,7 @@ export default class SelectSpecies extends React.Component {
     const url =
       'http://webtjenester.artsdatabanken.no/Artskart/api/taxon/?term=' +
       searchCriteria
-    const data = fetch(url).then(response => response.json()).then(json => {
+    fetch(url).then(response => response.json()).then(json => {
       this.setState({
         species: json.map(x => this.mapSpecies(x))
       })
@@ -34,38 +33,37 @@ export default class SelectSpecies extends React.Component {
     let r = {
       id: s.TaxonId,
       taxon_group: s.TaxonGroup,
-      scientific_name: s.ValidScientificName,
+      scientificName: s.ValidScientificName,
       popular_name: s.PrefferedPopularname,
-      featured: s.TaxonId % 4 == 1
+      featured: s.TaxonId % 4 === 1
     }
 
     this.getCoverPhoto2(
-      r.scientific_name,
+      r.scientificName,
       s.TaxonIdHiarchy.length > 1 ? s.TaxonIdHiarchy[1] : null
     ).then(photo => {
-      this.attachPhoto(r.scientific_name, photo)
+      this.attachPhoto(r.scientificName, photo)
     })
     return r
   }
 
-  getCoverPhoto2 (scientific_name, parent_taxon_id) {
+  getCoverPhoto2 (scientificName, parentTaxonId) {
     const that = this
     return new Promise(function (resolve, reject) {
-      const photo = that
-        .lookupCoverPhoto(scientific_name)
+      that.lookupCoverPhoto(scientificName)
         .then(photo => {
           resolve(photo)
         })
         .catch(e => {
           console.warn(e)
-          if (!parent_taxon_id) {
-            reject('not found')
+          if (!parentTaxonId) {
+            reject(new Error('not found'))
             return
           }
-          const parent_url =
+          const parentUrl =
             'http://webtjenester.artsdatabanken.no/Artskart/api/taxon/' +
-            parent_taxon_id
-          const data = fetch(parent_url)
+            parentTaxonId
+          fetch(parentUrl)
             .then(response => response.json())
             .then(json => {
               that
@@ -84,36 +82,36 @@ export default class SelectSpecies extends React.Component {
 Lilje
 <Id>39702</Id>
   */
-  lookupCoverPhoto (scientific_name) {
+  lookupCoverPhoto (scientificName) {
     return new Promise(function (resolve, reject) {
       const url =
-        'http://api.inaturalist.org/v1/taxa/autocomplete?q=' + scientific_name
-      const data = fetch(url).then(response => response.json()).then(json => {
+        'http://api.inaturalist.org/v1/taxa/autocomplete?q=' + scientificName
+      fetch(url).then(response => response.json()).then(json => {
         if (json.total_results <= 0) {
-          reject('No results for ' + scientific_name)
+          reject(new Error('No results for ' + scientificName))
           return
         }
         const photo = json.results[0].default_photo
         if (photo === null) {
-          reject('No photo for ' + scientific_name)
+          reject(new Error('No photo for ' + scientificName))
           return
         }
-        photo.scientific_name = scientific_name
+        photo.scientificName = scientificName
         resolve(photo)
       })
     })
   }
 
-  attachPhoto (scientific_name, photo) {
+  attachPhoto (scientificName, photo) {
     let species = this.state.species
     if (species === null) return
     if (photo === null) {
-      console.info('No photo found for ' + scientific_name)
+      console.info('No photo found for ' + scientificName)
       return
     }
     const updatedSpecies = species.map(x => {
-      if (x.scientific_name !== scientific_name) return x
-      x.image_scientific_name = photo.scientific_name
+      if (x.scientificName !== scientificName) return x
+      x.image_scientificName = photo.scientificName
       x.image_url = photo.medium_url
       x.image_attribution = photo.attribution
       return x
@@ -162,7 +160,7 @@ class SpeciesSimpleList extends React.Component {
                     {s.popular_name}
                     <br />
                   </div>}
-                {s.scientific_name}
+                {s.scientificName}
               </TableRowColumn>
               <TableRowColumn>
                 {s.taxon_group}
@@ -196,8 +194,8 @@ PopularNames:Array(0)
 length:0
 __proto__:Array(0)
 PrefferedPopularname:null
-scientific_nameIdHiarchy:Array(8)
-scientific_names:Array(2)
+scientificNameIdHiarchy:Array(8)
+scientificNames:Array(2)
 Species:null
 SubSpecies:null
 TaxonGroup:"Pattedyr"
@@ -205,7 +203,7 @@ TaxonGroupId:23
 TaxonId:31173
 TaxonIdHiarchy:Array(8)
 TaxonTags:Array(0)
-Validscientific_name:"Vulpes"
-Validscientific_nameAuthorship:"Frisch, 1775"
-Validscientific_nameId:48030
+ValidscientificName:"Vulpes"
+ValidscientificNameAuthorship:"Frisch, 1775"
+ValidscientificNameId:48030
 */

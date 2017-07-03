@@ -1,18 +1,9 @@
 import React from 'react'
-import IconMenu from 'material-ui/IconMenu'
-import IconButton from 'material-ui/IconButton'
-import FontIcon from 'material-ui/FontIcon'
-import NavigationExpandMoreIcon from 'material-ui/svg-icons/navigation/expand-more'
 import ActionSearch from 'material-ui/svg-icons/action/search'
-import MenuItem from 'material-ui/MenuItem'
-import DropDownMenu from 'material-ui/DropDownMenu'
-import RaisedButton from 'material-ui/RaisedButton'
 import AutoComplete from 'material-ui/AutoComplete'
 import {
   Toolbar,
-  ToolbarGroup,
-  ToolbarSeparator,
-  ToolbarTitle
+  ToolbarGroup
 } from 'material-ui/Toolbar'
 
 export default class ToolbarExamplesSimple extends React.Component {

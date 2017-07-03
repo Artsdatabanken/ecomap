@@ -52,12 +52,19 @@
   "homepage": ".",
   "standard": {
     "parser": "babel-eslint",
-    "globals": ["it", "expect"]
+    "globals": [
+      "it",
+      "expect",
+      "fetch"
+    ]
   },
   "eslintConfig": {
     "rules": {
       "react/style-prop-object": "off"
     }
   },
-  "pre-commit": ["ci_test", "lint"]
+  "pre-commit": [
+    "ci_test",
+    "lint"
+  ]
 }
