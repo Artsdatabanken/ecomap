@@ -13,6 +13,7 @@ import Søylediagram from './innsyn/diagram/Søylediagram'
 import ColorRamp from './graphics/color/ColorRamp'
 import Kortstokk from './innsyn/kort/Kortstokk.jsx'
 import AddLayer from './innsyn/addLayer/AddLayer'
+import SelectSpecies from './innsyn/species/SelectSpecies'
 
 const data = [
   { name: 'Page A', uv: 4000, pv: 2400, amt: 2400 },
@@ -26,8 +27,11 @@ const data = [
 
 storiesOf('Add Layer', module)
   .addDecorator(muiTheme())
-  .add('Add layer', () =>
-    <AddLayer />
+  .add('Add layer', () => <AddLayer />)
+  .add('Select Species', () =>
+    <div style={{ margin: 20 }}>
+      <SelectSpecies />
+    </div>
   )
 
 storiesOf('Colors', module)
