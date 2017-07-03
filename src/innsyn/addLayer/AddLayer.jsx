@@ -22,7 +22,7 @@ class AddLayer extends React.Component {
             <Tab
               icon={
                 <FontIcon className='muidocs-icon-action-home'>
-                  Naturtyper
+                  Natur
                 </FontIcon>
               }
             >
@@ -36,7 +36,7 @@ class AddLayer extends React.Component {
             <Tab
               icon={
                 <localDrink>
-                  Miljøvariabler
+                  Miljø
                 </localDrink>
               }
             />
