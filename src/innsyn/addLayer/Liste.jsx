@@ -47,22 +47,22 @@ export default class Liste extends Component {
           </TableRow>
         )}
         <TableBody>
-          <TableRow selected={this.isSelected(0)}>
+          <TableRow key={1} selected={this.isSelected(0)}>
             <TableRowColumn>1</TableRowColumn>
             <TableRowColumn>John Smith</TableRowColumn>
             <TableRowColumn>Employed</TableRowColumn>
           </TableRow>
-          <TableRow selected={this.isSelected(1)}>
+          <TableRow key={2} selected={this.isSelected(1)}>
             <TableRowColumn>2</TableRowColumn>
             <TableRowColumn>Randal White</TableRowColumn>
             <TableRowColumn>Unemployed</TableRowColumn>
           </TableRow>
-          <TableRow selected={this.isSelected(2)}>
+          <TableRow key={3} selected={this.isSelected(2)}>
             <TableRowColumn>3</TableRowColumn>
             <TableRowColumn>Stephanie Sanders</TableRowColumn>
             <TableRowColumn>Employed</TableRowColumn>
           </TableRow>
-          <TableRow selected={this.isSelected(3)}>
+          <TableRow key={4} selected={this.isSelected(3)}>
             <TableRowColumn>4</TableRowColumn>
             <TableRowColumn>Steve Brown</TableRowColumn>
             <TableRowColumn>Employed</TableRowColumn>
