@@ -8,7 +8,8 @@ const style = {
   },
   refresh: {
     display: 'inline-block',
-    position: 'relative'
+    position: 'relative',
+    left: '10%'
   }
 }
 

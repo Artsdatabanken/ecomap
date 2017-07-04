@@ -29,7 +29,7 @@ storiesOf('Add Layer', module)
   .addDecorator(muiTheme())
   .add('Add layer', () => <AddLayer />)
   .add('Select Species', () =>
-    <div style={{ margin: 20 }}>
+    <div style={{ margin: 20, width: '70%' }}>
       <SelectSpecies />
     </div>
   )

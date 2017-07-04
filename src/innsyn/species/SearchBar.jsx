@@ -1,10 +1,6 @@
 import React from 'react'
 import ActionSearch from 'material-ui/svg-icons/action/search'
 import AutoComplete from 'material-ui/AutoComplete'
-import {
-  Toolbar,
-  ToolbarGroup
-} from 'material-ui/Toolbar'
 
 export default class ToolbarExamplesSimple extends React.Component {
   constructor (props) {
@@ -18,21 +14,18 @@ export default class ToolbarExamplesSimple extends React.Component {
 
   render () {
     return (
-      <Toolbar>
-        <ToolbarGroup>
-          <ActionSearch style={{position: 'relative', left: 140}} />
-          <AutoComplete
-            style={{width: '40%'}}
-            hintText='Søk...'
-            filter={AutoComplete.fuzzyFilter}
-            dataSource={[]}
-            maxSearchResults={15}
-            underlineShow={false}
-            onUpdateInput={v => this.props.onChange(v)}
+      <span>
+        <ActionSearch style={{position: 'relative', left: 16, top: 8}} />
+        <AutoComplete
+          style={{left: 32, width: '40%'}}
+          hintText='Søk...'
+          filter={AutoComplete.fuzzyFilter}
+          dataSource={[]}
+          maxSearchResults={15}
+          underlineShow={false}
+          onUpdateInput={v => this.props.onChange(v)}
           />
-        </ToolbarGroup>
-        <ToolbarGroup style={{width: '80%'}} />
-      </Toolbar>
+      </span>
     )
   }
 }
