@@ -68,6 +68,7 @@ export default class Hovedside extends React.Component {
   handleDrawerClose = () => {
     this.setState({ venstreMenyÅpen: false })
   }
+
   handleSearch = criteria => {
     criteria = criteria.toUpperCase()
     const comparison = ['<=', '<', '>=', '>', '<>', '=']
@@ -92,7 +93,7 @@ export default class Hovedside extends React.Component {
     this.setState({ layers: layers })
   }
 
-  render () {
+  render() {
     return (
       <div style={{ width: '100%' }}>
         {false &&
@@ -147,9 +148,21 @@ export default class Hovedside extends React.Component {
             </FloatingActionButton>}
         </div>
         {this.state.showAddLayersDialog &&
-        <SelectSpeciesDialog open={this.state.showAddLayersDialog} />
-        }
+          <SelectSpeciesDialog
+            open={this.state.showAddLayersDialog}
+            onAddLayer={layer => handleAddLayer(layer)}
+          />}
       </div>
     )
+  }
+
+  handleAddLayer(layer) {
+    let layers = this.state.layers
+    layers[layer.id] = {
+        title: layer.scientificName,
+        visible: true,
+        source: 'artskart',
+        raster: false
+    }
   }
 }
