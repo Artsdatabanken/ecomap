@@ -7,11 +7,13 @@ import VenstreMeny from './meny/VenstreMeny'
 import Vektorkart from '../kart/Vektorkart'
 import Kortstokk from './kort/Kortstokk'
 // import NinLayerStack from './NinLayerStack'
+import SelectSpeciesDialog from './species/SelectSpeciesDialog'
 
 export default class Hovedside extends React.Component {
   state = {
     animate: false,
     venstreMenyÅpen: false,
+    showAddLayersDialog: false,
     feature: {},
     layers: {
       'L1-1': { title: 'Grunn limnisk fastbunn', visible: false },
@@ -133,16 +135,20 @@ export default class Hovedside extends React.Component {
           this.state.features &&
           <Kortstokk features={this.state.features} />}
         <div style={{ position: 'absolute', bottom: '50px', right: '50px' }}>
-          {false &&
+          {true &&
             <FloatingActionButton
               onTouchTap={() =>
                 this.setState(prevState => ({
-                  venstreMenyÅpen: !prevState.venstreMenyÅpen
+                  //                  venstreMenyÅpen: !prevState.venstreMenyÅpen
+                  showAddLayersDialog: true
                 }))}
             >
               <ContentAdd />
             </FloatingActionButton>}
         </div>
+        {this.state.showAddLayersDialog &&
+        <SelectSpeciesDialog open={this.state.showAddLayersDialog} />
+        }
       </div>
     )
   }

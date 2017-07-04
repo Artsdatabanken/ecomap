@@ -1,13 +1,15 @@
 import React from 'react'
 import SpeciesGridList from './SpeciesGridList'
 import SearchBar from './SearchBar'
-import Paper from 'material-ui/Paper'
-
 export default class SelectSpecies extends React.Component {
   constructor () {
     super()
-    this.state = { species: [] }
+    this.state = {
+      species: [],
+      isLoading: false
+    }
   }
+
   handleChange = searchCriteria => {
     console.log('Searching for', searchCriteria)
     if (searchCriteria.length < 3) return
@@ -26,6 +28,7 @@ export default class SelectSpecies extends React.Component {
       })
     })
   }
+
   mapSpecies (s) {
     let r = {
       id: s.TaxonId,
@@ -33,7 +36,7 @@ export default class SelectSpecies extends React.Component {
       scientificName: s.ValidScientificName,
       popularName: s.PrefferedPopularname,
       level: s.TaxonIdHiarchy.length,
-      featured: s.TaxonIdHiarchy.length < 4,
+      featured: s.TaxonIdHiarchy.length < 5,
       imageAttribution: '',
       imageScientificName: ''
     }
@@ -112,15 +115,11 @@ export default class SelectSpecies extends React.Component {
 
   render () {
     return (
-      <Paper zDepth={2} style={{ padding: 16 }}>
-        <h1>Arter</h1>
+      <span>
         <SearchBar onChange={v => this.handleChange(v)} />
-        <span>
-          <span>
-            <SpeciesGridList species={this.state.species} />
-          </span>
-        </span>
-      </Paper>
+        <div style={{ height: 32 }} />
+        <SpeciesGridList isLoading={this.state.isLoading} species={this.state.species} />
+      </span>
     )
   }
 }

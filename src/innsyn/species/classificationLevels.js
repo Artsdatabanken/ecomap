@@ -14,6 +14,7 @@ const classificationLevelsEnglish = [
 */
 // https://no.wikipedia.org/wiki/Kategori_(biologi)
 const classificationLevels = [
+  '',
   'Life',
   'Domene',
   'Rike',
@@ -22,6 +23,9 @@ const classificationLevels = [
   'Orden',
   'Familie',
   'Slekt',
-  'Art'
+  'Art',
+  '10',
+  '11',
+  '12'
 ]
 export default classificationLevels
