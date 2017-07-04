@@ -34,7 +34,6 @@ export default class SelectSpecies extends React.Component {
       popularName: s.PrefferedPopularname,
       level: s.TaxonIdHiarchy.length,
       featured: s.TaxonIdHiarchy.length < 4,
-      imageUrl: '',
       imageAttribution: '',
       imageScientificName: ''
     }
@@ -46,7 +45,6 @@ export default class SelectSpecies extends React.Component {
   }
 
   getCoverPhoto2 (sp) {
-    console.info(sp)
     const parentTaxonId =
       sp.TaxonIdHiarchy.length > 1 ? sp.TaxonIdHiarchy[1] : null
     const that = this
@@ -114,9 +112,9 @@ export default class SelectSpecies extends React.Component {
 
   render () {
     return (
-      <Paper zDepth={4} style={{ padding: 16 }}>
-        <SearchBar onChange={v => this.handleChange(v)} />
+      <Paper zDepth={2} style={{ padding: 16 }}>
         <h1>Arter</h1>
+        <SearchBar onChange={v => this.handleChange(v)} />
         <span>
           <span>
             <SpeciesGridList species={this.state.species} />
