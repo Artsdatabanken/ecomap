@@ -3,6 +3,7 @@ import { GridList, GridTile } from 'material-ui/GridList'
 import IconButton from 'material-ui/IconButton'
 import Subheader from 'material-ui/Subheader'
 import StarBorder from 'material-ui/svg-icons/toggle/star-border'
+import LoadingHoc from '../../HigherOrder/LoadingHoc'
 
 const styles = {
   root: {
@@ -21,13 +22,13 @@ const styles = {
 
 const SpeciesGridList = props =>
   <div style={styles.root}>
-    <GridList cellHeight={220} cols={4} style={styles.gridList}>
+    <GridList cellHeight={200} cols={4} style={styles.gridList}>
       <Subheader>Subheader</Subheader>
       {props.species.map(tile => <SpeciesGridItem tile={tile} />)}
     </GridList>
   </div>
 
-const SpeciesGridItem = ({tile}) =>
+const SpeciesGridItem = ({ tile }) =>
   <GridTile
     key={tile.id}
     title={tile.level + ' ' + tile.scientificName}
@@ -46,4 +47,4 @@ const SpeciesGridItem = ({tile}) =>
     />
   </GridTile>
 
-export default SpeciesGridList
+export default LoadingHoc('isLoading', SpeciesGridList)

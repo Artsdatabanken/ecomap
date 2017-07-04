@@ -1,12 +1,4 @@
 import React from 'react'
-import {
-  Table,
-  TableBody,
-  TableHeader,
-  TableHeaderColumn,
-  TableRow,
-  TableRowColumn
-} from 'material-ui/Table'
 import SpeciesGridList from './SpeciesGridList'
 import SearchBar from './SearchBar'
 import Paper from 'material-ui/Paper'
@@ -14,21 +6,23 @@ import Paper from 'material-ui/Paper'
 export default class SelectSpecies extends React.Component {
   constructor () {
     super()
-    this.state = {}
+    this.state = { species: [] }
   }
   handleChange = searchCriteria => {
-    console.log(searchCriteria)
+    console.log('Searching for', searchCriteria)
     if (searchCriteria.length < 3) return
     const url =
       'http://webtjenester.artsdatabanken.no/Artskart/api/taxon/?term=' +
       searchCriteria
+    this.setState({ species: [], isLoading: true })
     fetch(url).then(response => response.json()).then(json => {
       let r = json.map(x => this.mapSpecies(x))
       this.setState({
         species: r.sort((a, b) => {
           if (a.level !== b.level) return a.level - b.level
           return b.scientificName - a.scientificName
-        })
+        }),
+        isLoading: false
       })
     })
   }
@@ -39,23 +33,26 @@ export default class SelectSpecies extends React.Component {
       scientificName: s.ValidScientificName,
       popularName: s.PrefferedPopularname,
       level: s.TaxonIdHiarchy.length,
-      featured: s.TaxonId % 4 === 1
+      featured: s.TaxonIdHiarchy.length < 4,
+      imageUrl: '',
+      imageAttribution: '',
+      imageScientificName: ''
     }
 
-    this.getCoverPhoto2(
-      s.ValidScientificName,
-      s.TaxonIdHiarchy.length > 1 ? s.TaxonIdHiarchy[1] : null
-    ).then(photo => {
+    this.getCoverPhoto2(s).then(photo => {
       this.attachPhoto(r.scientificName, photo)
     })
     return r
   }
 
-  getCoverPhoto2 (scientificName, parentTaxonId) {
+  getCoverPhoto2 (sp) {
+    console.info(sp)
+    const parentTaxonId =
+      sp.TaxonIdHiarchy.length > 1 ? sp.TaxonIdHiarchy[1] : null
     const that = this
     return new Promise(function (resolve, reject) {
       that
-        .lookupCoverPhoto(scientificName)
+        .lookupCoverPhoto(sp.ValidScientificName)
         .then(photo => {
           resolve(photo)
         })
@@ -68,13 +65,9 @@ export default class SelectSpecies extends React.Component {
           const parentUrl =
             'http://webtjenester.artsdatabanken.no/Artskart/api/taxon/' +
             parentTaxonId
+          console.log(parentUrl)
           fetch(parentUrl).then(response => response.json()).then(json => {
-            that
-              .getCoverPhoto2(
-                json.ValidScientificName,
-                json.TaxonIdHiarchy.length > 1 ? json.TaxonIdHiarchy[1] : null
-              )
-              .then(photo => resolve(photo))
+            that.getCoverPhoto2(json).then(photo => resolve(photo))
           })
         })
     })
@@ -124,52 +117,12 @@ export default class SelectSpecies extends React.Component {
       <Paper zDepth={4} style={{ padding: 16 }}>
         <SearchBar onChange={v => this.handleChange(v)} />
         <h1>Arter</h1>
-        {this.state.species &&
+        <span>
           <span>
             <SpeciesGridList species={this.state.species} />
-            <SpeciesSimpleList species={this.state.species} />
-          </span>}
+          </span>
+        </span>
       </Paper>
-    )
-  }
-}
-
-class SpeciesSimpleList extends React.Component {
-  render () {
-    return (
-      <Table onRowSelection={this.handleRowSelection}>
-        <TableHeader>
-          <TableRow>
-            <TableHeaderColumn>Takson</TableHeaderColumn>
-            <TableHeaderColumn>Navn</TableHeaderColumn>
-            <TableHeaderColumn>Gruppe</TableHeaderColumn>
-            <TableHeaderColumn>Bilde</TableHeaderColumn>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {this.props.species.map(s =>
-            <TableRow key={s.id}>
-              <TableRowColumn>
-                {s.id}
-              </TableRowColumn>
-              <TableRowColumn>
-                {s.popularName &&
-                  <div>
-                    {s.popularName}
-                    <br />
-                  </div>}
-                {s.scientificName}
-              </TableRowColumn>
-              <TableRowColumn>
-                {s.taxonGroup}
-              </TableRowColumn>
-              <TableRowColumn>
-                <img src={s.imageUrl} title={s.imageAttribution} />
-              </TableRowColumn>
-            </TableRow>
-          )}
-        </TableBody>
-      </Table>
     )
   }
 }
