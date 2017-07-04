@@ -2,7 +2,7 @@ import React from 'react'
 import SelectSpecies from './SelectSpecies'
 import Paper from 'material-ui/Paper'
 
-const style2 = {
+const style = {
   padding: 16,
   position: 'absolute',
   left: '1%',
@@ -13,7 +13,7 @@ const style2 = {
 }
 
 const SelectSpeciesDialog = props =>
-  <Paper zDepth={4} style={style2}>
+  <Paper zDepth={4} style={style}>
     <h2>Legg til kartlag</h2>
     <SelectSpecies />
   </Paper>

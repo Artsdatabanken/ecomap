@@ -112,13 +112,19 @@ export default class SelectSpecies extends React.Component {
       species: updatedSpecies
     })
   }
-
+  handleSelect (tile) {
+    console.log(tile)
+  }
   render () {
     return (
       <span>
         <SearchBar onChange={v => this.handleChange(v)} />
         <div style={{ height: 32 }} />
-        <SpeciesGridList isLoading={this.state.isLoading} species={this.state.species} />
+        <SpeciesGridList
+          isLoading={this.state.isLoading}
+          species={this.state.species}
+          onClick={tile => this.handleSelect(tile)}
+        />
       </span>
     )
   }
