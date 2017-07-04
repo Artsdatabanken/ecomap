@@ -19,10 +19,10 @@ export default class ToolbarExamplesSimple extends React.Component {
   render () {
     return (
       <Toolbar>
-        <ToolbarGroup firstChild>
-          <ActionSearch />
+        <ToolbarGroup>
+          <ActionSearch style={{position: 'relative', left: 140}} />
           <AutoComplete
-            style={{paddingLeft: '100px', width: '40%'}}
+            style={{width: '40%'}}
             hintText='Søk...'
             filter={AutoComplete.fuzzyFilter}
             dataSource={[]}
@@ -31,6 +31,7 @@ export default class ToolbarExamplesSimple extends React.Component {
             onUpdateInput={v => this.props.onChange(v)}
           />
         </ToolbarGroup>
+        <ToolbarGroup style={{width: '80%'}} />
       </Toolbar>
     )
   }

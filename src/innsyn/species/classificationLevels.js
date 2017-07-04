@@ -1,5 +1,6 @@
 // https://en.wikipedia.org/wiki/Taxonomy_(biology)
-const classificationLevels = [
+/*
+const classificationLevelsEnglish = [
   'Life',
   'Domain',
   'Kingdom',
@@ -9,5 +10,18 @@ const classificationLevels = [
   'Family',
   'Genus',
   'Species'
+]
+*/
+// https://no.wikipedia.org/wiki/Kategori_(biologi)
+const classificationLevels = [
+  'Life',
+  'Domene',
+  'Rike',
+  'Rekke',
+  'Klasse',
+  'Orden',
+  'Familie',
+  'Slekt',
+  'Art'
 ]
 export default classificationLevels

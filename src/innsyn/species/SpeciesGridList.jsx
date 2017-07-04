@@ -4,6 +4,7 @@ import IconButton from 'material-ui/IconButton'
 import Subheader from 'material-ui/Subheader'
 import StarBorder from 'material-ui/svg-icons/toggle/star-border'
 import LoadingHoc from '../../HigherOrder/LoadingHoc'
+import classificationLevels from './classificationLevels.js'
 
 const styles = {
   root: {
@@ -31,7 +32,7 @@ const SpeciesGridList = props =>
 const SpeciesGridItem = ({ tile }) =>
   <GridTile
     key={tile.id}
-    title={tile.level + ' ' + tile.scientificName}
+    title={tile.scientificName + ' (' + classificationLevels[tile.level] + ')'}
     subtitle={tile.popularName}
     actionIcon={
       <IconButton>
@@ -41,10 +42,11 @@ const SpeciesGridItem = ({ tile }) =>
     cols={tile.featured ? 2 : 1}
     rows={tile.featured ? 2 : 1}
   >
-    <img
-      src={tile.imageUrl}
-      title={tile.imageScientificName + ' - ' + tile.imageAttribution}
+    <span style={{ opacity: tile.imageUrl ? 1 : 0, transition: 'opacity 0.4s' }}>
+      <img src={tile.imageUrl}
+        title={tile.imageScientificName + ' - ' + tile.imageAttribution}
     />
+    </span>
   </GridTile>
 
 export default LoadingHoc('isLoading', SpeciesGridList)
