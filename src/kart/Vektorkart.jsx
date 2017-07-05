@@ -171,6 +171,7 @@ export default class Vektorkart extends React.Component {
         logoPosition='top-right'
         movingMethod='easeTo'
         center={[10.33, 63.15]}
+        zoom={[5]}
         pitch={0}
         onClick={(e, evt) => this.handleClick(e, evt)}
         onMouseEnter={(e, evt) => this.handleMouseMove(e, evt)}
