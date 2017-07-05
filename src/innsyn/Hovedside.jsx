@@ -93,7 +93,7 @@ export default class Hovedside extends React.Component {
     this.setState({ layers: layers })
   }
 
-  render() {
+  render () {
     return (
       <div style={{ width: '100%' }}>
         {false &&
@@ -150,19 +150,19 @@ export default class Hovedside extends React.Component {
         {this.state.showAddLayersDialog &&
           <SelectSpeciesDialog
             open={this.state.showAddLayersDialog}
-            onAddLayer={layer => handleAddLayer(layer)}
+            onAddLayer={layer => this.handleAddLayer(layer)}
           />}
       </div>
     )
   }
 
-  handleAddLayer(layer) {
+  handleAddLayer (layer) {
     let layers = this.state.layers
     layers[layer.id] = {
-        title: layer.scientificName,
-        visible: true,
-        source: 'artskart',
-        raster: false
+      title: layer.scientificName,
+      visible: true,
+      source: 'artskart',
+      raster: false
     }
   }
 }
