@@ -30,10 +30,12 @@ export default class SelectSpecies extends React.Component {
   }
 
   mapSpecies (s) {
+    console.log(s)
     let r = {
       id: s.TaxonId,
       taxonGroup: s.TaxonGroup,
       scientificName: s.ValidScientificName,
+      scientificNameId: s.ValidScientificNameId,
       popularName: s.PrefferedPopularname,
       level: s.TaxonIdHiarchy.length,
       featured: s.TaxonIdHiarchy.length < 5,
@@ -121,7 +123,7 @@ export default class SelectSpecies extends React.Component {
         <SpeciesGridList
           isLoading={this.state.isLoading}
           species={this.state.species}
-          onClick={tile => this.props.onAddLayer(tile)}
+          onClick={tile => this.props.onClick(tile)}
         />
       </span>
     )

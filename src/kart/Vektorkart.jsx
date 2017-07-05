@@ -4,7 +4,7 @@ import ReactMapboxGl, { Layer, Feature } from 'react-mapbox-gl'
 // import Color from 'color'
 
 import styles from './styles/style.json'
-// import NinLayerStack from './NinLayerStack'
+import NinLayerStack from './NinLayerStack'
 
 const Map = ReactMapboxGl({
   accessToken:
@@ -59,13 +59,13 @@ export default class Vektorkart extends React.Component {
     if (newZoom > 18) {
       newZoom = 10
     }
-//    this.setState({})
+    //    this.setState({})
     // this.map.bearing = 15*Math.sin(this.tick/150)+15
     // this.map.transform.angle = 5*Math.sin(this.tick/550)
     this.tick++
 
-   // var color = Color.Color('#7743CE').alpha(0.5).lighten(0.5);
-   // console.log(color.hsl().string());  // 'hsla(262, 59%, 81%, 0.5)'
+    // var color = Color.Color('#7743CE').alpha(0.5).lighten(0.5);
+    // console.log(color.hsl().string());  // 'hsla(262, 59%, 81%, 0.5)'
 
     if (this.selectedLayerId) {
       this.map.setPaintProperty(
@@ -73,8 +73,8 @@ export default class Vektorkart extends React.Component {
         'fill-color',
         'hsla(5, 100%, 69%, ' + Math.abs(this.alpha % 2 - 1) + ')'
       )
-      this.alpha = (this.alpha + 0.07)
-//      console.log(Math.abs(this.alpha%2-1))
+      this.alpha = this.alpha + 0.07
+      //      console.log(Math.abs(this.alpha%2-1))
     }
   }
 
@@ -171,8 +171,6 @@ export default class Vektorkart extends React.Component {
         logoPosition='top-right'
         movingMethod='easeTo'
         center={[10.33, 63.15]}
-        zoom={[this.state.zoom]}
-        bearing={this.state.bearing}
         pitch={0}
         onClick={(e, evt) => this.handleClick(e, evt)}
         onMouseEnter={(e, evt) => this.handleMouseMove(e, evt)}
@@ -182,16 +180,18 @@ export default class Vektorkart extends React.Component {
           type='symbol'
           id='marker'
           interactive
-          onClick={e => this.setState({ zoom: this.state.zoom + 1 })}
+          onClick={e => console.warn('clicked the marker!')}
           layout={{ 'icon-image': 'marker-15' }}
         >
           <Feature coordinates={[10.45, 63.42]} />
         </Layer>
+        <NinLayerStack layers={this.props.layers} />
       </Map>
     )
-    /*        {false &&
-          <NinLayerStack layers={this.props.layers} />
-        }
-*/
   }
 }
+
+/*
+        zoom={[this.state.zoom]}
+        bearing={this.state.bearing}
+*/
