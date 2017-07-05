@@ -6,8 +6,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
+    "ci_test": "react-scripts test --env=jsdom --coverage --testResultsProcessor jest-junit",
     "coveralls": "npm run ci_test && cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
-    "ci_test": "react-scripts test --env=jsdom --coverage --testResultsProcessor jest-junit|| exit 0",
     "eject": "react-scripts eject",
     "lint": "./node_modules/.bin/standard",
     "lint-fix": "./node_modules/.bin/standard --fix",
@@ -52,19 +52,12 @@
   "homepage": ".",
   "standard": {
     "parser": "babel-eslint",
-    "globals": [
-      "it",
-      "expect",
-      "fetch"
-    ]
+    "globals": ["it", "expect", "fetch"]
   },
   "eslintConfig": {
     "rules": {
       "react/style-prop-object": "off"
     }
   },
-  "pre-commit": [
-    "ci_test",
-    "lint"
-  ]
+  "pre-commit": ["ci_test", "lint"]
 }
