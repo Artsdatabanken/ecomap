@@ -1,0 +1,414 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`loaded tiles 1`] = `
+<div>
+  Fant 
+  2
+   resultater.
+  <p />
+  <div
+    style={
+      Object {
+        "display": "flex",
+        "flexWrap": "wrap",
+        "justifyContent": "space-around",
+        "padding": 1,
+      }
+    }
+  >
+    <div
+      style={
+        Object {
+          "display": "flex",
+          "flexWrap": "wrap",
+          "margin": -2,
+          "muiPrepared": true,
+        }
+      }
+    >
+      <div
+        style={
+          Object {
+            "boxSizing": "border-box",
+            "height": 204,
+            "muiPrepared": true,
+            "padding": 2,
+            "width": "33.333333333333336%",
+          }
+        }
+      >
+        <div
+          cols={1}
+          onClick={[Function]}
+          rows={1}
+          style={
+            Object {
+              "display": "block",
+              "height": "100%",
+              "muiPrepared": true,
+              "overflow": "hidden",
+              "position": "relative",
+            }
+          }
+        >
+          <span
+            style={
+              Object {
+                "opacity": 0,
+                "transition": "opacity 0.4s",
+              }
+            }
+          >
+            <img
+              alt="Photo of undefined"
+              src={undefined}
+              title="undefined - undefined"
+            />
+          </span>
+          <div
+            style={
+              Object {
+                "alignItems": "center",
+                "background": "rgba(0, 0, 0, 0.4)",
+                "bottom": 0,
+                "display": "flex",
+                "height": 68,
+                "left": 0,
+                "muiPrepared": true,
+                "position": "absolute",
+                "right": 0,
+              }
+            }
+          >
+            <div
+              style={
+                Object {
+                  "color": "#ffffff",
+                  "flexGrow": 1,
+                  "marginLeft": 16,
+                  "marginRight": 0,
+                  "muiPrepared": true,
+                  "overflow": "hidden",
+                }
+              }
+            >
+              <div
+                style={
+                  Object {
+                    "fontSize": "16px",
+                    "muiPrepared": true,
+                    "overflow": "hidden",
+                    "textOverflow": "ellipsis",
+                    "whiteSpace": "nowrap",
+                  }
+                }
+              >
+                Alces Alces (Rekke)
+              </div>
+              <div
+                style={
+                  Object {
+                    "fontSize": "12px",
+                    "muiPrepared": true,
+                    "overflow": "hidden",
+                    "textOverflow": "ellipsis",
+                    "whiteSpace": "nowrap",
+                  }
+                }
+              >
+                Elg
+              </div>
+            </div>
+            <div
+              style={
+                Object {
+                  "muiPrepared": true,
+                  "order": 1,
+                }
+              }
+            >
+              <button
+                disabled={false}
+                href={undefined}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+                onKeyDown={[Function]}
+                onKeyUp={[Function]}
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
+                onMouseOut={[Function]}
+                onTouchStart={[Function]}
+                onTouchTap={[Function]}
+                style={
+                  Object {
+                    "WebkitTapHighlightColor": "rgba(0, 0, 0, 0)",
+                    "background": "none",
+                    "border": 10,
+                    "boxSizing": "border-box",
+                    "cursor": "pointer",
+                    "display": "inline-block",
+                    "fontFamily": "Roboto, sans-serif",
+                    "fontSize": 0,
+                    "fontWeight": "inherit",
+                    "height": 48,
+                    "margin": 0,
+                    "muiPrepared": true,
+                    "outline": "none",
+                    "overflow": "visible",
+                    "padding": 12,
+                    "position": "relative",
+                    "textDecoration": "none",
+                    "transition": "all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
+                    "verticalAlign": null,
+                    "width": 48,
+                    "zIndex": 1,
+                  }
+                }
+                tabIndex={0}
+                type="button"
+              >
+                <div
+                  onMouseDown={[Function]}
+                  onMouseLeave={[Function]}
+                  onMouseUp={[Function]}
+                  onTouchEnd={[Function]}
+                  onTouchStart={[Function]}
+                >
+                  <svg
+                    onMouseEnter={[Function]}
+                    onMouseLeave={[Function]}
+                    style={
+                      Object {
+                        "color": "rgba(0, 0, 0, 0.87)",
+                        "display": "inline-block",
+                        "fill": "white",
+                        "height": 24,
+                        "muiPrepared": true,
+                        "transition": "all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
+                        "userSelect": "none",
+                        "width": 24,
+                      }
+                    }
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z"
+                    />
+                  </svg>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        style={
+          Object {
+            "boxSizing": "border-box",
+            "height": 204,
+            "muiPrepared": true,
+            "padding": 2,
+            "width": "33.333333333333336%",
+          }
+        }
+      >
+        <div
+          cols={1}
+          onClick={[Function]}
+          rows={1}
+          style={
+            Object {
+              "display": "block",
+              "height": "100%",
+              "muiPrepared": true,
+              "overflow": "hidden",
+              "position": "relative",
+            }
+          }
+        >
+          <span
+            style={
+              Object {
+                "opacity": 1,
+                "transition": "opacity 0.4s",
+              }
+            }
+          >
+            <img
+              alt="Photo of xAlces"
+              src="http://elg.no"
+              title="xAlces - CCBY"
+            />
+          </span>
+          <div
+            style={
+              Object {
+                "alignItems": "center",
+                "background": "rgba(0, 0, 0, 0.4)",
+                "bottom": 0,
+                "display": "flex",
+                "height": 68,
+                "left": 0,
+                "muiPrepared": true,
+                "position": "absolute",
+                "right": 0,
+              }
+            }
+          >
+            <div
+              style={
+                Object {
+                  "color": "#ffffff",
+                  "flexGrow": 1,
+                  "marginLeft": 16,
+                  "marginRight": 0,
+                  "muiPrepared": true,
+                  "overflow": "hidden",
+                }
+              }
+            >
+              <div
+                style={
+                  Object {
+                    "fontSize": "16px",
+                    "muiPrepared": true,
+                    "overflow": "hidden",
+                    "textOverflow": "ellipsis",
+                    "whiteSpace": "nowrap",
+                  }
+                }
+              >
+                Alces Alces (Rekke)
+              </div>
+              <div
+                style={
+                  Object {
+                    "fontSize": "12px",
+                    "muiPrepared": true,
+                    "overflow": "hidden",
+                    "textOverflow": "ellipsis",
+                    "whiteSpace": "nowrap",
+                  }
+                }
+              >
+                Elg
+              </div>
+            </div>
+            <div
+              style={
+                Object {
+                  "muiPrepared": true,
+                  "order": 1,
+                }
+              }
+            >
+              <button
+                disabled={false}
+                href={undefined}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+                onKeyDown={[Function]}
+                onKeyUp={[Function]}
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
+                onMouseOut={[Function]}
+                onTouchStart={[Function]}
+                onTouchTap={[Function]}
+                style={
+                  Object {
+                    "WebkitTapHighlightColor": "rgba(0, 0, 0, 0)",
+                    "background": "none",
+                    "border": 10,
+                    "boxSizing": "border-box",
+                    "cursor": "pointer",
+                    "display": "inline-block",
+                    "fontFamily": "Roboto, sans-serif",
+                    "fontSize": 0,
+                    "fontWeight": "inherit",
+                    "height": 48,
+                    "margin": 0,
+                    "muiPrepared": true,
+                    "outline": "none",
+                    "overflow": "visible",
+                    "padding": 12,
+                    "position": "relative",
+                    "textDecoration": "none",
+                    "transition": "all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
+                    "verticalAlign": null,
+                    "width": 48,
+                    "zIndex": 1,
+                  }
+                }
+                tabIndex={0}
+                type="button"
+              >
+                <div
+                  onMouseDown={[Function]}
+                  onMouseLeave={[Function]}
+                  onMouseUp={[Function]}
+                  onTouchEnd={[Function]}
+                  onTouchStart={[Function]}
+                >
+                  <svg
+                    onMouseEnter={[Function]}
+                    onMouseLeave={[Function]}
+                    style={
+                      Object {
+                        "color": "rgba(0, 0, 0, 0.87)",
+                        "display": "inline-block",
+                        "fill": "white",
+                        "height": 24,
+                        "muiPrepared": true,
+                        "transition": "all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
+                        "userSelect": "none",
+                        "width": 24,
+                      }
+                    }
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z"
+                    />
+                  </svg>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`still loading 1`] = `
+<div>
+  Fant 
+  0
+   resultater.
+  <p />
+  <div
+    style={
+      Object {
+        "display": "flex",
+        "flexWrap": "wrap",
+        "justifyContent": "space-around",
+        "padding": 1,
+      }
+    }
+  >
+    <div
+      style={
+        Object {
+          "display": "flex",
+          "flexWrap": "wrap",
+          "margin": -2,
+          "muiPrepared": true,
+        }
+      }
+    />
+  </div>
+</div>
+`;
