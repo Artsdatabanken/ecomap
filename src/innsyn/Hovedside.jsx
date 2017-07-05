@@ -49,6 +49,12 @@ export default class Hovedside extends React.Component {
         visible: false,
         raster: false,
         filter: ['>', 'kalkinnhol', '2']
+      },
+      Elg: {
+        title: 'Alces Alces',
+        visible: true,
+        source: 'geojson',
+        url: 'http://webtjenester.artsdatabanken.no/Artskart/api/listhelper/31241/observations?&fromYear=1981&toYear=2012&fromMonth=1&toMonth=12&type=all&region=all&scientificNameId=48103'
       }
     },
     ninkode: ''
@@ -150,7 +156,7 @@ export default class Hovedside extends React.Component {
         {this.state.showAddLayersDialog &&
           <SelectSpeciesDialog
             open={this.state.showAddLayersDialog}
-            onAddLayer={layer => this.handleAddLayer(layer)}
+            onClick={layer => this.handleAddLayer(layer)}
           />}
       </div>
     )
@@ -160,9 +166,12 @@ export default class Hovedside extends React.Component {
     let layers = this.state.layers
     layers[layer.id] = {
       title: layer.scientificName,
+      url: `http://webtjenester.artsdatabanken.no/Artskart/api/listhelper/${layer.id}/observations?&fromYear=1981&toYear=2012&fromMonth=1&toMonth=12&type=all&region=all&scientificNameId=${layer.scientificNameId}`,
+      source: 'geojson',
       visible: true,
-      source: 'artskart',
       raster: false
     }
+    this.setState({layers})
+    console.log(layers[layer.id])
   }
 }
