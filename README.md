@@ -11,4 +11,8 @@
 ![Screenshot](doc/screenshot.png "Ecomap screenshot")
 
 
-http://outgoing-front.surge.sh/storybook/
+Demo
+* [Demo](http://outgoing-front.surge.sh/)
+
+Storybook
+* [Storybook](http://outgoing-front.surge.sh/storybook)
