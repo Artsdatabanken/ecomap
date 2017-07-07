@@ -8,20 +8,21 @@ const style = {
   },
   refresh: {
     display: 'inline-block',
-    position: 'relative',
-    left: '10%'
+    position: 'relative'
   }
 }
 
-function LoadingIndicator () {
+function LoadingIndicator() {
   return (
-    <RefreshIndicator
-      size={40}
-      left={10}
-      top={0}
-      style={style.refresh}
-      status='loading'
-    />
+    <span style={{ position: 'relative', left: '50%' }}>
+      <RefreshIndicator
+        size={40}
+        left={10}
+        top={0}
+        style={style.refresh}
+        status="loading"
+      />
+    </span>
   )
 }
 export default LoadingIndicator
