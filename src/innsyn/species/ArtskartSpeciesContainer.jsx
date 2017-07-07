@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default class ArtskartSpeciesContainer extends React.Component {
-  constructor() {
+  constructor () {
     super()
     this.state = {
       species: [],
@@ -9,11 +9,11 @@ export default class ArtskartSpeciesContainer extends React.Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps (nextProps) {
     this.handleChange(nextProps.searchCriteria)
   }
 
-  render() {
+  render () {
     var childrenWithProps = React.cloneElement(this.props.children, {
       species: this.state.species,
       isLoading: this.state.isLoading
@@ -45,7 +45,7 @@ export default class ArtskartSpeciesContainer extends React.Component {
     })
   }
 
-  mapSpecies(s) {
+  mapSpecies (s) {
     let r = {
       id: s.TaxonId,
       taxonGroup: s.TaxonGroup,
@@ -64,11 +64,11 @@ export default class ArtskartSpeciesContainer extends React.Component {
     return r
   }
 
-  getCoverPhoto2(sp) {
+  getCoverPhoto2 (sp) {
     const parentTaxonId =
       sp.TaxonIdHiarchy.length > 1 ? sp.TaxonIdHiarchy[1] : null
     const that = this
-    return new Promise(function(resolve, reject) {
+    return new Promise(function (resolve, reject) {
       that
         .lookupCoverPhoto(sp.ValidScientificName)
         .then(photo => {
@@ -91,8 +91,8 @@ export default class ArtskartSpeciesContainer extends React.Component {
     })
   }
 
-  lookupCoverPhoto(scientificName) {
-    return new Promise(function(resolve, reject) {
+  lookupCoverPhoto (scientificName) {
+    return new Promise(function (resolve, reject) {
       const url =
         'http://api.inaturalist.org/v1/taxa/autocomplete?q=' + scientificName
       fetch(url).then(response => response.json()).then(json => {
@@ -111,7 +111,7 @@ export default class ArtskartSpeciesContainer extends React.Component {
     })
   }
 
-  attachPhoto(scientificName, photo) {
+  attachPhoto (scientificName, photo) {
     let species = this.state.species
     if (species === null) return
     if (photo === null) {

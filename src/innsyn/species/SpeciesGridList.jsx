@@ -8,7 +8,7 @@ const styles = {
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
-    padding: 1,
+    padding: 1
 //    width:'50%'
   },
   gridList: {}

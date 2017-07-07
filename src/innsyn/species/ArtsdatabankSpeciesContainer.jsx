@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default class ArtsdatabankSpeciesContainer extends React.Component {
-  constructor() {
+  constructor () {
     super()
     this.state = {
       species: [],
@@ -9,12 +9,11 @@ export default class ArtsdatabankSpeciesContainer extends React.Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps (nextProps) {
     this.handleChange(nextProps.searchCriteria)
   }
 
-  render() {
-    const props = this.props
+  render () {
     var childrenWithProps = React.cloneElement(this.props.children, {
       species: this.state.species,
       isLoading: this.state.isLoading
@@ -47,8 +46,8 @@ export default class ArtsdatabankSpeciesContainer extends React.Component {
     })
   }
 
-  mapSpecies(s) {
-    const sciName =s.ScientificNames[0]
+  mapSpecies (s) {
+    const sciName = s.ScientificNames[0]
     let r = {
       id: sciName.ScientificNameId,
       taxonGroup: 's.TaxonGroup',
@@ -56,7 +55,7 @@ export default class ArtsdatabankSpeciesContainer extends React.Component {
       scientificNameId: sciName.ScientificNameId,
       popularName: 'Popularname?',
       level: sciName.HigherClassification.length,
-      featured: false, //sciName.HigherClassification.length < 0,
+      featured: false, // sciName.HigherClassification.length < 0,
       imageUrl: s.Download,
       imageAttribution: 'Attribution?',
       imageScientificName: sciName.ScientificName
