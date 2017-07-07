@@ -39,34 +39,14 @@ export default class Liste extends Component {
             <TableHeaderColumn>Status</TableHeaderColumn>
           </TableRow>
         </TableHeader>
-        {data.map(r =>
-          <TableRow selected={this.isSelected(0)}>
-            <TableRowColumn>{r.id}</TableRowColumn>
-            <TableRowColumn>{r.name}</TableRowColumn>
-            <TableRowColumn><img src={r.image} /></TableRowColumn>
-          </TableRow>
-        )}
         <TableBody>
-          <TableRow key={1} selected={this.isSelected(0)}>
-            <TableRowColumn>1</TableRowColumn>
-            <TableRowColumn>John Smith</TableRowColumn>
-            <TableRowColumn>Employed</TableRowColumn>
-          </TableRow>
-          <TableRow key={2} selected={this.isSelected(1)}>
-            <TableRowColumn>2</TableRowColumn>
-            <TableRowColumn>Randal White</TableRowColumn>
-            <TableRowColumn>Unemployed</TableRowColumn>
-          </TableRow>
-          <TableRow key={3} selected={this.isSelected(2)}>
-            <TableRowColumn>3</TableRowColumn>
-            <TableRowColumn>Stephanie Sanders</TableRowColumn>
-            <TableRowColumn>Employed</TableRowColumn>
-          </TableRow>
-          <TableRow key={4} selected={this.isSelected(3)}>
-            <TableRowColumn>4</TableRowColumn>
-            <TableRowColumn>Steve Brown</TableRowColumn>
-            <TableRowColumn>Employed</TableRowColumn>
-          </TableRow>
+          {data.map(r =>
+            <TableRow key={r.id} selected={this.isSelected(0)}>
+              <TableRowColumn>{r.id}</TableRowColumn>
+              <TableRowColumn>{r.name}</TableRowColumn>
+              <TableRowColumn><img src={r.image} /></TableRowColumn>
+            </TableRow>
+        )}
         </TableBody>
       </Table>
     )

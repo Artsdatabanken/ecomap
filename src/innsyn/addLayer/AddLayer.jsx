@@ -5,12 +5,24 @@ import FontIcon from 'material-ui/FontIcon'
 import Liste from './Liste'
 import TextField from 'material-ui/TextField'
 import localDrink from 'material-ui/svg-icons/maps/local-drink'
+import SelectSpecies from '../species/SelectSpecies'
 
 class AddLayer extends React.Component {
   render () {
     return (
-      <div style={{ width: '80%', padding: 20 }}>
-        <Paper rounded zDepth={4}>
+      <div style={{}}>
+        <Paper
+          rounded
+          zDepth={4}
+          style={{
+            position: 'absolute',
+            height: 'auto',
+            bottom: 0,
+            top: 0,
+            left: 0,
+            right: 0
+          }}
+        >
           <Tabs
             onChange={(a, tab, b) => {
               console.log(b.props)
@@ -20,24 +32,20 @@ class AddLayer extends React.Component {
             <Tab
               icon={
                 <FontIcon className='muidocs-icon-action-home'>
-                  Natur
+                  Species
                 </FontIcon>
               }
             >
-              <Naturtyper />
+              <SelectSpecies onClick={species => this.props.onClick(species)} />
             </Tab>
+            <Tab icon={<localDrink>Environment</localDrink>} />
             <Tab
               icon={
-                <FontIcon className='muidocs-icon-action-home'>Arter</FontIcon>
+                <FontIcon className='muidocs-icon-action-home'>Nature</FontIcon>
               }
-            />
-            <Tab
-              icon={
-                <localDrink>
-                  Miljø
-                </localDrink>
-              }
-            />
+            >
+              <Nature />
+            </Tab>
           </Tabs>
         </Paper>
       </div>
@@ -45,9 +53,12 @@ class AddLayer extends React.Component {
   }
 }
 
-const Naturtyper = () =>
-  <div style={{padding: 10}}>
-    <TextField floatingLabelText='Søk...' onChange={(e, value) => console.log(value)} />
+const Nature = () =>
+  <div style={{ padding: 10 }}>
+    <TextField
+      floatingLabelText='Search...'
+      onChange={(e, value) => console.log(value)}
+    />
     <Liste />
   </div>
 
