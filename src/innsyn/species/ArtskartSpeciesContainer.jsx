@@ -14,7 +14,6 @@ export default class ArtskartSpeciesContainer extends React.Component {
   }
 
   render() {
-    const props = this.props
     var childrenWithProps = React.cloneElement(this.props.children, {
       species: this.state.species,
       isLoading: this.state.isLoading
