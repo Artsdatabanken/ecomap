@@ -1,5 +1,6 @@
 import React from 'react'
-import { storiesOf, action } from '@storybook/react'
+import { storiesOf } from '@storybook/react'
+import { action } from '@storybook/addon-actions'
 import { muiTheme } from 'storybook-addon-material-ui'
 
 import FilterTag from './filtertag/FilterTag.story'
@@ -14,6 +15,7 @@ import ColorRamp from './graphics/color/ColorRamp'
 import Kortstokk from './innsyn/kort/Kortstokk.jsx'
 import AddLayer from './innsyn/addLayer/AddLayer'
 import SelectSpecies from './innsyn/species/SelectSpecies'
+import ErrorBanner from './ErrorBanner'
 
 const data = [
   { name: 'Page A', uv: 4000, pv: 2400, amt: 2400 },
@@ -24,6 +26,20 @@ const data = [
   { name: 'Page F', uv: 2390, pv: 3800, amt: 2500 },
   { name: 'Page G', uv: 3490, pv: 4300, amt: 2100 }
 ]
+
+storiesOf('Common')
+  .addDecorator(muiTheme())
+  .add('Error banner', () =>
+    <ErrorBanner
+      message="Can't load search results"
+      onRetry={action('onRetry')}
+    />
+  )
+  .add('Loading indicator', () =>
+    <div style={{ margin: '20px' }}>
+      <LoadingIndicator />
+    </div>
+  )
 
 storiesOf('Add Layer', module)
   .addDecorator(muiTheme())
@@ -344,14 +360,6 @@ storiesOf('Meny', module)
           { layer: { id: 'NIN T44' }, properties: { a: 'b' } }
         ]}
       />
-    </div>
-  )
-
-storiesOf('LoadingIndicator', module)
-  .addDecorator(muiTheme())
-  .add('primary', () =>
-    <div style={{ margin: '20px' }}>
-      <LoadingIndicator />
     </div>
   )
 

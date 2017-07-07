@@ -1,4 +1,5 @@
 import React from 'react'
+import ErrorBanner from '../../ErrorBanner'
 
 export default class ArtskartSpeciesContainer extends React.Component {
   constructor () {
@@ -10,10 +11,19 @@ export default class ArtskartSpeciesContainer extends React.Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    this.handleChange(nextProps.searchCriteria)
+    this.handleSearchFor(nextProps.searchCriteria)
   }
 
   render () {
+    if (this.state.error) {
+      return (
+        <ErrorBanner
+          message={"Can't load search results: " + this.state.error}
+          onRetry={() => this.handleSearchFor(this.props.searchCriteria)}
+        />
+      )
+    }
+
     var childrenWithProps = React.cloneElement(this.props.children, {
       species: this.state.species,
       isLoading: this.state.isLoading
@@ -25,24 +35,41 @@ export default class ArtskartSpeciesContainer extends React.Component {
     )
   }
 
-  handleChange = searchCriteria => {
+  requestId = 0
+
+  handleSearchFor = searchCriteria => {
     if (searchCriteria.length < 3) return
-    console.log('Searching for', searchCriteria)
+    console.log('Searching: ' + searchCriteria)
     const url =
       'http://webtjenester.artsdatabanken.no/Artskart/api/taxon/?term=' +
       searchCriteria
-    this.setState({ species: [], isLoading: true })
-    fetch(url).then(response => response.json()).then(json => {
-      console.log(json.length, 'species found')
-      let r = json.map(x => this.mapSpecies(x))
-      this.setState({
-        species: r.sort((a, b) => {
-          if (a.level !== b.level) return a.level - b.level
-          return b.scientificName - a.scientificName
-        }),
-        isLoading: false
+    this.setState({ species: [], isLoading: true, error: null })
+    this.requestId = this.requestId + 1
+    const myRequestId = this.requestId
+    fetch(url)
+      .then(response => {
+        if (!response.ok) throw new Error(response.statusText)
+        return response.json()
       })
-    })
+      .then(json => {
+        if (myRequestId !== this.requestId) {
+          console.log('Search:    ' + searchCriteria + ' no longer relevant')
+          return
+        }
+        console.log(searchCriteria + ': ' + json.length + ' results')
+        let r = json.map(x => this.mapSpecies(x))
+        this.setState({
+          species: r.sort((a, b) => {
+            if (a.level !== b.level) return a.level - b.level
+            return b.scientificName - a.scientificName
+          }),
+          isLoading: false
+        })
+      })
+      .catch(error => {
+        console.error(error)
+        this.setState({ error: error.message, isLoading: false })
+      })
   }
 
   mapSpecies (s) {
