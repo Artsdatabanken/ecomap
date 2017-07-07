@@ -1,0 +1,177 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders empty ok 1`] = `
+<div
+  style={
+    Object {
+      "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      "backgroundColor": "#ffffff",
+      "borderRadius": 2,
+      "boxShadow": "0 14px 45px rgba(0, 0, 0, 0.25),
+             0 10px 18px rgba(0, 0, 0, 0.22)",
+      "boxSizing": "border-box",
+      "color": "rgba(0, 0, 0, 0.87)",
+      "fontFamily": "Roboto, sans-serif",
+      "height": "98%",
+      "left": "1%",
+      "muiPrepared": true,
+      "overflowY": "auto",
+      "padding": 16,
+      "position": "absolute",
+      "top": "1%",
+      "transition": "all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
+      "width": "45%",
+    }
+  }
+>
+  <h2>
+    Species
+  </h2>
+  <span>
+    <span>
+      <svg
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+        style={
+          Object {
+            "color": "rgba(0, 0, 0, 0.87)",
+            "display": "inline-block",
+            "fill": "currentColor",
+            "height": 24,
+            "left": 16,
+            "muiPrepared": true,
+            "position": "relative",
+            "top": 8,
+            "transition": "all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
+            "userSelect": "none",
+            "width": 24,
+          }
+        }
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+        />
+      </svg>
+      <div
+        style={
+          Object {
+            "display": "inline-block",
+            "left": 32,
+            "muiPrepared": true,
+            "position": "relative",
+            "width": "40%",
+          }
+        }
+      >
+        <div
+          className={undefined}
+          style={
+            Object {
+              "backgroundColor": "transparent",
+              "cursor": "auto",
+              "display": "inline-block",
+              "fontFamily": "Roboto, sans-serif",
+              "fontSize": 16,
+              "height": 48,
+              "lineHeight": "24px",
+              "muiPrepared": true,
+              "position": "relative",
+              "transition": "height 200ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
+              "width": 256,
+            }
+          }
+        >
+          <div
+            style={
+              Object {
+                "bottom": 12,
+                "color": "rgba(0, 0, 0, 0.3)",
+                "muiPrepared": true,
+                "opacity": 1,
+                "position": "absolute",
+                "transition": "all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
+              }
+            }
+          >
+            Søk...
+          </div>
+          <input
+            autoComplete="off"
+            disabled={false}
+            id="undefined-Sk-undefined-15376"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            open={false}
+            style={
+              Object {
+                "WebkitOpacity": 1,
+                "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+                "appearance": "textfield",
+                "backgroundColor": "rgba(0,0,0,0)",
+                "border": "none",
+                "color": "rgba(0, 0, 0, 0.87)",
+                "cursor": "inherit",
+                "font": "inherit",
+                "height": "100%",
+                "muiPrepared": true,
+                "outline": "none",
+                "padding": 0,
+                "position": "relative",
+                "width": "100%",
+              }
+            }
+            type="text"
+            value=""
+          />
+        </div>
+        <div
+          style={
+            Object {
+              "display": "none",
+            }
+          }
+        />
+      </div>
+    </span>
+    <div
+      style={
+        Object {
+          "height": 32,
+        }
+      }
+    />
+    <span>
+      <div>
+        Fant 
+        0
+         resultater.
+        <p />
+        <div
+          style={
+            Object {
+              "display": "flex",
+              "flexWrap": "wrap",
+              "justifyContent": "space-around",
+              "padding": 1,
+            }
+          }
+        >
+          <div
+            style={
+              Object {
+                "display": "flex",
+                "flexWrap": "wrap",
+                "margin": -2,
+                "muiPrepared": true,
+              }
+            }
+          />
+        </div>
+      </div>
+    </span>
+  </span>
+</div>
+`;

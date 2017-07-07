@@ -2,7 +2,6 @@ import PropTypes from 'prop-types'
 import * as React from 'react'
 import ReactMapboxGl, { Layer, Feature } from 'react-mapbox-gl'
 // import Color from 'color'
-
 import styles from './styles/style.json'
 import NinLayerStack from './NinLayerStack'
 
