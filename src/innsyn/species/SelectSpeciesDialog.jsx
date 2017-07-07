@@ -14,7 +14,7 @@ const style = {
 
 const SelectSpeciesDialog = props =>
   <Paper zDepth={4} style={style}>
-    <h2>Legg til kartlag</h2>
+    <h2>Species</h2>
     <SelectSpecies onClick={(item) => props.onClick(item)} />
   </Paper>
 

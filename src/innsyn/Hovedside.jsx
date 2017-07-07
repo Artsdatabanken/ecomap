@@ -50,7 +50,7 @@ export default class Hovedside extends React.Component {
         raster: false,
         filter: ['>', 'kalkinnhol', '2']
       }
-/*      Elg: {
+      /*      Elg: {
         title: 'Alces Alces',
         visible: true,
         source: 'geojson',
@@ -171,7 +171,10 @@ export default class Hovedside extends React.Component {
       visible: true,
       raster: false
     }
-    this.setState({layers})
     console.log(layers[layer.id])
+    this.setState({
+      layers,
+      showAddLayersDialog: false
+    })
   }
 }
