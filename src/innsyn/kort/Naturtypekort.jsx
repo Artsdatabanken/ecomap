@@ -118,7 +118,6 @@ class Naturtypekort extends React.Component {
   }
 
   render () {
-    console.log(this.props.ninkode)
     const data = ninkoder[this.props.ninkode]
     if (!data) {
       return <span />
