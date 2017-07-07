@@ -2,10 +2,6 @@
 
 exports[`loaded tiles 1`] = `
 <div>
-  Fant 
-  2
-   resultater.
-  <p />
   <div
     style={
       Object {
@@ -385,10 +381,6 @@ exports[`loaded tiles 1`] = `
 
 exports[`still loading 1`] = `
 <div>
-  Fant 
-  0
-   resultater.
-  <p />
   <div
     style={
       Object {

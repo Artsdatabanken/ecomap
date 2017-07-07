@@ -16,8 +16,6 @@ const styles = {
 
 const SpeciesGridList = props =>
   <div>
-    Fant {props.species.length} resultater.
-    <p />
     <div style={styles.root}>
       <GridList cellHeight={200} cols={3} style={styles.gridList}>
         {props.species.map(tile =>
