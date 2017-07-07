@@ -2,10 +2,8 @@ import React from 'react'
 import { Paper } from 'material-ui'
 import { Tabs, Tab } from 'material-ui/Tabs'
 import FontIcon from 'material-ui/FontIcon'
-// import ActionFlightTakeoff from 'material-ui/svg-icons/action/flight-takeoff'
 import Liste from './Liste'
 import TextField from 'material-ui/TextField'
-// import Divider from 'material-ui/Divider'
 import localDrink from 'material-ui/svg-icons/maps/local-drink'
 
 class AddLayer extends React.Component {
