@@ -12,7 +12,7 @@ const style = {
   }
 }
 
-function LoadingIndicator() {
+function LoadingIndicator () {
   return (
     <span style={{ position: 'relative', left: '50%' }}>
       <RefreshIndicator
@@ -20,7 +20,7 @@ function LoadingIndicator() {
         left={10}
         top={0}
         style={style.refresh}
-        status="loading"
+        status='loading'
       />
     </span>
   )

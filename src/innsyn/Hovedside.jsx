@@ -49,13 +49,13 @@ export default class Hovedside extends React.Component {
         visible: false,
         raster: false,
         filter: ['>', 'kalkinnhol', '2']
-      },
+      }
 /*      Elg: {
         title: 'Alces Alces',
         visible: true,
         source: 'geojson',
         url: 'http://webtjenester.artsdatabanken.no/Artskart/api/listhelper/31241/observations?&fromYear=1981&toYear=2012&fromMonth=1&toMonth=12&type=all&region=all&scientificNameId=48103'
-      }*/
+      } */
     },
     ninkode: ''
   }
