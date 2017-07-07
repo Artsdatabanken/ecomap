@@ -12,10 +12,10 @@ const lineLayout = { visibility: 'visible' }
 const circlePaint = { 'circle-color': '#ff0000',
 'circle-radius':8,
 'circle-blur': 0.75,
-'circle-opacity': 0.7,
+'circle-opacity': 0.6,
 'circle-stroke-width': 1,
 'circle-stroke-color': '#ffffff',
-'circle-stroke-opacity': 0.2
+'circle-stroke-opacity': 0.3
 }
 
 class GeoJsonLayer extends React.Component {
