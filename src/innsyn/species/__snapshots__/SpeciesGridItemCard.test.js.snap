@@ -1,0 +1,327 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`complete featured tile 1`] = `
+<div
+  actionIcon={
+    <IconButton
+      disableTouchRipple={false}
+      disabled={false}
+      iconStyle={Object {}}
+      tooltipPosition="bottom-center"
+      touch={false}
+    >
+      <ToggleStarBorder
+        color="white"
+      />
+    </IconButton>
+  }
+  cols={1}
+  onClick={[Function]}
+  rows={1}
+  style={
+    Object {
+      "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      "backgroundColor": "#ffffff",
+      "borderRadius": 2,
+      "boxShadow": "0 1px 6px rgba(0, 0, 0, 0.12),
+             0 1px 4px rgba(0, 0, 0, 0.12)",
+      "boxSizing": "border-box",
+      "color": "rgba(0, 0, 0, 0.87)",
+      "fontFamily": "Roboto, sans-serif",
+      "marginBottom": 2,
+      "muiPrepared": true,
+      "transition": "all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
+      "width": "100%",
+      "zIndex": 1,
+    }
+  }
+>
+  <div
+    style={
+      Object {
+        "paddingBottom": 0,
+      }
+    }
+  >
+    <div
+      style={
+        Object {
+          "muiPrepared": true,
+          "position": "relative",
+        }
+      }
+    >
+      <div
+        style={
+          Object {
+            "muiPrepared": true,
+          }
+        }
+      >
+        <span
+          style={
+            Object {
+              "maxWidth": "100%",
+              "minWidth": "100%",
+              "muiPrepared": true,
+              "verticalAlign": "top",
+              "width": "100%",
+            }
+          }
+        >
+          <img
+            alt="Photo of xAlces"
+            onLoad={[Function]}
+            src="http://elg.no"
+            style={
+              Object {
+                "maxHeight": 400,
+                "minHeight": 132,
+                "opacity": 0,
+                "transition": "opacity 0.5s, max-height 0.5s ease-in",
+                "width": "100%",
+              }
+            }
+            title="xAlces - CCBY"
+          />
+        </span>
+      </div>
+      <div
+        style={
+          Object {
+            "bottom": 0,
+            "left": 0,
+            "muiPrepared": true,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          }
+        }
+      >
+        <div
+          style={
+            Object {
+              "height": "100%",
+              "muiPrepared": true,
+              "position": "relative",
+            }
+          }
+        >
+          <div
+            style={
+              Object {
+                "background": "rgba(0, 0, 0, 0.54)",
+                "bottom": 0,
+                "left": 0,
+                "muiPrepared": true,
+                "paddingTop": 8,
+                "position": "absolute",
+                "right": 0,
+              }
+            }
+          >
+            <div
+              style={
+                Object {
+                  "muiPrepared": true,
+                  "padding": 16,
+                  "position": "relative",
+                }
+              }
+            >
+              <span
+                style={
+                  Object {
+                    "color": "rgba(255, 255, 255, 0.87)",
+                    "display": "block",
+                    "fontSize": 24,
+                    "lineHeight": "36px",
+                    "muiPrepared": true,
+                  }
+                }
+              >
+                Alces Alces (Rekke)
+              </span>
+              <span
+                style={
+                  Object {
+                    "color": "rgba(255, 255, 255, 0.54)",
+                    "display": "block",
+                    "fontSize": 14,
+                    "muiPrepared": true,
+                  }
+                }
+              >
+                Elg
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`loading standard tile 1`] = `
+<div
+  actionIcon={
+    <IconButton
+      disableTouchRipple={false}
+      disabled={false}
+      iconStyle={Object {}}
+      tooltipPosition="bottom-center"
+      touch={false}
+    >
+      <ToggleStarBorder
+        color="white"
+      />
+    </IconButton>
+  }
+  cols={1}
+  onClick={[Function]}
+  rows={1}
+  style={
+    Object {
+      "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      "backgroundColor": "#ffffff",
+      "borderRadius": 2,
+      "boxShadow": "0 1px 6px rgba(0, 0, 0, 0.12),
+             0 1px 4px rgba(0, 0, 0, 0.12)",
+      "boxSizing": "border-box",
+      "color": "rgba(0, 0, 0, 0.87)",
+      "fontFamily": "Roboto, sans-serif",
+      "marginBottom": 2,
+      "muiPrepared": true,
+      "transition": "all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
+      "width": "100%",
+      "zIndex": 1,
+    }
+  }
+>
+  <div
+    style={
+      Object {
+        "paddingBottom": 0,
+      }
+    }
+  >
+    <div
+      style={
+        Object {
+          "muiPrepared": true,
+          "position": "relative",
+        }
+      }
+    >
+      <div
+        style={
+          Object {
+            "muiPrepared": true,
+          }
+        }
+      >
+        <span
+          style={
+            Object {
+              "maxWidth": "100%",
+              "minWidth": "100%",
+              "muiPrepared": true,
+              "verticalAlign": "top",
+              "width": "100%",
+            }
+          }
+        >
+          <img
+            alt="Photo of undefined"
+            onLoad={[Function]}
+            src={undefined}
+            style={
+              Object {
+                "maxHeight": 400,
+                "minHeight": 132,
+                "opacity": 0,
+                "transition": "opacity 0.5s, max-height 0.5s ease-in",
+                "width": "100%",
+              }
+            }
+            title="undefined - undefined"
+          />
+        </span>
+      </div>
+      <div
+        style={
+          Object {
+            "bottom": 0,
+            "left": 0,
+            "muiPrepared": true,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          }
+        }
+      >
+        <div
+          style={
+            Object {
+              "height": "100%",
+              "muiPrepared": true,
+              "position": "relative",
+            }
+          }
+        >
+          <div
+            style={
+              Object {
+                "background": "rgba(0, 0, 0, 0.54)",
+                "bottom": 0,
+                "left": 0,
+                "muiPrepared": true,
+                "paddingTop": 8,
+                "position": "absolute",
+                "right": 0,
+              }
+            }
+          >
+            <div
+              style={
+                Object {
+                  "muiPrepared": true,
+                  "padding": 16,
+                  "position": "relative",
+                }
+              }
+            >
+              <span
+                style={
+                  Object {
+                    "color": "rgba(255, 255, 255, 0.87)",
+                    "display": "block",
+                    "fontSize": 24,
+                    "lineHeight": "36px",
+                    "muiPrepared": true,
+                  }
+                }
+              >
+                Alces Alces (Rekke)
+              </span>
+              <span
+                style={
+                  Object {
+                    "color": "rgba(255, 255, 255, 0.54)",
+                    "display": "block",
+                    "fontSize": 14,
+                    "muiPrepared": true,
+                  }
+                }
+              >
+                Elg
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
