@@ -16,18 +16,3 @@ const SpeciesGridList = props =>
   </div>
 
 export default LoadingHoc('isLoading', SpeciesGridList)
-
-/*
-      <GridList cols={3} style={styles.gridList}>
-      </GridList>
-
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
-    flexBasis: 'auto',
-    padding: 1,
-     flexDirection: 'column',
-overflowY: 'scroll!important',
-overflowX: 'hidden'
-
-*/
