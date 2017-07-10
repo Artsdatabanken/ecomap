@@ -16,6 +16,7 @@ import Kortstokk from './innsyn/kort/Kortstokk.jsx'
 import AddLayer from './innsyn/addLayer/AddLayer'
 import SelectSpecies from './innsyn/species/SelectSpecies'
 import ErrorBanner from './ErrorBanner'
+import SpeciesGridItemCard from './innsyn/species/SpeciesGridItemCard'
 import theme from './theme'
 
 const data = [
@@ -44,12 +45,23 @@ storiesOf('Common')
 
 storiesOf('Add Layer', module)
   .addDecorator(muiTheme([theme]))
-  .add('Add layer', () => <AddLayer />)
+  .add('Species Card', () =>
+    <div style={{ margin: 0, width: '20%' }}>
+      <SpeciesGridItemCard tile={{
+        id: 42,
+        scientificName: 'Alces alces',
+        popularName: 'Elg',
+        level: 9,
+        imageAttribution: '(C)',
+        imageUrl: 'https://farm5.staticflickr.com/4107/4839886016_d11b6d2cdf.jpg'
+      }} />
+    </div>
+  )
   .add('Select Species', () =>
     <div style={{ margin: 20, width: '70%' }}>
       <SelectSpecies onClick={action('onClick')} />
-    </div>
-  )
+    </div>)
+  .add('Add layer', () => <AddLayer onClick={action('onClick')} />)
 
 storiesOf('Colors', module)
   .addDecorator(muiTheme([theme]))
