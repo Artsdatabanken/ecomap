@@ -48,13 +48,14 @@ storiesOf('Add Layer', module)
   .add('Species Card', () =>
     <div style={{ margin: 0, width: '20%' }}>
       <SpeciesGridItemCard tile={{
-        id: 42,
+        id: 31241,
         scientificName: 'Alces alces',
         popularName: 'Elg',
         level: 9,
         imageAttribution: '(C)',
         imageUrl: 'https://farm5.staticflickr.com/4107/4839886016_d11b6d2cdf.jpg'
-      }} />
+      }}
+        onClick={action('onClick')} />
     </div>
   )
   .add('Select Species', () =>

@@ -1,33 +1,37 @@
 import React from 'react'
 import classificationLevels from './classificationLevels.js'
-import IconButton from 'material-ui/IconButton'
-import StarBorder from 'material-ui/svg-icons/toggle/star-border'
-import { Card, CardMedia, CardTitle } from 'material-ui/Card'
+import { Card, CardText, CardMedia, CardTitle } from 'material-ui/Card'
 
 class SpeciesGridItemCard extends React.Component {
   constructor () {
     super()
-    this.state = {}
+    this.state = { expanded: false }
   }
   render () {
     const tile = this.props.tile
     return (
       <Card
         key={tile.id}
-        onClick={() => this.props.onClick(tile)}
-        actionIcon={
-          <IconButton>
-            <StarBorder color='white' />
-          </IconButton>
+        expanded={this.state.expanded}
+        onClick={() => {
+          this.props.onClick(tile)
+          this.setState({ expanded: !this.state.expanded })
         }
-        style={{ width: '100%', marginBottom: 2 }}
-        cols={tile.featured ? 2 : 1}
-        rows={tile.featured ? 2 : 1}
+        }
+
+        style={{
+          width: '100%',
+          marginBottom: 2,
+          pageBreakInside: 'avoid'
+        }}
       >
         <CardMedia
           overlay={<CardTitle
             title={tile.scientificName + ' (' + classificationLevels[tile.level] + ')'}
-            subtitle={tile.popularName} />}
+            subtitle={tile.popularName}
+          />}
+          actAsExpander
+          showExpandableButton
         >
           <span
           >
@@ -37,14 +41,22 @@ class SpeciesGridItemCard extends React.Component {
               style={{
                 width: '100%',
                 minHeight: 132,
-                maxHeight: this.state.imageLoaded ? 2300 : 400,
+                maxHeight: this.state.imageLoaded ? 9900 : 400,
                 opacity: this.state.imageLoaded ? 1 : 0,
                 transition: 'opacity 0.5s, max-height 0.5s ease-in'
               }}
             />
           </span>
         </CardMedia>
-      </Card>
+        <CardText expandable style={{ overflowY: 'visible', height: 2000, padding: 0 }}>
+          <object type='text/html'
+            data={'http://artsdatabanken.no/Taxon/' + tile.id}
+            style={{ width: '100%', height: '100%', overflowY: 'visible' }} >
+            Species details
+            </object>
+
+        </CardText>
+      </Card >
     )
   }
 }
