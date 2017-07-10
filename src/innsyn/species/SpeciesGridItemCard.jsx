@@ -49,8 +49,7 @@ class SpeciesGridItemCard extends React.Component {
           </span>
         </CardMedia>
         <CardText expandable style={{ overflowY: 'visible', height: 2000, padding: 0 }}>
-
-          <object type='text/html'
+          <object type='text/html'alt='Species details'
             data={'http://artsdatabanken.no/Taxon/' + tile.id}
             style={{ width: '100%', height: '100%', overflowY: 'visible' }} />
 
