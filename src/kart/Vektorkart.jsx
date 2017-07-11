@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types'
 import * as React from 'react'
-import ReactMapboxGl, { Layer, Feature } from 'react-mapbox-gl'
+import ReactMapboxGl from 'react-mapbox-gl'
 // import Color from 'color'
 import styles from './styles/style.json'
-import NinLayerStack from './NinLayerStack'
+import MapLayerStack from './layer/MapLayerStack'
 
 const Map = ReactMapboxGl({
   accessToken:
-    'pk.eyJ1IjoiYmpyZXBwZW4iLCJhIjoiY2ltZGFkMW11MDAwdnZpbHVsamhsZzB1dSJ9.oZBI8rZR8YSsXoyIM0vLYg'
+  'pk.eyJ1IjoiYmpyZXBwZW4iLCJhIjoiY2ltZGFkMW11MDAwdnZpbHVsamhsZzB1dSJ9.oZBI8rZR8YSsXoyIM0vLYg'
 })
 
 export default class Vektorkart extends React.Component {
@@ -176,16 +176,7 @@ export default class Vektorkart extends React.Component {
         onMouseEnter={(e, evt) => this.handleMouseMove(e, evt)}
         onMouseLeave={(e, evt) => this.handleMouseLeave(e, evt)}
       >
-        <Layer
-          type='symbol'
-          id='marker'
-          interactive
-          onClick={e => console.warn('clicked the marker!')}
-          layout={{ 'icon-image': 'marker-15' }}
-        >
-          <Feature coordinates={[10.45, 63.42]} />
-        </Layer>
-        <NinLayerStack layers={this.props.layers} />
+        <MapLayerStack layers={this.props.layers} />
       </Map>
     )
   }

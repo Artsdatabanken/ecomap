@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "color_ramps": "^1.0.4",
+    "deck.gl": "^4.0.6",
     "mapbox-gl": "^0.38.0",
     "material-ui": "^0.18.1",
     "prop-types": "^15.5.10",
