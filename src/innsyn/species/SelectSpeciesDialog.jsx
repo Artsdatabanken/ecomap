@@ -7,7 +7,7 @@ const style = {
   position: 'absolute',
   left: '1%',
   top: '1%',
-  width: '45%',
+  width: '98%',
   height: '98%',
   overflowY: 'auto'
 }

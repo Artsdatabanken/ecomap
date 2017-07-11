@@ -8,6 +8,7 @@ import Vektorkart from '../kart/Vektorkart'
 import Kortstokk from './kort/Kortstokk'
 // import NinLayerStack from './NinLayerStack'
 import SelectSpeciesDialog from './species/SelectSpeciesDialog'
+import CloseOnEscape from '../HigherOrder/CloseOnEscape'
 
 export default class Hovedside extends React.Component {
   state = {
@@ -142,7 +143,7 @@ export default class Hovedside extends React.Component {
           this.state.features &&
           <Kortstokk features={this.state.features} />}
         <div style={{ position: 'absolute', bottom: '50px', right: '50px' }}>
-          {true &&
+          {!this.state.showAddLayersDialog &&
             <FloatingActionButton
               onTouchTap={() =>
                 this.setState(prevState => ({
@@ -154,10 +155,13 @@ export default class Hovedside extends React.Component {
             </FloatingActionButton>}
         </div>
         {this.state.showAddLayersDialog &&
-          <SelectSpeciesDialog
-            open={this.state.showAddLayersDialog}
-            onClick={layer => this.handleAddLayer(layer)}
-          />}
+          <CloseOnEscape onEscape={() => this.setState({ showAddLayersDialog: false })}>
+            <SelectSpeciesDialog
+              open={this.state.showAddLayersDialog}
+              onClick={layer => this.handleAddLayer(layer)}
+            />
+          </CloseOnEscape>
+        }
       </div>
     )
   }
