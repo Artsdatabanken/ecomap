@@ -1,14 +1,11 @@
 import PropTypes from 'prop-types'
 import * as React from 'react'
-import ReactMapboxGl from 'react-mapbox-gl'
+import MapGL from 'react-map-gl'
 // import Color from 'color'
 import styles from './styles/style.json'
-import MapLayerStack from './layer/MapLayerStack'
-
-const Map = ReactMapboxGl({
-  accessToken:
-  'pk.eyJ1IjoiYmpyZXBwZW4iLCJhIjoiY2ltZGFkMW11MDAwdnZpbHVsamhsZzB1dSJ9.oZBI8rZR8YSsXoyIM0vLYg'
-})
+// import MapLayerStack from './layer/MapLayerStack'
+import Heatmap3d from './layer/Heatmap3d'
+const MAPBOX_TOKEN = process.env.MapboxAccessToken; // eslint-disable-line
 
 export default class Vektorkart extends React.Component {
   static propTypes = {
@@ -20,12 +17,23 @@ export default class Vektorkart extends React.Component {
     animate: false
   }
 
-  state = { zoom: 10, bearing: 0, styles }
+  state = {
+    viewport: {
+      ...Heatmap3d.defaultViewport,
+      width: 500,
+      height: 500
+    },
+    zoom: 10,
+    bearing: 0,
+    styles }
 
   componentDidMount () {
     this.tick = 0
     this.timerId = setInterval(this.update, 60)
     this.alpha = 0
+
+    window.addEventListener('resize', this._resize.bind(this))
+    this._resize()
   }
 
   componentWillReceiveProps (nextProps, nextState) {
@@ -157,31 +165,57 @@ export default class Vektorkart extends React.Component {
     return {}
   }
 
+  _resize () {
+    this._onViewportChange({
+      width: window.innerWidth,
+      height: window.innerHeight
+    })
+  }
+
+  _onViewportChange (viewport) {
+    this.setState({
+      viewport: {...this.state.viewport, ...viewport}
+    })
+  }
+
   render () {
+    const {viewport} = this.state
+    console.log('MAPBOX_TOKEN', MAPBOX_TOKEN)
+    console.log(process.env.MapboxAccessToken)
     return (
-      <Map
-        // eslint-disable-next-line react/style-prop-object
-        style='mapbox://styles/bjreppen/cj06jt53u00gh2rl5r30vi8br'
-        onStyleLoad={(s, t) => this.handleStyleLoad(s, t)}
-        containerStyle={{
-          height: '100vh',
-          width: '100vw'
-        }}
-        logoPosition='top-right'
-        movingMethod='easeTo'
-        center={[10.33, 63.15]}
-        zoom={[5]}
-        pitch={0}
-        onClick={(e, evt) => this.handleClick(e, evt)}
-        onMouseEnter={(e, evt) => this.handleMouseMove(e, evt)}
-        onMouseLeave={(e, evt) => this.handleMouseLeave(e, evt)}
-      >
-        <MapLayerStack layers={this.props.layers} />
-      </Map>
+      <MapGL
+        {...viewport}
+        mapStyle='mapbox://styles/mapbox/dark-v9'
+        onViewportChange={this._onViewportChange.bind(this)}
+        mapboxApiAccessToken={MAPBOX_TOKEN} />
     )
   }
+      }
+/*
+            <Map
+              // eslint-disable-next-line react/style-prop-object
+              style='mapbox://styles/bjreppen/cj06jt53u00gh2rl5r30vi8br'
+              onStyleLoad={(s, t) => this.handleStyleLoad(s, t)}
+              containerStyle={{
+                height: '100vh',
+                width: '100vw'
+              }}
+              logoPosition='top-right'
+              movingMethod='easeTo'
+              center={[10.33, 63.15]}
+              zoom={[5]}
+              pitch={0}
+              onClick={(e, evt) => this.handleClick(e, evt)}
+              onMouseEnter={(e, evt) => this.handleMouseMove(e, evt)}
+              onMouseLeave={(e, evt) => this.handleMouseLeave(e, evt)}
+            >
+              <MapLayerStack layers={this.props.layers} />
+            </Map>
+      */
+/*    )
+  }
 }
-
+*/
 /*
         zoom={[this.state.zoom]}
         bearing={this.state.bearing}
