@@ -1,9 +1,16 @@
-import PropTypes from 'prop-types'
 import React, { Children } from 'react'
+import PropTypes from 'prop-types'
 
 export default class CloseOnEscape extends React.Component {
-  static propTypes = {
-    children: PropTypes.object.isRequired
+  constructor () {
+    super()
+    this.onEscape = this.onEscape.bind(this)
+  }
+
+  onEscape ({ keyCode }) {
+    if (keyCode === 27) {
+      this.props.onEscape()
+    }
   }
 
   componentDidMount () {
@@ -12,12 +19,6 @@ export default class CloseOnEscape extends React.Component {
 
   componentWillUnmount () {
     document.removeEventListener('keydown', this.onEscape)
-  }
-
-  onEscape = (e) => {
-    if (e.keyCode === 27) {
-      this.props.onEscape()
-    }
   }
 
   render () {

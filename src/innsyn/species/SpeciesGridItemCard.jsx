@@ -26,12 +26,12 @@ class SpeciesGridItemCard extends React.Component {
         }}
       >
         <CardMedia
+          actAsExpander
+          showExpandableButton
           overlay={<CardTitle
             title={tile.scientificName + ' (' + classificationLevels[tile.level] + ')'}
             subtitle={tile.popularName}
           />}
-          actAsExpander
-          showExpandableButton
         >
           <span
           >
