@@ -4,7 +4,7 @@ import SpeciesGridItemCard from './SpeciesGridItemCard'
 
 const styles = {
   root: {
-    columnCount: 3
+    columnCount: 4
   }
 }
 
