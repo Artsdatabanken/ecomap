@@ -2,6 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 import Hovedside from './Hovedside'
+import FetchContainer from '../FetchContainer'
 
 const LastOpp = () => (
   <div style={{ position: 'absolute', top: '150px', left: '150px', fontSize: '35px' }}>Last opp...</div>
@@ -12,7 +13,7 @@ const LastNed = () => (
 )
 
 const Innsyn = () => (
-  <div>
+  <FetchContainer>
     <Hovedside />
     <Router>
       <div>
@@ -20,7 +21,7 @@ const Innsyn = () => (
         <Route path='/lastned' component={LastNed} />
       </div>
     </Router>
-  </div>
+  </FetchContainer>
 )
 
 export default Innsyn
