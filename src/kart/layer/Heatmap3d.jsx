@@ -1,6 +1,6 @@
 /* global window */
-import React, {Component} from 'react'
-import DeckGL, {HexagonLayer} from 'deck.gl'
+import React, { Component } from 'react'
+import DeckGL, { HexagonLayer } from 'deck.gl'
 
 const LIGHT_SETTINGS = {
   lightsPosition: [-0.144528, 49.739968, 8000, -3.807751, 54.104682, 8000],
@@ -20,12 +20,23 @@ const colorRange = [
   [209, 55, 78]
 ]
 
-const elevationScale = {min: 1, max: 50}
+const plasma = [[13, 8, 135],
+[75, 3, 161],
+[125, 3, 168],
+[168, 34, 150],
+[203, 70, 121],
+[229, 107, 93],
+[248, 148, 65],
+[253, 195, 40],
+[240, 249, 33]]
+
+const elevationScale = { min: 1, max: 50 }
 
 const defaultProps = {
   radius: 1000,
   upperPercentile: 100,
-  coverage: 1
+  coverage: 1,
+  data: []
 }
 
 export default class DeckGLOverlay extends Component {
@@ -35,13 +46,7 @@ export default class DeckGLOverlay extends Component {
 
   static get defaultViewport () {
     return {
-      longitude: -1.4157267858730052,
-      latitude: 52.232395363869415,
-      zoom: 6.6,
-      minZoom: 5,
-      maxZoom: 15,
-      pitch: 40.5,
-      bearing: -27.396674584323023
+
     }
   }
 
@@ -58,10 +63,30 @@ export default class DeckGLOverlay extends Component {
   }
 
   componentDidMount () {
-    this._animate()
+    fetch(this.props.url)
+      .then(response => {
+        if (!response.ok) throw new Error(response.statusText)
+        return response.json()
+      })
+      .then(json => {
+        const acc = json.features.reduce((acc, feature) => {
+          const geom = feature.geometry
+          if (geom.type === 'Point') { acc.push(geom.coordinates) }
+          return acc
+        }, [])
+        this.setState({ data: acc, isLoading: false })
+        this._animate()
+      })
+      .catch(error => {
+        console.error(error)
+        this.setState({ error: error.message, isLoading: false })
+      })
   }
 
   componentWillReceiveProps (nextProps) {
+    if (nextProps.data === null) {
+      this._stopAnimate()
+    }
     if (nextProps.data.length !== this.props.data.length) {
       this._animate()
     }
@@ -75,11 +100,11 @@ export default class DeckGLOverlay extends Component {
     this._stopAnimate()
 
     // wait 1.5 secs to start animation so that all data are loaded
-    this.startAnimationTimer = window.setTimeout(this._startAnimate, 1500)
+    this.startAnimationTimer = window.setTimeout(this._startAnimate, 100)
   }
 
   _startAnimate () {
-    this.intervalTimer = window.setInterval(this._animateHeight, 20)
+    this.intervalTimer = window.setInterval(this._animateHeight, 10)
   }
 
   _stopAnimate () {
@@ -91,7 +116,7 @@ export default class DeckGLOverlay extends Component {
     if (this.state.elevationScale === elevationScale.max) {
       this._stopAnimate()
     } else {
-      this.setState({elevationScale: this.state.elevationScale + 1})
+      this.setState({ elevationScale: this.state.elevationScale + 1 })
     }
   }
 
@@ -101,8 +126,8 @@ export default class DeckGLOverlay extends Component {
   }
 
   render () {
-    const {viewport, data, radius, coverage, upperPercentile} = this.props
-
+    const { viewport, radius, coverage, upperPercentile, opacity } = this.props
+    const data = this.state.data
     if (!data) {
       return null
     }
@@ -110,7 +135,8 @@ export default class DeckGLOverlay extends Component {
     const layers = [
       new HexagonLayer({
         id: 'heatmap',
-        colorRange,
+        //        colorDomain: [0,1],
+        colorRange: plasma,
         coverage,
         data,
         elevationRange: [0, 3000],
@@ -119,7 +145,7 @@ export default class DeckGLOverlay extends Component {
         getPosition: d => d,
         lightSettings: LIGHT_SETTINGS,
         onHover: this.props.onHover,
-        opacity: 1,
+        opacity,
         pickable: Boolean(this.props.onHover),
         radius,
         upperPercentile
