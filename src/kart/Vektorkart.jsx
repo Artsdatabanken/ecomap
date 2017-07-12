@@ -1,14 +1,10 @@
 import PropTypes from 'prop-types'
 import * as React from 'react'
-import ReactMapboxGl from 'react-mapbox-gl'
+import MapGL from 'react-map-gl'
 // import Color from 'color'
-import styles from './styles/style.json'
+// import styles from './styles/style.json'
 import MapLayerStack from './layer/MapLayerStack'
-
-const Map = ReactMapboxGl({
-  accessToken:
-  'pk.eyJ1IjoiYmpyZXBwZW4iLCJhIjoiY2ltZGFkMW11MDAwdnZpbHVsamhsZzB1dSJ9.oZBI8rZR8YSsXoyIM0vLYg'
-})
+const MAPBOX_TOKEN = process.env.MapboxAccessToken; // eslint-disable-line
 
 export default class Vektorkart extends React.Component {
   static propTypes = {
@@ -20,12 +16,27 @@ export default class Vektorkart extends React.Component {
     animate: false
   }
 
-  state = { zoom: 10, bearing: 0, styles }
+  state = {
+    viewport: {
+      latitude: 62.285164,
+      longitude: 11.1669,
+      zoom: 5,
+      minZoom: 3,
+      maxZoom: 15,
+      pitch: 50,
+      bearing: 0,
+      width: window.innerWidth,
+      height: window.innerHeight
+    }
+  }
 
   componentDidMount () {
     this.tick = 0
-    this.timerId = setInterval(this.update, 60)
+//    this.timerId = setInterval(this.update, 60)
     this.alpha = 0
+
+    window.addEventListener('resize', this._resize.bind(this))
+    this._resize()
   }
 
   componentWillReceiveProps (nextProps, nextState) {
@@ -157,32 +168,41 @@ export default class Vektorkart extends React.Component {
     return {}
   }
 
+  _resize () {
+    this._onViewportChange({
+      width: window.innerWidth,
+      height: window.innerHeight
+    })
+  }
+
+  _onViewportChange (viewport) {
+    console.log(viewport)
+    this.setState({
+      viewport: { ...this.state.viewport, ...viewport }
+    })
+  }
+
   render () {
+    const { viewport } = this.state
     return (
-      <Map
-        // eslint-disable-next-line react/style-prop-object
-        style='mapbox://styles/bjreppen/cj06jt53u00gh2rl5r30vi8br'
-        onStyleLoad={(s, t) => this.handleStyleLoad(s, t)}
-        containerStyle={{
-          height: '100vh',
-          width: '100vw'
-        }}
-        logoPosition='top-right'
-        movingMethod='easeTo'
-        center={[10.33, 63.15]}
-        zoom={[5]}
-        pitch={0}
-        onClick={(e, evt) => this.handleClick(e, evt)}
-        onMouseEnter={(e, evt) => this.handleMouseMove(e, evt)}
-        onMouseLeave={(e, evt) => this.handleMouseLeave(e, evt)}
-      >
-        <MapLayerStack layers={this.props.layers} />
-      </Map>
+      <MapGL
+        {...viewport}
+        mapStyle='mapbox://styles/bjreppen/cj06jt53u00gh2rl5r30vi8br'
+        //        mapStyle='mapbox://styles/mapbox/dark-v9'
+        onViewportChange={v => this._onViewportChange(v)}
+        mapboxApiAccessToken={MAPBOX_TOKEN} >
+        <MapLayerStack layers={this.props.layers} viewport={viewport} />
+      </MapGL>
     )
   }
 }
-
 /*
-        zoom={[this.state.zoom]}
-        bearing={this.state.bearing}
+  onStyleLoad={(s, t) => this.handleStyleLoad(s, t)}
+  containerStyle={{
+    height: '100vh',
+    width: '100vw'
+  }}
+  onClick={(e, evt) => this.handleClick(e, evt)}
+  onMouseEnter={(e, evt) => this.handleMouseMove(e, evt)}
+  onMouseLeave={(e, evt) => this.handleMouseLeave(e, evt)}
 */
