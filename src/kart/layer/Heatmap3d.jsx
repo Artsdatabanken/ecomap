@@ -1,5 +1,6 @@
 /* global window */
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import DeckGL, { HexagonLayer } from 'deck.gl'
 
 const LIGHT_SETTINGS = {
@@ -44,43 +45,36 @@ export default class DeckGLOverlay extends Component {
     return colorRange
   }
 
-  static get defaultViewport () {
-    return {
-
-    }
+  static contextTypes = {
+    fetchJson: PropTypes.func
   }
 
   constructor (props) {
     super(props)
     this.startAnimationTimer = null
     this.intervalTimer = null
-    this.state = {
-      elevationScale: elevationScale.min
-    }
-
     this._startAnimate = this._startAnimate.bind(this)
     this._animateHeight = this._animateHeight.bind(this)
   }
 
+  state = {
+    elevationScale: elevationScale.min
+  }
+
+  receiveData (json) {
+    json.then((json) => {
+      const acc = json.features.reduce((acc, feature) => {
+        const geom = feature.geometry
+        if (geom.type === 'Point') { acc.push(geom.coordinates) }
+        return acc
+      }, [])
+      this.setState({ data: acc, isLoading: false })
+      this._animate()
+    })
+  }
+
   componentDidMount () {
-    fetch(this.props.url)
-      .then(response => {
-        if (!response.ok) throw new Error(response.statusText)
-        return response.json()
-      })
-      .then(json => {
-        const acc = json.features.reduce((acc, feature) => {
-          const geom = feature.geometry
-          if (geom.type === 'Point') { acc.push(geom.coordinates) }
-          return acc
-        }, [])
-        this.setState({ data: acc, isLoading: false })
-        this._animate()
-      })
-      .catch(error => {
-        console.error(error)
-        this.setState({ error: error.message, isLoading: false })
-      })
+    this.context.fetchJson(this.props.title, this.props.url, json => this.receiveData(json))
   }
 
   componentWillReceiveProps (nextProps) {
@@ -98,13 +92,11 @@ export default class DeckGLOverlay extends Component {
 
   _animate () {
     this._stopAnimate()
-
-    // wait 1.5 secs to start animation so that all data are loaded
     this.startAnimationTimer = window.setTimeout(this._startAnimate, 100)
   }
 
   _startAnimate () {
-    this.intervalTimer = window.setInterval(this._animateHeight, 10)
+    this.intervalTimer = window.setInterval(this._animateHeight, 15)
   }
 
   _stopAnimate () {
@@ -113,10 +105,10 @@ export default class DeckGLOverlay extends Component {
   }
 
   _animateHeight () {
-    if (this.state.elevationScale === elevationScale.max) {
+    if (this.state.elevationScale >= elevationScale.max) {
       this._stopAnimate()
     } else {
-      this.setState({ elevationScale: this.state.elevationScale + 1 })
+      this.setState({ elevationScale: this.state.elevationScale + 0.3 * Math.sqrt(elevationScale.max - this.state.elevationScale) })
     }
   }
 

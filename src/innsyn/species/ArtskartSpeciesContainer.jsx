@@ -2,16 +2,21 @@ import React from 'react'
 import ErrorBanner from '../../ErrorBanner'
 
 export default class ArtskartSpeciesContainer extends React.Component {
-  constructor () {
-    super()
-    this.state = {
-      species: [],
-      isLoading: false
-    }
+  state = {
+    species: [],
+    isLoading: false
   }
 
   componentWillReceiveProps (nextProps) {
     this.handleSearchFor(nextProps.searchCriteria)
+  }
+
+  componentDidMount () {
+    this._isMounted = true
+  }
+
+  componentWillUnmount () {
+    this._isMounted = false
   }
 
   render () {
@@ -48,7 +53,7 @@ export default class ArtskartSpeciesContainer extends React.Component {
     const myRequestId = this.requestId
     fetch(url)
       .then(response => {
-        if (!response.ok) throw new Error(response.statusText)
+        if (!response.ok) throw new Error(response.statusText + ' (HTTP ' + response.status + ')')
         return response.json()
       })
       .then(json => {
@@ -85,13 +90,13 @@ export default class ArtskartSpeciesContainer extends React.Component {
       imageScientificName: ''
     }
 
-    this.getCoverPhoto2(s).then(photo => {
+    this.getCoverPhoto(s).then(photo => {
       this.attachPhoto(r.scientificName, photo)
     })
     return r
   }
 
-  getCoverPhoto2 (sp) {
+  getCoverPhoto (sp) {
     const parentTaxonId =
       sp.TaxonIdHiarchy.length > 1 ? sp.TaxonIdHiarchy[1] : null
     const that = this
@@ -102,7 +107,7 @@ export default class ArtskartSpeciesContainer extends React.Component {
           resolve(photo)
         })
         .catch(e => {
-          console.warn(e)
+          console.warn(e.message)
           if (!parentTaxonId) {
             reject(new Error('not found'))
             return
@@ -112,7 +117,7 @@ export default class ArtskartSpeciesContainer extends React.Component {
             parentTaxonId
           console.log(parentUrl)
           fetch(parentUrl).then(response => response.json()).then(json => {
-            that.getCoverPhoto2(json).then(photo => resolve(photo))
+            that.getCoverPhoto(json).then(photo => resolve(photo))
           })
         })
     })
@@ -152,8 +157,10 @@ export default class ArtskartSpeciesContainer extends React.Component {
       x.imageAttribution = photo.attribution
       return x
     })
-    this.setState({
-      species: updatedSpecies
-    })
+    if (this._isMounted) {
+      this.setState({
+        species: updatedSpecies
+      })
+    }
   }
 }

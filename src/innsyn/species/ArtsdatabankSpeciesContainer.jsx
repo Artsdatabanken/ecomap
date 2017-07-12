@@ -1,12 +1,9 @@
 import React from 'react'
 
 export default class ArtsdatabankSpeciesContainer extends React.Component {
-  constructor () {
-    super()
-    this.state = {
-      species: [],
-      isLoading: false
-    }
+  state = {
+    species: [],
+    isLoading: false
   }
 
   componentWillReceiveProps (nextProps) {

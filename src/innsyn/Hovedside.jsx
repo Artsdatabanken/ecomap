@@ -1,7 +1,7 @@
 import React from 'react'
 import FloatingActionButton from 'material-ui/FloatingActionButton'
 import ContentAdd from 'material-ui/svg-icons/content/add'
-
+import Snackbar from 'material-ui/Snackbar'
 import SearchBar from './søk/SearchBar'
 import VenstreMeny from './meny/VenstreMeny'
 import Vektorkart from '../kart/Vektorkart'
@@ -9,6 +9,7 @@ import Kortstokk from './kort/Kortstokk'
 // import NinLayerStack from './NinLayerStack'
 import SelectSpeciesDialog from './species/SelectSpeciesDialog'
 import CloseOnEscape from '../HigherOrder/CloseOnEscape'
+import LoadingIndicator from '../LoadingIndicator'
 
 export default class Hovedside extends React.Component {
   state = {
@@ -162,6 +163,11 @@ export default class Hovedside extends React.Component {
             />
           </CloseOnEscape>
         }
+        {this.props.isLoading && <div style={{ position: 'absolute', right: '50px', top: '50px' }}>
+          <LoadingIndicator /></div>}
+        {this.props.message && <Snackbar open
+          message={this.props.message}
+          autoHideDuration={3000} />}
       </div>
     )
   }

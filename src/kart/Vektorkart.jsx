@@ -4,6 +4,7 @@ import MapGL from 'react-map-gl'
 // import Color from 'color'
 // import styles from './styles/style.json'
 import MapLayerStack from './layer/MapLayerStack'
+
 const MAPBOX_TOKEN = process.env.MapboxAccessToken; // eslint-disable-line
 
 export default class Vektorkart extends React.Component {
@@ -176,7 +177,6 @@ export default class Vektorkart extends React.Component {
   }
 
   _onViewportChange (viewport) {
-    console.log(viewport)
     this.setState({
       viewport: { ...this.state.viewport, ...viewport }
     })
