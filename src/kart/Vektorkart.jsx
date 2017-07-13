@@ -33,7 +33,7 @@ export default class Vektorkart extends React.Component {
 
   componentDidMount () {
     this.tick = 0
-//    this.timerId = setInterval(this.update, 60)
+    //    this.timerId = setInterval(this.update, 60)
     this.alpha = 0
 
     window.addEventListener('resize', this._resize.bind(this))
@@ -176,10 +176,10 @@ export default class Vektorkart extends React.Component {
     })
   }
 
-  _onViewportChange (viewport) {
-    this.setState({
-      viewport: { ...this.state.viewport, ...viewport }
-    })
+  _onViewportChange = (viewport) => {
+    this.setState(prevState => ({
+      viewport: { ...prevState.viewport, ...viewport }
+    }))
   }
 
   render () {

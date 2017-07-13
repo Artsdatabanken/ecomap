@@ -108,7 +108,7 @@ export default class DeckGLOverlay extends Component {
     if (this.state.elevationScale >= elevationScale.max) {
       this._stopAnimate()
     } else {
-      this.setState({ elevationScale: this.state.elevationScale + 0.3 * Math.sqrt(elevationScale.max - this.state.elevationScale) })
+      this.setState(prevState => ({ elevationScale: prevState.elevationScale + 0.3 * Math.sqrt(elevationScale.max - prevState.elevationScale) }))
     }
   }
 
@@ -127,11 +127,11 @@ export default class DeckGLOverlay extends Component {
     const layers = [
       new HexagonLayer({
         id: 'heatmap',
-        //        colorDomain: [0,1],
+//        colorDomain: [0,1],
         colorRange: plasma,
         coverage,
         data,
-        elevationRange: [0, 3000],
+        elevationRange: [0, 3000 * 25 * Math.pow(0.6, viewport.zoom)],
         elevationScale: this.state.elevationScale,
         extruded: true,
         getPosition: d => d,

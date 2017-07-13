@@ -128,7 +128,7 @@ export default class Hovedside extends React.Component {
                 onEscape={() => this.handleDrawerClose()}
                 onToggle={ninkode => this.handleToggle(ninkode)}
                 onAnimate={() =>
-                  this.setState({ animate: !this.state.animate })}
+                  this.setState(prevState => ({ animate: !prevState.animate }))}
                 layers={this.state.layers}
                 animate={this.state.animate}
               />}
@@ -159,7 +159,7 @@ export default class Hovedside extends React.Component {
           <CloseOnEscape onEscape={() => this.setState({ showAddLayersDialog: false })}>
             <SelectSpeciesDialog
               open={this.state.showAddLayersDialog}
-              onClick={layer => this.handleAddLayer(layer)}
+              onClick={this.handleAddLayer}
             />
           </CloseOnEscape>
         }
@@ -172,7 +172,7 @@ export default class Hovedside extends React.Component {
     )
   }
 
-  handleAddLayer (layer) {
+  handleAddLayer = (layer) => {
     let layers = this.state.layers
     layers[layer.id] = {
       title: layer.scientificName,
