@@ -5,7 +5,7 @@ import FontIcon from 'material-ui/FontIcon'
 import Liste from './Liste'
 import TextField from 'material-ui/TextField'
 import localDrink from 'material-ui/svg-icons/maps/local-drink'
-import SelectSpecies from '../species/SelectSpecies'
+import SelectSpecies from './species/SelectSpecies'
 
 class AddLayer extends React.Component {
   render () {

@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
 
-import VenstreMeny from './VenstreMeny'
+import LeftMenu from './LeftMenu'
 
 const layers = {
   'L1-1': { title: 'Grunn limnisk fastbunn', visible: true },
@@ -12,7 +12,7 @@ const layers = {
 function VM () {
   return (
     <Router>
-      <VenstreMeny layers={layers} open />
+      <LeftMenu layers={layers} open />
     </Router>
   )
 }
