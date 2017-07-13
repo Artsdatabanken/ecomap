@@ -1,5 +1,5 @@
 import React from 'react'
-import ErrorBanner from '../../ErrorBanner'
+import ErrorBanner from '../../../../ErrorBanner'
 
 export default class ArtskartSpeciesContainer extends React.Component {
   state = {
@@ -115,7 +115,6 @@ export default class ArtskartSpeciesContainer extends React.Component {
           const parentUrl =
             'http://webtjenester.artsdatabanken.no/Artskart/api/taxon/' +
             parentTaxonId
-          console.log(parentUrl)
           fetch(parentUrl).then(response => response.json()).then(json => {
             that.getCoverPhoto(json).then(photo => resolve(photo))
           })

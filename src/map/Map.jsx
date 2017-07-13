@@ -7,7 +7,7 @@ import MapLayerStack from './layer/MapLayerStack'
 
 const MAPBOX_TOKEN = process.env.MapboxAccessToken; // eslint-disable-line
 
-export default class Vektorkart extends React.Component {
+export default class Map extends React.Component {
   static propTypes = {
     layers: PropTypes.object.isRequired,
     animate: PropTypes.bool,

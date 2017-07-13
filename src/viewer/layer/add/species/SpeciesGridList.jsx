@@ -1,5 +1,5 @@
 import React from 'react'
-import LoadingHoc from '../../HigherOrder/LoadingHoc'
+import LoadingHoc from '../../../../HigherOrder/LoadingHoc'
 import SpeciesGridItemCard from './SpeciesGridItemCard'
 
 const styles = {

@@ -1,24 +1,24 @@
 import React from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
-import Hovedside from './Hovedside'
+import MapView from './MapView'
 import FetchContainer from '../FetchContainer'
 
-const LastOpp = () => (
+const Upload = () => (
   <div style={{ position: 'absolute', top: '150px', left: '150px', fontSize: '35px' }}>Last opp...</div>
 )
 
-const LastNed = () => (
+const Download = () => (
   <div style={{ position: 'absolute', top: '150px', left: '150px', fontSize: '35px' }}>Last ned...</div>
 )
 
 const Innsyn = () => (
   <FetchContainer>
-    <Hovedside />
+    <MapView />
     <Router>
       <div>
-        <Route path='/lastopp' component={LastOpp} />
-        <Route path='/lastned' component={LastNed} />
+        <Route path='/lastopp' component={Upload} />
+        <Route path='/lastned' component={Download} />
       </div>
     </Router>
   </FetchContainer>

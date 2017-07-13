@@ -2,16 +2,16 @@ import React from 'react'
 import FloatingActionButton from 'material-ui/FloatingActionButton'
 import ContentAdd from 'material-ui/svg-icons/content/add'
 import Snackbar from 'material-ui/Snackbar'
-import SearchBar from './søk/SearchBar'
-import VenstreMeny from './meny/VenstreMeny'
-import Vektorkart from '../kart/Vektorkart'
-import Kortstokk from './kort/Kortstokk'
+import SearchBar from './search/SearchBar'
+import LeftMenu from './menu/LeftMenu'
+import Map from '../map/Map'
+import CardStack from './layer/infocard/CardStack'
 // import NinLayerStack from './NinLayerStack'
-import SelectSpeciesDialog from './species/SelectSpeciesDialog'
+import SelectSpeciesDialog from './layer/add/species/SelectSpeciesDialog'
 import CloseOnEscape from '../HigherOrder/CloseOnEscape'
 import LoadingIndicator from '../LoadingIndicator'
 
-export default class Hovedside extends React.Component {
+export default class MainPage extends React.Component {
   state = {
     animate: false,
     venstreMenyÅpen: false,
@@ -122,7 +122,7 @@ export default class Hovedside extends React.Component {
               }}
             />
             {false &&
-              <VenstreMeny
+              <LeftMenu
                 open={this.state.venstreMenyÅpen}
                 onClose={() => this.handleDrawerClose()}
                 onEscape={() => this.handleDrawerClose()}
@@ -134,7 +134,7 @@ export default class Hovedside extends React.Component {
               />}
           </div>}
         {true &&
-          <Vektorkart
+          <Map
             animate={this.state.animate}
             layers={this.state.layers}
             onClick={features => this.onClick(features)}
@@ -142,7 +142,7 @@ export default class Hovedside extends React.Component {
 
         {true &&
           this.state.features &&
-          <Kortstokk features={this.state.features} />}
+          <CardStack features={this.state.features} />}
         <div style={{ position: 'absolute', bottom: '50px', right: '50px' }}>
           {!this.state.showAddLayersDialog &&
             <FloatingActionButton

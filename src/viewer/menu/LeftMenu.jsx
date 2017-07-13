@@ -15,7 +15,7 @@ import ChevronDoubleLeft from './ChevronDoubleLeft'
 import CloseOnEscape from '../../HigherOrder/CloseOnEscape'
 import logo from './logo.png'
 
-class VenstreMeny extends React.Component {
+class LeftMenu extends React.Component {
   static propTypes = {
     open: PropTypes.bool.isRequired,
     onClose: PropTypes.func.isRequired,
@@ -65,7 +65,7 @@ class VenstreMeny extends React.Component {
         </List>
         <List>
           <Subheader>Naturtyper</Subheader>
-          {VenstreMeny.layerItems(this.props.layers, this.props.onToggle)}
+          {LeftMenu.layerItems(this.props.layers, this.props.onToggle)}
         </List>
         <Divider />
         <List>
@@ -94,14 +94,14 @@ class VenstreMeny extends React.Component {
   }
 }
 
-const VenstreMenyMedEscape = ({onEscape, ...props}) => (
+const LeftMenuWithEscape = ({ onEscape, ...props }) => (
   <CloseOnEscape onEscape={() => onEscape()}>
-    <VenstreMeny {...props} />
+    <LeftMenu {...props} />
   </CloseOnEscape>
 )
 
-VenstreMenyMedEscape.propTypes = {
+LeftMenuWithEscape.propTypes = {
   onEscape: PropTypes.func.isRequired
 }
 
-export default VenstreMenyMedEscape
+export default LeftMenuWithEscape

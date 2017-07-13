@@ -3,10 +3,10 @@ import React from 'react'
 import { Card, CardTitle, CardText } from 'material-ui/Card'
 import Paper from 'material-ui/Paper'
 
-import Naturtypekort from './Naturtypekort'
+import NatureCard from './NatureCard'
 import Kalkkort from './Kalkkort'
 
-class Kortstokk extends React.Component {
+export default class CardStack extends React.Component {
   static propTypes = {
     features: PropTypes.any.isRequired
   };
@@ -37,7 +37,7 @@ class Kortstokk extends React.Component {
           properties={feature.properties} />
       }
       if (key.startsWith('NIN ')) {
-        return (<Naturtypekort
+        return (<NatureCard
           key={key}
           ninkode={key.substring(4)}
           properties={feature.properties}
@@ -49,7 +49,7 @@ class Kortstokk extends React.Component {
             style={{
               backgroundColor: feature.layer['fill-color']
             }}
-            title={Kortstokk.titleCase(key)}
+            title={CardStack.titleCase(key)}
             showExpandableButton
             actAsExpander
           />
@@ -76,10 +76,8 @@ class Kortstokk extends React.Component {
           width: '350px'
         }}
       >
-        {Kortstokk.listKort(this.props.features)}
+        {CardStack.listKort(this.props.features)}
       </Paper>
     )
   }
 }
-
-export default Kortstokk
