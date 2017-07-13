@@ -15,7 +15,7 @@ class SpeciesGridItemCard extends React.Component {
         expanded={this.state.expanded}
         onClick={() => {
           this.props.onClick(tile)
-          this.setState({ expanded: !this.state.expanded })
+          this.setState(prevState => ({ expanded: !prevState.expanded }))
         }
         }
 
@@ -54,7 +54,7 @@ class SpeciesGridItemCard extends React.Component {
             </object>
 
         </CardText>
-      </Card >
+      </Card>
     )
   }
 }

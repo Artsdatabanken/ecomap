@@ -59,9 +59,9 @@ class Layer extends React.Component {
     return (
       <div>
         <LayerCollapsed {...this.props}
-          onBuild={() => this.setState({expanded: !this.state.expanded})}
+          onBuild={() => this.setState(prevState => ({expanded: !prevState.expanded}))}
           onDelete={() => this.props.onDelete()}
-          onColorSwatchClick={() => this.setState({showColorDialog: !this.state.showColorDialog})}
+          onColorSwatchClick={() => this.setState(prevState => ({showColorDialog: !prevState.showColorDialog}))}
           />
         <Divider />
       </div>
@@ -86,12 +86,12 @@ class LayerCollapsed extends React.Component {
               color={hexToRgbaString(this.props.fillColor, this.props.fillOpacity)}
               onClick={() => this.props.onColorSwatchClick()} />
         }
-          onClick={() => this.setState({expanded: !this.state.expanded})}
+          onClick={() => this.setState(prevState => ({expanded: !prevState.expanded}))}
          />
         {this.state.expanded &&
         <LayerExpanded {...this.props}
           onUpdate={(key, value) => this.props.onUpdate(key, value)}
-          onColorSwatchClick={() => this.setState({showColorDialog: !this.state.showColorDialog})}
+          onColorSwatchClick={() => this.setState(prevState => ({showColorDialog: !prevState.showColorDialog}))}
           />
         }
       </div>

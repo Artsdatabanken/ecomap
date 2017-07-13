@@ -17,7 +17,7 @@ export default class MapLayerStack extends React.Component {
       const layer = this.props.layers[id]
       if (!layer.visible) continue
 
-      r.push(<EcoMapLayer key={id} id={id} title={layer.title} layer={layer} viewport={this.props.viewport} />)
+      r.push(<EcoMapLayer key={id} id={id} layer={layer} viewport={this.props.viewport} scalingFactor={128 * 5000} zoomFactor={2} />)
     }
     const { viewport } = this.props
     if (viewport === 42) {
@@ -32,11 +32,14 @@ export default class MapLayerStack extends React.Component {
   }
 }
 
-const EcoMapLayer = ({ id, title, layer, viewport }) => {
+const EcoMapLayer = ({ id, layer, viewport, scalingFactor, zoomFactor }) => {
   switch (layer.source) {
     case 'geojson':
       //      return <GeoJsonLayer key={id} url={layer.url} />
-      return <Heatmap3d title={title} url={layer.url} viewport={viewport} radius={5000} coverage={1} upperPercentile={100} opacity={0.6} />
+      return <Heatmap3d title={layer.title} url={layer.url} viewport={viewport}
+//        radius={128*5000*Math.pow(0.5, 2*Math.round(viewport.zoom/2))}
+        radius={scalingFactor * Math.pow(1.0 / 2, zoomFactor * Math.round(viewport.zoom / zoomFactor))}
+        coverage={1} upperPercentile={100} opacity={0.6} />
     default:
       return <span />
     //      if (layer.raster) { return <RasterTileLayer id={id} layer={layer} /> }
