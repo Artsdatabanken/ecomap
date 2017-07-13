@@ -10,6 +10,7 @@ import CardStack from './layer/infocard/CardStack'
 import SelectSpeciesDialog from './layer/add/species/SelectSpeciesDialog'
 import CloseOnEscape from '../HigherOrder/CloseOnEscape'
 import LoadingIndicator from '../LoadingIndicator'
+import ActiveLayers from './layer/ActiveLayers'
 
 export default class MainPage extends React.Component {
   state = {
@@ -163,6 +164,7 @@ export default class MainPage extends React.Component {
             />
           </CloseOnEscape>
         }
+        {true && <ActiveLayers layers={this.state.layers} /> }
         {this.props.isLoading && <div style={{ position: 'absolute', right: '50px', top: '50px' }}>
           <LoadingIndicator /></div>}
         {this.props.message && <Snackbar open
@@ -181,7 +183,6 @@ export default class MainPage extends React.Component {
       visible: true,
       raster: false
     }
-    console.log(layers[layer.id])
     this.setState({
       layers,
       showAddLayersDialog: false

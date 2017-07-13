@@ -7,7 +7,7 @@ import FilterTag from './filtertag/FilterTag.story'
 import SearchBar from './viewer/search/SearchBar'
 import LeftMenu from './viewer/menu/LeftMenu.story'
 import LoadingIndicator from './LoadingIndicator'
-import LayerSettings from './viewer/layer/LayerSettings'
+import ActiveLayer from './viewer/layer/ActiveLayers'
 import ColorPickers from './viewer/layer/ColorPickers'
 import Linjediagram from './viewer/diagram/Linjediagram'
 import Søylediagram from './viewer/diagram/Søylediagram'
@@ -359,7 +359,7 @@ storiesOf('Diagram', module)
 
 storiesOf('Lag', module).addDecorator(muiTheme()).add('primary', () =>
   <div style={{ margin: '20px' }}>
-    <LayerSettings />
+    <ActiveLayer />
   </div>
 )
 
