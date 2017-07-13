@@ -4,19 +4,19 @@ import { action } from '@storybook/addon-actions'
 import { muiTheme } from 'storybook-addon-material-ui'
 
 import FilterTag from './filtertag/FilterTag.story'
-import SearchBar from './innsyn/søk/SearchBar'
-import VenstreMeny from './innsyn/meny/VenstreMeny.story'
+import SearchBar from './viewer/søk/SearchBar'
+import VenstreMeny from './viewer/meny/VenstreMeny.story'
 import LoadingIndicator from './LoadingIndicator'
-import LayerSettings from './innsyn/layer/LayerSettings'
-import ColorPickers from './innsyn/layer/ColorPickers'
-import Linjediagram from './innsyn/diagram/Linjediagram'
-import Søylediagram from './innsyn/diagram/Søylediagram'
+import LayerSettings from './viewer/layer/LayerSettings'
+import ColorPickers from './viewer/layer/ColorPickers'
+import Linjediagram from './viewer/diagram/Linjediagram'
+import Søylediagram from './viewer/diagram/Søylediagram'
 import ColorRamp from './graphics/color/ColorRamp'
-import Kortstokk from './innsyn/kort/Kortstokk.jsx'
-import AddLayer from './innsyn/addLayer/AddLayer'
-import SelectSpecies from './innsyn/species/SelectSpecies'
+import CardStack from './viewer/layer/infocard/CardStack'
+import AddLayer from './viewer/addLayer/AddLayer'
+import SelectSpecies from './viewer/species/SelectSpecies'
 import ErrorBanner from './ErrorBanner'
-import SpeciesGridItemCard from './innsyn/species/SpeciesGridItemCard'
+import SpeciesGridItemCard from './viewer/species/SpeciesGridItemCard'
 import theme from './theme'
 
 const data = [
@@ -372,7 +372,7 @@ storiesOf('Meny', module)
   )
   .add('Kortstokk', () =>
     <div style={{ margin: '20px' }}>
-      <Kortstokk
+      <CardStack
         features={[
           { layer: { id: 'NIN T4' }, properties: { a: 'b' } },
           { layer: { id: 'NIN T44' }, properties: { a: 'b' } }

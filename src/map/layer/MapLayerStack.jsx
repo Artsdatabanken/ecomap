@@ -37,7 +37,7 @@ const EcoMapLayer = ({ id, layer, viewport, scalingFactor, zoomFactor }) => {
     case 'geojson':
       //      return <GeoJsonLayer key={id} url={layer.url} />
       return <Heatmap3d title={layer.title} url={layer.url} viewport={viewport}
-//        radius={128*5000*Math.pow(0.5, 2*Math.round(viewport.zoom/2))}
+        //        radius={128*5000*Math.pow(0.5, 2*Math.round(viewport.zoom/2))}
         radius={scalingFactor * Math.pow(1.0 / 2, zoomFactor * Math.round(viewport.zoom / zoomFactor))}
         coverage={1} upperPercentile={100} opacity={0.6} />
     default:

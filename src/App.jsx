@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import theme from './theme'
 
-import Innsyn from './innsyn/Innsyn'
+import Viewer from './viewer/Viewer'
 import Admin from './Admin/Admin'
 
 class App extends React.Component {
@@ -16,7 +16,7 @@ class App extends React.Component {
       <MuiThemeProvider muiTheme={theme}>
         <Router basename={process.env.REACT_APP_BASENAME}>
           <div>
-            <Route path='' component={Innsyn} />
+            <Route path='' component={Viewer} />
             <Route exact path='/admin' component={Admin} />
           </div>
         </Router>
