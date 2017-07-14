@@ -118,7 +118,8 @@ export default class DeckGLOverlay extends Component {
   }
 
   render () {
-    const { viewport, radius, coverage, upperPercentile, opacity } = this.props
+    console.log('heat opa: ', this.props.coverage)
+    const { viewport, radius, coverage, upperPercentile, fillOpacity } = this.props
     const data = this.state.data
     if (!data) {
       return null
@@ -137,7 +138,7 @@ export default class DeckGLOverlay extends Component {
         getPosition: d => d,
         lightSettings: LIGHT_SETTINGS,
         onHover: this.props.onHover,
-        opacity,
+        opacity: fillOpacity,
         pickable: Boolean(this.props.onHover),
         radius,
         upperPercentile

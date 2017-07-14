@@ -34,7 +34,6 @@ export default class ActiveLayersContainer extends React.Component {
   }
 
   render () {
-    console.log(JSON.stringify(this.state.layers))
     const props = {
       layers: this.state.layers,
       onAddLayer: this.handleAddLayer,
@@ -54,7 +53,7 @@ export default class ActiveLayersContainer extends React.Component {
     let newLayer = {
       id: layer.id,
       title: layer.scientificName,
-      subTitle: layer.popularName,
+      subTitle: layer.popularName + ' (' + layer.taxonGroup + ')',
       imageUrl: layer.imageUrl,
       dataUrl: `http://webtjenester.artsdatabanken.no/Artskart/api/listhelper/${layer.id}/observations?&fromYear=1981&toYear=2012&fromMonth=1&toMonth=12&type=all&region=all&scientificNameId=${layer.scientificNameId}`,
       source: 'geojson',
@@ -64,6 +63,7 @@ export default class ActiveLayersContainer extends React.Component {
         heatmap: 'visible',
         fillColor: '#ff0000',
         fillOpacity: 1,
+        coverage: 1,
         renderMethod: 'fill',
         blendMode: 'multiply'
       }
