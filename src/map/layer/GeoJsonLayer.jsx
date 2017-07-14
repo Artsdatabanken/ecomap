@@ -1,6 +1,5 @@
 import React from 'react'
 import { GeoJSONLayer } from 'react-mapbox-gl'
-// import elg from './elg.json'
 
 const circleLayout = { visibility: 'visible' }
 const linePaint = { 'line-color': '#000000',
