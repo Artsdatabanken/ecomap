@@ -11,6 +11,7 @@ import SelectSpeciesDialog from './layer/add/species/SelectSpeciesDialog'
 import CloseOnEscape from '../HigherOrder/CloseOnEscape'
 import LoadingIndicator from '../LoadingIndicator'
 import ActiveLayers from './layer/ActiveLayers'
+import ActiveLayersContainer from './layer/ActiveLayersContainer'
 
 export default class MainPage extends React.Component {
   state = {
@@ -114,7 +115,7 @@ export default class MainPage extends React.Component {
               width: '600px'
             }}
           >
-            <SearchBar
+            {false && <SearchBar
               onUpdateSearch={e => this.handleSearch(e)}
               onLeftIconButtonTouchTap={() => {
                 this.setState(prevState => ({
@@ -122,70 +123,48 @@ export default class MainPage extends React.Component {
                 }))
               }}
             />
-            {false &&
-              <LeftMenu
-                open={this.state.venstreMenyÅpen}
-                onClose={() => this.handleDrawerClose()}
-                onEscape={() => this.handleDrawerClose()}
-                onToggle={ninkode => this.handleToggle(ninkode)}
-                onAnimate={() =>
+            }
+            {false && <LeftMenu
+              open={this.state.venstreMenyÅpen}
+              onClose={() => this.handleDrawerClose()}
+              onEscape={() => this.handleDrawerClose()}
+              onToggle={ninkode => this.handleToggle(ninkode)}
+              onAnimate={() =>
                   this.setState(prevState => ({ animate: !prevState.animate }))}
-                layers={this.state.layers}
-                animate={this.state.animate}
+              layers={this.state.layers}
+              animate={this.state.animate}
               />}
           </div>}
-        {true &&
-          <Map
-            animate={this.state.animate}
-            layers={this.state.layers}
-            onClick={features => this.onClick(features)}
-          />}
-
-        {true &&
-          this.state.features &&
-          <CardStack features={this.state.features} />}
         <div style={{ position: 'absolute', bottom: '50px', right: '50px' }}>
           {!this.state.showAddLayersDialog &&
             <FloatingActionButton
               onTouchTap={() =>
-                this.setState(prevState => ({
-                  //                  venstreMenyÅpen: !prevState.venstreMenyÅpen
-                  showAddLayersDialog: true
-                }))}
+                this.setState(prevState => ({showAddLayersDialog: true}))}
             >
               <ContentAdd />
             </FloatingActionButton>}
         </div>
-        {this.state.showAddLayersDialog &&
-          <CloseOnEscape onEscape={() => this.setState({ showAddLayersDialog: false })}>
-            <SelectSpeciesDialog
-              open={this.state.showAddLayersDialog}
-              onClick={this.handleAddLayer}
-            />
+        {true &&
+          this.state.features &&
+          <CardStack features={this.state.features} />}
+
+        <ActiveLayersContainer>
+          {true && <Map
+            animate={this.state.animate}
+            layers={this.state.layers}
+            onClick={features => this.onClick(features)}
+          />}
+          {this.state.showAddLayersDialog
+          ? <CloseOnEscape onEscape={() => this.setState({ showAddLayersDialog: false })}>
+            <SelectSpeciesDialog a={1} />
           </CloseOnEscape>
-        }
-        {true && <ActiveLayers layers={this.state.layers} /> }
+          : <ActiveLayers layers={this.state.layers} />}
+        </ActiveLayersContainer>
         {this.props.isLoading && <div style={{ position: 'absolute', right: '50px', top: '50px' }}>
           <LoadingIndicator /></div>}
-        {this.props.message && <Snackbar open
-          message={this.props.message}
-          autoHideDuration={3000} />}
+        {this.props.message &&
+        <Snackbar open message={this.props.message} autoHideDuration={3000} />}
       </div>
     )
-  }
-
-  handleAddLayer = (layer) => {
-    let layers = this.state.layers
-    layers[layer.id] = {
-      title: layer.scientificName,
-      url: `http://webtjenester.artsdatabanken.no/Artskart/api/listhelper/${layer.id}/observations?&fromYear=1981&toYear=2012&fromMonth=1&toMonth=12&type=all&region=all&scientificNameId=${layer.scientificNameId}`,
-      source: 'geojson',
-      visible: true,
-      raster: false
-    }
-    this.setState({
-      layers,
-      showAddLayersDialog: false
-    })
   }
 }
