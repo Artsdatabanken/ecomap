@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import GeoJsonLayer from './GeoJsonLayer'
+// import GeoJsonLayer from './GeoJsonLayer'
 // import RasterTileLayer from './RasterTileLayer'
 // import VectorTileLayer from './VectorTileLayer'
 import Heatmap3d from './Heatmap3d'
@@ -27,7 +27,7 @@ export default class MapLayerStack extends React.Component {
 
 const EcoMapLayer = ({ id, layer, viewport, scalingFactor, zoomFactor }) => {
   switch (layer.paint.renderMethod) {
-    case 'fill': return <GeoJsonLayer dataUrl={layer.dataURl} />
+//    case 'fill': return <GeoJsonLayer dataUrl={layer.dataURl} />
     case 'heatmap':
       return <Heatmap3d title={layer.title} dataUrl={layer.dataUrl} viewport={viewport}
         //        radius={128*5000*Math.pow(0.5, 2*Math.round(viewport.zoom/2))}
