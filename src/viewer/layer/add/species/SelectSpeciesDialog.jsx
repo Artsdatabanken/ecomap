@@ -1,4 +1,5 @@
 import React from 'react'
+import propTypes from 'prop-types'
 import SelectSpecies from './SelectSpecies'
 import Paper from 'material-ui/Paper'
 
@@ -12,10 +13,17 @@ const style = {
   overflowY: 'auto'
 }
 
-const SelectSpeciesDialog = props =>
-  <Paper zDepth={4} style={style}>
+const SelectSpeciesDialog = props => {
+  console.log(props)
+  return (<Paper zDepth={4} style={style}>
     <h2>Species</h2>
-    <SelectSpecies onClick={(item) => props.onClick(item)} />
+    <SelectSpecies onClick={(item) => props.onAddLayer(item)} />
   </Paper>
+  )
+}
+
+SelectSpeciesDialog.propTypes = {
+  onClick: propTypes.func
+}
 
 export default SelectSpeciesDialog

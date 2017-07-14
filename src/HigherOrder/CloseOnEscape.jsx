@@ -1,4 +1,4 @@
-import React, { Children } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
 export default class CloseOnEscape extends React.Component {
@@ -22,7 +22,12 @@ export default class CloseOnEscape extends React.Component {
   }
 
   render () {
-    return Children.only(this.props.children)
+    const childrenWithProps = React.Children.map(this.props.children,
+      (child) => {
+        if (!child) return child // result of conditionals for example
+        return React.cloneElement(child, this.props)
+      })
+    return <div>{childrenWithProps}</div>
   }
 }
 

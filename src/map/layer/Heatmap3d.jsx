@@ -74,7 +74,7 @@ export default class DeckGLOverlay extends Component {
   }
 
   componentDidMount () {
-    this.context.fetchJson(this.props.title, this.props.url, json => this.receiveData(json))
+    this.context.fetchJson(this.props.title, this.props.dataUrl, json => this.receiveData(json))
   }
 
   componentWillReceiveProps (nextProps) {

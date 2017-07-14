@@ -15,27 +15,26 @@ return checkboard2
 */
 
 export default class LayerSettings extends React.Component {
-  constructor () {
-    super()
-    this.state = {expanded: true}
-  }
+  state = {expanded: false}
+
   render () {
+    const paint = this.props.paint
     return (
       <div>
         <ListItem
-          primaryText={this.props.name}
-          secondaryText={this.props.sub}
-          leftAvatar={<Avatar src={this.props.image} />}
+          primaryText={this.props.title}
+          secondaryText={this.props.subTitle}
+          leftAvatar={<Avatar src={this.props.imageUrl} />}
           rightIconButton={
             <PaintSwatch
-              color={hexToRgbaString(this.props.fillColor, this.props.fillOpacity)}
-              onClick={() => this.props.onColorSwatchClick()} />
+              color={hexToRgbaString(paint.fillColor, paint.fillOpacity)}
+              onClick={() => this.setState(prevState => ({expanded: !prevState.expanded}))} />
         }
           onClick={() => this.setState(prevState => ({expanded: !prevState.expanded}))}
          />
         {this.state.expanded &&
-        <LayerExpanded {...this.props}
-          onUpdate={(key, value) => this.props.onUpdate(key, value)}
+        <LayerExpanded {...paint}
+          onUpdate={(key, value) => this.props.onUpdateProp(key, value)}
           onColorSwatchClick={() => this.setState(prevState => ({showColorDialog: !prevState.showColorDialog}))}
           />
         }
@@ -117,10 +116,8 @@ class LayerRenderFill extends React.Component {
 }
 
 function hexToRgbaString (color, opacity) {
-  console.log(color, opacity)
   let c = hexToRgba(color, opacity)
   const str = 'rgba(' + c.r + ',' + c.g + ',' + c.b + ',' + c.a + ')'
-  console.log(str)
   return str
 }
 
