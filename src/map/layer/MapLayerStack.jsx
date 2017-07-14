@@ -33,7 +33,8 @@ const EcoMapLayer = ({ id, layer, viewport, scalingFactor, zoomFactor }) => {
         //        radius={128*5000*Math.pow(0.5, 2*Math.round(viewport.zoom/2))}
         radius={scalingFactor * Math.pow(1.0 / 2, zoomFactor * Math.round(viewport.zoom / zoomFactor))}
         coverage={1} upperPercentile={100} opacity={0.6} />
+    default:
+      console.warn('unknown renderMethod', layer.paint.renderMethod)
+      return null
   }
-
-  return <span />
 }
