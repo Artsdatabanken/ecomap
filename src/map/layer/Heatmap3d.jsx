@@ -118,7 +118,6 @@ export default class DeckGLOverlay extends Component {
   }
 
   render () {
-    console.log('heat opa: ', this.props.coverage)
     const { viewport, radius, coverage, upperPercentile, fillOpacity } = this.props
     const data = this.state.data
     if (!data) {

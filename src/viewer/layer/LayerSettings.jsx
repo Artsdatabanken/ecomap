@@ -1,10 +1,11 @@
 import React from 'react'
 import { ChromePicker } from 'react-color'
-import { Slider, Subheader, Paper, DropDownMenu, MenuItem, ListItem, Divider, Avatar } from 'material-ui'
+import { Paper, DropDownMenu, MenuItem, ListItem, Avatar } from 'material-ui'
 import ActionInfo from 'material-ui/svg-icons/action/info'
 import ActionDelete from 'material-ui/svg-icons/action/delete-forever'
 import ActionBuild from 'material-ui/svg-icons/action/build'
 import checkboard from './checkerboard2.png'
+import HeatmapLayerSettings from './HeatmapLayerSettings'
 
 /* function getCheckBoard() {
 var cv = document.getElementById('body');
@@ -33,7 +34,7 @@ export default class LayerSettings extends React.Component {
           onClick={() => this.setState(prevState => ({expanded: !prevState.expanded}))}
          />
         {this.state.expanded &&
-        <LayerExpanded {...paint} onUpdate={this.props.onUpdateProp}
+        <LayerExpanded {...paint} onChange={this.props.onChange}
           onColorSwatchClick={() => this.setState(prevState => ({showColorDialog: !prevState.showColorDialog}))}
           />
         }
@@ -44,38 +45,36 @@ export default class LayerSettings extends React.Component {
 
 class LayerExpanded extends React.Component {
   render () {
-    return (<div>
-      <Subheader>Stil</Subheader>
+    return (<div style={{margin: '24px'}}>
+      <div>Visualization</div>
       <div style={{}}>
-        <DropDownMenu value={this.props.renderMethod} onChange={(event, index, value) => this.props.onUpdate('renderMethod', value)}>
+        <DropDownMenu value={this.props.renderMethod} onChange={(event, index, value) => this.props.onChange('renderMethod', value)}>
           <MenuItem value='fill' primaryText='Helfylt farge' />
-          <MenuItem value='pattern' primaryText='Mønster' />
-          <MenuItem value='extrude' primaryText='Ekstrudert' />
-          <MenuItem value='gradient' primaryText='Fargeskala' />
+          <MenuItem value='pattern' primaryText='Pattern' />
+          <MenuItem value='extrude' primaryText='Extrude' />
+          <MenuItem value='gradient' primaryText='Gradient' />
           <MenuItem value='heatmap' primaryText='Heatmap' />
         </DropDownMenu>
       </div>
       <LayerRenderParameters {...this.props} />
-      <Divider />
-      <Subheader>Blandingsmodus
+      <div>Color blend</div>
       <div style={{}}>
-        <DropDownMenu value={this.props.blendMode} onChange={(event, index, value) => this.props.onUpdate('blendMode', value)}>
+        <DropDownMenu value={this.props.blendMode} onChange={(event, index, value) => this.props.onChange('blendMode', value)}>
           <MenuItem value='normal' primaryText='Normal' />
-          <MenuItem value='lighten' primaryText='Lys opp' />
-          <MenuItem value='scren' primaryText='Skjerm' />
-          <MenuItem value='dodge' primaryText='Dukke' />
-          <MenuItem value='addition' primaryText='Addisjon' />
-          <MenuItem value='darken' primaryText='Formørke' />
-          <MenuItem value='multiply' primaryText='Multiplisere' />
-          <MenuItem value='burn' primaryText='Brenne' />
-          <MenuItem value='overlay' primaryText='Overlegg' />
-          <MenuItem value='softlight' primaryText='Mykt lys' />
-          <MenuItem value='hardlight' primaryText='Hardt lys' />
-          <MenuItem value='difference' primaryText='Forskjell' />
-          <MenuItem value='subtract' primaryText='Differanse' />
+          <MenuItem value='lighten' primaryText='Lighten' />
+          <MenuItem value='scren' primaryText='Screen' />
+          <MenuItem value='dodge' primaryText='Dodge' />
+          <MenuItem value='addition' primaryText='Addition' />
+          <MenuItem value='darken' primaryText='Darken' />
+          <MenuItem value='multiply' primaryText='Multiply' />
+          <MenuItem value='burn' primaryText='Burn' />
+          <MenuItem value='overlay' primaryText='Overlay' />
+          <MenuItem value='softlight' primaryText='Soft light' />
+          <MenuItem value='hardlight' primaryText='Hard light' />
+          <MenuItem value='difference' primaryText='Difference' />
+          <MenuItem value='subtract' primaryText='Subtract' />
         </DropDownMenu>
       </div>
-      </Subheader>
       <div style={{color: '#cdcdcd', position: 'relative', float: 'right'}}>
         <ActionInfo color='#666666' onClick={() => window.open(this.props.url)} />
         <ActionBuild color='#777777' onClick={() => this.props.onBuild()} />
@@ -93,7 +92,7 @@ class LayerRenderParameters extends React.Component {
       case 'pattern' : return <LayerRenderPattern {...props} />
       case 'extrude' : return <LayerRenderExtrude {...props} />
       case 'gradient' : return <LayerRenderGradient {...props} />
-      case 'heatmap' : return <LayerRenderHeatMap {...props} />
+      case 'heatmap' : return <HeatmapLayerSettings {...props} />
       default: return <div>{this.props.renderMethod}</div>
     }
   }
@@ -106,8 +105,8 @@ class LayerRenderFill extends React.Component {
       <div style={{position: 'relative', left: 64, margin: 10}}>
         <ChromePicker
           onChange={(e) => {
-            this.props.onUpdate('fillColor', e.hex)
-            this.props.onUpdate('fillOpacity', e.rgb.a)
+            this.props.onChange('fillColor', e.hex)
+            this.props.onChange('fillOpacity', e.rgb.a)
           }
         } color={rgba} />
       </div>)
@@ -156,29 +155,6 @@ class LayerRenderExtrude extends React.Component {
 class LayerRenderGradient extends React.Component {
   render () {
     return (<Paper>gradient</Paper>)
-  }
-}
-
-class LayerRenderHeatMap extends React.Component {
-  render () {
-    return (<Paper>
-      <Subheader>Opacity</Subheader>
-      <Slider
-        min={0}
-        max={1}
-        step={0.01}
-        value={this.props.fillOpacity}
-        onChange={(event, value) => this.props.onUpdate('fillOpacity', value)}
-        />
-      <Subheader>Coverage</Subheader>
-      <Slider
-        min={0}
-        max={1}
-        step={0.01}
-        value={this.props.coverage}
-        onChange={(event, value) => this.props.onUpdate('coverage', value)}
-        />
-    </Paper>)
   }
 }
 
