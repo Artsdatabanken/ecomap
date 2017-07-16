@@ -10,7 +10,7 @@ export default class ActiveLayers extends React.Component {
           {Object.keys(this.props.layers).map(key => {
             const layer = this.props.layers[key]
             return <Layer key={layer.id}
-              onUpdateProp={(key, value) => { this.props.onUpdateLayerProp(layer, key, value) }}
+              onChange={(key, value) => { this.props.onUpdateLayerProp(layer, key, value) }}
               onDelete={() => this.props.onDelete(layer)}
               {...layer}
           />

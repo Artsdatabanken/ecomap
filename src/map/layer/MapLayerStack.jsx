@@ -19,7 +19,7 @@ export default class MapLayerStack extends React.Component {
       r.push(<EcoMapLayer key={id} id={id} layer={layer}
         viewport={this.props.viewport}
         onUpdate={this.props.onUpdate}
-        scalingFactor={128 * 5000} zoomFactor={2} />)
+        scalingFactor={128 * 5000 * layer.paint.radius} zoomFactor={2} />)
     }
     return <span>
       {r}
