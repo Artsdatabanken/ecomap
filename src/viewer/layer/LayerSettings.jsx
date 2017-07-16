@@ -1,6 +1,6 @@
 import React from 'react'
 import { ChromePicker } from 'react-color'
-import { Subheader, Paper, DropDownMenu, MenuItem, ListItem, Divider, Avatar } from 'material-ui'
+import { Slider, Subheader, Paper, DropDownMenu, MenuItem, ListItem, Divider, Avatar } from 'material-ui'
 import ActionInfo from 'material-ui/svg-icons/action/info'
 import ActionDelete from 'material-ui/svg-icons/action/delete-forever'
 import ActionBuild from 'material-ui/svg-icons/action/build'
@@ -33,8 +33,7 @@ export default class LayerSettings extends React.Component {
           onClick={() => this.setState(prevState => ({expanded: !prevState.expanded}))}
          />
         {this.state.expanded &&
-        <LayerExpanded {...paint}
-          onUpdate={(key, value) => this.props.onUpdateProp(key, value)}
+        <LayerExpanded {...paint} onUpdate={this.props.onUpdateProp}
           onColorSwatchClick={() => this.setState(prevState => ({showColorDialog: !prevState.showColorDialog}))}
           />
         }
@@ -162,14 +161,31 @@ class LayerRenderGradient extends React.Component {
 
 class LayerRenderHeatMap extends React.Component {
   render () {
-    return (<Paper>heatmap</Paper>)
+    return (<Paper>
+      <Subheader>Opacity</Subheader>
+      <Slider
+        min={0}
+        max={1}
+        step={0.01}
+        value={this.props.fillOpacity}
+        onChange={(event, value) => this.props.onUpdate('fillOpacity', value)}
+        />
+      <Subheader>Coverage</Subheader>
+      <Slider
+        min={0}
+        max={1}
+        step={0.01}
+        value={this.props.coverage}
+        onChange={(event, value) => this.props.onUpdate('coverage', value)}
+        />
+    </Paper>)
   }
 }
 
 const PaintSwatch = ({color, onClick}) =>
   <div onClick={() => { onClick() }} style={{
     position: 'absolute',
-    top: '8px',
+    top: '14px',
     right: '14px',
     height: '40px',
     width: '40px',
