@@ -41,7 +41,7 @@
     "eslint-plugin-react": "7.1.0",
     "extract-text-webpack-plugin": "2.1.2",
     "file-loader": "0.11.2",
-    "fs-extra": "3.0.1",
+    "fs-extra": "4.0.0",
     "html-webpack-plugin": "2.29.0",
     "jest": "20.0.4",
     "luma.gl": ">=4.0.0-beta.1",
@@ -83,7 +83,7 @@
     "react-test-renderer": "^15.4.2",
     "standard": "^10.0.2",
     "standard-reporter": "^1.0.5",
-    "storybook-addon-material-ui": "^0.7.9"
+    "storybook-addon-material-ui": "^0.8.0"
   },
   "homepage": ".",
   "standard": {
