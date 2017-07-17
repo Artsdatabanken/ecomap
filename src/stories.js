@@ -7,7 +7,7 @@ import FilterTag from './filtertag/FilterTag.story'
 import SearchBar from './viewer/search/SearchBar'
 import LeftMenu from './viewer/menu/LeftMenu.story'
 import LoadingIndicator from './LoadingIndicator'
-import ActiveLayer from './viewer/layer/ActiveLayers'
+import ActiveLayers from './viewer/layer/ActiveLayers'
 import ColorPickers from './viewer/layer/ColorPickers'
 import Linjediagram from './viewer/diagram/Linjediagram'
 import Søylediagram from './viewer/diagram/Søylediagram'
@@ -18,6 +18,7 @@ import SelectSpecies from './viewer/layer/add/species/SelectSpecies'
 import ErrorBanner from './ErrorBanner'
 import SpeciesGridItemCard from './viewer/layer/add/species/SpeciesGridItemCard'
 import theme from './theme'
+import HeatmapLayerSettings from './viewer/layer/HeatmapLayerSettings'
 
 const data = [
   { name: 'Page A', uv: 4000, pv: 2400, amt: 2400 },
@@ -357,9 +358,23 @@ storiesOf('Diagram', module)
     </div>
   )
 
+let layers = {'31241': {'id': 31241,
+  'title': 'Alces alces',
+  'subTitle': 'elg',
+  'imageUrl': 'https://farm5.staticflickr.com/4107/4839886016_d11b6d2cdf.jpg',
+  'dataUrl': 'http://webtjenester.artsdatabanken.no/Artskart/api/listhelper/31241/observations?&fromYear=1981&toYear=2012&fromMonth=1&toMonth=12&type=all&region=all&scientificNameId=48103',
+  'source': 'geojson',
+  'visible': true,
+  'raster': false,
+  'paint': {'fillColor': '#ff0000', 'fillOpacity': 1, 'renderMethod': 'heatmap', 'blendMode': 'multiply'}}}
+
 storiesOf('Lag', module).addDecorator(muiTheme()).add('primary', () =>
   <div style={{ margin: '20px' }}>
-    <ActiveLayer />
+    <ActiveLayers layers={layers} />
+  </div>
+).add('Heatmap settings', () =>
+  <div style={{width: '400px', padding: '20px'}}>
+    <HeatmapLayerSettings coverage={0.5} fillOpacity={0.8} onChange={action('updateValue')} />
   </div>
 )
 

@@ -30,7 +30,7 @@ export default class ActiveLayersContainer extends React.Component {
       'source': 'geojson',
       'visible': true,
       'raster': false,
-      'paint': {'fillColor': '#ff0000', 'fillOpacity': 1, 'renderMethod': 'heatmap', 'blendMode': 'multiply'}}}
+      'paint': {'fillColor': '#ff0000', 'coverage': 0.95, 'fillOpacity': 1.0, 'radius': 1.0, 'renderMethod': 'heatmap', 'blendMode': 'multiply'}}}
   }
 
   render () {
@@ -49,7 +49,6 @@ export default class ActiveLayersContainer extends React.Component {
   }
 
   handleAddLayer = (layer) => {
-    console.log(layer)
     let newLayer = {
       id: layer.id,
       title: layer.scientificName,
@@ -62,10 +61,11 @@ export default class ActiveLayersContainer extends React.Component {
       paint: {
         heatmap: 'visible',
         fillColor: '#ff0000',
-        fillOpacity: 1,
-        coverage: 1,
+        fillOpacity: 1.0,
+        coverage: 1.0,
         renderMethod: 'fill',
-        blendMode: 'multiply'
+        blendMode: 'multiply',
+        radius: 1.0
       }
     }
     this.setState(prevState => {
