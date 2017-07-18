@@ -18,7 +18,7 @@ import SelectSpecies from './viewer/layer/add/species/SelectSpecies'
 import ErrorBanner from './ErrorBanner'
 import SpeciesGridItemCard from './viewer/layer/add/species/SpeciesGridItemCard'
 import theme from './theme'
-import HeatmapLayerSettings from './viewer/layer/HeatmapLayerSettings'
+import Bars3DLayerSettings from './viewer/layer/Bars3DLayerSettings'
 
 const data = [
   { name: 'Page A', uv: 4000, pv: 2400, amt: 2400 },
@@ -372,9 +372,9 @@ storiesOf('Lag', module).addDecorator(muiTheme()).add('primary', () =>
   <div style={{ margin: '20px' }}>
     <ActiveLayers layers={layers} />
   </div>
-).add('Heatmap settings', () =>
+).add('Bars 3D settings', () =>
   <div style={{width: '400px', padding: '20px'}}>
-    <HeatmapLayerSettings coverage={0.5} fillOpacity={0.8} onChange={action('updateValue')} />
+    <Bars3DLayerSettings coverage={0.5} fillOpacity={0.8} onChange={action('updateValue')} />
   </div>
 )
 

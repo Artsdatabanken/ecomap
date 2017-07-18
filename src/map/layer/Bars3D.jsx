@@ -1,4 +1,3 @@
-/* global window */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import DeckGL, { HexagonLayer } from 'deck.gl'
@@ -40,7 +39,7 @@ const defaultProps = {
   data: []
 }
 
-export default class DeckGLOverlay extends Component {
+export default class Bars3D extends Component {
   static get defaultColorRange () {
     return colorRange
   }
@@ -148,5 +147,5 @@ export default class DeckGLOverlay extends Component {
   }
 }
 
-DeckGLOverlay.displayName = 'DeckGLOverlay'
-DeckGLOverlay.defaultProps = defaultProps
+Bars3D.displayName = 'Bars3D'
+Bars3D.defaultProps = defaultProps

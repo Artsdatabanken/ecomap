@@ -1,11 +1,11 @@
 import React from 'react'
 import { ChromePicker } from 'react-color'
-import { Paper, DropDownMenu, MenuItem, ListItem, Avatar } from 'material-ui'
+import { Paper, Divider, DropDownMenu, MenuItem, ListItem, Avatar } from 'material-ui'
 import ActionInfo from 'material-ui/svg-icons/action/info'
 import ActionDelete from 'material-ui/svg-icons/action/delete-forever'
 import ActionBuild from 'material-ui/svg-icons/action/build'
 import checkboard from './checkerboard2.png'
-import HeatmapLayerSettings from './HeatmapLayerSettings'
+import Bars3DLayerSettings from './Bars3DLayerSettings'
 
 /* function getCheckBoard() {
 var cv = document.getElementById('body');
@@ -45,18 +45,19 @@ export default class LayerSettings extends React.Component {
 
 class LayerExpanded extends React.Component {
   render () {
-    return (<div style={{margin: '24px'}}>
-      <div>Visualization</div>
-      <div style={{}}>
-        <DropDownMenu value={this.props.renderMethod} onChange={(event, index, value) => this.props.onChange('renderMethod', value)}>
-          <MenuItem value='fill' primaryText='Helfylt farge' />
-          <MenuItem value='pattern' primaryText='Pattern' />
-          <MenuItem value='extrude' primaryText='Extrude' />
-          <MenuItem value='gradient' primaryText='Gradient' />
-          <MenuItem value='heatmap' primaryText='Heatmap' />
-        </DropDownMenu>
-      </div>
+    return (<div style={{}}>
+      <Divider />
+      <DropDownMenu value={this.props.renderMethod} onChange={(event, index, value) => this.props.onChange('renderMethod', value)}>
+        <MenuItem value='fill' primaryText='Single color fill' />
+        <MenuItem value='pattern' primaryText='Pattern' />
+        <MenuItem value='extrude' primaryText='Extrude 3D' />
+        <MenuItem value='gradient' primaryText='Gradient' />
+        <MenuItem value='heatmap' primaryText='Heatmap' />
+        <MenuItem value='bars3d' primaryText='Bars 3D' />
+      </DropDownMenu>
+      <Divider />
       <LayerRenderParameters {...this.props} />
+      <Divider />
       <div>Color blend</div>
       <div style={{}}>
         <DropDownMenu value={this.props.blendMode} onChange={(event, index, value) => this.props.onChange('blendMode', value)}>
@@ -92,7 +93,7 @@ class LayerRenderParameters extends React.Component {
       case 'pattern' : return <LayerRenderPattern {...props} />
       case 'extrude' : return <LayerRenderExtrude {...props} />
       case 'gradient' : return <LayerRenderGradient {...props} />
-      case 'heatmap' : return <HeatmapLayerSettings {...props} />
+      case 'bars3d' : return <Bars3DLayerSettings {...props} />
       default: return <div>{this.props.renderMethod}</div>
     }
   }
