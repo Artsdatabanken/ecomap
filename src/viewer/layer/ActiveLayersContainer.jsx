@@ -30,7 +30,7 @@ export default class ActiveLayersContainer extends React.Component {
       'source': 'geojson',
       'visible': true,
       'raster': false,
-      'paint': {'fillColor': '#ff0000', 'coverage': 0.95, 'fillOpacity': 1.0, 'radius': 1.0, 'renderMethod': 'heatmap', 'blendMode': 'multiply'}}}
+      'paint': {'fillColor': '#ff0000', 'coverage': 0.95, 'fillOpacity': 1.0, 'radius': 1.0, 'renderMethod': 'bars3d', 'blendMode': 'multiply'}}}
   }
 
   render () {
@@ -59,11 +59,10 @@ export default class ActiveLayersContainer extends React.Component {
       visible: true,
       raster: false,
       paint: {
-        heatmap: 'visible',
         fillColor: '#ff0000',
         fillOpacity: 1.0,
         coverage: 1.0,
-        renderMethod: 'fill',
+        renderMethod: 'bars3d',
         blendMode: 'multiply',
         radius: 1.0
       }

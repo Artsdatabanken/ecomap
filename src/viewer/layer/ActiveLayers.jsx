@@ -6,7 +6,7 @@ export default class ActiveLayers extends React.Component {
   render () {
     return (
       <div style={{width: '400px', position: 'absolute', left: '2%', top: '2%'}}>
-        <Paper zDepth={1}>
+        <Paper zDepth={3}>
           {Object.keys(this.props.layers).map(key => {
             const layer = this.props.layers[key]
             return <Layer key={layer.id}

@@ -4,7 +4,7 @@ import ActionAspectRation from 'material-ui/svg-icons/action/aspect-ratio'
 import ActionAllOut from 'material-ui/svg-icons/action/all-out'
 import SliderSetting from './SliderSetting'
 
-export default class HeatmapLayerSettings extends React.Component {
+export default class Bars3DLayerSettings extends React.Component {
   render () {
     const {fillOpacity, coverage, radius} = this.props
     return (<div>
