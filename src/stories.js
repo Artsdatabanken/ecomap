@@ -18,7 +18,7 @@ import SelectSpecies from './viewer/layer/add/species/SelectSpecies'
 import ErrorBanner from './ErrorBanner'
 import SpeciesGridItemCard from './viewer/layer/add/species/SpeciesGridItemCard'
 import theme from './theme'
-import Bars3DLayerSettings from './viewer/layer/HeatmapLayerSettings'
+import Bars3DLayerSettings from './viewer/layer/Bars3DLayerSettings'
 
 const data = [
   { name: 'Page A', uv: 4000, pv: 2400, amt: 2400 },
