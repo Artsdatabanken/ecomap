@@ -2,13 +2,7 @@ import React from 'react'
 import ActionSearch from 'material-ui/svg-icons/action/search'
 import AutoComplete from 'material-ui/AutoComplete'
 
-export default class ToolbarExamplesSimple extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      value: 3
-    }
-  }
+export default class SearchBar extends React.Component {
   componentDidMount () {
     this.searchInput.focus()
   }
@@ -19,8 +13,9 @@ export default class ToolbarExamplesSimple extends React.Component {
       <span>
         <ActionSearch style={{ position: 'relative', left: 16, top: 8 }} />
         <AutoComplete
+          id='sbar'
           style={{ left: 32, width: '40%' }}
-          hintText='Søk...'
+          hintText='Search...'
           filter={AutoComplete.fuzzyFilter}
           dataSource={[]}
           maxSearchResults={15}
