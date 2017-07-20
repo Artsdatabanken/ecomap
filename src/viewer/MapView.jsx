@@ -1,13 +1,12 @@
 import React from 'react'
-import FloatingActionButton from 'material-ui/FloatingActionButton'
-import ContentAdd from 'material-ui/svg-icons/content/add'
+import IconButton from 'material-ui/IconButton'
+import LayersIcon from 'material-ui/svg-icons/maps/layers'
 import Snackbar from 'material-ui/Snackbar'
 import SearchBar from './search/SearchBar'
 import LeftMenu from './menu/LeftMenu'
 import Map from '../map/Map'
 import CardStack from './layer/infocard/CardStack'
 // import NinLayerStack from './NinLayerStack'
-import SelectSpeciesDialog from './layer/add/species/SelectSpeciesDialog'
 import CloseOnEscape from '../HigherOrder/CloseOnEscape'
 import LoadingIndicator from '../LoadingIndicator'
 import ActiveLayers from './layer/ActiveLayers'
@@ -135,14 +134,22 @@ export default class MainPage extends React.Component {
               animate={this.state.animate}
               />}
           </div>}
-        <div style={{ position: 'absolute', bottom: '50px', right: '50px' }}>
-          {!this.state.showAddLayersDialog &&
-            <FloatingActionButton
+        <div style={{ position: 'absolute', bottom: '0px', right: '0px' }}>
+          {!this.state.showLayersDialog &&
+            <IconButton
               onTouchTap={() =>
-                this.setState(prevState => ({showAddLayersDialog: true}))}
-            >
-              <ContentAdd />
-            </FloatingActionButton>}
+                this.setState(prevState => ({showLayersDialog: true}))}
+              style={{ width: 96,
+                height: 96,
+                padding: 24}}
+              iconStyle={{
+                color: 'rgba(0, 0, 0, 0.52)',
+                width: 48,
+                height: 48
+              }}>
+              <LayersIcon />
+            </IconButton>
+             }
         </div>
         {true &&
           this.state.features &&
@@ -154,11 +161,11 @@ export default class MainPage extends React.Component {
             layers={this.state.layers}
             onClick={features => this.onClick(features)}
           />}
-          {this.state.showAddLayersDialog
-          ? <CloseOnEscape onEscape={() => this.setState({ showAddLayersDialog: false })}>
-            <SelectSpeciesDialog a={1} />
+          {this.state.showLayersDialog &&
+          <CloseOnEscape onEscape={() => this.setState({ showLayersDialog: false })}>
+            <ActiveLayers layers={this.state.layers} />
           </CloseOnEscape>
-          : <ActiveLayers layers={this.state.layers} />}
+          }
         </ActiveLayersContainer>
         {this.props.isLoading && <div style={{ position: 'absolute', right: '50px', top: '50px' }}>
           <LoadingIndicator /></div>}
