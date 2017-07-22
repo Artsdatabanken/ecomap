@@ -5,7 +5,7 @@ import ActionInfo from 'material-ui/svg-icons/action/info'
 import ActionDelete from 'material-ui/svg-icons/action/delete-forever'
 import ActionBuild from 'material-ui/svg-icons/action/build'
 import checkboard from './checkerboard2.png'
-import Bars3DLayerSettings from './Bars3DLayerSettings'
+import HexagonLayerSettings from './HexagonLayerSettings'
 
 /* function getCheckBoard() {
 var cv = document.getElementById('body');
@@ -53,34 +53,34 @@ class LayerExpanded extends React.Component {
         <MenuItem value='extrude' primaryText='Extrude 3D' />
         <MenuItem value='gradient' primaryText='Gradient' />
         <MenuItem value='heatmap' primaryText='Heatmap' />
-        <MenuItem value='bars3d' primaryText='Bars 3D' />
+        <MenuItem value='hexagon' primaryText='Hexagon' />
       </DropDownMenu>
       <Divider />
       <LayerRenderParameters {...this.props} />
       <Divider />
-      <div>Color blend</div>
-      <div style={{}}>
-        <DropDownMenu value={this.props.blendMode} onChange={(event, index, value) => this.props.onChange('blendMode', value)}>
-          <MenuItem value='normal' primaryText='Normal' />
-          <MenuItem value='lighten' primaryText='Lighten' />
-          <MenuItem value='scren' primaryText='Screen' />
-          <MenuItem value='dodge' primaryText='Dodge' />
-          <MenuItem value='addition' primaryText='Addition' />
-          <MenuItem value='darken' primaryText='Darken' />
-          <MenuItem value='multiply' primaryText='Multiply' />
-          <MenuItem value='burn' primaryText='Burn' />
-          <MenuItem value='overlay' primaryText='Overlay' />
-          <MenuItem value='softlight' primaryText='Soft light' />
-          <MenuItem value='hardlight' primaryText='Hard light' />
-          <MenuItem value='difference' primaryText='Difference' />
-          <MenuItem value='subtract' primaryText='Subtract' />
-        </DropDownMenu>
-      </div>
-      <div style={{color: '#cdcdcd', position: 'relative', float: 'right'}}>
-        <ActionInfo color='#666666' onClick={() => window.open(this.props.url)} />
-        <ActionBuild color='#777777' onClick={() => this.props.onBuild()} />
-        <ActionDelete color='#888888' onClick={() => this.props.onDelete()} />
-      </div>
+      {false && <div><div>Color blend</div>
+        <div style={{}}>
+          <DropDownMenu value={this.props.blendMode} onChange={(event, index, value) => this.props.onChange('blendMode', value)}>
+            <MenuItem value='normal' primaryText='Normal' />
+            <MenuItem value='lighten' primaryText='Lighten' />
+            <MenuItem value='scren' primaryText='Screen' />
+            <MenuItem value='dodge' primaryText='Dodge' />
+            <MenuItem value='addition' primaryText='Addition' />
+            <MenuItem value='darken' primaryText='Darken' />
+            <MenuItem value='multiply' primaryText='Multiply' />
+            <MenuItem value='burn' primaryText='Burn' />
+            <MenuItem value='overlay' primaryText='Overlay' />
+            <MenuItem value='softlight' primaryText='Soft light' />
+            <MenuItem value='hardlight' primaryText='Hard light' />
+            <MenuItem value='difference' primaryText='Difference' />
+            <MenuItem value='subtract' primaryText='Subtract' />
+          </DropDownMenu>
+        </div>
+        <div style={{color: '#cdcdcd', position: 'relative', float: 'right'}}>
+          <ActionInfo color='#666666' onClick={() => window.open(this.props.url)} />
+          <ActionBuild color='#777777' onClick={() => this.props.onBuild()} />
+          <ActionDelete color='#888888' onClick={() => this.props.onDelete()} />
+        </div></div>}
     </div>)
   }
 }
@@ -88,12 +88,13 @@ class LayerExpanded extends React.Component {
 class LayerRenderParameters extends React.Component {
   render () {
     const props = this.props
+    console.log(this.props)
     switch (this.props.renderMethod) {
       case 'fill' : return <LayerRenderFill {...props} />
       case 'pattern' : return <LayerRenderPattern {...props} />
       case 'extrude' : return <LayerRenderExtrude {...props} />
       case 'gradient' : return <LayerRenderGradient {...props} />
-      case 'bars3d' : return <Bars3DLayerSettings {...props} />
+      case 'hexagon' : return <HexagonLayerSettings {...props} />
       default: return <div>{this.props.renderMethod}</div>
     }
   }

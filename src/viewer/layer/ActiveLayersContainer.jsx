@@ -30,7 +30,20 @@ export default class ActiveLayersContainer extends React.Component {
       'source': 'geojson',
       'visible': true,
       'raster': false,
-      'paint': {'fillColor': '#ff0000', 'coverage': 0.95, 'fillOpacity': 1.0, 'radius': 1.0, 'renderMethod': 'bars3d', 'blendMode': 'multiply'}}}
+      'paint': {
+        fillColor: '#ff0000',
+        coverage: 0.95,
+        fillOpacity: 0.96,
+        radius: 0.3,
+        renderMethod: 'hexagon',
+        blendMode: 'multiply',
+        lowerPercentile: 0,
+        upperPercentile: 1.0,
+        elevationMin: 0.0,
+        elevationMax: 0.5
+      }
+    }
+    }
   }
 
   render () {
@@ -62,9 +75,14 @@ export default class ActiveLayersContainer extends React.Component {
         fillColor: '#ff0000',
         fillOpacity: 1.0,
         coverage: 1.0,
-        renderMethod: 'bars3d',
+        renderMethod: 'hexagon',
         blendMode: 'multiply',
-        radius: 1.0
+        radius: 1.0,
+        extruded: true,
+        elevationScale: 500,
+        upperPercentile: 1.0,
+        elevationMin: 0,
+        elevationMax: 10000
       }
     }
     this.setState(prevState => {
