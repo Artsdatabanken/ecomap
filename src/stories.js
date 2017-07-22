@@ -18,7 +18,7 @@ import SelectSpecies from './viewer/layer/add/species/SelectSpecies'
 import ErrorBanner from './ErrorBanner'
 import SpeciesGridItemCard from './viewer/layer/add/species/SpeciesGridItemCard'
 import theme from './theme'
-import Bars3DLayerSettings from './viewer/layer/Bars3DLayerSettings'
+import HexagonLayerSettings from './viewer/layer/HexagonLayerSettings'
 
 const data = [
   { name: 'Page A', uv: 4000, pv: 2400, amt: 2400 },
@@ -368,14 +368,19 @@ let layers = {'31241': {'id': 31241,
   'raster': false,
   'paint': {'fillColor': '#ff0000', 'fillOpacity': 1, 'renderMethod': 'heatmap', 'blendMode': 'multiply'}}}
 
-storiesOf('Lag', module).addDecorator(muiTheme()).add('primary', () =>
+storiesOf('Layer settings', module).addDecorator(muiTheme()).add('primary', () =>
   <div style={{ margin: '20px' }}>
     <ActiveLayers layers={layers} />
   </div>
-).add('Bars 3D settings', () =>
-  <div style={{width: '400px', padding: '20px'}}>
-    <Bars3DLayerSettings coverage={0.5} fillOpacity={0.8} onChange={action('updateValue')} />
+).add('Hexagon', () => {
+  let layers = {'31241': {'id': 31241,
+    'paint': {'fillColor': '#ff0000', 'coverage': 0.95, 'fillOpacity': 1.0, 'radius': 1.0, 'renderMethod': 'hexagon', 'blendMode': 'multiply'}}
+  }
+
+  return <div style={{width: '400px', padding: '20px'}}>
+    <HexagonLayerSettings {...layers['31241'].paint} onChange={action('onUpdateLayerProp')} />
   </div>
+}
 )
 
 storiesOf('Menu', module)
