@@ -2,12 +2,12 @@ import React from 'react'
 import renderer from 'react-test-renderer'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
-import HexagonLayerSettings from './HexagonLayerSettings'
+import ColorPickers from './ColorPickers'
 
 it('loading standard tile', () => {
   const tree = renderer.create(
     <MuiThemeProvider>
-      <HexagonLayerSettings fillOpacity={0.1} radius={0.2} coverage={0.3} />
+      <ColorPickers />
     </MuiThemeProvider>
       )
   expect(tree.toJSON()).toMatchSnapshot()

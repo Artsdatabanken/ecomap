@@ -6,7 +6,8 @@ import ActionDelete from 'material-ui/svg-icons/action/delete-forever'
 import ActionBuild from 'material-ui/svg-icons/action/build'
 import checkboard from './checkerboard2.png'
 import HexagonLayerSettings from './HexagonLayerSettings'
-
+import ScatterplotLayerSettings from './ScatterplotLayerSettings'
+import {hexToRgbaString, hexToRgba} from './colorfunc'
 /* function getCheckBoard() {
 var cv = document.getElementById('body');
 var ctx = cv.getContext('2d');
@@ -16,7 +17,7 @@ return checkboard2
 */
 
 export default class LayerSettings extends React.Component {
-  state = {expanded: false}
+  state = {expanded: false, showColorDialog: true}
 
   render () {
     const paint = this.props.paint
@@ -29,13 +30,17 @@ export default class LayerSettings extends React.Component {
           rightIconButton={
             <PaintSwatch
               color={hexToRgbaString(paint.fillColor, paint.fillOpacity)}
-              onClick={() => this.setState(prevState => ({expanded: !prevState.expanded}))} />
+              onClick={(e) => {
+                e.stopPropagation()
+                this.setState(prevState => ({showColorDialog: !prevState.showColorDialog}))
+              }
+                } />
         }
           onClick={() => this.setState(prevState => ({expanded: !prevState.expanded}))}
          />
         {this.state.expanded &&
         <LayerExpanded {...paint} onChange={this.props.onChange}
-          onColorSwatchClick={() => this.setState(prevState => ({showColorDialog: !prevState.showColorDialog}))}
+          showColorDialog={this.state.showColorDialog}
           />
         }
       </div>
@@ -48,16 +53,29 @@ class LayerExpanded extends React.Component {
     return (<div style={{}}>
       <Divider />
       <DropDownMenu value={this.props.renderMethod} onChange={(event, index, value) => this.props.onChange('renderMethod', value)}>
-        <MenuItem value='fill' primaryText='Single color fill' />
-        <MenuItem value='pattern' primaryText='Pattern' />
-        <MenuItem value='extrude' primaryText='Extrude 3D' />
-        <MenuItem value='gradient' primaryText='Gradient' />
-        <MenuItem value='heatmap' primaryText='Heatmap' />
+        {false && <div>
+          <MenuItem value='fill' primaryText='Single color fill' />
+          <MenuItem value='pattern' primaryText='Pattern' />
+          <MenuItem value='extrude' primaryText='Extrude 3D' />
+          <MenuItem value='gradient' primaryText='Gradient' />
+          <MenuItem value='heatmap' primaryText='Heatmap' />
+        </div>
+        }
+        <MenuItem value='scatterplot' primaryText='Scatterplot' />
         <MenuItem value='hexagon' primaryText='Hexagon' />
       </DropDownMenu>
       <Divider />
       <LayerRenderParameters {...this.props} />
       <Divider />
+      {this.props.showColorDialog && <div style={{position: 'relative', left: 64, margin: 10}}>
+        <ChromePicker
+          onChange={(e) => {
+            this.props.onChange('fillColor', e.hex)
+            this.props.onChange('fillOpacity', e.rgb.a)
+          }} color={
+            hexToRgba(this.props.fillColor, this.props.fillOpacity)} />
+      </div>}
+}
       {false && <div><div>Color blend</div>
         <div style={{}}>
           <DropDownMenu value={this.props.blendMode} onChange={(event, index, value) => this.props.onChange('blendMode', value)}>
@@ -88,12 +106,12 @@ class LayerExpanded extends React.Component {
 class LayerRenderParameters extends React.Component {
   render () {
     const props = this.props
-    console.log(this.props)
     switch (this.props.renderMethod) {
       case 'fill' : return <LayerRenderFill {...props} />
       case 'pattern' : return <LayerRenderPattern {...props} />
       case 'extrude' : return <LayerRenderExtrude {...props} />
       case 'gradient' : return <LayerRenderGradient {...props} />
+      case 'scatterplot' : return <ScatterplotLayerSettings {...props} />
       case 'hexagon' : return <HexagonLayerSettings {...props} />
       default: return <div>{this.props.renderMethod}</div>
     }
@@ -115,33 +133,6 @@ class LayerRenderFill extends React.Component {
   }
 }
 
-function hexToRgbaString (color, opacity) {
-  let c = hexToRgba(color, opacity)
-  const str = 'rgba(' + c.r + ',' + c.g + ',' + c.b + ',' + c.a + ')'
-  return str
-}
-
-function hexToRgba (color, opacity) {
-  let rgba = hexToRgb(color)
-  rgba.a = opacity
-  return rgba
-}
-
-function hexToRgb (hex) {
-    // Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
-  var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i
-  hex = hex.replace(shorthandRegex, function (m, r, g, b) {
-    return r + r + g + g + b + b
-  })
-
-  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
-  return result ? {
-    r: parseInt(result[1], 16),
-    g: parseInt(result[2], 16),
-    b: parseInt(result[3], 16)
-  } : null
-}
-
 class LayerRenderPattern extends React.Component {
   render () {
     return (<Paper>pattern</Paper>)
@@ -161,7 +152,7 @@ class LayerRenderGradient extends React.Component {
 }
 
 const PaintSwatch = ({color, onClick}) =>
-  <div onClick={() => { onClick() }} style={{
+  <div onClick={(e) => { onClick(e) }} style={{
     position: 'absolute',
     top: '14px',
     right: '14px',

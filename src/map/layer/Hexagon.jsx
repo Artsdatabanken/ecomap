@@ -40,7 +40,7 @@ const defaultProps = {
   data: []
 }
 
-export default class Bars3D extends Component {
+export default class Hexagon extends Component {
   static get defaultColorRange () {
     return colorRange
   }
@@ -142,10 +142,9 @@ export default class Bars3D extends Component {
         upperPercentile: upperPercentile * 100
       })
     ]
-    console.log(layers[0].props)
     return <DeckGL {...viewport} layers={layers} onWebGLInitialized={this._initialize} />
   }
 }
 
-Bars3D.displayName = 'Bars3D'
-Bars3D.defaultProps = defaultProps
+Hexagon.displayName = 'Hexagon'
+Hexagon.defaultProps = defaultProps
