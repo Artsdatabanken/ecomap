@@ -2,6 +2,7 @@ language: node_js
 node_js:
   - "node"
 script:
+  - "yarn test"
   - "yarn build"
   - "yarn build-storybook"
 deploy:
@@ -10,7 +11,7 @@ deploy:
   domain: outgoing-front.surge.sh
   skip_cleanup: true
 after_success:
-  - npm run coveralls
+  - npm run report-coverage
 notifications:
   webhooks:
     urls:
