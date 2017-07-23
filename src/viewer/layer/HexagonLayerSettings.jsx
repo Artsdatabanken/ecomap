@@ -1,6 +1,6 @@
 import React from 'react'
 import ActionOpacity from 'material-ui/svg-icons/action/opacity'
-import ActionAspectRation from 'material-ui/svg-icons/action/aspect-ratio'
+import ActionAspectRatio from 'material-ui/svg-icons/action/aspect-ratio'
 import ActionAllOut from 'material-ui/svg-icons/action/all-out'
 import SliderSetting from './SliderSetting'
 
@@ -13,7 +13,7 @@ export default class HexagonLayerSettings extends React.Component {
       <SliderSetting title='Lower percentile' value={lowerPercentile} icon={<ActionAllOut />} onChange={value => onChange('lowerPercentile', value)} />
       <SliderSetting title='Upper percentile' value={upperPercentile} icon={<ActionAllOut />} onChange={value => onChange('upperPercentile', value)} />
       <SliderSetting title='Opacity' value={fillOpacity} icon={<ActionOpacity />} onChange={value => onChange('fillOpacity', value)} />
-      <SliderSetting title='Coverage' value={coverage} icon={<ActionAspectRation />} onChange={value => onChange('coverage', value)} />
+      <SliderSetting title='Coverage' value={coverage} icon={<ActionAspectRatio />} onChange={value => onChange('coverage', value)} />
       <SliderSetting title='Elevation min' value={elevationMin} icon={<ActionAllOut />} onChange={value => onChange('elevationMin', value)} />
       <SliderSetting title='Elevation max' value={elevationMax} icon={<ActionAllOut />} onChange={value => onChange('elevationMax', value)} />
     </div>)
