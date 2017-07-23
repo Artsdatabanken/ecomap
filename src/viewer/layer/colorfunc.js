@@ -44,6 +44,6 @@ export function hexToArray (hex, alpha) {
     parseInt(result[1], 16),
     parseInt(result[2], 16),
     parseInt(result[3], 16),
-    parseInt(alpha * 255)
+    Math.round(alpha * 255)
   ] : null
 }
