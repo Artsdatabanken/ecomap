@@ -5,16 +5,14 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom",
-    "ci_test": "node scripts/test.js --env=jsdom --coverage --testResultsProcessor jest-junit",
-    "coveralls": "npm run ci_test && cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+    "test": "node scripts/test.js --env=jsdom --coverage",
+    "report-coverage": "cat ./coverage/lcov.info | coveralls",
     "lint": "./node_modules/.bin/standard",
     "lint-fix": "./node_modules/.bin/standard --fix",
     "lint_old": "eslint -c .eslintrc src/**/*.js*",
     "lint-report": "standard | standard-reporter --checkstyle >lint-report.xml || exit 0",
     "lint-report_old": "eslint -c .eslintrc -f checkstyle -o lint-report.xml src/**/*.js* > eslint.log|| exit 0",
     "storybook": "start-storybook -p 9009 -s public",
-    "test-storybook": "storyshots",
     "build-storybook": "build-storybook -s public -o build/storybook",
     "validate": "npm ls"
   },
