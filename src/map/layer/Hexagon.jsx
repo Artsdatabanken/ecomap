@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import DeckGL, { HexagonLayer } from 'deck.gl'
 
 const LIGHT_SETTINGS = {
@@ -45,10 +44,6 @@ export default class Hexagon extends Component {
     return colorRange
   }
 
-  static contextTypes = {
-    fetchJson: PropTypes.func
-  }
-
   constructor (props) {
     super(props)
     this.startAnimationTimer = null
@@ -59,22 +54,6 @@ export default class Hexagon extends Component {
 
   state = {
     elevationScale: elevationScale.min
-  }
-
-  receiveData (json) {
-    json.then((json) => {
-      const acc = json.features.reduce((acc, feature) => {
-        const geom = feature.geometry
-        if (geom.type === 'Point') { acc.push(geom.coordinates) }
-        return acc
-      }, [])
-      this.setState({ data: acc, isLoading: false })
-      this._animate()
-    })
-  }
-
-  componentDidMount () {
-    this.context.fetchJson(this.props.title, this.props.dataUrl, json => this.receiveData(json))
   }
 
   componentWillReceiveProps (nextProps) {
@@ -118,9 +97,8 @@ export default class Hexagon extends Component {
   }
 
   render () {
-    const { viewport, radius, coverage, elevationMin, elevationMax,
+    const { data, viewport, radius, coverage, elevationMin, elevationMax,
       lowerPercentile, upperPercentile, fillOpacity } = this.props
-    const data = this.state.data
     if (!data) { return null }
 
     const layers = [

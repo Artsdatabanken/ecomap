@@ -22,6 +22,7 @@ class FetchContainer extends React.Component {
 
     return <div>{childrenWithProps}</div>
   }
+
   static childContextTypes = {
     fetchJson: PropTypes.func
   }
