@@ -12,7 +12,7 @@ exports[`loading standard tile 1`] = `
   >
     <div>
       <span
-        disabled={undefined}
+        disabled={false}
         href={undefined}
         onBlur={[Function]}
         onClick={[Function]}
@@ -213,7 +213,7 @@ exports[`loading standard tile 1`] = `
     </div>
     <div>
       <span
-        disabled={undefined}
+        disabled={false}
         href={undefined}
         onBlur={[Function]}
         onClick={[Function]}
@@ -670,7 +670,7 @@ exports[`loading standard tile 1`] = `
     </div>
     <div>
       <span
-        disabled={undefined}
+        disabled={false}
         href={undefined}
         onBlur={[Function]}
         onClick={[Function]}
@@ -789,12 +789,29 @@ exports[`loading standard tile 1`] = `
                     }
                   }
                 >
+                  <style>
+                    
+                              .saturation-white {
+                                background: -webkit-linear-gradient(to right, #fff, rgba(255,255,255,0));
+                                background: linear-gradient(to right, #fff, rgba(255,255,255,0));
+                              }
+                              .saturation-black {
+                                background: -webkit-linear-gradient(to top, #000, rgba(0,0,0,0));
+                                background: linear-gradient(to top, #000, rgba(0,0,0,0));
+                              }
+                            
+                  </style>
                   <div
+                    className="saturation-white"
                     style={
                       Object {
-                        "background": "linear-gradient(to right, #fff, rgba(255,255,255,0))",
+                        "MozBorderRadius": undefined,
+                        "OBorderRadius": undefined,
+                        "WebkitBorderRadius": undefined,
+                        "borderRadius": undefined,
                         "bottom": "0px",
                         "left": "0px",
+                        "msBorderRadius": undefined,
                         "position": "absolute",
                         "right": "0px",
                         "top": "0px",
@@ -802,15 +819,20 @@ exports[`loading standard tile 1`] = `
                     }
                   >
                     <div
+                      className="saturation-black"
                       style={
                         Object {
+                          "MozBorderRadius": undefined,
                           "MozBoxShadow": undefined,
+                          "OBorderRadius": undefined,
                           "OBoxShadow": undefined,
+                          "WebkitBorderRadius": undefined,
                           "WebkitBoxShadow": undefined,
-                          "background": "linear-gradient(to top, #000, rgba(0,0,0,0))",
+                          "borderRadius": undefined,
                           "bottom": "0px",
                           "boxShadow": undefined,
                           "left": "0px",
+                          "msBorderRadius": undefined,
                           "msBoxShadow": undefined,
                           "position": "absolute",
                           "right": "0px",
@@ -969,8 +991,6 @@ exports[`loading standard tile 1`] = `
                             "OBoxShadow": undefined,
                             "WebkitBorderRadius": undefined,
                             "WebkitBoxShadow": undefined,
-                            "background": "linear-gradient(to right, #f00 0%, #ff0 17%, #0f0 33%,
-                                      #0ff 50%, #00f 67%, #f0f 83%, #f00 100%)",
                             "borderRadius": undefined,
                             "bottom": "0px",
                             "boxShadow": undefined,
@@ -984,17 +1004,35 @@ exports[`loading standard tile 1`] = `
                         }
                       >
                         <div
+                          className="hue-horizontal"
                           onMouseDown={[Function]}
                           onTouchMove={[Function]}
                           onTouchStart={[Function]}
                           style={
                             Object {
                               "height": "100%",
-                              "margin": "0 2px",
+                              "padding": "0 2px",
                               "position": "relative",
                             }
                           }
                         >
+                          <style>
+                            
+                                        .hue-horizontal {
+                                          background: linear-gradient(to right, #f00 0%, #ff0 17%, #0f0
+                                            33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);
+                                          background: -webkit-linear-gradient(to right, #f00 0%, #ff0
+                                            17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);
+                                        }
+                            
+                                        .hue-vertical {
+                                          background: linear-gradient(to top, #f00 0%, #ff0 17%, #0f0 33%,
+                                            #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);
+                                          background: -webkit-linear-gradient(to top, #f00 0%, #ff0 17%,
+                                            #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);
+                                        }
+                                      
+                          </style>
                           <div
                             style={
                               Object {
@@ -1306,7 +1344,7 @@ exports[`loading standard tile 1`] = `
     </div>
     <div>
       <span
-        disabled={undefined}
+        disabled={false}
         href={undefined}
         onBlur={[Function]}
         onClick={[Function]}
@@ -2504,7 +2542,7 @@ exports[`loading standard tile 1`] = `
     </div>
     <div>
       <span
-        disabled={undefined}
+        disabled={false}
         href={undefined}
         onBlur={[Function]}
         onClick={[Function]}
@@ -4403,7 +4441,7 @@ exports[`loading standard tile 1`] = `
     </div>
     <div>
       <span
-        disabled={undefined}
+        disabled={false}
         href={undefined}
         onBlur={[Function]}
         onClick={[Function]}
@@ -5079,7 +5117,7 @@ exports[`loading standard tile 1`] = `
     </div>
     <div>
       <span
-        disabled={undefined}
+        disabled={false}
         href={undefined}
         onBlur={[Function]}
         onClick={[Function]}
@@ -5161,8 +5199,6 @@ exports[`loading standard tile 1`] = `
                     "OBoxShadow": undefined,
                     "WebkitBorderRadius": "2px",
                     "WebkitBoxShadow": undefined,
-                    "background": "linear-gradient(to right, #f00 0%, #ff0 17%, #0f0 33%,
-                              #0ff 50%, #00f 67%, #f0f 83%, #f00 100%)",
                     "borderRadius": "2px",
                     "bottom": "0px",
                     "boxShadow": undefined,
@@ -5176,17 +5212,35 @@ exports[`loading standard tile 1`] = `
                 }
               >
                 <div
+                  className="hue-horizontal"
                   onMouseDown={[Function]}
                   onTouchMove={[Function]}
                   onTouchStart={[Function]}
                   style={
                     Object {
                       "height": "100%",
-                      "margin": "0 2px",
+                      "padding": "0 2px",
                       "position": "relative",
                     }
                   }
                 >
+                  <style>
+                    
+                                .hue-horizontal {
+                                  background: linear-gradient(to right, #f00 0%, #ff0 17%, #0f0
+                                    33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);
+                                  background: -webkit-linear-gradient(to right, #f00 0%, #ff0
+                                    17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);
+                                }
+                    
+                                .hue-vertical {
+                                  background: linear-gradient(to top, #f00 0%, #ff0 17%, #0f0 33%,
+                                    #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);
+                                  background: -webkit-linear-gradient(to top, #f00 0%, #ff0 17%,
+                                    #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);
+                                }
+                              
+                  </style>
                   <div
                     style={
                       Object {
@@ -5229,7 +5283,7 @@ exports[`loading standard tile 1`] = `
     </div>
     <div>
       <span
-        disabled={undefined}
+        disabled={false}
         href={undefined}
         onBlur={[Function]}
         onClick={[Function]}
@@ -5574,7 +5628,7 @@ exports[`loading standard tile 1`] = `
     </div>
     <div>
       <span
-        disabled={undefined}
+        disabled={false}
         href={undefined}
         onBlur={[Function]}
         onClick={[Function]}
@@ -5723,12 +5777,29 @@ exports[`loading standard tile 1`] = `
                       }
                     }
                   >
+                    <style>
+                      
+                                .saturation-white {
+                                  background: -webkit-linear-gradient(to right, #fff, rgba(255,255,255,0));
+                                  background: linear-gradient(to right, #fff, rgba(255,255,255,0));
+                                }
+                                .saturation-black {
+                                  background: -webkit-linear-gradient(to top, #000, rgba(0,0,0,0));
+                                  background: linear-gradient(to top, #000, rgba(0,0,0,0));
+                                }
+                              
+                    </style>
                     <div
+                      className="saturation-white"
                       style={
                         Object {
-                          "background": "linear-gradient(to right, #fff, rgba(255,255,255,0))",
+                          "MozBorderRadius": undefined,
+                          "OBorderRadius": undefined,
+                          "WebkitBorderRadius": undefined,
+                          "borderRadius": undefined,
                           "bottom": "0px",
                           "left": "0px",
+                          "msBorderRadius": undefined,
                           "position": "absolute",
                           "right": "0px",
                           "top": "0px",
@@ -5736,15 +5807,20 @@ exports[`loading standard tile 1`] = `
                       }
                     >
                       <div
+                        className="saturation-black"
                         style={
                           Object {
+                            "MozBorderRadius": undefined,
                             "MozBoxShadow": undefined,
+                            "OBorderRadius": undefined,
                             "OBoxShadow": undefined,
+                            "WebkitBorderRadius": undefined,
                             "WebkitBoxShadow": undefined,
-                            "background": "linear-gradient(to top, #000, rgba(0,0,0,0))",
+                            "borderRadius": undefined,
                             "bottom": "0px",
                             "boxShadow": undefined,
                             "left": "0px",
+                            "msBorderRadius": undefined,
                             "msBoxShadow": undefined,
                             "position": "absolute",
                             "right": "0px",
@@ -5810,8 +5886,6 @@ exports[`loading standard tile 1`] = `
                         "OBoxShadow": undefined,
                         "WebkitBorderRadius": undefined,
                         "WebkitBoxShadow": undefined,
-                        "background": "linear-gradient(to top, #f00 0%, #ff0 17%, #0f0 33%,
-                                  #0ff 50%, #00f 67%, #f0f 83%, #f00 100%)",
                         "borderRadius": undefined,
                         "bottom": "0px",
                         "boxShadow": undefined,
@@ -5825,17 +5899,35 @@ exports[`loading standard tile 1`] = `
                     }
                   >
                     <div
+                      className="hue-vertical"
                       onMouseDown={[Function]}
                       onTouchMove={[Function]}
                       onTouchStart={[Function]}
                       style={
                         Object {
                           "height": "100%",
-                          "margin": "0 2px",
+                          "padding": "0 2px",
                           "position": "relative",
                         }
                       }
                     >
+                      <style>
+                        
+                                    .hue-horizontal {
+                                      background: linear-gradient(to right, #f00 0%, #ff0 17%, #0f0
+                                        33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);
+                                      background: -webkit-linear-gradient(to right, #f00 0%, #ff0
+                                        17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);
+                                    }
+                        
+                                    .hue-vertical {
+                                      background: linear-gradient(to top, #f00 0%, #ff0 17%, #0f0 33%,
+                                        #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);
+                                      background: -webkit-linear-gradient(to top, #f00 0%, #ff0 17%,
+                                        #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);
+                                    }
+                                  
+                      </style>
                       <div
                         style={
                           Object {
@@ -6479,7 +6571,7 @@ exports[`loading standard tile 1`] = `
     </div>
     <div>
       <span
-        disabled={undefined}
+        disabled={false}
         href={undefined}
         onBlur={[Function]}
         onClick={[Function]}
@@ -6593,12 +6685,29 @@ exports[`loading standard tile 1`] = `
                     }
                   }
                 >
+                  <style>
+                    
+                              .saturation-white {
+                                background: -webkit-linear-gradient(to right, #fff, rgba(255,255,255,0));
+                                background: linear-gradient(to right, #fff, rgba(255,255,255,0));
+                              }
+                              .saturation-black {
+                                background: -webkit-linear-gradient(to top, #000, rgba(0,0,0,0));
+                                background: linear-gradient(to top, #000, rgba(0,0,0,0));
+                              }
+                            
+                  </style>
                   <div
+                    className="saturation-white"
                     style={
                       Object {
-                        "background": "linear-gradient(to right, #fff, rgba(255,255,255,0))",
+                        "MozBorderRadius": undefined,
+                        "OBorderRadius": undefined,
+                        "WebkitBorderRadius": undefined,
+                        "borderRadius": undefined,
                         "bottom": "0px",
                         "left": "0px",
+                        "msBorderRadius": undefined,
                         "position": "absolute",
                         "right": "0px",
                         "top": "0px",
@@ -6606,15 +6715,20 @@ exports[`loading standard tile 1`] = `
                     }
                   >
                     <div
+                      className="saturation-black"
                       style={
                         Object {
+                          "MozBorderRadius": undefined,
                           "MozBoxShadow": undefined,
+                          "OBorderRadius": undefined,
                           "OBoxShadow": undefined,
+                          "WebkitBorderRadius": undefined,
                           "WebkitBoxShadow": undefined,
-                          "background": "linear-gradient(to top, #000, rgba(0,0,0,0))",
+                          "borderRadius": undefined,
                           "bottom": "0px",
                           "boxShadow": undefined,
                           "left": "0px",
+                          "msBorderRadius": undefined,
                           "msBoxShadow": undefined,
                           "position": "absolute",
                           "right": "0px",
@@ -6703,8 +6817,6 @@ exports[`loading standard tile 1`] = `
                           "OBoxShadow": undefined,
                           "WebkitBorderRadius": undefined,
                           "WebkitBoxShadow": undefined,
-                          "background": "linear-gradient(to right, #f00 0%, #ff0 17%, #0f0 33%,
-                                    #0ff 50%, #00f 67%, #f0f 83%, #f00 100%)",
                           "borderRadius": undefined,
                           "bottom": "0px",
                           "boxShadow": undefined,
@@ -6718,17 +6830,35 @@ exports[`loading standard tile 1`] = `
                       }
                     >
                       <div
+                        className="hue-horizontal"
                         onMouseDown={[Function]}
                         onTouchMove={[Function]}
                         onTouchStart={[Function]}
                         style={
                           Object {
                             "height": "100%",
-                            "margin": "0 2px",
+                            "padding": "0 2px",
                             "position": "relative",
                           }
                         }
                       >
+                        <style>
+                          
+                                      .hue-horizontal {
+                                        background: linear-gradient(to right, #f00 0%, #ff0 17%, #0f0
+                                          33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);
+                                        background: -webkit-linear-gradient(to right, #f00 0%, #ff0
+                                          17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);
+                                      }
+                          
+                                      .hue-vertical {
+                                        background: linear-gradient(to top, #f00 0%, #ff0 17%, #0f0 33%,
+                                          #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);
+                                        background: -webkit-linear-gradient(to top, #f00 0%, #ff0 17%,
+                                          #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);
+                                      }
+                                    
+                        </style>
                         <div
                           style={
                             Object {
@@ -7901,7 +8031,7 @@ exports[`loading standard tile 1`] = `
     </div>
     <div>
       <span
-        disabled={undefined}
+        disabled={false}
         href={undefined}
         onBlur={[Function]}
         onClick={[Function]}
@@ -7984,8 +8114,6 @@ exports[`loading standard tile 1`] = `
                       "OBoxShadow": undefined,
                       "WebkitBorderRadius": undefined,
                       "WebkitBoxShadow": undefined,
-                      "background": "linear-gradient(to right, #f00 0%, #ff0 17%, #0f0 33%,
-                                #0ff 50%, #00f 67%, #f0f 83%, #f00 100%)",
                       "borderRadius": undefined,
                       "bottom": "0px",
                       "boxShadow": undefined,
@@ -7999,17 +8127,35 @@ exports[`loading standard tile 1`] = `
                   }
                 >
                   <div
+                    className="hue-horizontal"
                     onMouseDown={[Function]}
                     onTouchMove={[Function]}
                     onTouchStart={[Function]}
                     style={
                       Object {
                         "height": "100%",
-                        "margin": "0 2px",
+                        "padding": "0 2px",
                         "position": "relative",
                       }
                     }
                   >
+                    <style>
+                      
+                                  .hue-horizontal {
+                                    background: linear-gradient(to right, #f00 0%, #ff0 17%, #0f0
+                                      33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);
+                                    background: -webkit-linear-gradient(to right, #f00 0%, #ff0
+                                      17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);
+                                  }
+                      
+                                  .hue-vertical {
+                                    background: linear-gradient(to top, #f00 0%, #ff0 17%, #0f0 33%,
+                                      #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);
+                                    background: -webkit-linear-gradient(to top, #f00 0%, #ff0 17%,
+                                      #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);
+                                  }
+                                
+                    </style>
                     <div
                       style={
                         Object {
@@ -8192,7 +8338,7 @@ exports[`loading standard tile 1`] = `
     </div>
     <div>
       <span
-        disabled={undefined}
+        disabled={false}
         href={undefined}
         onBlur={[Function]}
         onClick={[Function]}
@@ -13145,7 +13291,7 @@ exports[`loading standard tile 1`] = `
     </div>
     <div>
       <span
-        disabled={undefined}
+        disabled={false}
         href={undefined}
         onBlur={[Function]}
         onClick={[Function]}
@@ -13590,6 +13736,7 @@ exports[`loading standard tile 1`] = `
                         "border": "0px",
                         "borderRadius": "0 4px 4px 0",
                         "boxShadow": "inset 0 0 0 1px #F0F0F0",
+                        "boxSizing": "content-box",
                         "color": "#666",
                         "float": "left",
                         "fontSize": "14px",
