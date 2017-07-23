@@ -28,7 +28,8 @@ const plasma = [[13, 8, 135],
 [229, 107, 93],
 [248, 148, 65],
 [253, 195, 40],
-[240, 249, 33]]
+  [240, 249, 33]
+]
 
 const elevationScale = { min: 1, max: 50 }
 
@@ -39,7 +40,7 @@ const defaultProps = {
   data: []
 }
 
-export default class Bars3D extends Component {
+export default class Hexagon extends Component {
   static get defaultColorRange () {
     return colorRange
   }
@@ -117,35 +118,33 @@ export default class Bars3D extends Component {
   }
 
   render () {
-    const { viewport, radius, coverage, upperPercentile, fillOpacity } = this.props
+    const { viewport, radius, coverage, elevationMin, elevationMax,
+      lowerPercentile, upperPercentile, fillOpacity } = this.props
     const data = this.state.data
-    if (!data) {
-      return null
-    }
+    if (!data) { return null }
 
     const layers = [
       new HexagonLayer({
         id: 'heatmap',
-//        colorDomain: [0,1],
+//        colorDomain: [0, 10],
         colorRange: plasma,
         coverage,
         data,
-        elevationRange: [0, 3000 * 25 * Math.pow(0.6, viewport.zoom)],
-        elevationScale: this.state.elevationScale,
-        extruded: true,
+        elevationRange: [elevationMin * 20000, elevationMax * 200000],
+        extruded: elevationMax > 0,
         getPosition: d => d,
         lightSettings: LIGHT_SETTINGS,
         onHover: this.props.onHover,
         opacity: fillOpacity,
         pickable: Boolean(this.props.onHover),
-        radius,
-        upperPercentile
+        radius: radius * 20000,
+        lowerPercentile: lowerPercentile * 100,
+        upperPercentile: upperPercentile * 100
       })
     ]
-
     return <DeckGL {...viewport} layers={layers} onWebGLInitialized={this._initialize} />
   }
 }
 
-Bars3D.displayName = 'Bars3D'
-Bars3D.defaultProps = defaultProps
+Hexagon.displayName = 'Hexagon'
+Hexagon.defaultProps = defaultProps
