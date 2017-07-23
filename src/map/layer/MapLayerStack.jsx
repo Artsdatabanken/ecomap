@@ -3,7 +3,8 @@ import PropTypes from 'prop-types'
 // import GeoJsonLayer from './GeoJsonLayer'
 // import RasterTileLayer from './RasterTileLayer'
 // import VectorTileLayer from './VectorTileLayer'
-import Bars3D from './Bars3D'
+import Hexagon from './Hexagon'
+import Scatterplot from './Scatterplot'
 
 export default class MapLayerStack extends React.Component {
   static propTypes = {
@@ -33,14 +34,13 @@ const EcoMapLayer = ({ id, layer, viewport, scalingFactor, zoomFactor, onUpdate 
 //    case 'fill': return <GeoJsonLayer dataUrl={layer.dataURl} />
 //    case 'heatmap':
 //      return <Heatmap title={layer.title} dataUrl={layer.dataUrl} viewport={viewport} />
-    case 'bars3d':
-      return <Bars3D title={layer.title} dataUrl={layer.dataUrl} viewport={viewport}
-        //        radius={128*5000*Math.pow(0.5, 2*Math.round(viewport.zoom/2))}
-        radius={scalingFactor * Math.pow(1.0 / 2,
-        zoomFactor * Math.round(viewport.zoom / zoomFactor))}
-        coverage={paint.coverage}
-        upperPercentile={100}
-        fillOpacity={layer.paint.fillOpacity}
+    case 'scatterplot':
+      return <Scatterplot title={layer.title} dataUrl={layer.dataUrl} viewport={viewport}
+        {...paint} onUpdate={onUpdate}
+/>
+    case 'hexagon':
+      return <Hexagon title={layer.title} dataUrl={layer.dataUrl} viewport={viewport}
+        {...paint}
         onUpdate={onUpdate}
        />
     default:
