@@ -148,16 +148,11 @@ storiesOf('FilterTag', module)
   .addDecorator(muiTheme([theme]))
   .add('primary', () =>
     <div>
-      <FilterTag onRequestDelete={action('requestDelete')}>Troms</FilterTag>
       <FilterTag onRequestDelete={action('requestDelete')}>
-        Finnmark
-      </FilterTag>&nbsp;
-      <FilterTag onRequestDelete={action('requestDelete')}>
-        Viridis
         <ColorRamp
           steps={viridis}
         />
-      </FilterTag>&nbsp;
+      </FilterTag>
     </div>
 ).add('search criteria', () =>
   <div style={{display: 'flex', lineHeight: '52px', textAlign: 'center'}}>

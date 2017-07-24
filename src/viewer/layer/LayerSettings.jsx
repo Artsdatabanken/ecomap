@@ -75,7 +75,7 @@ class LayerExpanded extends React.Component {
           }} color={
             hexToRgba(this.props.fillColor, this.props.fillOpacity)} />
       </div>}
-}
+
       {false && <div><div>Color blend</div>
         <div style={{}}>
           <DropDownMenu value={this.props.blendMode} onChange={(event, index, value) => this.props.onChange('blendMode', value)}>
