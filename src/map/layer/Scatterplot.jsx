@@ -14,9 +14,8 @@ export default class Scatterplot extends Component {
       id: 'scatter-plot',
       data,
 //      radiusScale: radius * 60,
-//      radiusMinPixels: 1,
+      radiusMinPixels: 50,
       getPosition: d => [d[0], d[1]],
-//      getColor: d => { console.log(d[2]); return d[2] ? maleColor : femaleColor },
       getColor: d => fillColor,
       getRadius: d => radius * 15000,
       updateTriggers: {
