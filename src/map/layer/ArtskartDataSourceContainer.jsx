@@ -19,23 +19,25 @@ export default class ArtskartDataSourceContainer extends React.Component {
         if (geom.type === 'Point') { acc.push(geom.coordinates) }
         return acc
       }, [])
-      this.setState({ data: acc, isLoading: false })
+      this.setState({ data: acc })
     })
   }
 
   componentDidMount () {
-    this.context.fetchJson(this.props.title, this.props.dataUrl, json => this.receiveData(json))
+    this.context.fetchJson(this.props.title, this.props.dataUrl,
+      json => this.receiveData(json))
   }
 
   render () {
+    // Pass the loaded data to child components
     const props = {...this.props,
       data: this.state.data
     }
     const childrenWithProps = React.Children.map(this.props.children,
-  (child) => {
-    if (!child) return child // result of conditionals for example
-    return React.cloneElement(child, props)
-  })
+      (child) => {
+        if (!child) return child // result of conditionals for example
+        return React.cloneElement(child, props)
+      })
     return <div>{childrenWithProps}</div>
   }
 }

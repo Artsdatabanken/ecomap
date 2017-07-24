@@ -9,8 +9,7 @@ import LeftMenu from './viewer/menu/LeftMenu.story'
 import LoadingIndicator from './LoadingIndicator'
 import ActiveLayers from './viewer/layer/ActiveLayers'
 import ColorPickers from './stories/ColorPickers'
-import Linjediagram from './viewer/diagram/Linjediagram'
-import Søylediagram from './viewer/diagram/Søylediagram'
+import diagrams from './stories/Diagrams'
 import ColorRamp from './graphics/color/ColorRamp'
 import CardStack from './viewer/layer/infocard/CardStack'
 import AddLayer from './viewer/layer/add/AddLayer'
@@ -21,15 +20,7 @@ import theme from './theme'
 import HexagonLayerSettings from './viewer/layer/HexagonLayerSettings'
 import ScatterplotLayerSettings from './viewer/layer/ScatterplotLayerSettings'
 
-const data = [
-  { name: 'Page A', uv: 4000, pv: 2400, amt: 2400 },
-  { name: 'Page B', uv: 3000, pv: 1398, amt: 2210 },
-  { name: 'Page C', uv: 2000, pv: 9800, amt: 2290 },
-  { name: 'Page D', uv: 2780, pv: 3908, amt: 2000 },
-  { name: 'Page E', uv: 1890, pv: 4800, amt: 2181 },
-  { name: 'Page F', uv: 2390, pv: 3800, amt: 2500 },
-  { name: 'Page G', uv: 3490, pv: 4300, amt: 2100 }
-]
+diagrams()
 
 const viridis = [
   '#440154',
@@ -303,27 +294,6 @@ storiesOf('Common')
     </div>
   )
 
-storiesOf('Add Layer', module)
-  .addDecorator(muiTheme([theme]))
-  .add('Species Card', () =>
-    <div style={{ margin: 0, width: '20%' }}>
-      <SpeciesGridItemCard tile={{
-        id: 31241,
-        scientificName: 'Alces alces',
-        popularName: 'Elg',
-        level: 9,
-        imageAttribution: '(C)',
-        imageUrl: 'https://farm5.staticflickr.com/4107/4839886016_d11b6d2cdf.jpg'
-      }}
-        onClick={action('onClick')} />
-    </div>
-  )
-  .add('Select Species', () =>
-    <div style={{ margin: 20, width: '70%' }}>
-      <SelectSpecies onClick={action('onClick')} />
-    </div>)
-  .add('Add layer', () => <AddLayer onClick={action('onClick')} />)
-
 storiesOf('Colors', module)
   .addDecorator(muiTheme([theme]))
   .add('RGB', () => {
@@ -343,19 +313,6 @@ storiesOf('Colors', module)
   .add('Color pickers', () =>
     <div style={{ margin: '20px' }}>
       <ColorPickers />
-    </div>
-  )
-
-storiesOf('Diagram', module)
-  .add('Søyle', () =>
-    <div>
-      <h3>Søylediagram</h3>
-      <Søylediagram data={data} />
-    </div>
-  )
-  .add('Linje', () =>
-    <div style={{ margin: '20px' }}>
-      <Linjediagram data={data} />
     </div>
   )
 
@@ -398,6 +355,27 @@ storiesOf('Layer settings', module).addDecorator(muiTheme()).add('primary', () =
     <HexagonLayerSettings {...paint} onChange={action('onUpdateLayerProp')} />
   </div>
 })
+
+storiesOf('Add Layer', module)
+.addDecorator(muiTheme([theme]))
+.add('Species Card', () =>
+  <div style={{ margin: 0, width: '20%' }}>
+    <SpeciesGridItemCard tile={{
+      id: 31241,
+      scientificName: 'Alces alces',
+      popularName: 'Elg',
+      level: 9,
+      imageAttribution: '(C)',
+      imageUrl: 'https://farm5.staticflickr.com/4107/4839886016_d11b6d2cdf.jpg'
+    }}
+      onClick={action('onClick')} />
+  </div>
+)
+.add('Select Species', () =>
+  <div style={{ margin: 20, width: '70%' }}>
+    <SelectSpecies onClick={action('onClick')} />
+  </div>)
+.add('Add layer', () => <AddLayer onClick={action('onClick')} />)
 
 storiesOf('Menu', module)
   .addDecorator(muiTheme([theme]))
