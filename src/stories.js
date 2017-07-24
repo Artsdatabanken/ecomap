@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
 import { muiTheme } from 'storybook-addon-material-ui'
 
-import FilterTag from './filtertag/FilterTag.story'
+import {FilterTag, NatureTag, SpeciesTag, YearTag, EnvironmentalTag} from './filtertag/FilterTag.story'
 import SearchBar from './viewer/search/SearchBar'
 import LeftMenu from './viewer/menu/LeftMenu.story'
 import LoadingIndicator from './LoadingIndicator'
@@ -153,10 +153,17 @@ storiesOf('FilterTag', module)
         Finnmark
       </FilterTag>&nbsp;
       <FilterTag onRequestDelete={action('requestDelete')}>
-        Viridis{' '}
+        Viridis
         <ColorRamp
           steps={viridis}
         />
       </FilterTag>&nbsp;
     </div>
-  )
+).add('search criteria', () =>
+  <div style={{display: 'flex', lineHeight: '52px', textAlign: 'center'}}>
+    <SpeciesTag onRequestDelete={action('requestDelete')}>Moose</SpeciesTag> observed between the year
+  <YearTag onRequestDelete={action('requestDelete')}>2000</YearTag> and
+  <YearTag onRequestDelete={action('requestDelete')}>2010</YearTag> in
+  <NatureTag onRequestDelete={action('requestDelete')}>Forests</NatureTag> at minimum altitude of
+  <EnvironmentalTag onRequestDelete={action('requestDelete')}>600 m</EnvironmentalTag>
+  </div>)
