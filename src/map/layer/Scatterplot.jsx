@@ -14,10 +14,10 @@ export default class Scatterplot extends Component {
       id: 'scatter-plot',
       data,
 //      radiusScale: radius * 60,
-      radiusMinPixels: 50,
+      radiusMinPixels: 1,
       getPosition: d => [d[0], d[1]],
       getColor: d => fillColor,
-      getRadius: d => radius * 15000,
+      getRadius: d => radius * 25000,
       updateTriggers: {
         getColor: {c1: fillColor},
         getRadius: {r1: radius}

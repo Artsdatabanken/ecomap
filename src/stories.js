@@ -20,53 +20,17 @@ import SpeciesGridItemCard from './viewer/layer/add/species/SpeciesGridItemCard'
 import HexagonLayerSettings from './viewer/layer/HexagonLayerSettings'
 import ScatterplotLayerSettings from './viewer/layer/ScatterplotLayerSettings'
 import {viridis} from './graphics/color/ramps'
-import Deck from './stories/Deck.jsx'
+import ArcStory from './stories/ArcStory'
+import ScatterplotStory from './stories/ScatterplotStory'
 
-diagrams()
-
-storiesOf('Deck')
+storiesOf('Layer rendering')
 .addDecorator(muiTheme([theme]))
-.add('Deck', () =>
+.add('Arc', () =>
   <Paper style={{margin: '20px'}}>
-    <Deck />
+    <ArcStory />
   </Paper>
 )
-
-storiesOf('Common')
-  .addDecorator(muiTheme([theme]))
-  .add('Error banner', () =>
-    <ErrorBanner
-      message="Can't load search results"
-      onRetry={action('onRetry')}
-    />
-  )
-  .add('Loading indicator', () =>
-    <div style={{ margin: '20px' }}>
-      <LoadingIndicator />
-    </div>
-  )
-
-storiesOf('Colors', module)
-  .addDecorator(muiTheme([theme]))
-  .add('RGB', () => {
-
-  })
-  .add('Color ramps', () =>
-    <div style={{ margin: '20px' }}>
-      <ColorRamp steps={['#000000', '#ffffff']} />
-      <ColorRamp steps={['#000000', '#0000ff', '#ffffff']} />
-      <ColorRamp steps={['#000000', '#00ff00', '#ffff00', '#ffffff']} />
-      <ColorRamp steps={['#0000ff', '#ffff00']} />
-      <ColorRamp
-        steps={viridis}
-      />
-    </div>
-  )
-  .add('Color pickers', () =>
-    <div style={{ margin: '20px' }}>
-      <ColorPickers />
-    </div>
-  )
+.add('Scatterplot', () => <ScatterplotStory />)
 
 let layers = {'31241': {'id': 31241,
   'title': 'Alces alces',
@@ -129,6 +93,42 @@ storiesOf('Add Layer', module)
   </div>)
 .add('Add layer', () => <AddLayer onClick={action('onClick')} />)
 
+storiesOf('Common')
+  .addDecorator(muiTheme([theme]))
+  .add('Error banner', () =>
+    <ErrorBanner
+      message="Can't load search results"
+      onRetry={action('onRetry')}
+    />
+  )
+  .add('Loading indicator', () =>
+    <div style={{ margin: '20px' }}>
+      <LoadingIndicator />
+    </div>
+  )
+
+storiesOf('Colors', module)
+  .addDecorator(muiTheme([theme]))
+  .add('RGB', () => {
+
+  })
+  .add('Color ramps', () =>
+    <div style={{ margin: '20px' }}>
+      <ColorRamp steps={['#000000', '#ffffff']} />
+      <ColorRamp steps={['#000000', '#0000ff', '#ffffff']} />
+      <ColorRamp steps={['#000000', '#00ff00', '#ffff00', '#ffffff']} />
+      <ColorRamp steps={['#0000ff', '#ffff00']} />
+      <ColorRamp
+        steps={viridis}
+      />
+    </div>
+  )
+  .add('Color pickers', () =>
+    <div style={{ margin: '20px' }}>
+      <ColorPickers />
+    </div>
+  )
+
 storiesOf('Menu', module)
   .addDecorator(muiTheme([theme]))
   .add('Left Menu', () =>
@@ -171,3 +171,5 @@ storiesOf('FilterTag', module)
   <NatureTag onRequestDelete={action('requestDelete')}>Forests</NatureTag> at minimum altitude of
   <EnvironmentalTag onRequestDelete={action('requestDelete')}>600 m</EnvironmentalTag>
   </div>)
+
+diagrams()
