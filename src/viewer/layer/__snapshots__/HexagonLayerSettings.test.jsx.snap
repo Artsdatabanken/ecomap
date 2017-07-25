@@ -82,7 +82,7 @@ exports[`loading standard tile 1`] = `
         >
           <label
             className={undefined}
-            htmlFor="undefined-undefined-Binradius-37318"
+            htmlFor="undefined-undefined-Binradius-5662"
             onTouchTap={undefined}
             style={
               Object {
@@ -113,7 +113,7 @@ exports[`loading standard tile 1`] = `
             Bin radius
           </label>
           <div
-            id="undefined-undefined-Binradius-37318"
+            id="undefined-undefined-Binradius-5662"
             style={
               Object {
                 "MozBoxSizing": "border-box",
@@ -372,7 +372,7 @@ exports[`loading standard tile 1`] = `
         >
           <label
             className={undefined}
-            htmlFor="undefined-undefined-Lowerpercentile-29004"
+            htmlFor="undefined-undefined-Lowerpercentile-31714"
             onTouchTap={undefined}
             style={
               Object {
@@ -403,7 +403,7 @@ exports[`loading standard tile 1`] = `
             Lower percentile
           </label>
           <div
-            id="undefined-undefined-Lowerpercentile-29004"
+            id="undefined-undefined-Lowerpercentile-31714"
             style={
               Object {
                 "MozBoxSizing": "border-box",
@@ -663,7 +663,7 @@ exports[`loading standard tile 1`] = `
         >
           <label
             className={undefined}
-            htmlFor="undefined-undefined-Upperpercentile-60966"
+            htmlFor="undefined-undefined-Upperpercentile-14501"
             onTouchTap={undefined}
             style={
               Object {
@@ -694,7 +694,7 @@ exports[`loading standard tile 1`] = `
             Upper percentile
           </label>
           <div
-            id="undefined-undefined-Upperpercentile-60966"
+            id="undefined-undefined-Upperpercentile-14501"
             style={
               Object {
                 "MozBoxSizing": "border-box",
@@ -954,7 +954,7 @@ exports[`loading standard tile 1`] = `
         >
           <label
             className={undefined}
-            htmlFor="undefined-undefined-Opacity-11503"
+            htmlFor="undefined-undefined-Opacity-27150"
             onTouchTap={undefined}
             style={
               Object {
@@ -985,7 +985,7 @@ exports[`loading standard tile 1`] = `
             Opacity
           </label>
           <div
-            id="undefined-undefined-Opacity-11503"
+            id="undefined-undefined-Opacity-27150"
             style={
               Object {
                 "MozBoxSizing": "border-box",
@@ -1244,7 +1244,7 @@ exports[`loading standard tile 1`] = `
         >
           <label
             className={undefined}
-            htmlFor="undefined-undefined-Coverage-7182"
+            htmlFor="undefined-undefined-Coverage-36991"
             onTouchTap={undefined}
             style={
               Object {
@@ -1275,7 +1275,7 @@ exports[`loading standard tile 1`] = `
             Coverage
           </label>
           <div
-            id="undefined-undefined-Coverage-7182"
+            id="undefined-undefined-Coverage-36991"
             style={
               Object {
                 "MozBoxSizing": "border-box",
@@ -1534,7 +1534,7 @@ exports[`loading standard tile 1`] = `
         >
           <label
             className={undefined}
-            htmlFor="undefined-undefined-Elevationmin-8093"
+            htmlFor="undefined-undefined-Elevationmin-16699"
             onTouchTap={undefined}
             style={
               Object {
@@ -1565,7 +1565,7 @@ exports[`loading standard tile 1`] = `
             Elevation min
           </label>
           <div
-            id="undefined-undefined-Elevationmin-8093"
+            id="undefined-undefined-Elevationmin-16699"
             style={
               Object {
                 "MozBoxSizing": "border-box",
@@ -1825,7 +1825,7 @@ exports[`loading standard tile 1`] = `
         >
           <label
             className={undefined}
-            htmlFor="undefined-undefined-Elevationmax-6419"
+            htmlFor="undefined-undefined-Elevationmax-20376"
             onTouchTap={undefined}
             style={
               Object {
@@ -1856,7 +1856,7 @@ exports[`loading standard tile 1`] = `
             Elevation max
           </label>
           <div
-            id="undefined-undefined-Elevationmax-6419"
+            id="undefined-undefined-Elevationmax-20376"
             style={
               Object {
                 "MozBoxSizing": "border-box",

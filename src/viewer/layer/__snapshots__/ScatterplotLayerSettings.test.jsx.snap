@@ -82,7 +82,7 @@ exports[`loading standard tile 1`] = `
         >
           <label
             className={undefined}
-            htmlFor="undefined-undefined-Radius-58053"
+            htmlFor="undefined-undefined-Radius-63915"
             onTouchTap={undefined}
             style={
               Object {
@@ -113,7 +113,7 @@ exports[`loading standard tile 1`] = `
             Radius
           </label>
           <div
-            id="undefined-undefined-Radius-58053"
+            id="undefined-undefined-Radius-63915"
             style={
               Object {
                 "MozBoxSizing": "border-box",
