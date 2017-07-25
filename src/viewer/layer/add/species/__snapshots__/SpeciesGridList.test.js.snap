@@ -12,7 +12,10 @@ exports[`loaded tiles 1`] = `
     onClick={[Function]}
     style={
       Object {
+        "MozBoxSizing": "border-box",
+        "MozTransition": "all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "WebkitTransition": "all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
         "backgroundColor": "#ffffff",
         "borderRadius": 2,
         "boxShadow": "0 1px 6px rgba(0, 0, 0, 0.12),
@@ -158,7 +161,10 @@ exports[`loaded tiles 1`] = `
     onClick={[Function]}
     style={
       Object {
+        "MozBoxSizing": "border-box",
+        "MozTransition": "all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "WebkitTransition": "all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
         "backgroundColor": "#ffffff",
         "borderRadius": 2,
         "boxShadow": "0 1px 6px rgba(0, 0, 0, 0.12),
