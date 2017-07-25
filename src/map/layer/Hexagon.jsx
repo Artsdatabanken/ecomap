@@ -18,8 +18,11 @@ const elevationScale = { min: 1, max: 50 }
 
 const defaultProps = {
   radius: 1000,
-  upperPercentile: 100,
+  lowerPercentile: 0,
+  upperPercentile: 1,
   coverage: 1,
+  elevationMin: 0,
+  elevationMax: 0,
   data: []
 }
 

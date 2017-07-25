@@ -18,6 +18,7 @@ import SpeciesGridItemCard from './viewer/layer/add/species/SpeciesGridItemCard'
 import {viridis} from './graphics/color/ramps'
 import ArcStory from './stories/ArcStory'
 import ScatterplotStory from './stories/ScatterplotStory'
+import HexagonStory from './stories/HexagonStory'
 import diagrams from './stories/Diagrams'
 import layerSettings from './stories/layerSettings'
 
@@ -29,6 +30,7 @@ storiesOf('Layer rendering')
   </Paper>
 )
 .add('Scatterplot', () => <ScatterplotStory />)
+.add('Hexagon', () => <HexagonStory />)
 
 layerSettings()
 
