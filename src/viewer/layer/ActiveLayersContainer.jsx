@@ -101,7 +101,7 @@ export default class ActiveLayersContainer extends React.Component {
   }
 
   handleUpdateLayerProp = (layer, key, value) => {
-    console.log(layer.id, key, value)
+    console.log('Update layer #' + layer.id + ': ' + key + '=' + value)
     this.setState(prevState => {
       let layers = this.state.layers
       let _layer = prevState.layers[layer.id]

@@ -1,19 +1,23 @@
 import React from 'react'
-import { Slider } from 'material-ui'
+import { Slider, TextField } from 'material-ui'
 import Setting from './Setting'
 
 const SliderSetting = ({title, icon, value, onChange}) =>
   <Setting>
-    <div>{title}</div>
-    <div style={{position: 'relative', top: '5px', float: 'left'}}>{icon}</div>
-    <div style={{position: 'relative', paddingLeft: '16px', top: '-16px', height: '48px', width: '310px', float: 'left'}}>
-      <Slider
-        min={0}
-        max={1}
-        step={0.05}
-        value={value}
-        onChange={(event, value) => onChange(value)}
-        />
+    <div style={{position: 'relative', top: '21px', float: 'left'}}>{icon}</div>
+    <div style={{position: 'relative', paddingLeft: '16px', top: '0px', height: '48px', width: '310px', float: 'left'}}>
+      <TextField
+        floatingLabelStyle={{position: 'absolute', top: '22px', left: '-40px'}}
+        floatingLabelText={title}
+        underlineShow={false}>
+        <Slider
+          min={0}
+          max={1}
+          step={0.05}
+          value={value}
+          onChange={(event, value) => onChange(value)}
+          />
+      </TextField>
     </div>
   </Setting>
 export default SliderSetting

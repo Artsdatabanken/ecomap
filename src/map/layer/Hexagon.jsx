@@ -16,17 +16,20 @@ const LIGHT_SETTINGS = {
 
 const elevationScale = { min: 1, max: 50 }
 
-const defaultProps = {
-  radius: 1000,
-  lowerPercentile: 0,
-  upperPercentile: 1,
-  coverage: 1,
-  elevationMin: 0,
-  elevationMax: 0,
-  data: []
-}
-
 export default class Hexagon extends Component {
+  static defaultProps = {
+    radius: 1000,
+    lowerPercentile: 0,
+    upperPercentile: 1,
+    coverage: 1,
+    elevationMin: 0,
+    elevationMax: 0,
+    data: [],
+    blendMode: 'multiply'
+  }
+
+  static displayName = 'Hexagon'
+
   static get defaultColorRange () {
     return viridisArray
   }
@@ -85,7 +88,7 @@ export default class Hexagon extends Component {
 
   render () {
     const { data, viewport, radius, coverage, elevationMin, elevationMax,
-      lowerPercentile, upperPercentile, fillOpacity } = this.props
+      lowerPercentile, upperPercentile, fillOpacity, blendMode } = this.props
     if (!data) { return null }
 
     const layers = [
@@ -107,9 +110,10 @@ export default class Hexagon extends Component {
         upperPercentile: upperPercentile * 100
       })
     ]
-    return <DeckGL {...viewport} layers={layers} onWebGLInitialized={this._initialize} />
+    return <DeckGL
+      style={{mixBlendMode: blendMode}}
+      {...viewport}
+      layers={layers}
+      onWebGLInitialized={this._initialize} />
   }
 }
-
-Hexagon.displayName = 'Hexagon'
-Hexagon.defaultProps = defaultProps

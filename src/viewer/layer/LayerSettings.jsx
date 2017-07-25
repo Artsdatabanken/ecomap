@@ -1,6 +1,6 @@
 import React from 'react'
 import { ChromePicker } from 'react-color'
-import { Paper, Divider, DropDownMenu, MenuItem, ListItem, Avatar } from 'material-ui'
+import { Paper, Divider, SelectField, MenuItem, ListItem, Avatar } from 'material-ui'
 import ActionInfo from 'material-ui/svg-icons/action/info'
 import ActionDelete from 'material-ui/svg-icons/action/delete-forever'
 import ActionBuild from 'material-ui/svg-icons/action/build'
@@ -39,9 +39,11 @@ export default class LayerSettings extends React.Component {
           onClick={() => this.setState(prevState => ({expanded: !prevState.expanded}))}
          />
         {this.state.expanded &&
-        <LayerExpanded {...paint} onChange={this.props.onChange}
+        <LayerExpanded
+          {...paint}
+          onChange={this.props.onChange}
           showColorDialog={this.state.showColorDialog}
-          />
+        />
         }
       </div>
     )
@@ -49,10 +51,15 @@ export default class LayerSettings extends React.Component {
 }
 
 class LayerExpanded extends React.Component {
+  handleRenderChange = (event, index, value) => this.props.onChange('renderMethod', value)
+  handleBlendModeChange = (event, index, value) => this.props.onChange('blendMode', value)
   render () {
-    return (<div style={{}}>
+    return (<div style={{marginLeft: '24px', marginRight: '24px'}}>
       <Divider />
-      <DropDownMenu value={this.props.renderMethod} onChange={(event, index, value) => this.props.onChange('renderMethod', value)}>
+      <SelectField
+        floatingLabelText='Render'
+        value={this.props.renderMethod}
+        onChange={this.handleRenderChange}>
         {false && <div>
           <MenuItem value='fill' primaryText='Single color fill' />
           <MenuItem value='pattern' primaryText='Pattern' />
@@ -63,7 +70,7 @@ class LayerExpanded extends React.Component {
         }
         <MenuItem value='scatterplot' primaryText='Scatterplot' />
         <MenuItem value='hexagon' primaryText='Hexagon' />
-      </DropDownMenu>
+      </SelectField>
       <Divider />
       <LayerRenderParameters {...this.props} />
       <Divider />
@@ -76,23 +83,29 @@ class LayerExpanded extends React.Component {
             hexToRgba(this.props.fillColor, this.props.fillOpacity)} />
       </div>}
 
-      {false && <div><div>Color blend</div>
+      {true && <div>
         <div style={{}}>
-          <DropDownMenu value={this.props.blendMode} onChange={(event, index, value) => this.props.onChange('blendMode', value)}>
-            <MenuItem value='normal' primaryText='Normal' />
-            <MenuItem value='lighten' primaryText='Lighten' />
-            <MenuItem value='scren' primaryText='Screen' />
-            <MenuItem value='dodge' primaryText='Dodge' />
-            <MenuItem value='addition' primaryText='Addition' />
+          <SelectField
+            floatingLabelText='Color blend'
+            value={this.props.blendMode}
+            onChange={this.handleBlendModeChange}>
+            <MenuItem value='color' primaryText='Color' />
+            <MenuItem value='color-burn' primaryText='Color burn' />
+            <MenuItem value='color-dodge' primaryText='Color dodge' />
             <MenuItem value='darken' primaryText='Darken' />
-            <MenuItem value='multiply' primaryText='Multiply' />
-            <MenuItem value='burn' primaryText='Burn' />
-            <MenuItem value='overlay' primaryText='Overlay' />
-            <MenuItem value='softlight' primaryText='Soft light' />
-            <MenuItem value='hardlight' primaryText='Hard light' />
             <MenuItem value='difference' primaryText='Difference' />
-            <MenuItem value='subtract' primaryText='Subtract' />
-          </DropDownMenu>
+            <MenuItem value='exclusion' primaryText='Exclusion' />
+            <MenuItem value='hard-light' primaryText='Hard light' />
+            <MenuItem value='hue' primaryText='Hue' />
+            <MenuItem value='lighten' primaryText='Lighten' />
+            <MenuItem value='luminosity' primaryText='Luminosity' />
+            <MenuItem value='multiply' primaryText='Multiply' />
+            <MenuItem value='normal' primaryText='Normal' />
+            <MenuItem value='overlay' primaryText='Overlay' />
+            <MenuItem value='saturation' primaryText='Saturation' />
+            <MenuItem value='screen' primaryText='Screen' />
+            <MenuItem value='soft-light' primaryText='Soft light' />
+          </SelectField>
         </div>
         <div style={{color: '#cdcdcd', position: 'relative', float: 'right'}}>
           <ActionInfo color='#666666' onClick={() => window.open(this.props.url)} />

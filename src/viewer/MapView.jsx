@@ -174,4 +174,22 @@ export default class MainPage extends React.Component {
       </div>
     )
   }
+
+  onEscape = (e) => {
+    console.log(e)
+    if (e.key === 'l') {
+      this.setState(prevState => ({
+        showLayersDialog: !prevState.showLayersDialog
+      }))
+      // e.stopPropagation()
+    }
+  }
+
+  componentDidMount () {
+    document.addEventListener('keydown', this.onEscape)
+  }
+
+  componentWillUnmount () {
+    document.removeEventListener('keydown', this.onEscape)
+  }
 }
