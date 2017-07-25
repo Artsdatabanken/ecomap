@@ -2,7 +2,8 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
 import { muiTheme } from 'storybook-addon-material-ui'
-
+import {Paper} from 'material-ui'
+import theme from './theme'
 import {FilterTag, NatureTag, SpeciesTag, YearTag, EnvironmentalTag} from './filtertag/FilterTag.story'
 import SearchBar from './viewer/search/SearchBar'
 import LeftMenu from './viewer/menu/LeftMenu.story'
@@ -16,12 +17,20 @@ import AddLayer from './viewer/layer/add/AddLayer'
 import SelectSpecies from './viewer/layer/add/species/SelectSpecies'
 import ErrorBanner from './ErrorBanner'
 import SpeciesGridItemCard from './viewer/layer/add/species/SpeciesGridItemCard'
-import theme from './theme'
 import HexagonLayerSettings from './viewer/layer/HexagonLayerSettings'
 import ScatterplotLayerSettings from './viewer/layer/ScatterplotLayerSettings'
 import {viridis} from './graphics/color/ramps'
+import Deck from './stories/Deck.jsx'
 
 diagrams()
+
+storiesOf('Deck')
+.addDecorator(muiTheme([theme]))
+.add('Deck', () =>
+  <Paper style={{margin: '20px'}}>
+    <Deck />
+  </Paper>
+)
 
 storiesOf('Common')
   .addDecorator(muiTheme([theme]))
