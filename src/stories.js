@@ -8,20 +8,19 @@ import {FilterTag, NatureTag, SpeciesTag, YearTag, EnvironmentalTag} from './fil
 import SearchBar from './viewer/search/SearchBar'
 import LeftMenu from './viewer/menu/LeftMenu.story'
 import LoadingIndicator from './LoadingIndicator'
-import ActiveLayers from './viewer/layer/ActiveLayers'
 import ColorPickers from './stories/ColorPickers'
-import diagrams from './stories/Diagrams'
 import ColorRamp from './graphics/color/ColorRamp'
 import CardStack from './viewer/layer/infocard/CardStack'
 import AddLayer from './viewer/layer/add/AddLayer'
 import SelectSpecies from './viewer/layer/add/species/SelectSpecies'
 import ErrorBanner from './ErrorBanner'
 import SpeciesGridItemCard from './viewer/layer/add/species/SpeciesGridItemCard'
-import HexagonLayerSettings from './viewer/layer/HexagonLayerSettings'
-import ScatterplotLayerSettings from './viewer/layer/ScatterplotLayerSettings'
 import {viridis} from './graphics/color/ramps'
 import ArcStory from './stories/ArcStory'
 import ScatterplotStory from './stories/ScatterplotStory'
+import HexagonStory from './stories/HexagonStory'
+import diagrams from './stories/Diagrams'
+import layerSettings from './stories/layerSettings'
 
 storiesOf('Layer rendering')
 .addDecorator(muiTheme([theme]))
@@ -31,46 +30,9 @@ storiesOf('Layer rendering')
   </Paper>
 )
 .add('Scatterplot', () => <ScatterplotStory />)
+.add('Hexagon', () => <HexagonStory />)
 
-let layers = {'31241': {'id': 31241,
-  'title': 'Alces alces',
-  'subTitle': 'elg',
-  'imageUrl': 'https://farm5.staticflickr.com/4107/4839886016_d11b6d2cdf.jpg',
-  'dataUrl': 'http://webtjenester.artsdatabanken.no/Artskart/api/listhelper/31241/observations?&fromYear=1981&toYear=2012&fromMonth=1&toMonth=12&type=all&region=all&scientificNameId=48103',
-  'source': 'geojson',
-  'visible': true,
-  'raster': false,
-  'paint': {'fillColor': '#ff0000', 'fillOpacity': 1, 'renderMethod': 'heatmap', 'blendMode': 'multiply'}}}
-
-storiesOf('Layer settings', module).addDecorator(muiTheme()).add('primary', () =>
-  <div style={{ margin: '20px' }}>
-    <ActiveLayers layers={layers} />
-  </div>
-).add('Scatterplot', () => {
-  let paint = {
-    'fillColor': '#ff0000',
-    'coverage': 0.95,
-    'fillOpacity': 1.0,
-    'radius': 1.0,
-    'renderMethod': 'hexagon',
-    'blendMode': 'multiply'
-  }
-  return <div style={{width: '400px', padding: '20px'}}>
-    <ScatterplotLayerSettings {...paint} onChange={action('onUpdateLayerProp')} />
-  </div>
-}).add('Hexagon', () => {
-  let paint = {
-    'fillColor': '#ff0000',
-    'coverage': 0.95,
-    'fillOpacity': 1.0,
-    'radius': 1.0,
-    'renderMethod': 'hexagon',
-    'blendMode': 'multiply'
-  }
-  return <div style={{width: '400px', padding: '20px'}}>
-    <HexagonLayerSettings {...paint} onChange={action('onUpdateLayerProp')} />
-  </div>
-})
+layerSettings()
 
 storiesOf('Add Layer', module)
 .addDecorator(muiTheme([theme]))
