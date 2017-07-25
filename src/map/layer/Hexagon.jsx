@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import DeckGL, { HexagonLayer } from 'deck.gl'
+import {viridis} from '../../graphics/color/ramps.js'
+import {hexToArray} from '../../viewer/layer/colorfunc'
+
+const viridisArray = viridis.map(c => hexToArray(c))
 
 const LIGHT_SETTINGS = {
   lightsPosition: [-0.144528, 49.739968, 8000, -3.807751, 54.104682, 8000],
@@ -10,26 +13,6 @@ const LIGHT_SETTINGS = {
   lightsStrength: [0.8, 0.0, 0.8, 0.0],
   numberOfLights: 2
 }
-
-const colorRange = [
-  [1, 152, 189],
-  [73, 227, 206],
-  [216, 254, 181],
-  [254, 237, 177],
-  [254, 173, 84],
-  [209, 55, 78]
-]
-
-const plasma = [[13, 8, 135],
-[75, 3, 161],
-[125, 3, 168],
-[168, 34, 150],
-[203, 70, 121],
-[229, 107, 93],
-[248, 148, 65],
-[253, 195, 40],
-  [240, 249, 33]
-]
 
 const elevationScale = { min: 1, max: 50 }
 
@@ -42,11 +25,7 @@ const defaultProps = {
 
 export default class Hexagon extends Component {
   static get defaultColorRange () {
-    return colorRange
-  }
-
-  static contextTypes = {
-    fetchJson: PropTypes.func
+    return viridisArray
   }
 
   constructor (props) {
@@ -59,22 +38,6 @@ export default class Hexagon extends Component {
 
   state = {
     elevationScale: elevationScale.min
-  }
-
-  receiveData (json) {
-    json.then((json) => {
-      const acc = json.features.reduce((acc, feature) => {
-        const geom = feature.geometry
-        if (geom.type === 'Point') { acc.push(geom.coordinates) }
-        return acc
-      }, [])
-      this.setState({ data: acc, isLoading: false })
-      this._animate()
-    })
-  }
-
-  componentDidMount () {
-    this.context.fetchJson(this.props.title, this.props.dataUrl, json => this.receiveData(json))
   }
 
   componentWillReceiveProps (nextProps) {
@@ -118,16 +81,15 @@ export default class Hexagon extends Component {
   }
 
   render () {
-    const { viewport, radius, coverage, elevationMin, elevationMax,
+    const { data, viewport, radius, coverage, elevationMin, elevationMax,
       lowerPercentile, upperPercentile, fillOpacity } = this.props
-    const data = this.state.data
     if (!data) { return null }
 
     const layers = [
       new HexagonLayer({
         id: 'heatmap',
 //        colorDomain: [0, 10],
-        colorRange: plasma,
+        colorRange: viridisArray,
         coverage,
         data,
         elevationRange: [elevationMin * 20000, elevationMax * 200000],
