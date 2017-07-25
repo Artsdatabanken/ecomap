@@ -3,10 +3,18 @@ import DeckGL, {ScatterplotLayer} from 'deck.gl'
 import {hexToArray} from '../../viewer/layer/colorfunc'
 
 export default class Scatterplot extends Component {
+  defaultProps = {
+    blendMode: 'multiply'
+  }
+
+  _initialize (gl) {
+    gl.enable(gl.DEPTH_TEST)
+    gl.depthFunc(gl.LEQUAL)
+  }
+
   render () {
-    const {data, viewport, radius} = this.props
+    const {data, viewport, radius, blendMode} = this.props
     const fillColor = hexToArray(this.props.fillColor, this.props.fillOpacity)
-    console.log(data)
     if (!data) {
       return null
     }
@@ -24,7 +32,11 @@ export default class Scatterplot extends Component {
       }
     })
     return (
-      <DeckGL {...viewport} layers={[layer]} />
+      <DeckGL
+        style={{mixBlendMode: blendMode}}
+        {...viewport}
+        layers={[layer]}
+        onWebGLInitialized={this._initialize} />
     )
   }
 }

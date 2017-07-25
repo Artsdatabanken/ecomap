@@ -1,14 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`loading standard tile 1`] = `
-<div
-  style={
-    Object {
-      "marginLeft": "24px",
-      "marginRight": "24px",
-    }
-  }
->
+<div>
   <div>
     <div
       style={
@@ -19,15 +12,12 @@ exports[`loading standard tile 1`] = `
         }
       }
     >
-      <div>
-        Radius
-      </div>
       <div
         style={
           Object {
             "float": "left",
             "position": "relative",
-            "top": "5px",
+            "top": "21px",
           }
         }
       >
@@ -36,10 +26,15 @@ exports[`loading standard tile 1`] = `
           onMouseLeave={[Function]}
           style={
             Object {
+              "MozTransition": "all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
+              "MozUserSelect": "none",
+              "WebkitTransition": "all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
+              "WebkitUserSelect": "none",
               "color": "rgba(0, 0, 0, 0.87)",
               "display": "inline-block",
               "fill": "currentColor",
               "height": 24,
+              "msUserSelect": "none",
               "muiPrepared": true,
               "transition": "all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
               "userSelect": "none",
@@ -60,49 +55,108 @@ exports[`loading standard tile 1`] = `
             "height": "48px",
             "paddingLeft": "16px",
             "position": "relative",
-            "top": "-16px",
+            "top": "0px",
             "width": "310px",
           }
         }
       >
         <div
+          className={undefined}
           style={
             Object {
+              "MozTransition": "height 200ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
+              "WebkitTransition": "height 200ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
+              "backgroundColor": "transparent",
+              "cursor": "auto",
+              "display": "inline-block",
+              "fontFamily": "Roboto, sans-serif",
+              "fontSize": 16,
+              "height": 72,
+              "lineHeight": "24px",
               "muiPrepared": true,
+              "position": "relative",
+              "transition": "height 200ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
+              "width": 256,
             }
           }
         >
-          <div
-            onBlur={[Function]}
-            onFocus={[Function]}
-            onKeyDown={[Function]}
-            onMouseDown={[Function]}
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
-            onMouseUp={[Function]}
-            onTouchStart={[Function]}
+          <label
+            className={undefined}
+            htmlFor="undefined-undefined-Radius-58053"
+            onTouchTap={undefined}
             style={
               Object {
-                "cursor": "default",
-                "height": 18,
-                "marginBottom": 48,
-                "marginTop": 24,
+                "MozTransition": "all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
+                "MozUserSelect": "none",
+                "WebkitTransform": "scale(0.75) translate(0, -28px)",
+                "WebkitTransformOrigin": "left top",
+                "WebkitTransition": "all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
+                "WebkitUserSelect": "none",
+                "color": "rgba(0, 0, 0, 0.3)",
+                "left": "-40px",
+                "lineHeight": "22px",
+                "msTransform": "scale(0.75) translate(0, -28px)",
+                "msTransformOrigin": "left top",
+                "msUserSelect": "none",
                 "muiPrepared": true,
-                "position": "relative",
-                "touchCallout": "none",
+                "pointerEvents": "none",
+                "position": "absolute",
+                "top": "22px",
+                "transform": "scale(0.75) translate(0, -28px)",
+                "transformOrigin": "left top",
+                "transition": "all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
                 "userSelect": "none",
+                "zIndex": 1,
+              }
+            }
+          >
+            Radius
+          </label>
+          <div
+            id="undefined-undefined-Radius-58053"
+            style={
+              Object {
+                "MozBoxSizing": "border-box",
+                "WebkitOpacity": 1,
+                "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+                "backgroundColor": "rgba(0,0,0,0)",
+                "border": "none",
+                "boxSizing": "border-box",
+                "color": "rgba(0, 0, 0, 0.87)",
+                "cursor": "inherit",
+                "font": "inherit",
+                "height": "100%",
+                "marginTop": 14,
+                "muiPrepared": true,
+                "outline": "none",
+                "padding": 0,
+                "position": "relative",
                 "width": "100%",
               }
             }
           >
             <div
+              onBlur={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              onMouseDown={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              onMouseUp={[Function]}
+              onTouchStart={[Function]}
               style={
                 Object {
-                  "height": 2,
-                  "left": 0,
+                  "MozUserSelect": "none",
+                  "WebkitUserSelect": "none",
+                  "cursor": "default",
+                  "height": 18,
+                  "marginBottom": 48,
+                  "marginTop": 24,
+                  "msUserSelect": "none",
                   "muiPrepared": true,
-                  "position": "absolute",
-                  "top": 8,
+                  "position": "relative",
+                  "touchCallout": "none",
+                  "userSelect": "none",
                   "width": "100%",
                 }
               }
@@ -110,87 +164,117 @@ exports[`loading standard tile 1`] = `
               <div
                 style={
                   Object {
-                    "[object Object]": 0,
-                    "backgroundColor": "#00bcd4",
-                    "directionInvariant": true,
-                    "height": "100%",
+                    "height": 2,
                     "left": 0,
-                    "marginRight": 6,
                     "muiPrepared": true,
                     "position": "absolute",
-                    "transition": "margin 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
-                    "width": "calc(20%)",
+                    "top": 8,
+                    "width": "100%",
                   }
                 }
-              />
-              <div
-                style={
-                  Object {
-                    "[object Object]": 0,
-                    "backgroundColor": "#bdbdbd",
-                    "directionInvariant": true,
-                    "height": "100%",
-                    "marginLeft": 6,
-                    "muiPrepared": true,
-                    "position": "absolute",
-                    "right": 0,
-                    "transition": "margin 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
-                    "width": "calc(80%)",
-                  }
-                }
-              />
-              <div
-                style={
-                  Object {
-                    "backgroundClip": "padding-box",
-                    "backgroundColor": "#00bcd4",
-                    "border": "0px solid transparent",
-                    "borderRadius": "50%",
-                    "boxSizing": "border-box",
-                    "cursor": "pointer",
-                    "directionInvariant": true,
-                    "height": 12,
-                    "left": "20%",
-                    "margin": "1px 0 0 0",
-                    "muiPrepared": true,
-                    "outline": "none",
-                    "overflow": "visible",
-                    "pointerEvents": "inherit",
-                    "position": "absolute",
-                    "top": 0,
-                    "transform": "translate(-50%, -50%)",
-                    "transition": "background 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms, border-color 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms, width 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms, height 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
-                    "width": 12,
-                    "zIndex": 1,
-                  }
-                }
-                tabIndex={0}
               >
                 <div
                   style={
                     Object {
-                      "height": 12,
+                      "MozTransition": "margin 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
+                      "WebkitTransition": "margin 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
+                      "[object Object]": 0,
+                      "backgroundColor": "#00bcd4",
+                      "directionInvariant": true,
+                      "height": "100%",
                       "left": 0,
+                      "marginRight": 6,
                       "muiPrepared": true,
-                      "overflow": "visible",
                       "position": "absolute",
-                      "top": 0,
-                      "width": 12,
+                      "transition": "margin 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
+                      "width": Array [
+                        "-webkit-calc(20%)",
+                        "-moz-calc(20%)",
+                        "calc(20%)",
+                      ],
                     }
                   }
                 />
+                <div
+                  style={
+                    Object {
+                      "MozTransition": "margin 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
+                      "WebkitTransition": "margin 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
+                      "[object Object]": 0,
+                      "backgroundColor": "#bdbdbd",
+                      "directionInvariant": true,
+                      "height": "100%",
+                      "marginLeft": 6,
+                      "muiPrepared": true,
+                      "position": "absolute",
+                      "right": 0,
+                      "transition": "margin 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
+                      "width": Array [
+                        "-webkit-calc(80%)",
+                        "-moz-calc(80%)",
+                        "calc(80%)",
+                      ],
+                    }
+                  }
+                />
+                <div
+                  style={
+                    Object {
+                      "MozBoxSizing": "border-box",
+                      "MozTransition": "background 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms, border-color 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms, width 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms, height 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
+                      "WebkitTransform": "translate(-50%, -50%)",
+                      "WebkitTransition": "background 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms, border-color 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms, width 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms, height 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
+                      "backgroundClip": "padding-box",
+                      "backgroundColor": "#00bcd4",
+                      "border": "0px solid transparent",
+                      "borderRadius": "50%",
+                      "boxSizing": "border-box",
+                      "cursor": "pointer",
+                      "directionInvariant": true,
+                      "height": 12,
+                      "left": "20%",
+                      "margin": "1px 0 0 0",
+                      "msTransform": "translate(-50%, -50%)",
+                      "muiPrepared": true,
+                      "outline": "none",
+                      "overflow": "visible",
+                      "pointerEvents": "inherit",
+                      "position": "absolute",
+                      "top": 0,
+                      "transform": "translate(-50%, -50%)",
+                      "transition": "background 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms, border-color 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms, width 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms, height 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
+                      "width": 12,
+                      "zIndex": 1,
+                    }
+                  }
+                  tabIndex={0}
+                >
+                  <div
+                    style={
+                      Object {
+                        "height": 12,
+                        "left": 0,
+                        "muiPrepared": true,
+                        "overflow": "visible",
+                        "position": "absolute",
+                        "top": 0,
+                        "width": 12,
+                      }
+                    }
+                  />
+                </div>
               </div>
             </div>
+            <input
+              max={1}
+              min={0}
+              name={undefined}
+              required={true}
+              step={0.05}
+              type="hidden"
+              value={0.2}
+            />
           </div>
-          <input
-            max={1}
-            min={0}
-            name={undefined}
-            required={true}
-            step={0.05}
-            type="hidden"
-            value={0.2}
-          />
         </div>
       </div>
     </div>
