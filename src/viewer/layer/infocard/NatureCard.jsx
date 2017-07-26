@@ -18,7 +18,7 @@ const ninkoder = {
       'k strøm, også blokk- og steindominert bunn. Karplantevegetasjon mangler vanligvi' +
       's. Påvekstsamfunnene domineres av moser og/eller grønnalger. Samfunn av insekter' +
       ', f.eks. steinfluer Plecoptera og vårfluer Trichoptera, kan forekomme.',
-    foto: ThumbL1
+    photo: ThumbL1
   },
   T4: {
     ninkode: 'T4',
@@ -36,7 +36,7 @@ const ninkoder = {
       'komst av livsmedier på levende og død ved etc.) gjør at det huser en betydelig a' +
       'ndel av organismemangfoldet i Norge. Mange arter er spesifikt knyttet til fastma' +
       'rksskogsmark.',
-    foto: ThumbT4
+    photo: ThumbT4
   },
   T44: {
     ninkode: 'T44',
@@ -58,42 +58,42 @@ const ninkoder = {
       'gir grunnlag for å avgjøre om ettersuksesjonstilstanden er nådd, skal et gjengro' +
       'ingsareal tilordnes skogsmarkshovedtypen når skogbestandet tilfredsstiller krite' +
       'riene for gammel normalskog (7SD–NS∙5).',
-    foto: ThumbT44
+    photo: ThumbT44
   },
   'KA-1': {
     ninkode: 'KA-a',
     tittel: 'Svært kalkfattig',
     ingress: 'ingress...',
     mertekst: 'masse tekst.',
-    foto: 'https://www.ngu.no/sites/default/files/styles/profilbilde/public/NGUW10303.jpg?itok=XmM5cPuK'
+    photo: 'https://www.ngu.no/sites/default/files/styles/profilbilde/public/NGUW10303.jpg?itok=XmM5cPuK'
   },
   'KA-2': {
     ninkode: 'KA-b',
     tittel: 'litt kalkfattig',
     ingress: 'ingress...',
     mertekst: 'masse tekst.',
-    foto: 'http://www.ngu.no/sites/default/files/styles/fullstorrelse/public/NGUW10494.jpg?itok=4nqvIvWd'
+    photo: 'http://www.ngu.no/sites/default/files/styles/fullstorrelse/public/NGUW10494.jpg?itok=4nqvIvWd'
   },
   'KA-3': {
     ninkode: 'KA-d',
     tittel: 'intermediær',
     ingress: 'ingress...',
     mertekst: 'masse tekst.',
-    foto: 'http://www.ngu.no/sites/default/files/styles/fullstorrelse/public/NGUW10493.jpg?itok=5CkQBhD0'
+    photo: 'http://www.ngu.no/sites/default/files/styles/fullstorrelse/public/NGUW10493.jpg?itok=5CkQBhD0'
   },
   'KA-4': {
     ninkode: 'KA-g',
     tittel: 'temmelig kalkrik',
     ingress: 'ingress...',
     mertekst: 'masse tekst.',
-    foto: 'https://www.ngu.no/sites/default/files/styles/profilbilde/public/NGUW10357.jpg?itok=8Pjz_yas'
+    photo: 'https://www.ngu.no/sites/default/files/styles/profilbilde/public/NGUW10357.jpg?itok=8Pjz_yas'
   },
   'KA-5': {
     ninkode: 'KA-h',
     tittel: 'svært kalkrik',
     ingress: 'ingress...',
     mertekst: 'masse tekst.',
-    foto: 'https://www.ngu.no/sites/default/files/styles/profilbilde/public/NGUW10365.jpg?itok=7OB7Mllf'
+    photo: 'https://www.ngu.no/sites/default/files/styles/profilbilde/public/NGUW10365.jpg?itok=7OB7Mllf'
   }
 }
 
@@ -126,10 +126,13 @@ class Naturtypekort extends React.Component {
       <Card>
         <CardMedia
           actAsExpander
-          showExpandableButton overlay={
+          showExpandableButton
+          overlay={
             <CardTitle title={data.tittel} subtitle={data.ninkode} />}
-        >
-          <img src={data.foto} width={340} alt='todo' />
+          >
+          {/* Material-UI throws You cannot call prepareStyles() on the same style object more than once.
+            for the next line. Why? */}
+          <img src={data.photo} width={340} alt='' />
         </CardMedia>
         <CardText expandable>
           { data.ingress }
