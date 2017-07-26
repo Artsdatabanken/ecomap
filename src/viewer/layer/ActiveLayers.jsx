@@ -1,9 +1,9 @@
 import React from 'react'
-import LayerSettings from './LayerSettings'
-import {Paper, Divider} from 'material-ui'
+import {Paper} from 'material-ui'
 import FloatingActionButton from 'material-ui/FloatingActionButton'
 import ContentAdd from 'material-ui/svg-icons/content/add'
 import SelectSpeciesDialog from './add/species/SelectSpeciesDialog'
+import ActiveLayerSection from './ActiveLayerSection'
 
 export default class Layers extends React.Component {
   state = {}
@@ -34,7 +34,7 @@ const ActiveLayers = ({layers, onUpdateLayerProp, onAdd, onDelete}) => (
     <Paper zDepth={3}>
       {Object.keys(layers).map(key => {
         const layer = layers[key]
-        return <Layer key={layer.id}
+        return <ActiveLayerSection key={layer.id}
           onChange={(key, value) => { onUpdateLayerProp(layer, key, value) }}
           onDelete={() => onDelete(layer)}
           {...layer}
@@ -46,12 +46,5 @@ const ActiveLayers = ({layers, onUpdateLayerProp, onAdd, onDelete}) => (
         <ContentAdd />
       </FloatingActionButton>
     </Paper>
-  </div>
-)
-
-const Layer = (props) => (
-  <div>
-    <LayerSettings {...props} />
-    <Divider />
   </div>
 )
