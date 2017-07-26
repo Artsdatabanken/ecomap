@@ -1,13 +1,11 @@
 import React from 'react'
 import { ChromePicker } from 'react-color'
-import { Paper, Divider, SelectField, MenuItem, ListItem, Avatar } from 'material-ui'
+import { Divider, SelectField, MenuItem } from 'material-ui'
 import ActionInfo from 'material-ui/svg-icons/action/info'
 import ActionDelete from 'material-ui/svg-icons/action/delete-forever'
 import ActionBuild from 'material-ui/svg-icons/action/build'
-import checkboard from './checkerboard2.png'
-import HexagonLayerSettings from './HexagonLayerSettings'
-import ScatterplotLayerSettings from './ScatterplotLayerSettings'
-import {hexToRgbaString, hexToRgba} from './colorfunc'
+import {hexToRgba} from './colorfunc'
+import CustomLayerSettings from './CustomLayerSettings'
 /* function getCheckBoard() {
 var cv = document.getElementById('body');
 var ctx = cv.getContext('2d');
@@ -17,40 +15,6 @@ return checkboard2
 */
 
 export default class LayerSettings extends React.Component {
-  state = {expanded: false, showColorDialog: true}
-
-  render () {
-    const paint = this.props.paint
-    return (
-      <div>
-        <ListItem
-          primaryText={this.props.title}
-          secondaryText={this.props.subTitle}
-          leftAvatar={<Avatar src={this.props.imageUrl} />}
-          rightIconButton={
-            <PaintSwatch
-              color={hexToRgbaString(paint.fillColor, paint.fillOpacity)}
-              onClick={(e) => {
-                e.stopPropagation()
-                this.setState(prevState => ({showColorDialog: !prevState.showColorDialog}))
-              }
-                } />
-        }
-          onClick={() => this.setState(prevState => ({expanded: !prevState.expanded}))}
-         />
-        {this.state.expanded &&
-        <LayerExpanded
-          {...paint}
-          onChange={this.props.onChange}
-          showColorDialog={this.state.showColorDialog}
-        />
-        }
-      </div>
-    )
-  }
-}
-
-class LayerExpanded extends React.Component {
   handleRenderChange = (event, index, value) => this.props.onChange('renderMethod', value)
   handleBlendModeChange = (event, index, value) => this.props.onChange('blendMode', value)
   render () {
@@ -72,7 +36,7 @@ class LayerExpanded extends React.Component {
         <MenuItem value='hexagon' primaryText='Hexagon' />
       </SelectField>
       <Divider />
-      <LayerRenderParameters {...this.props} />
+      <CustomLayerSettings {...this.props} />
       <Divider />
       {this.props.showColorDialog && <div style={{position: 'relative', left: 64, margin: 10}}>
         <ChromePicker
@@ -86,7 +50,7 @@ class LayerExpanded extends React.Component {
       {true && <div>
         <div style={{}}>
           <SelectField
-            floatingLabelText='Color blend'
+            floatingLabelText='Composition blend'
             value={this.props.blendMode}
             onChange={this.handleBlendModeChange}>
             <MenuItem value='color' primaryText='Color' />
@@ -115,62 +79,3 @@ class LayerExpanded extends React.Component {
     </div>)
   }
 }
-
-class LayerRenderParameters extends React.Component {
-  render () {
-    const props = this.props
-    switch (this.props.renderMethod) {
-      case 'fill' : return <LayerRenderFill {...props} />
-      case 'pattern' : return <LayerRenderPattern {...props} />
-      case 'extrude' : return <LayerRenderExtrude {...props} />
-      case 'gradient' : return <LayerRenderGradient {...props} />
-      case 'scatterplot' : return <ScatterplotLayerSettings {...props} />
-      case 'hexagon' : return <HexagonLayerSettings {...props} />
-      default: return <div>{this.props.renderMethod}</div>
-    }
-  }
-}
-
-class LayerRenderFill extends React.Component {
-  render () {
-    let rgba = hexToRgba(this.props.fillColor, this.props.fillOpacity)
-    return (
-      <div style={{position: 'relative', left: 64, margin: 10}}>
-        <ChromePicker
-          onChange={(e) => {
-            this.props.onChange('fillColor', e.hex)
-            this.props.onChange('fillOpacity', e.rgb.a)
-          }
-        } color={rgba} />
-      </div>)
-  }
-}
-
-class LayerRenderPattern extends React.Component {
-  render () {
-    return (<Paper>pattern</Paper>)
-  }
-}
-
-class LayerRenderExtrude extends React.Component {
-  render () {
-    return (<Paper>extrude</Paper>)
-  }
-}
-
-class LayerRenderGradient extends React.Component {
-  render () {
-    return (<Paper>gradient</Paper>)
-  }
-}
-
-const PaintSwatch = ({color, onClick}) =>
-  <div onClick={(e) => { onClick(e) }} style={{
-    position: 'absolute',
-    top: '14px',
-    right: '14px',
-    height: '40px',
-    width: '40px',
-    borderRadius: '50%',
-    backgroundImage: 'linear-gradient(to bottom, ' + color + ', ' + color + '), url(' + checkboard + ')'
-  }}>&nbsp;</div>

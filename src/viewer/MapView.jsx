@@ -175,8 +175,9 @@ export default class MainPage extends React.Component {
     )
   }
 
-  onEscape = (e) => {
-    console.log(e)
+  handleKeyDown = (e) => {
+    if (!e.ctrl) return
+    // TODO: only capture key strokes not handled elsewhere
     if (e.key === 'l') {
       this.setState(prevState => ({
         showLayersDialog: !prevState.showLayersDialog
@@ -186,10 +187,10 @@ export default class MainPage extends React.Component {
   }
 
   componentDidMount () {
-    document.addEventListener('keydown', this.onEscape)
+    document.addEventListener('keydown', this.handleKeyDown)
   }
 
   componentWillUnmount () {
-    document.removeEventListener('keydown', this.onEscape)
+    document.removeEventListener('keydown', this.handleKeyDown)
   }
 }
