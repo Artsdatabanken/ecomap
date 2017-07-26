@@ -3259,6 +3259,7 @@ const vo = {
 const MainSearchBox = props => (
   <div style={{ width: '100%' }}>
     <AutoComplete
+      id='mainsearchinput'
       hintText='Søk i Naturtyper'
       hintStyle={{ color: '#aaaaaa' }}
       filter={AutoComplete.fuzzyFilter}

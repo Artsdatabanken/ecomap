@@ -6,6 +6,7 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom --coverage",
+    "test:watch": "node scripts/test.js --env=jsdom --watch",
     "report-coverage": "cat ./coverage/lcov.info | coveralls",
     "lint": "./node_modules/.bin/standard",
     "lint-fix": "./node_modules/.bin/standard --fix",

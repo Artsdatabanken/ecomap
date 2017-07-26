@@ -5,6 +5,7 @@ import theme from './theme'
 
 import Viewer from './viewer/Viewer'
 import Admin from './Admin/Admin'
+import {resetComponentIds} from './componentid'
 
 class App extends React.Component {
   state = { drawerOpen: false, cardOpen: false };
@@ -12,6 +13,7 @@ class App extends React.Component {
   handleDrawerClose = () => { this.setState({ drawerOpen: false }) }
 
   render () {
+    resetComponentIds()
     return (
       <MuiThemeProvider muiTheme={theme}>
         <Router basename={process.env.REACT_APP_BASENAME}>

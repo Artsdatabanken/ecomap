@@ -1,6 +1,7 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import muiTheme from '../../../../theme_jest'
 
 import SpeciesGridList from './SpeciesGridList'
 
@@ -18,7 +19,7 @@ loadedFeaturedTile.imageScientificName = 'xAlces'
 
 it('loaded tiles', () => {
   const tree = renderer.create(
-    <MuiThemeProvider>
+    <MuiThemeProvider muiTheme={muiTheme}>
       <SpeciesGridList species={[loadingTile, loadedFeaturedTile]} />
     </MuiThemeProvider>
   )
@@ -27,7 +28,7 @@ it('loaded tiles', () => {
 
 it('still loading', () => {
   const tree = renderer.create(
-    <MuiThemeProvider>
+    <MuiThemeProvider muiTheme={muiTheme}>
       <SpeciesGridList species={[]} />
     </MuiThemeProvider>
   )
