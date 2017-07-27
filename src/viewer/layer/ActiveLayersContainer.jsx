@@ -31,10 +31,9 @@ export default class ActiveLayersContainer extends React.Component {
       'visible': true,
       'raster': false,
       'paint': {
-        fillColor: '#f03030',
-        fillColor2: '#ff0000',
+        fillColor: '#916446',
+        fillOpacity: 0.86,
         coverage: 0.95,
-        fillOpacity: 0.93,
         radius: 0.3,
         renderMethod: 'scatterplot',
 //        renderMethod: 'hexagon',
@@ -74,8 +73,8 @@ export default class ActiveLayersContainer extends React.Component {
       visible: true,
       raster: false,
       paint: {
-        fillColor: '#ff0000',
-        fillOpacity: 1.0,
+        fillColor: '#916446',
+        fillOpacity: 0.86,
         coverage: 1.0,
         renderMethod: 'hexagon',
         blendMode: 'multiply',
