@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import readGeoJsonPoints from '../../translate/GeoJson.js'
 
 export default class ArtskartDataSourceContainer extends React.Component {
   static propTypes = {
@@ -12,14 +13,19 @@ export default class ArtskartDataSourceContainer extends React.Component {
 
   state={}
 
+  mapper (json) {
+    const acc = json.features.reduce((acc, feature) => {
+      const geom = feature.geometry
+      if (geom.type === 'Point') { acc.push(geom.coordinates) }
+      return acc
+    }, [])
+    return acc
+  }
+
   receiveData (json) {
     json.then((json) => {
-      const acc = json.features.reduce((acc, feature) => {
-        const geom = feature.geometry
-        if (geom.type === 'Point') { acc.push(geom.coordinates) }
-        return acc
-      }, [])
-      this.setState({ data: acc })
+      var data = readGeoJsonPoints(json)
+      this.setState({ data })
     })
   }
 
