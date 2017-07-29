@@ -1,7 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`loading standard tile 1`] = `
+exports[`renders ok 1`] = `
 <div>
+  abc
   <div>
     <span
       disabled={false}

@@ -10,8 +10,9 @@ export default class ActiveLayerStrip extends React.Component {
   render () {
     const paint = this.props.paint
     return (
-      <div>
+      <div>abc
         <ListItem
+          disabled={false}
           primaryText={this.props.title}
           secondaryText={this.props.subTitle}
           leftAvatar={<Avatar src={this.props.imageUrl} />}
