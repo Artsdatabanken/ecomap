@@ -5,7 +5,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
 import ActiveLayerStrip from './ActiveLayerStrip'
 
-it('loading standard tile', () => {
+it('renders ok', () => {
   const tree = renderer.create(
     <MuiThemeProvider muiTheme={muiTheme}>
       <ActiveLayerStrip paint={{fillColor: '#ff0044', fillOpacity: 0.1, radius: 0.2, coverage: 0.3}} />
