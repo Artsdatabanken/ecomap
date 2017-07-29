@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders ok 1`] = `
+<div>
+  <div
+    style={
+      Object {
+        "display": "inline-block",
+        "height": "58px",
+        "marginTop": "8px",
+      }
+    }
+  >
+    <div />
+  </div>
+  <hr
+    style={
+      Object {
+        "backgroundColor": "#e0e0e0",
+        "border": "none",
+        "height": 1,
+        "margin": 0,
+        "marginLeft": 0,
+        "marginTop": -1,
+        "muiPrepared": true,
+      }
+    }
+  />
+</div>
+`;

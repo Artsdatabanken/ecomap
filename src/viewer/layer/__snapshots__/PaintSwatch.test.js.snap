@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`loading standard tile 1`] = `
+<div
+  onClick={[Function]}
+  style={
+    Object {
+      "backgroundImage": "linear-gradient(to bottom, #ffeedd, #ffeedd), url(checkerboard.png)",
+      "borderRadius": "50%",
+      "height": "40px",
+      "position": "absolute",
+      "right": "14px",
+      "top": "14px",
+      "width": "40px",
+    }
+  }
+>
+   
+</div>
+`;
