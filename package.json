@@ -40,7 +40,7 @@
     "eslint-plugin-react": "7.1.0",
     "extract-text-webpack-plugin": "2.1.2",
     "file-loader": "1.0.0",
-    "fs-extra": "4.0.0",
+    "fs-extra": "4.0.1",
     "html-webpack-plugin": "2.30.0",
     "jest": "20.0.4",
     "luma.gl": ">=4.0.0-beta.1",
@@ -64,7 +64,7 @@
     "style-loader": "0.18.2",
     "sw-precache-webpack-plugin": "0.11.3",
     "url-loader": "0.5.9",
-    "webpack": "3.5.0",
+    "webpack": "3.5.1",
     "webpack-dev-server": "2.7.0",
     "webpack-manifest-plugin": "1.2.1",
     "whatwg-fetch": "2.0.3"
