@@ -7,8 +7,8 @@ import Viewer from './viewer/Viewer'
 import Admin from './Admin/Admin'
 import {resetComponentIds} from './componentid'
 
-class App extends React.Component {
-  state = { drawerOpen: false, cardOpen: false };
+export default class App extends React.Component {
+  state = { drawerOpen: false, cardOpen: false }
 
   handleDrawerClose = () => { this.setState({ drawerOpen: false }) }
 
@@ -26,5 +26,3 @@ class App extends React.Component {
     )
   }
 }
-
-export default App

@@ -11,11 +11,15 @@ export default class ExperimentalShader extends Component {
   _initialize (gl) {
     gl.enable(gl.DEPTH_TEST)
     gl.depthFunc(gl.LEQUAL)
+//    gl.blendFunc(gl.SRC_ALPHA, gl.DST_COLOR)
+//    gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+    gl.blendFuncSeparate(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA, gl.ONE, gl.ONE_MINUS_SRC_ALPHA)
   }
 
   render () {
     const {data, viewport, radius, blendMode} = this.props
     const fillColor = hexToArray(this.props.fillColor, this.props.fillOpacity)
+    console.log(fillColor)
     if (!data) {
       return null
     }

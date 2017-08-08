@@ -24,7 +24,7 @@ const defaultProps = {
 export default class ExperimentalShader extends Layer {
   getShaders (id) {
     const {shaderCache} = this.context
-    return {vs, fs, shaderCache}
+    return {vs: vs, fs, modules: ['project'], shaderCache}
     /* enable64bitSupport(this.props)
       ? {vs: vs64, fs, modules: ['project64'], shaderCache}
       : {vs, fs, shaderCache} // 'project' module added by default. */
@@ -78,14 +78,16 @@ export default class ExperimentalShader extends Layer {
   }
 
   draw ({uniforms}) {
+    console.log(uniforms)
     const {radiusScale, radiusMinPixels, radiusMaxPixels, outline, strokeWidth} = this.props
-    this.state.model.render(Object.assign({}, uniforms, {
+    const args = Object.assign({}, uniforms, {
       outline: outline ? 1 : 0,
       strokeWidth,
       radiusScale,
       radiusMinPixels,
       radiusMaxPixels
-    }))
+    })
+    this.state.model.render(args)
   }
 
   _getModel (gl) {
