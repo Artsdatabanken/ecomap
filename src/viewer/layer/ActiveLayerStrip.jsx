@@ -10,7 +10,7 @@ export default class ActiveLayerStrip extends React.Component {
   render () {
     const paint = this.props.paint
     return (
-      <div>abc
+      <div>
         <ListItem
           disabled={false}
           primaryText={this.props.title}

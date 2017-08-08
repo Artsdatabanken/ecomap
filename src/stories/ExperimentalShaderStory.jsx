@@ -18,7 +18,7 @@ const points = readGeoJsonPoints(alces)
 export default ExperimentalShaderStory =>
   <ExperimentalShader
     data={points}
-    fillColor='#100060'
-    fillOpacity={0.4}
-    radius={0.5}
+    fillColor='#400010'
+    fillOpacity={0.919}
+    radius={0.15}
     viewport={viewport} />
