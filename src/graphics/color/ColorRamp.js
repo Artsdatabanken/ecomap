@@ -12,7 +12,7 @@ class ColorRamp extends React.Component {
     // const canvas = ReactDOM.findDOMNode(canvas)
     const context = canvas.getContext('2d')
     canvas.width = 256
-    canvas.height = 16
+    canvas.height = 1
 
     for (let i = 0; i < canvas.width; i++) {
       context.fillStyle = colorFunction(i)
@@ -24,6 +24,8 @@ class ColorRamp extends React.Component {
 
   componentDidMount () {
     const map = ColorRamp.createColorTexture(this.refs.colorbar, (i) => ColorRamp.map(this.props.steps, i))
+    var dataCopy = new Uint8ClampedArray(map.data);
+    console.log((dataCopy.toString()))
     this.setState({map})
   }
 

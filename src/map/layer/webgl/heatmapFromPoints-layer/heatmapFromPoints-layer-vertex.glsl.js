@@ -15,6 +15,7 @@ uniform float radiusMaxPixels;
 uniform float renderPickingBuffer;
 uniform float outline;
 uniform float strokeWidth;
+uniform sampler2D colorRamp;
 
 varying vec4 vColor;
 varying vec2 unitPosition;
