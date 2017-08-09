@@ -19,7 +19,6 @@ export default class ExperimentalShader extends Component {
   render () {
     const {data, viewport, radius, blendMode} = this.props
     const fillColor = hexToArray(this.props.fillColor, this.props.fillOpacity)
-    console.log(fillColor)
     if (!data) {
       return null
     }

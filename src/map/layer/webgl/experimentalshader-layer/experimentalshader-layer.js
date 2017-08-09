@@ -78,7 +78,6 @@ export default class ExperimentalShader extends Layer {
   }
 
   draw ({uniforms}) {
-    console.log(uniforms)
     const {radiusScale, radiusMinPixels, radiusMaxPixels, outline, strokeWidth} = this.props
     const args = Object.assign({}, uniforms, {
       outline: outline ? 1 : 0,
