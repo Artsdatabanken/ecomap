@@ -1,5 +1,5 @@
 export default `\
-#define SHADER_NAME experimentalshader-layer-vertex-shader-64
+#define SHADER_NAME heatmapFromPoints-layer-vertex-shader-64
 
 attribute vec3 positions;
 
