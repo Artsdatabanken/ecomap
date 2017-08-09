@@ -12,6 +12,7 @@ export default class ActiveLayerStrip extends React.Component {
     return (
       <div>
         <ListItem
+          disabled={false}
           primaryText={this.props.title}
           secondaryText={this.props.subTitle}
           leftAvatar={<Avatar src={this.props.imageUrl} />}
