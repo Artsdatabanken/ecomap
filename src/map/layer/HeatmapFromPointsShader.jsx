@@ -6,18 +6,23 @@ import viridis from "../../../data/colorramps/viridis.json"
 
 export default class HeatmapFromPointsShader extends Component {
   defaultProps = {
-    blendMode: "multiply"
+    blendMode: "difference"
   };
 
   _initialize(gl) {
-    gl.enable(gl.DEPTH_TEST);
-    gl.depthFunc(gl.LEQUAL);
-    gl.blendFuncSeparate(
+    gl.disable(gl.DEPTH_TEST);
+    gl.enable(gl.BLEND)
+gl.blendFunc(gl.ONE,  gl.ONE);
+//  gl.blendEquation(gl.GL_FUNC_ADD);
+//    gl.blendFuncSeparate(gl.SRC_COLOR, gl.DST_COLOR, gl.ONE, gl.ZERO);
+
+//    gl.blendFuncSeparate(gl.SRC_COLOR, gl.DST_COLOR, gl.ONE, gl.ONE);
+/*gl.blendFuncSeparate(
       gl.SRC_ALPHA,
       gl.ONE_MINUS_SRC_ALPHA,
       gl.ONE,
       gl.ONE_MINUS_SRC_ALPHA
-    );
+);*/
   }
 
   render() {

@@ -16,9 +16,13 @@ const viewport = {
 const points = readGeoJsonPoints(alces)
 
 export default HeatmapFromPointsShaderStory =>
+<div
+style={{backgroundColor: 'red'}}
+>
   <ExperimentalShader
     data={points}
     fillColor='#400010'
     fillOpacity={0.919}
-    radius={0.15}
+    radius={0.35}
     viewport={viewport} />
+</div>
