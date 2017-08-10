@@ -34,6 +34,7 @@ const fillColor = hexToArray(this.props.fillColor, this.props.fillOpacity)
       data,
       colorRamp: viridis,
       height,
+      radiusScale: radius,
       fillOpacity,
       getPosition: d => [d[0], d[1]],
 //      getColor: d => fillOpacity,
