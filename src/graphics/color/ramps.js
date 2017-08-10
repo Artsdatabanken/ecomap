@@ -1,4 +1,3 @@
-
 export const viridis = [
   '#440154',
   '#440256',

@@ -1,24 +1,23 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react'
+import PropTypes from 'prop-types'
 // import GeoJsonLayer from './GeoJsonLayer'
 // import RasterTileLayer from './RasterTileLayer'
 // import VectorTileLayer from './VectorTileLayer'
-import Hexagon from "./Hexagon";
-import Scatterplot from "./Scatterplot";
-import HeatmapFromPoints from "./HeatmapFromPointsShader";
-import ArtskartDataSourceContainer from "./ArtskartDataSourceContainer";
+import Hexagon from './Hexagon'
+import Scatterplot from './Scatterplot'
+import HeatmapFromPoints from './HeatmapFromPointsShader'
+import ArtskartDataSourceContainer from './ArtskartDataSourceContainer'
 
 export default class MapLayerStack extends React.Component {
   static propTypes = {
     layers: PropTypes.object.isRequired
   };
-  render() {
-    const r = [];
+  render () {
+    const r = []
     for (const id in this.props.layers) {
-      if (!Object.prototype.hasOwnProperty.call(this.props.layers, id))
-        continue;
-      const layer = this.props.layers[id];
-      if (!layer.visible) continue;
+      if (!Object.prototype.hasOwnProperty.call(this.props.layers, id)) { continue }
+      const layer = this.props.layers[id]
+if (!layer.visible) continue
       r.push(
         <PointBasedLayer
           key={id}
@@ -29,13 +28,13 @@ export default class MapLayerStack extends React.Component {
           scalingFactor={128 * 5000 * layer.paint.radius}
           zoomFactor={2}
         />
-      );
+      )
     }
     return (
       <span>
         {r}
       </span>
-    );
+    )
   }
 }
 
@@ -50,7 +49,7 @@ const PointBasedLayer = ({ id, layer, viewport, onUpdate }) =>
       scalingFactor={128 * 5000 * layer.paint.radius}
       zoomFactor={2}
     />
-  </ArtskartDataSourceContainer>;
+  </ArtskartDataSourceContainer>
 
 const EcoMapLayer = ({
   id,
@@ -61,10 +60,10 @@ const EcoMapLayer = ({
   zoomFactor,
   onUpdate
 }) => {
-  const paint = layer.paint;
+  const paint = layer.paint
   switch (paint.renderMethod) {
     //    case 'fill': return <GeoJsonLayer dataUrl={layer.dataURl} />
-    case "heatmap":
+    case 'heatmap':
       return (
         <HeatmapFromPoints
           title={layer.title}
@@ -73,8 +72,8 @@ const EcoMapLayer = ({
           {...paint}
           onUpdate={onUpdate}
         />
-      );
-    case "scatterplot":
+      )
+    case 'scatterplot':
       return (
         <Scatterplot
           title={layer.title}
@@ -83,8 +82,8 @@ const EcoMapLayer = ({
           {...paint}
           onUpdate={onUpdate}
         />
-      );
-    case "hexagon":
+      )
+    case 'hexagon':
       return (
         <Hexagon
           title={layer.title}
@@ -93,9 +92,9 @@ const EcoMapLayer = ({
           {...paint}
           onUpdate={onUpdate}
         />
-      );
+      )
     default:
-      console.warn("unknown renderMethod", layer.paint.renderMethod);
-      return null;
+      console.warn('unknown renderMethod', layer.paint.renderMethod)
+      return null
   }
-};
+}

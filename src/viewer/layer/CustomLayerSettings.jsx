@@ -7,8 +7,8 @@ const CustomLayerSettings = (props) => {
   switch (props.renderMethod) {
     case 'heatmap' : return <HeatmapLayerSettings {...props} />
     case 'scatterplot' : return <ScatterplotLayerSettings {...props} />
-case 'hexagon' : return <HexagonLayerSettings {...props} />
-    default: return <div>{this.props.renderMethod}</div>
+    case 'hexagon' : return <HexagonLayerSettings {...props} />
+    default: return <div>{props.renderMethod}</div>
   }
 }
 

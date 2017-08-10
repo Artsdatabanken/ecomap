@@ -13,7 +13,9 @@ const defaultProps = {
   radiusScale: 1,
   radiusMinPixels: 0, //  min point radius in pixels
   radiusMaxPixels: Number.MAX_SAFE_INTEGER, // max point radius in pixels
-  strokeWidth: 1,
+  fillOpacity: 1.0,
+  width: 1.0,
+  height: 1.0,
   fp64: false,
   getPosition: x => x.position,
   getRadius: x => x.radius || 1,
@@ -40,7 +42,6 @@ export default class HeatmapFromPointsShader extends Layer {
     this.state.attributeManager.addInstanced({
       instancePositions: {size: 3, accessor: 'getPosition', update: this.calculateInstancePositions},
       instanceRadius: {size: 1, accessor: 'getRadius', defaultValue: 1, update: this.calculateInstanceRadius},
-      instanceColors: {size: 4, type: GL.UNSIGNED_BYTE, accessor: 'getColor', update: this.calculateInstanceColors}
     })
     /* eslint-enable max-len */
 
@@ -57,13 +58,13 @@ export default class HeatmapFromPointsShader extends Layer {
         [GL.UNPACK_FLIP_Y_WEBGL]: true
       },
       mipmaps: true
-    });
+    })
 
     //    const {model} = this.state;
 //    console.log(model)
-//model.setUniforms({[`colorRamp`]: rampTexture})
-rampTexture.bind(0);
-//model.setUniforms({['colorRamp0']: rampTexture})
+// model.setUniforms({[`colorRamp`]: rampTexture})
+    rampTexture.bind(0)
+// model.setUniforms({['colorRamp0']: rampTexture})
 
 /*
 var tex = gl.createTexture();
@@ -84,7 +85,7 @@ var xramp = new Uint8Array(
   gl.bindTexture(gl.TEXTURE_2D, tex);
   gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 1, 1, 0, gl.RGBA, gl.UNSIGNED_BYTE, img);
   */
-}
+  }
 
   updateAttribute ({props, oldProps, changeFlags}) {
     if (props.fp64 !== oldProps.fp64) {
@@ -119,11 +120,16 @@ var xramp = new Uint8Array(
   draw ({uniforms}) {
     const {radiusScale,
       radiusMinPixels,
-      radiusMaxPixels} = this.props
+      radiusMaxPixels,
+      fillOpacity,
+      width, height} = this.props
     const args = Object.assign({}, uniforms, {
       radiusScale,
       radiusMinPixels,
-      radiusMaxPixels
+      radiusMaxPixels,
+      fillOpacity,
+      width,
+      height
     })
     this.state.model.render(args)
   }
