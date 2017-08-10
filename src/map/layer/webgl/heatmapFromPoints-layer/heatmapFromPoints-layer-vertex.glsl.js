@@ -12,14 +12,13 @@ uniform float opacity;
 uniform float radiusScale;
 uniform float radiusMinPixels;
 uniform float radiusMaxPixels;
-uniform float renderPickingBuffer;
 uniform float outline;
 uniform float strokeWidth;
 uniform sampler2D colorRamp;
+uniform float height;
+uniform float fillOpacity;
 
-varying vec4 vColor;
 varying vec2 unitPosition;
-varying float innerUnitRadius;
 
 void main(void) {
   // Multiply out radius and clamp to limits
@@ -34,16 +33,11 @@ void main(void) {
   // position on the containing square in [-1, 1] space
   unitPosition = positions.xy;
   // 0 - solid circle, 1 - stroke with lineWidth=0
-  innerUnitRadius = outline * (1.0 - strokeWidth / outerRadiusPixels);
+  float innerUnitRadius = outline * (1.0 - strokeWidth / outerRadiusPixels);
 
   // Find the center of the point and add the current vertex
   vec3 center = project_position(instancePositions);
   vec3 vertex = positions * outerRadiusPixels;
   gl_Position = project_to_clipspace(vec4(center + vertex, 1.0));
-
-  // Apply opacity to instance color, or return instance picking color
-  vec4 color = vec4(instanceColors.rgb, instanceColors.a * opacity) / 255.;
-  vec4 pickingColor = vec4(instancePickingColors / 255., 1.);
-  vColor = mix(color, pickingColor, renderPickingBuffer);
 }
 `
