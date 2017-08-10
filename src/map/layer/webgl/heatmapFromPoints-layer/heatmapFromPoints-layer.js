@@ -119,16 +119,11 @@ var xramp = new Uint8Array(
 
   draw ({uniforms}) {
     const {radiusScale,
-      radiusMinPixels,
-      radiusMaxPixels,
       fillOpacity,
-      width, height} = this.props
+      height} = this.props
     const args = Object.assign({}, uniforms, {
       radiusScale,
-      radiusMinPixels,
-      radiusMaxPixels,
       fillOpacity,
-      width,
       height
     })
     this.state.model.render(args)
