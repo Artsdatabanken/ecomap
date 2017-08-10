@@ -2,11 +2,11 @@ import React, { Component } from "react"
 import DeckGL from "deck.gl"
 import { hexToArray } from "../../viewer/layer/colorfunc"
 import HeatmapFromPointsShaderLayer from "./webgl/heatmapFromPoints-layer/heatmapFromPoints-layer"
-import viridis from "../../../data/colorramps/viridis.json"
+import viridis from "../../graphics/color/ramps/viridis.json"
 
 export default class HeatmapFromPointsShader extends Component {
   defaultProps = {
-    blendMode: "difference"
+    blendMode: "multiply"
   };
 
   _initialize(gl) {
@@ -26,9 +26,11 @@ gl.blendFunc(gl.ONE,  gl.ONE);
   }
 
   render() {
-    const { data, viewport, radius, blendMode } = this.props;
+    console.log('!draw')
+const { data, viewport, radius, blendMode } = this.props;
     const fillColor = hexToArray(this.props.fillColor, this.props.fillOpacity);
-    if (!data) {
+    console.log(data)
+if (!data) {
       return null;
     }
     const layer = new HeatmapFromPointsShaderLayer({

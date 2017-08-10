@@ -1,4 +1,5 @@
-import {Layer, COORDINATE_SYSTEM, fp64ify} from 'deck.gl'
+import {fp64ify} from 'deck.gl/dist/lib/utils'
+import {Layer, COORDINATE_SYSTEM} from 'deck.gl'
 // import {enable64bitSupport} from 'deck.gl/lib/utils/fp64.js'
 import {GL, Texture2D, Model, Geometry} from 'luma.gl'
 
@@ -57,7 +58,8 @@ export default class HeatmapFromPointsShader extends Layer {
       },
       mipmaps: true
     });
-    const {model} = this.state;
+
+    //    const {model} = this.state;
 //    console.log(model)
 //model.setUniforms({[`colorRamp`]: rampTexture})
 rampTexture.bind(0);

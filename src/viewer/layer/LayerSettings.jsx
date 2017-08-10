@@ -29,9 +29,9 @@ export default class LayerSettings extends React.Component {
           <MenuItem value='pattern' primaryText='Pattern' />
           <MenuItem value='extrude' primaryText='Extrude 3D' />
           <MenuItem value='gradient' primaryText='Gradient' />
-          <MenuItem value='heatmap' primaryText='Heatmap' />
         </div>
         }
+        <MenuItem value='heatmap' primaryText='Heatmap' />
         <MenuItem value='scatterplot' primaryText='Scatterplot' />
         <MenuItem value='hexagon' primaryText='Hexagon' />
       </SelectField>
