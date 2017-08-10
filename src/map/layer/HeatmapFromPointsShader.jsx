@@ -25,7 +25,7 @@ export default class HeatmapFromPointsShader extends Component {
 
   render () {
     const { data, viewport, radius, blendMode, fillOpacity, height } = this.props
-const fillColor = hexToArray(this.props.fillColor, this.props.fillOpacity)
+    const fillColor = hexToArray(this.props.fillColor, this.props.fillOpacity)
     if (!data)
       return null
 

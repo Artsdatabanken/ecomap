@@ -145,19 +145,6 @@ export default class HeatmapFromPointsShader extends Layer {
       value[i++] = isNaN(radius) ? 1 : radius
     }
   }
-
-  calculateInstanceColors (attribute) {
-    const {data, getColor} = this.props
-    const {value} = attribute
-    let i = 0
-    for (const point of data) {
-      const color = getColor(point) || DEFAULT_COLOR
-      value[i++] = color[0]
-      value[i++] = color[1]
-      value[i++] = color[2]
-      value[i++] = color[3]
-    }
-  }
 }
 
 HeatmapFromPointsShader.layerName = 'HeatmapFromPointsShader'

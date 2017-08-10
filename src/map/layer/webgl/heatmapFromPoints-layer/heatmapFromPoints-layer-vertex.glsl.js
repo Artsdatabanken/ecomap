@@ -5,12 +5,9 @@ attribute vec3 positions;
 
 attribute vec3 instancePositions;
 attribute float instanceRadius;
-attribute vec4 instanceColors;
-attribute vec3 instancePickingColors;
 
 uniform float opacity;
 uniform float radiusScale;
-uniform sampler2D colorRamp;
 uniform float height;
 uniform float fillOpacity;
 
