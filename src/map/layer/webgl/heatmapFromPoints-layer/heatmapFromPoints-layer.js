@@ -48,15 +48,7 @@ export default class HeatmapFromPointsShader extends Layer {
       mipmaps: false
     })
 
-    var fbHeat = new Framebuffer(gl, {
-      depth: false,
-//      clearColor: [255, 0, 0, 1],
-  //    clearDepth: 0,
-	    })
-    //  fbHeat.initialize({ bytes: gl.canvas.width * gl.canvas.height * 4 });
-    //  fbHeat.clear();
-    //   fbHeat.attach([heatTexture]);
-    //   gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, heatTexture);
+    var fbHeat = new Framebuffer(gl, {depth: false})
 
     /* eslint-disable max-len */
     /* deprecated props check */
@@ -86,10 +78,7 @@ export default class HeatmapFromPointsShader extends Layer {
         [GL.TEXTURE_MAG_FILTER]: GL.NEAREST,
         [GL.TEXTURE_MIN_FILTER]: GL.NEAREST
       },
-      pixelStore: {
-        [GL.UNPACK_FLIP_Y_WEBGL]: true
-      },
-      mipmaps: true
+      mipmaps: false
     })
     //   rampTexture.bind(0);
     this.setState({
