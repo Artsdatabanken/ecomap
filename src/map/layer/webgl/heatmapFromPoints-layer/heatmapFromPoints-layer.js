@@ -138,39 +138,37 @@ export default class HeatmapFromPointsShader extends Layer {
     const {width, height} = gl.canvas
     fbHeat.resize({width, height});
     fbHeat.bind(gl.FRAMEBUFFER);
-    gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-//    fbHeat.clear({
- //     color: new Float32Array([0.5, 0.5, 0.5, 0])//[0, 0, 1, 1], // Blue
-//      depth: false,
-  //    stencil: false
-   // });
-//    fbHeat.clear({color: true, depth: 0, stencil: 0});
-//    gl.clearBufferfv(GL.COLOR, 0, 123)
+    gl.clear(gl.COLOR_BUFFER_BIT);
     const { radiusScale, fillOpacity } = this.props
     const args = Object.assign({}, uniforms, {
       radiusScale,
       fillOpacity,
       height: this.props.height
     })
+
+    gl.blendFunc(gl.ONE, gl.ONE)
     //   window.luma.log.priority = 4;
-    //fbHeat.texture.resize({width: 900, height: 800})
     this.state.model.draw({
       framebuffer: fbHeat,
       uniforms: args
     })
-//    gl.clear(
-  //    [GL.COLOR]: [0, 0, 1, 1], // Blue
-    //)
+
+    gl.blendFuncSeparate(
+      gl.SRC_ALPHA,
+      gl.ONE_MINUS_SRC_ALPHA,
+      gl.ONE,
+      gl.ONE_MINUS_SRC_ALPHA
+);
+
     this.state.model2.draw({
       framebuffer: null,
       uniforms: {
         colorRamp: this.state.rampTexture,
         heatTexture: fbHeat.texture,
-        fillOpacity: 0.5,
+        fillOpacity: this.props.fillOpacity,
         uRes: [gl.canvas.width, gl.canvas.height]
       }
     })
-    window.luma.log.priority = 1
   }
 
   _getModel (gl) {
