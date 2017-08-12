@@ -13,13 +13,12 @@ uniform vec2 uRes;
 void main(void) {
   vec2 p = gl_FragCoord.xy / uRes.xy;
   vec4 color = texture2D(heatTexture, p);
-  float intensity = color.r/2.2;// + color.g + color.b;
-  if(intensity > 0.)
-    gl_FragColor = texture2D(colorRamp, vec2(intensity+0.5, 0.5));
+  float intensity = color.r; // TODO: Convert to single channel texture
+  if(intensity > 0.) {
+    gl_FragColor = texture2D(colorRamp, vec2(intensity-0.001, 0.5));
+    gl_FragColor.a = smoothstep(intensity, 0., 0.05);
+  }
   else
-//    gl_FragColor = vec4(255.,0.,255.,255.);
     discard;
-//gl_FragColor = texture2D(colorRamp, p);
-//gl_FragColor = texture2D(heatTexture, p);
 }
 `
