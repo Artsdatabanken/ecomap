@@ -1,7 +1,7 @@
-import React from "react";
-import HeatmapFromPointsShader from "../map/layer/HeatmapFromPointsShader";
-import alces from "../../data/sample/artskart_48103.json";
-import readGeoJsonPoints from "../translate/GeoJson.js";
+import React from 'react'
+import HeatmapFromPointsShader from '../map/layer/HeatmapFromPointsShader'
+import alces from '../../data/sample/artskart_48103.json'
+import readGeoJsonPoints from '../translate/GeoJson.js'
 
 const viewport = {
   width: 900,
@@ -11,19 +11,19 @@ const viewport = {
   zoom: 4,
   pitch: 0,
   bearing: 0
-};
+}
 
-const points = readGeoJsonPoints(alces);
+const points = readGeoJsonPoints(alces)
 
 export default HeatmapFromPointsShaderStory =>
-  <div style={{ backgroundColor: "#cdcdcd" }}>
+  <div style={{ backgroundColor: '#cdcdcd' }}>
     <HeatmapFromPointsShader
       data={points}
-      fillColor="#400010"
+      fillColor='#400010'
       fillOpacity={0.919}
       radius={0.35}
       width={1.0}
       height={0.18}
       viewport={viewport}
     />
-  </div>;
+  </div>

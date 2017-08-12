@@ -26,7 +26,7 @@ import HeatmapFromPointsShaderStory from './stories/HeatmapFromPointsShaderStory
 import diagrams from './stories/Diagrams'
 import layerSettings from './stories/layerSettings'
 
-storiesOf('Layer rendering')
+storiesOf('Layer rendering', module)
 .addDecorator(muiTheme([theme]))
 .add('Arc', () =>
   <Paper style={{margin: '20px'}}>
@@ -63,7 +63,7 @@ storiesOf('Add Layer', module)
   </div>)
 .add('Add layer', () => <AddLayer onClick={action('onClick')} />)
 
-storiesOf('Common')
+storiesOf('Common', module)
   .addDecorator(muiTheme([theme]))
   .add('Error banner', () =>
     <ErrorBanner
