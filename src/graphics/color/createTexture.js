@@ -1,5 +1,4 @@
 
-function createColorTextureFromSteps()
 const map = ColorRamp.createColorTexture(this.refs.colorbar, (i) =>
   ColorRamp.map(this.props.steps, i))
 
