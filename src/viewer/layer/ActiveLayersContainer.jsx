@@ -38,7 +38,7 @@ export default class ActiveLayersContainer extends React.Component {
           fillColor: '#916446',
           fillOpacity: 0.86,
           coverage: 0.95,
-          radius: 0.3,
+          radius: 0.4,
           renderMethod: 'heatmap',
           //        renderMethod: 'scatterplot',
           //        renderMethod: 'hexagon',
@@ -47,7 +47,7 @@ export default class ActiveLayersContainer extends React.Component {
           upperPercentile: 1.0,
           elevationMin: 0.0,
           elevationMax: 0.5,
-          height: 1.0,
+          height: 0.3,
           width: 1.0
         }
       }
