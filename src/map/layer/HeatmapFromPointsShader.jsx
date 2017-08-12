@@ -13,7 +13,7 @@ export default class HeatmapFromPointsShader extends Component {
     gl.disable(gl.DEPTH_TEST)
     gl.enable(gl.BLEND)
     gl.blendFunc(gl.ONE, gl.ONE)
-//  gl.blendEquation(gl.GL_FUNC_ADD);
+    //  gl.blendEquation(gl.GL_FUNC_ADD);
 //    gl.blendFuncSeparate(gl.SRC_COLOR, gl.DST_COLOR, gl.ONE, gl.ONE);
 /* gl.blendFuncSeparate(
       gl.SRC_ALPHA,
