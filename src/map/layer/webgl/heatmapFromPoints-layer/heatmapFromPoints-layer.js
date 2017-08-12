@@ -40,7 +40,7 @@ export default class HeatmapFromPointsShader extends Layer {
       format: GL.RGBA,
       parameters: {
         [GL.TEXTURE_MAG_FILTER]: GL.NEAREST,
-        [GL.TEXTURE_MIN_FILTER]: GL.NEAREST,
+        [GL.TEXTURE_MIN_FILTER]: GL.NEAREST
       },
       pixelStore: {
         [GL.UNPACK_FLIP_Y_WEBGL]: true
@@ -125,9 +125,9 @@ export default class HeatmapFromPointsShader extends Layer {
     var fbHeat = this.state.fbHeat
 
     const {width, height} = gl.canvas
-    fbHeat.resize({width, height});
-    fbHeat.bind(gl.FRAMEBUFFER);
-    gl.clear(gl.COLOR_BUFFER_BIT);
+    fbHeat.resize({width, height})
+    fbHeat.bind(gl.FRAMEBUFFER)
+    gl.clear(gl.COLOR_BUFFER_BIT)
     const { radiusScale, fillOpacity } = this.props
     const args = Object.assign({}, uniforms, {
       radiusScale,
@@ -147,7 +147,7 @@ export default class HeatmapFromPointsShader extends Layer {
       gl.ONE_MINUS_SRC_ALPHA,
       gl.ONE,
       gl.ONE_MINUS_SRC_ALPHA
-);
+)
 
     this.state.model2.draw({
       framebuffer: null,

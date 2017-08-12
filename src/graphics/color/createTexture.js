@@ -1,7 +1,4 @@
 
-const map = ColorRamp.createColorTexture(this.refs.colorbar, (i) =>
-  ColorRamp.map(this.props.steps, i))
-
 function createColorTexture (canvas, colorFunction = () => 'transparent') {
   //  const canvas = document.createElement('canvas')
   // const canvas = ReactDOM.findDOMNode(canvas)
