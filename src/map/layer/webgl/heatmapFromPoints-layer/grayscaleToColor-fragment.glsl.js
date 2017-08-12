@@ -17,6 +17,7 @@ void main(void) {
   if(intensity > 0.)
     gl_FragColor = texture2D(colorRamp, vec2(intensity+0.5, 0.5));
   else
+//    gl_FragColor = vec4(255.,0.,255.,255.);
     discard;
 //gl_FragColor = texture2D(colorRamp, p);
 //gl_FragColor = texture2D(heatTexture, p);
