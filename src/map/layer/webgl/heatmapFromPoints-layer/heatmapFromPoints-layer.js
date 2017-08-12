@@ -34,20 +34,6 @@ export default class HeatmapFromPointsShader extends Layer {
 
   initializeState () {
     const { gl } = this.context
-    const heatTexture = new Texture2D(gl, {
-      width: gl.canvas.width,
-      height: gl.canvas.height,
-      format: GL.RGBA,
-      parameters: {
-        [GL.TEXTURE_MAG_FILTER]: GL.NEAREST,
-        [GL.TEXTURE_MIN_FILTER]: GL.NEAREST
-      },
-      pixelStore: {
-        [GL.UNPACK_FLIP_Y_WEBGL]: true
-      },
-      mipmaps: false
-    })
-
     var fbHeat = new Framebuffer(gl, {depth: false})
 
     /* eslint-disable max-len */
