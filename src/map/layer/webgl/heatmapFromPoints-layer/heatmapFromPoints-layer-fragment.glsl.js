@@ -15,7 +15,8 @@ void main(void) {
   {
     float intensity = exp(-pow(distToCenter*0.5, 2.0) * 20.0)*height;
     gl_FragColor = vec4(intensity, intensity, intensity, fillOpacity);//clamp(intensity*55.0, 0.0, 1.0));
-  } else {
+  }
+  else {
     discard;
   }
 //  gl_FragColor = vec4(255.,55.,77.,255.);

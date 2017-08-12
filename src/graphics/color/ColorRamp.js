@@ -12,7 +12,7 @@ class ColorRamp extends React.Component {
     // const canvas = ReactDOM.findDOMNode(canvas)
     const context = canvas.getContext('2d')
     canvas.width = 256
-    canvas.height = 1
+    canvas.height = 20
 
     for (let i = 0; i < canvas.width; i++) {
       context.fillStyle = colorFunction(i)

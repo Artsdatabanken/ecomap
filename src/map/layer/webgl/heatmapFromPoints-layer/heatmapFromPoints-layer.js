@@ -40,17 +40,19 @@ export default class HeatmapFromPointsShader extends Layer {
       format: GL.RGBA,
       parameters: {
         [GL.TEXTURE_MAG_FILTER]: GL.NEAREST,
-        [GL.TEXTURE_MIN_FILTER]: GL.NEAREST
+        [GL.TEXTURE_MIN_FILTER]: GL.NEAREST,
       },
       pixelStore: {
         [GL.UNPACK_FLIP_Y_WEBGL]: true
       },
       mipmaps: false
     })
-    const width = 900// gl.canvas.width;
-    const height = 800// gl.canvas.height;
-    console.log(width, height)
-    var fbHeat = new Framebuffer(gl, { width, height })
+
+    var fbHeat = new Framebuffer(gl, {
+      depth: false,
+//      clearColor: [255, 0, 0, 1],
+  //    clearDepth: 0,
+	    })
     //  fbHeat.initialize({ bytes: gl.canvas.width * gl.canvas.height * 4 });
     //  fbHeat.clear();
     //   fbHeat.attach([heatTexture]);
@@ -133,6 +135,17 @@ export default class HeatmapFromPointsShader extends Layer {
     const gl = this.state.model.gl
     var fbHeat = this.state.fbHeat
 
+    const {width, height} = gl.canvas
+    fbHeat.resize({width, height});
+    fbHeat.bind(gl.FRAMEBUFFER);
+    gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+//    fbHeat.clear({
+ //     color: new Float32Array([0.5, 0.5, 0.5, 0])//[0, 0, 1, 1], // Blue
+//      depth: false,
+  //    stencil: false
+   // });
+//    fbHeat.clear({color: true, depth: 0, stencil: 0});
+//    gl.clearBufferfv(GL.COLOR, 0, 123)
     const { radiusScale, fillOpacity } = this.props
     const args = Object.assign({}, uniforms, {
       radiusScale,
@@ -140,20 +153,14 @@ export default class HeatmapFromPointsShader extends Layer {
       height: this.props.height
     })
     //   window.luma.log.priority = 4;
-    fbHeat.clear({
-      [GL.COLOR]: [0, 0, 1, 1], // Blue
-    });
-    const {width, height} = gl.canvas
-    fbHeat.clear()
-    fbHeat.resize({width, height});
     //fbHeat.texture.resize({width: 900, height: 800})
     this.state.model.draw({
       framebuffer: fbHeat,
       uniforms: args
     })
-    gl.clear(
-      [GL.COLOR]: [0, 0, 1, 1], // Blue
-    )
+//    gl.clear(
+  //    [GL.COLOR]: [0, 0, 1, 1], // Blue
+    //)
     this.state.model2.draw({
       framebuffer: null,
       uniforms: {
