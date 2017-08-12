@@ -17,7 +17,7 @@ export default class MapLayerStack extends React.Component {
     for (const id in this.props.layers) {
       if (!Object.prototype.hasOwnProperty.call(this.props.layers, id)) { continue }
       const layer = this.props.layers[id]
-if (!layer.visible) continue
+      if (!layer.visible) continue
       r.push(
         <PointBasedLayer
           key={id}

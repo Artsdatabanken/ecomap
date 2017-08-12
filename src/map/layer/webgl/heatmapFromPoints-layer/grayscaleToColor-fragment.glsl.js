@@ -17,12 +17,7 @@ void main(void) {
   if(intensity > 0.)
     gl_FragColor = texture2D(colorRamp, vec2(intensity+0.5, 0.5));
   else
-    gl_FragColor = vec4(25.,25.,155.,255.);
-//    discard;
-//  gl_FragColor = color;//vec4(intensity,255.-intensity,0.,255.);
-//  gl_FragColor = texture2D(heatTexture, vec2(gl_FragCoord.x/1., gl_FragCoord.y/1.));
-//gl_FragColor = vec4(gl_FragCoord.x*0.002, gl_FragCoord.y*0.002, 255.-gl_FragCoord.x, 255.);
-//gl_FragColor = vec4(0.,0.,0.,25.);
+    discard;
 //gl_FragColor = texture2D(colorRamp, p);
 //gl_FragColor = texture2D(heatTexture, p);
 }
