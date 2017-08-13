@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders ok 1`] = `
+<div>
+  <div
+    style={
+      Object {
+        "display": "inline-block",
+      }
+    }
+  >
+    <div
+      style={
+        Object {
+          "color": "rgba(0, 0, 0, 0.3)",
+          "fontFamily": "Roboto, sans-serif",
+          "fontSize": "12px",
+          "position": "relative",
+        }
+      }
+    />
+    <div />
+  </div>
+</div>
+`;

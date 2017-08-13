@@ -10,16 +10,15 @@ const presetColors = ['#D0021B', '#F5A623', '#F8E71C', '#8B572A', '#7ED321', '#4
 const ColorPickerSetting = ({ onChange, fillColor, fillOpacity, children }) =>
 <div>
   <Label>Color</Label>
-  <div style={{ position: "relative", left: 0, margin: 10 }}>
+  <div style={{ position: "relative", left: 0, marginTop: '8px', marginRight: '24px' }}>
     <SketchPicker
     presetColors={presetColors}
-    style={{width: '315px'}}
       onChange={e => {
         onChange("fillColor", e.hex);
         onChange("fillOpacity", e.rgb.a);
       }}
       color={hexToRgba(fillColor, fillOpacity)}
-      width='315px'
+      width='100%'
     />
   </div>
 </div>
