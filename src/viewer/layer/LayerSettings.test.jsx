@@ -3,12 +3,12 @@ import renderer from 'react-test-renderer'
 import muiTheme from '../../theme_jest'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
-import HexagonLayerSettings from './HexagonLayerSettings'
+import LayerSettings from './LayerSettings'
 
-it('loading standard tile', () => {
+it('renders ok', () => {
   const tree = renderer.create(
     <MuiThemeProvider muiTheme={muiTheme}>
-      <HexagonLayerSettings fillOpacity={0.1} radius={0.2} coverage={0.3} />
+      <LayerSettings renderMethod='heatmap' blendMode='multiply' fillOpacity={0.1} radius={0.2} coverage={0.3} />
     </MuiThemeProvider>
       )
   expect(tree.toJSON()).toMatchSnapshot()

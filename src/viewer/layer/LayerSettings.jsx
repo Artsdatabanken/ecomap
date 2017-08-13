@@ -6,6 +6,7 @@ import ActionDelete from 'material-ui/svg-icons/action/delete-forever'
 import ActionBuild from 'material-ui/svg-icons/action/build'
 import {hexToRgba} from './colorfunc'
 import CustomLayerSettings from './CustomLayerSettings'
+import getNext from '../../componentid'
 /* function getCheckBoard() {
 var cv = document.getElementById('body');
 var ctx = cv.getContext('2d');
@@ -20,7 +21,7 @@ export default class LayerSettings extends React.Component {
   render () {
     return (<div style={{marginLeft: '24px', marginRight: '24px'}}>
       <Divider />
-      <SelectField
+      <SelectField id={getNext()}
         floatingLabelText='Render'
         value={this.props.renderMethod}
         onChange={this.handleRenderChange}>
@@ -50,6 +51,7 @@ export default class LayerSettings extends React.Component {
       {true && <div>
         <div style={{}}>
           <SelectField
+            id={getNext()}
             floatingLabelText='Composition blend'
             value={this.props.blendMode}
             onChange={this.handleBlendModeChange}>

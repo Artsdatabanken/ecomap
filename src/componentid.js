@@ -5,5 +5,5 @@ let id = 0
 export function resetComponentIds () { id = 0 }
 export default function getNext () {
   id++
-  return id
+  return id.toString()
 }
