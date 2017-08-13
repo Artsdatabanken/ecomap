@@ -31,6 +31,7 @@ export default class ActiveLayerStrip extends React.Component {
         <LayerSettings
           {...paint}
           onChange={this.props.onChange}
+          onDelete={this.props.onDelete}
           showColorDialog={this.state.showColorDialog}
       />
       }
