@@ -1,8 +1,8 @@
 import React from "react";
 import ActionAllOut from "material-ui/svg-icons/action/all-out";
 import ActionOpacity from "material-ui/svg-icons/action/opacity";
-import SliderSetting from "./SliderSetting";
-import getNext from '../../componentid'
+import SliderSetting from "../SliderSetting";
+import getNext from '../../../../componentid'
 
 export default class HeatmapLayerSettings extends React.Component {
   render() {

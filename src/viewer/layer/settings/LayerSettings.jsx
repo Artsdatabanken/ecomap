@@ -1,12 +1,10 @@
 import React from 'react'
-import { ChromePicker } from 'react-color'
 import { Divider, SelectField, MenuItem } from 'material-ui'
 import ActionInfo from 'material-ui/svg-icons/action/info'
 import ActionDelete from 'material-ui/svg-icons/action/delete-forever'
 import ActionBuild from 'material-ui/svg-icons/action/build'
-import {hexToRgba} from './colorfunc'
-import CustomLayerSettings from './CustomLayerSettings'
-import getNext from '../../componentid'
+import CustomLayerSettings from './layer/CustomLayerSettings'
+import getNext from '../../../componentid'
 /* function getCheckBoard() {
 var cv = document.getElementById('body');
 var ctx = cv.getContext('2d');
@@ -36,17 +34,7 @@ export default class LayerSettings extends React.Component {
         <MenuItem value='scatterplot' primaryText='Scatterplot' />
         <MenuItem value='hexagon' primaryText='Hexagonal binning' />
       </SelectField>
-      <Divider />
       <CustomLayerSettings {...this.props} />
-      <Divider />
-      {this.props.showColorDialog && <div style={{position: 'relative', left: 64, margin: 10}}>
-        <ChromePicker
-          onChange={(e) => {
-            this.props.onChange('fillColor', e.hex)
-            this.props.onChange('fillOpacity', e.rgb.a)
-          }} color={
-            hexToRgba(this.props.fillColor, this.props.fillOpacity)} />
-      </div>}
 
       {true && <div>
         <div style={{}}>

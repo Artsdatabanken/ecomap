@@ -3,7 +3,7 @@ import renderer from 'react-test-renderer'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import muiTheme from '../../theme_jest'
 
-import SliderSetting from './SliderSetting'
+import SliderSetting from '../SliderSetting'
 
 it('renders ok', () => {
   const tree = renderer.create(

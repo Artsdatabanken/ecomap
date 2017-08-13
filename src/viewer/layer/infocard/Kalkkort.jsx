@@ -137,7 +137,6 @@ class Kalkkort extends React.Component {
     return input.replace('�', 'å').replace('�', 'ø').replace('�', 'ø')
   }
   render () {
-    console.log(this.props.kode)
     const data = koder[this.props.kode]
     if (!data) {
       return <span />

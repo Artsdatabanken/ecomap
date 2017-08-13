@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import DeckGL, {ScatterplotLayer} from 'deck.gl'
-import {hexToArray} from '../../viewer/layer/colorfunc'
+import {hexToArray} from '../../graphics/color/colorfunc'
 
 export default class Scatterplot extends Component {
   defaultProps = {
