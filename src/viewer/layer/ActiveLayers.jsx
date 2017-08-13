@@ -1,32 +1,50 @@
 import React from 'react'
-import LayerSettings from './LayerSettings'
-import {Paper, Divider} from 'material-ui'
+import {Paper} from 'material-ui'
+import FloatingActionButton from 'material-ui/FloatingActionButton'
+import ContentAdd from 'material-ui/svg-icons/content/add'
+import SelectSpeciesDialog from './add/species/SelectSpeciesDialog'
+import ActiveLayerSection from './ActiveLayerSection'
 
-export default class ActiveLayers extends React.Component {
+export default class Layers extends React.Component {
+  state = {}
   render () {
-    return (
-      <div style={{width: '400px', position: 'absolute', left: '2%', top: '2%'}}>
-        <Paper zDepth={3}>
-          {Object.keys(this.props.layers).map(key => {
-            const layer = this.props.layers[key]
-            return <Layer key={layer.id}
-              onChange={(key, value) => { this.props.onUpdateLayerProp(layer, key, value) }}
-              onDelete={() => this.props.onDelete(layer)}
-              {...layer}
+    const {layers, onAddLayer, onUpdateLayerProp, onDelete} = this.props
+    const {showAddLayersDialog} = this.state
+    if (showAddLayersDialog) {
+      return <SelectSpeciesDialog
+        onClose={this.handleHideAddLayers}
+        onAddLayer={onAddLayer} />
+    }
+    return <ActiveLayers
+      layers={layers}
+      onUpdateLayerProp={onUpdateLayerProp}
+      onAdd={this.handleShowAddLayers}
+      onDelete={onDelete} />
+  }
+
+  handleShowAddLayers = () =>
+    this.setState(prevState => ({showAddLayersDialog: true}))
+
+  handleHideAddLayers = () =>
+    this.setState(prevState => ({showAddLayersDialog: false}))
+ }
+
+const ActiveLayers = ({layers, onUpdateLayerProp, onAdd, onDelete}) => (
+  <div style={{width: '400px', position: 'absolute', left: '2%', top: '2%'}}>
+    <Paper zDepth={3}>
+      {Object.keys(layers).map(key => {
+        const layer = layers[key]
+        return <ActiveLayerSection key={layer.id}
+          onChange={(key, value) => { onUpdateLayerProp(layer, key, value) }}
+          onDelete={() => onDelete(layer)}
+          {...layer}
           />
-          })}
-        </Paper>
-      </div>)
-  }
-}
-
-class Layer extends React.Component {
-  render () {
-    return (
-      <div>
-        <LayerSettings {...this.props} />
-        <Divider inset />
-      </div>
-    )
-  }
-}
+      })}
+      <FloatingActionButton
+        style={{margin: '12px'}}
+        onTouchTap={onAdd}>
+        <ContentAdd />
+      </FloatingActionButton>
+    </Paper>
+  </div>
+)

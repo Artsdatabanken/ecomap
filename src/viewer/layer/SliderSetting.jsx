@@ -1,21 +1,25 @@
 import React from 'react'
-import { Slider, Divider } from 'material-ui'
+import { Slider, TextField } from 'material-ui'
+import Setting from './Setting'
+import getNext from '../../componentid'
 
 const SliderSetting = ({title, icon, value, onChange}) =>
-  <div>
-    <div style={{display: 'inline-block', marginLeft: '24px', marginRight: '24px', marginTop: '8px', height: '58px'}}>
-      <div>{title}</div>
-      <div style={{position: 'relative', top: '5px', float: 'left'}}>{icon}</div>
-      <div style={{position: 'relative', paddingLeft: '16px', top: '-16px', height: '48px', width: '310px', float: 'left'}}>
+  <Setting>
+    <div style={{position: 'relative', top: '21px', float: 'left'}}>{icon}</div>
+    <div style={{position: 'relative', paddingLeft: '16px', top: '0px', height: '48px', width: '310px', float: 'left'}}>
+      <TextField
+        id={'tf' + getNext()}
+        floatingLabelStyle={{position: 'absolute', top: '22px', left: '-40px'}}
+        floatingLabelText={title}
+        underlineShow={false}>
         <Slider
           min={0}
           max={1}
           step={0.05}
           value={value}
           onChange={(event, value) => onChange(value)}
-        />
-      </div>
+          />
+      </TextField>
     </div>
-    <Divider />
-  </div>
+  </Setting>
 export default SliderSetting

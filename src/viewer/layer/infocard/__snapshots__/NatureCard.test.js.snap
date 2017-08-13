@@ -44,7 +44,7 @@ exports[`renders correctly 1`] = `
         }
       >
         <img
-          alt="todo"
+          alt=""
           src="T44.jpg"
           style={
             Object {

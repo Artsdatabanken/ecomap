@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import DeckGL, { HexagonLayer } from 'deck.gl'
+import {viridis} from '../../graphics/color/ramps.js'
+import {hexToArray} from '../../viewer/layer/colorfunc'
+
+const viridisArray = viridis.map(c => hexToArray(c))
 
 const LIGHT_SETTINGS = {
   lightsPosition: [-0.144528, 49.739968, 8000, -3.807751, 54.104682, 8000],
@@ -11,41 +14,24 @@ const LIGHT_SETTINGS = {
   numberOfLights: 2
 }
 
-const colorRange = [
-  [1, 152, 189],
-  [73, 227, 206],
-  [216, 254, 181],
-  [254, 237, 177],
-  [254, 173, 84],
-  [209, 55, 78]
-]
-
-const plasma = [[13, 8, 135],
-[75, 3, 161],
-[125, 3, 168],
-[168, 34, 150],
-[203, 70, 121],
-[229, 107, 93],
-[248, 148, 65],
-[253, 195, 40],
-[240, 249, 33]]
-
 const elevationScale = { min: 1, max: 50 }
 
-const defaultProps = {
-  radius: 1000,
-  upperPercentile: 100,
-  coverage: 1,
-  data: []
-}
-
-export default class Bars3D extends Component {
-  static get defaultColorRange () {
-    return colorRange
+export default class Hexagon extends Component {
+  static defaultProps = {
+    radius: 1000,
+    lowerPercentile: 0,
+    upperPercentile: 1,
+    coverage: 1,
+    elevationMin: 0,
+    elevationMax: 0,
+    data: [],
+    blendMode: 'multiply'
   }
 
-  static contextTypes = {
-    fetchJson: PropTypes.func
+  static displayName = 'Hexagon'
+
+  static get defaultColorRange () {
+    return viridisArray
   }
 
   constructor (props) {
@@ -58,22 +44,6 @@ export default class Bars3D extends Component {
 
   state = {
     elevationScale: elevationScale.min
-  }
-
-  receiveData (json) {
-    json.then((json) => {
-      const acc = json.features.reduce((acc, feature) => {
-        const geom = feature.geometry
-        if (geom.type === 'Point') { acc.push(geom.coordinates) }
-        return acc
-      }, [])
-      this.setState({ data: acc, isLoading: false })
-      this._animate()
-    })
-  }
-
-  componentDidMount () {
-    this.context.fetchJson(this.props.title, this.props.dataUrl, json => this.receiveData(json))
   }
 
   componentWillReceiveProps (nextProps) {
@@ -117,35 +87,33 @@ export default class Bars3D extends Component {
   }
 
   render () {
-    const { viewport, radius, coverage, upperPercentile, fillOpacity } = this.props
-    const data = this.state.data
-    if (!data) {
-      return null
-    }
+    const { data, viewport, radius, coverage, elevationMin, elevationMax,
+      lowerPercentile, upperPercentile, fillOpacity, blendMode } = this.props
+    if (!data) { return null }
 
     const layers = [
       new HexagonLayer({
         id: 'heatmap',
-//        colorDomain: [0,1],
-        colorRange: plasma,
+//        colorDomain: [0, 10],
+        colorRange: viridisArray,
         coverage,
         data,
-        elevationRange: [0, 3000 * 25 * Math.pow(0.6, viewport.zoom)],
-        elevationScale: this.state.elevationScale,
-        extruded: true,
+        elevationRange: [elevationMin * 20000, elevationMax * 200000],
+        extruded: elevationMax > 0,
         getPosition: d => d,
         lightSettings: LIGHT_SETTINGS,
         onHover: this.props.onHover,
         opacity: fillOpacity,
         pickable: Boolean(this.props.onHover),
-        radius,
-        upperPercentile
+        radius: radius * 20000,
+        lowerPercentile: lowerPercentile * 100,
+        upperPercentile: upperPercentile * 100
       })
     ]
-
-    return <DeckGL {...viewport} layers={layers} onWebGLInitialized={this._initialize} />
+    return <DeckGL
+      style={{mixBlendMode: blendMode}}
+      {...viewport}
+      layers={layers}
+      onWebGLInitialized={this._initialize} />
   }
 }
-
-Bars3D.displayName = 'Bars3D'
-Bars3D.defaultProps = defaultProps

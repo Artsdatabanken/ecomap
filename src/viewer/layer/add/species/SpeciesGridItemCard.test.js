@@ -1,6 +1,7 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import muiTheme from '../../../../theme_jest'
 
 import SpeciesGridItemCard from './SpeciesGridItemCard'
 
@@ -19,7 +20,7 @@ const loadedFeaturedTile = {
 
 it('loading standard tile', () => {
   const tree = renderer.create(
-    <MuiThemeProvider>
+    <MuiThemeProvider muiTheme={muiTheme}>
       <SpeciesGridItemCard tile={loadingTile} />
     </MuiThemeProvider>
       )
@@ -28,7 +29,7 @@ it('loading standard tile', () => {
 
 it('complete featured tile', () => {
   const tree = renderer.create(
-    <MuiThemeProvider>
+    <MuiThemeProvider muiTheme={muiTheme}>
       <SpeciesGridItemCard tile={loadedFeaturedTile} />
     </MuiThemeProvider>
       )

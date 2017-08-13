@@ -2,14 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 export default class CloseOnEscape extends React.Component {
-  constructor () {
-    super()
-    this.onEscape = this.onEscape.bind(this)
-  }
-
-  onEscape ({ keyCode }) {
-    if (keyCode === 27) {
+  onEscape = (e) => {
+    if (e.keyCode === 27) {
       this.props.onEscape()
+//      e.stopPropagation()
     }
   }
 
@@ -24,7 +20,7 @@ export default class CloseOnEscape extends React.Component {
   render () {
     const childrenWithProps = React.Children.map(this.props.children,
       (child) => {
-        if (!child) return child // result of conditionals for example
+        if (!child) return child // empty result of conditionals for example
         return React.cloneElement(child, this.props)
       })
     return <div>{childrenWithProps}</div>

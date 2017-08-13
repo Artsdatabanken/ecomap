@@ -13,6 +13,7 @@ export default class Map extends React.Component {
     animate: PropTypes.bool,
     onClick: PropTypes.func.isRequired
   }
+
   static defaultProps = {
     animate: false
   }
@@ -24,7 +25,7 @@ export default class Map extends React.Component {
       zoom: 5,
       minZoom: 3,
       maxZoom: 15,
-      pitch: 50,
+      pitch: 20, // 50,
       bearing: 0,
       width: window.innerWidth,
       height: window.innerHeight
