@@ -53,7 +53,7 @@ class LayerExpanded extends React.Component {
         <MenuItem value='extrude' primaryText='Extrude 3D' />
         <MenuItem value='gradient' primaryText='Gradient' />
         <MenuItem value='heatmap' primaryText='Heatmap' />
-        <MenuItem value='bars3d' primaryText='Bars 3D' />
+        <MenuItem value='bars3d' primaryText='Hexagonal binning' />
       </DropDownMenu>
       <Divider />
       <LayerRenderParameters {...this.props} />
