@@ -34,7 +34,7 @@ export default class LayerSettings extends React.Component {
         }
         <MenuItem value='heatmap' primaryText='Heatmap' />
         <MenuItem value='scatterplot' primaryText='Scatterplot' />
-        <MenuItem value='hexagon' primaryText='Hexagon' />
+        <MenuItem value='bars3d' primaryText='Hexagonal binning' />
       </SelectField>
       <Divider />
       <CustomLayerSettings {...this.props} />
