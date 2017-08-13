@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import DeckGL, { HexagonLayer } from 'deck.gl'
 import {viridis} from '../../graphics/color/ramps.js'
-import {hexToArray} from '../../viewer/layer/colorfunc'
+import {hexToArray} from '../../graphics/color/colorfunc'
 
 const viridisArray = viridis.map(c => hexToArray(c))
 

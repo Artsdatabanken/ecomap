@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import DeckGL from 'deck.gl'
-import {hexToArray} from '../../viewer/layer/colorfunc'
+import {hexToArray} from '../../graphics/color/colorfunc'
 import ExperimentalShaderLayer from './webgl/experimentalshader-layer/experimentalshader-layer'
 
 export default class ExperimentalShader extends Component {

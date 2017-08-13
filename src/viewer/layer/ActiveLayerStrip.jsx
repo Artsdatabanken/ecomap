@@ -1,7 +1,7 @@
 import React from 'react'
 import { ListItem, Avatar } from 'material-ui'
-import {hexToRgbaString} from './colorfunc'
-import LayerSettings from './LayerSettings'
+import {hexToRgbaString} from '../../graphics/color/colorfunc'
+import LayerSettings from './settings/LayerSettings'
 import PaintSwatch from './PaintSwatch'
 
 export default class ActiveLayerStrip extends React.Component {

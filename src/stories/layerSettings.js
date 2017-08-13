@@ -3,8 +3,9 @@ import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
 import { muiTheme } from 'storybook-addon-material-ui'
 import ActiveLayers from '../viewer/layer/ActiveLayers'
-import HexagonLayerSettings from '../viewer/layer/HexagonLayerSettings'
-import ScatterplotLayerSettings from '../viewer/layer/ScatterplotLayerSettings'
+import HexagonLayerSettings from '../viewer/layer/settings/layer/HexagonLayerSettings'
+import ScatterplotLayerSettings from '../viewer/layer/settings/layer/ScatterplotLayerSettings'
+import HeatmapLayerSettings from '../viewer/layer/settings/layer/HeatmapLayerSettings'
 
 let layers = {'31241': {'id': 31241,
   'title': 'Alces alces',
@@ -20,7 +21,19 @@ const layerSettings = () => storiesOf('Layer settings', module).addDecorator(mui
   <div style={{ margin: '20px' }}>
     <ActiveLayers layers={layers} />
   </div>
-).add('Scatterplot', () => {
+).add('Heatmap', () => {
+  let paint = {
+    'fillColor': '#ff0000',
+    'coverage': 0.95,
+    'fillOpacity': 1.0,
+    'radius': 1.0,
+    'renderMethod': 'hexagon',
+    'blendMode': 'multiply'
+  }
+  return <div style={{width: '400px', padding: '20px'}}>
+    <HeatmapLayerSettings {...paint} onChange={action('onUpdateLayerProp')} />
+  </div>
+}).add('Scatterplot', () => {
   let paint = {
     'fillColor': '#ff0000',
     'coverage': 0.95,

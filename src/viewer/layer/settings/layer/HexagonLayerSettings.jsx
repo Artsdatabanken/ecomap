@@ -2,7 +2,7 @@ import React from 'react'
 import ActionOpacity from 'material-ui/svg-icons/action/opacity'
 import ActionAspectRatio from 'material-ui/svg-icons/action/aspect-ratio'
 import ActionAllOut from 'material-ui/svg-icons/action/all-out'
-import SliderSetting from './SliderSetting'
+import SliderSetting from '../SliderSetting'
 
 export default class HexagonLayerSettings extends React.Component {
   render () {

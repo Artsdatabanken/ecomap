@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import DeckGL from 'deck.gl'
-import { hexToArray } from '../../viewer/layer/colorfunc'
+import {hexToArray} from '../../graphics/color/colorfunc'
 import HeatmapFromPointsShaderLayer from './webgl/heatmapFromPoints-layer/heatmapFromPoints-layer'
 import viridis from '../../graphics/color/ramps/viridis.json'
 
