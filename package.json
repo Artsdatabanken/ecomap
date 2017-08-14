@@ -71,7 +71,6 @@
   "devDependencies": {
     "@storybook/addon-storyshots": "^3.0.0",
     "@storybook/react": "^3.0.1",
-    "canvas": "^1.6.5",
     "canvas-prebuilt": "^1.6.5-prerelease.1",
     "coveralls": "^2.13.1",
     "flow-bin": "^0.52.0",
