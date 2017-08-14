@@ -93,13 +93,14 @@ export default class ActiveLayersContainer extends React.Component {
         elevationScale: 500,
         upperPercentile: 1.0,
         elevationMin: 0,
-        elevationMax: 10000
+        elevationMax: 0.5
       }
     }
     this.setState(prevState => {
       prevState.layers[newLayer.id] = newLayer
       return prevState
     })
+    console.log(newLayer)
   };
 
   handleDeleteLayer = layer => {

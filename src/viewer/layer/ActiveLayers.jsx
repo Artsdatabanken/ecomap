@@ -29,7 +29,7 @@ export default class Layers extends React.Component {
     this.setState(prevState => ({showAddLayersDialog: false}))
  }
 
-const ActiveLayers = ({layers, onUpdateLayerProp, onAddLayer, onDeleteLayer}) => (
+const ActiveLayers = ({layers, onUpdateLayerProp, onAdd, onDeleteLayer}) => (
   <div style={{width: '400px', position: 'absolute', left: '2%', top: '2%'}}>
     <Paper zDepth={3}>
       {Object.keys(layers).map(key => {
@@ -42,7 +42,7 @@ const ActiveLayers = ({layers, onUpdateLayerProp, onAddLayer, onDeleteLayer}) =>
       })}
       <FloatingActionButton
         style={{margin: '12px'}}
-        onTouchTap={onAddLayer}>
+        onTouchTap={onAdd}>
         <ContentAdd />
       </FloatingActionButton>
     </Paper>
