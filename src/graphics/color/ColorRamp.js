@@ -25,7 +25,7 @@ class ColorRamp extends React.Component {
   componentDidMount () {
     const map = ColorRamp.createColorTexture(this.refs.colorbar, (i) => ColorRamp.map(this.props.steps, i))
     var dataCopy = new Uint8ClampedArray(map.data)
-//    console.log((dataCopy.toString()))
+    console.log((dataCopy.toString()))
     this.setState({map})
   }
 

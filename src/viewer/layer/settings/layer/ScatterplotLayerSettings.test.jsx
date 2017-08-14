@@ -8,8 +8,12 @@ import ScatterplotLayerSettings from './ScatterplotLayerSettings'
 it('loading standard tile', () => {
   const tree = renderer.create(
     <MuiThemeProvider muiTheme={muiTheme}>
-      <ScatterplotLayerSettings fillColor={'#ff8040'} fillOpacity={0.1} radius={0.2} />
+      <ScatterplotLayerSettings
+        fillColor={'#ff8040'}
+        fillOpacity={0.1}
+        radius={0.2}
+      />
     </MuiThemeProvider>
-      )
+  )
   expect(tree.toJSON()).toMatchSnapshot()
 })
