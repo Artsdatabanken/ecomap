@@ -1,16 +1,16 @@
-import React from "react";
+import React from 'react'
 import theme from '../../../theme'
 
 const Label = ({ children }) =>
   <div
     style={{
       position: 'relative',
-      fontSize: "12px",
+      fontSize: '12px',
       fontFamily: theme.fontFamily,
-      color: theme.palette.disabledColor,
+      color: theme.palette.disabledColor
     }}
   >
     {children}
-  </div>;
+  </div>
 
-export default Label;
+export default Label

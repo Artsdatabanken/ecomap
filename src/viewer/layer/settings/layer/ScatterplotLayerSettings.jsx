@@ -1,18 +1,18 @@
-import React from "react";
-import ActionAllOut from "material-ui/svg-icons/action/all-out";
-import SliderSetting from "../SliderSetting";
+import React from 'react'
+import ActionAllOut from 'material-ui/svg-icons/action/all-out'
+import SliderSetting from '../SliderSetting'
 import ColorpickerSetting from '../ColorpickerSetting'
 
 export default class ScatterplotLayerSettings extends React.Component {
-  render() {
-    const { radius, onChange, fillColor, fillOpacity } = this.props;
+  render () {
+    const { radius, onChange, fillColor, fillOpacity } = this.props
     return (
       <div>
         <SliderSetting
-          title="Radius"
+          title='Radius'
           value={radius}
           icon={<ActionAllOut />}
-          onChange={value => onChange("radius", value)}
+          onChange={value => onChange('radius', value)}
         />
         <ColorpickerSetting
           onChange={onChange}
@@ -20,6 +20,6 @@ export default class ScatterplotLayerSettings extends React.Component {
           fillOpacity={fillOpacity}
         />
       </div>
-    );
+    )
   }
 }
