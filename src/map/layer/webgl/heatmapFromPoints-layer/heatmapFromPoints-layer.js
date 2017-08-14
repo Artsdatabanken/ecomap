@@ -59,7 +59,7 @@ export default class HeatmapFromPointsShader extends Layer {
       width: 256,
       height: 1,
       format: GL.RGBA,
-      data: new Uint8Array(this.props.colorRamp),
+      pixels: new Uint8Array(this.props.colorRamp),
       parameters: {
         [GL.TEXTURE_MAG_FILTER]: GL.NEAREST,
         [GL.TEXTURE_MIN_FILTER]: GL.NEAREST

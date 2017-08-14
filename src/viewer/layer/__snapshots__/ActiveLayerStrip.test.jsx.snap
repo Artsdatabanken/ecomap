@@ -4,7 +4,7 @@ exports[`renders ok 1`] = `
 <div>
   <div>
     <span
-      disabled={undefined}
+      disabled={false}
       href={undefined}
       onBlur={[Function]}
       onClick={[Function]}
