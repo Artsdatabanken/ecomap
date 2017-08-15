@@ -156,7 +156,7 @@ export default class MainPage extends React.Component {
           <CardStack features={this.state.features} />}
 
         <ActiveLayersContainer>
-          {false && <Map
+          {true && <Map
             animate={this.state.animate}
             layers={this.state.layers}
             onClick={features => this.onClick(features)}

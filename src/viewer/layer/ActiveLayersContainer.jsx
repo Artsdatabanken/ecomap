@@ -89,6 +89,7 @@ export default class ActiveLayersContainer extends React.Component {
         renderMethod: 'hexagon',
         blendMode: 'multiply',
         radius: 1.0,
+        height: 0.5,
         extruded: true,
         elevationScale: 500,
         upperPercentile: 1.0,
