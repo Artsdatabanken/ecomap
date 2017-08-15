@@ -2,7 +2,7 @@ import React from 'react'
 import HeatmapFromPointsLayer from '../map/layer/HeatmapFromPoints'
 import alces from '../../data/sample/artskart_48103.json'
 import readGeoJsonPoints from '../translate/GeoJson.js'
-import viridis from '../../graphics/color/ramps/viridis.json'
+import viridis from '../graphics/color/ramps/viridis.json'
 
 const viewport = {
   width: 900,

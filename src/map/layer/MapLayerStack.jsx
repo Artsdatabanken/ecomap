@@ -61,7 +61,7 @@ const EcoMapLayer = ({
   onUpdate
 }) => {
   const paint = layer.paint
-  switch (paint.renderMethod) {
+  switch (paint.visualizationMode) {
     //    case 'fill': return <GeoJsonLayer dataUrl={layer.dataURl} />
     case 'heatmap':
       return (
@@ -95,7 +95,7 @@ const EcoMapLayer = ({
         />
       )
     default:
-      console.warn('unknown renderMethod', layer.paint.renderMethod)
+      console.warn('unknown visualizationMode', layer.paint.visualizationMode)
       return null
   }
 }
