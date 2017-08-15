@@ -105,7 +105,7 @@ export default class ActiveLayersContainer extends React.Component {
 
   handleDeleteLayer = layer => {
     this.setState(prevState => {
-      delete prevState[layer.id]
+      delete prevState.layers[layer.id]
       return prevState
     })
   };

@@ -64,7 +64,7 @@ export default class LayerSettings extends React.Component {
                 <MenuItem value='soft-light' primaryText='Soft light' />
               </SelectField>
             </div>
-            <div style={{ float: 'right' }}>
+            <div style={{ }}>
               <FlatButton label='Remove' onTouchTap={() => this.props.onDelete()} />
             </div>
           </div>}
