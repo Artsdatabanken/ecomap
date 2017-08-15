@@ -11,13 +11,16 @@ import ArtskartDataSourceContainer from './ArtskartDataSourceContainer'
 export default class MapLayerStack extends React.Component {
   static propTypes = {
     layers: PropTypes.object.isRequired
-  };
+  }
   render () {
     const r = []
     for (const id in this.props.layers) {
-      if (!Object.prototype.hasOwnProperty.call(this.props.layers, id)) { continue }
+      if (!Object.prototype.hasOwnProperty.call(this.props.layers, id)) {
+        continue
+      }
       const layer = this.props.layers[id]
       if (!layer.visible) continue
+      console.log('render: ' + layer.id)
       r.push(
         <PointBasedLayer
           key={id}
