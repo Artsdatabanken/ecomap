@@ -30,7 +30,7 @@ exports[`renders ok 1`] = `
     <label
       className={undefined}
       htmlFor="1"
-      onTouchTap={undefined}
+      onClick={undefined}
       style={
         Object {
           "color": "rgba(0, 0, 0, 0.3)",
@@ -80,7 +80,7 @@ exports[`renders ok 1`] = `
       }
     >
       <div
-        onTouchTap={[Function]}
+        onClick={[Function]}
         style={
           Object {
             "cursor": "pointer",
@@ -133,7 +133,6 @@ exports[`renders ok 1`] = `
           onMouseLeave={[Function]}
           onMouseOut={[Function]}
           onTouchStart={[Function]}
-          onTouchTap={[Function]}
           style={
             Object {
               "WebkitTapHighlightColor": "rgba(0, 0, 0, 0)",
@@ -875,7 +874,7 @@ exports[`renders ok 1`] = `
         <label
           className={undefined}
           htmlFor="2"
-          onTouchTap={undefined}
+          onClick={undefined}
           style={
             Object {
               "color": "rgba(0, 0, 0, 0.3)",
@@ -925,7 +924,7 @@ exports[`renders ok 1`] = `
           }
         >
           <div
-            onTouchTap={[Function]}
+            onClick={[Function]}
             style={
               Object {
                 "cursor": "pointer",
@@ -978,7 +977,6 @@ exports[`renders ok 1`] = `
               onMouseLeave={[Function]}
               onMouseOut={[Function]}
               onTouchStart={[Function]}
-              onTouchTap={[Function]}
               style={
                 Object {
                   "WebkitTapHighlightColor": "rgba(0, 0, 0, 0)",

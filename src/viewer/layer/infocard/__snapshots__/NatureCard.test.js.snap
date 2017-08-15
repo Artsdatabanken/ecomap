@@ -26,7 +26,7 @@ exports[`renders correctly 1`] = `
     }
   >
     <div
-      onTouchTap={[Function]}
+      onClick={[Function]}
       showExpandableButton={true}
       style={
         Object {
@@ -69,7 +69,6 @@ exports[`renders correctly 1`] = `
           onMouseLeave={[Function]}
           onMouseOut={[Function]}
           onTouchStart={[Function]}
-          onTouchTap={[Function]}
           style={
             Object {
               "WebkitTapHighlightColor": "rgba(0, 0, 0, 0)",
