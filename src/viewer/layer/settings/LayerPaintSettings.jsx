@@ -12,14 +12,10 @@ return checkboard2
 }
 */
 
-export default class LayerSettings extends React.Component {
+export default class LayerPaintSettings extends React.Component {
   render () {
-    console.log(this.props.visualizationMode)
     return (
-      <div style={{ marginLeft: '24px', marginRight: '24px' }}>
-        <div style={{position: 'relative', float: 'right'}}>
-          <FlatButton label='Remove' onTouchTap={() => this.props.onDelete()} />
-        </div>
+      <span>
         <VisualizationMode
           mode={this.props.visualizationMode}
           onChange={(event, index, value) =>
@@ -30,10 +26,7 @@ export default class LayerSettings extends React.Component {
           handleBlendModeChange={(event, index, value) =>
             this.props.onChange('blendMode', value)}
         />
-        <div style={{ }}>
-          <FlatButton label='Put something descriptive here' onTouchTap={() => this.props.onAddLinkedLayer()} />
-        </div>
-      </div>
+      </span>
     )
   }
 }
