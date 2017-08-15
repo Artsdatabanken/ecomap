@@ -1,27 +1,20 @@
 import React, { Component } from 'react'
 import DeckGL from 'deck.gl'
-import {hexToArray} from '../../graphics/color/colorfunc'
-import HeatmapFromPointsShaderLayer from './webgl/heatmapFromPoints-layer/heatmapFromPoints-layer'
-import viridis from '../../graphics/color/ramps/viridis.json'
+import HeatmapFromPointsLayer from './webgl/heatmapFromPoints-layer/heatmapFromPoints-layer'
 
-export default class HeatmapFromPointsShader extends Component {
-  defaultProps = {
-  };
-
+export default class HeatmapFromPoints extends Component {
   _initialize (gl) {
     gl.disable(gl.DEPTH_TEST)
     gl.enable(gl.BLEND)
   }
 
   render () {
-    const { data, viewport, radius, blendMode, fillOpacity, height } = this.props
-    const fillColor = hexToArray(this.props.fillColor, this.props.fillOpacity)
+    const { data, viewport, radius, blendMode, fillOpacity, height, colorRamp } = this.props
     if (!data) { return null }
-
-    const layer = new HeatmapFromPointsShaderLayer({
+    const layer = new HeatmapFromPointsLayer({
       id: 'heatmapfrompointsshader',
       data,
-      colorRamp: viridis,
+      colorRamp,
       height: Math.sqrt(height + 1, 2) - 1,
       radiusScale: radius * 2,
       fillOpacity,
@@ -29,7 +22,7 @@ export default class HeatmapFromPointsShader extends Component {
 //      getColor: d => fillOpacity,
       getRadius: d => radius * 100000,
       updateTriggers: {
-        getColor: { c1: fillColor },
+        getColorRamp: { c1: colorRamp },
         getRadius: { r1: radius }
       }
     })
@@ -38,7 +31,7 @@ export default class HeatmapFromPointsShader extends Component {
         style={{ mixBlendMode: blendMode }}
         {...viewport}
         layers={[layer]}
-        onWebGLInitialized={this._initialize}
+//        onWebGLInitialized={this._initialize}
       />
     )
   }

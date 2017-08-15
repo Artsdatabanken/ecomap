@@ -5,8 +5,9 @@ import PropTypes from 'prop-types'
 // import VectorTileLayer from './VectorTileLayer'
 import Hexagon from './Hexagon'
 import Scatterplot from './Scatterplot'
-import HeatmapFromPoints from './HeatmapFromPointsShader'
+import HeatmapFromPoints from './HeatmapFromPoints'
 import ArtskartDataSourceContainer from './ArtskartDataSourceContainer'
+import viridis from '../../graphics/color/ramps/viridis.json'
 
 export default class MapLayerStack extends React.Component {
   static propTypes = {
@@ -20,7 +21,6 @@ export default class MapLayerStack extends React.Component {
       }
       const layer = this.props.layers[id]
       if (!layer.visible) continue
-      console.log('render: ' + layer.id)
       r.push(
         <PointBasedLayer
           key={id}
@@ -28,7 +28,6 @@ export default class MapLayerStack extends React.Component {
           layer={layer}
           viewport={this.props.viewport}
           onUpdate={this.props.onUpdate}
-          scalingFactor={128 * 5000 * layer.paint.radius}
           zoomFactor={2}
         />
       )
@@ -49,7 +48,6 @@ const PointBasedLayer = ({ id, layer, viewport, onUpdate }) =>
       layer={layer}
       viewport={viewport}
       onUpdate={onUpdate}
-      scalingFactor={128 * 5000 * layer.paint.radius}
       zoomFactor={2}
     />
   </ArtskartDataSourceContainer>
@@ -59,7 +57,6 @@ const EcoMapLayer = ({
   layer,
   data,
   viewport,
-  scalingFactor,
   zoomFactor,
   onUpdate
 }) => {
@@ -71,6 +68,7 @@ const EcoMapLayer = ({
         <HeatmapFromPoints
           title={layer.title}
           data={data}
+          colorRamp={viridis}
           viewport={viewport}
           {...paint}
           onUpdate={onUpdate}

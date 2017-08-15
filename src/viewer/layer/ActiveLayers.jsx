@@ -36,7 +36,16 @@ export default class Layers extends React.Component {
 }
 
 const ActiveLayers = ({ layers, onUpdateLayerProp, onAdd, onDeleteLayer }) =>
-  <div style={{ width: '400px', position: 'absolute', left: '2%', top: '2%' }}>
+  <div
+    style={{
+      width: '400px',
+      left: '20px',
+      top: '20px',
+      bottom: '20px',
+      position: 'absolute',
+      overflowY: 'auto'
+    }}
+  >
     <Paper zDepth={3}>
       {Object.keys(layers).map(key => {
         const layer = layers[key]

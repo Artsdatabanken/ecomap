@@ -65,6 +65,7 @@ export default class LayerSettings extends React.Component {
               </SelectField>
             </div>
             <div style={{ }}>
+              <FlatButton label='Put something descriptive here' onTouchTap={() => this.props.onDelete()} />
               <FlatButton label='Remove' onTouchTap={() => this.props.onDelete()} />
             </div>
           </div>}
