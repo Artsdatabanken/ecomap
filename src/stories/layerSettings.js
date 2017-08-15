@@ -13,7 +13,7 @@ class ActiveLayersTest extends React.Component {
       '31241': {
         id: 31241,
         title: 'Alces alces',
-        subTitle: 'elg',
+        subTitle: 'elk',
         imageUrl:
           'https://farm5.staticflickr.com/4107/4839886016_d11b6d2cdf.jpg',
         dataUrl:

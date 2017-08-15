@@ -1,7 +1,7 @@
 import React from 'react'
-import { ListItem, Avatar } from 'material-ui'
+import { FlatButton, ListItem, Avatar } from 'material-ui'
 import {hexToRgbaString} from '../../graphics/color/colorfunc'
-import LayerSettings from './settings/LayerSettings'
+import LayerPaintSettings from './settings/LayerPaintSettings'
 import PaintSwatch from './PaintSwatch'
 
 export default class ActiveLayerStrip extends React.Component {
@@ -28,12 +28,20 @@ export default class ActiveLayerStrip extends React.Component {
           onClick={() => this.setState(prevState => ({expanded: !prevState.expanded}))}
        />
         {this.state.expanded &&
-        <LayerSettings
-          {...paint}
-          onChange={this.props.onChange}
-          onDelete={this.props.onDelete}
-          showColorDialog={this.state.showColorDialog}
-      />
+          <div style={{ marginLeft: '24px', marginRight: '24px' }}>
+            <div style={{position: 'relative', float: 'right'}}>
+              <FlatButton label='Remove' onTouchTap={() => this.props.onDelete()} />
+            </div>
+            <LayerPaintSettings
+              {...paint}
+              onChange={this.props.onChange}
+              onDelete={this.props.onDelete}
+              showColorDialog={this.state.showColorDialog}
+            />
+            <div style={{ }}>
+              <FlatButton label='Put something descriptive here' onTouchTap={() => this.props.onAddLinkedLayer()} />
+            </div>
+          </div>
       }
       </div>
     )

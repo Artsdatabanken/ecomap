@@ -35,33 +35,35 @@ export default class Layers extends React.Component {
     this.setState(prevState => ({ showAddLayersDialog: false }))
 }
 
-const ActiveLayers = ({ layers, onUpdateLayerProp, onAdd, onDeleteLayer }) =>
-  <div
-    style={{
-      width: '400px',
-      left: '20px',
-      top: '20px',
-      bottom: '20px',
-      position: 'absolute',
-      overflowY: 'auto'
-    }}
+const ActiveLayers = ({
+  layers, onUpdateLayerProp, onAdd, onAddLinkedLayer, onDeleteLayer }) =>
+    <div
+      style={{
+        width: '400px',
+        left: '20px',
+        top: '20px',
+        bottom: '20px',
+        position: 'absolute',
+        overflowY: 'auto'
+      }}
   >
-    <Paper zDepth={3}>
-      {Object.keys(layers).map(key => {
-        const layer = layers[key]
-        return (
-          <ActiveLayerStrip
-            key={layer.id}
-            onChange={(key, value) => {
-              onUpdateLayerProp(layer, key, value)
-            }}
-            onDelete={() => onDeleteLayer(layer)}
-            {...layer}
+      <Paper zDepth={3}>
+        {Object.keys(layers).map(key => {
+          const layer = layers[key]
+          return (
+            <ActiveLayerStrip
+              key={layer.id}
+              onChange={(key, value) => {
+                onUpdateLayerProp(layer, key, value)
+              }}
+              ononAddLinkedLayer={onAddLinkedLayer(layer)}
+              onDelete={() => onDeleteLayer(layer)}
+              {...layer}
           />
-        )
-      })}
-      <FloatingActionButton style={{ margin: '12px' }} onTouchTap={onAdd}>
-        <ContentAdd />
-      </FloatingActionButton>
-    </Paper>
-  </div>
+          )
+        })}
+        <FloatingActionButton style={{ margin: '12px' }} onTouchTap={onAdd}>
+          <ContentAdd />
+        </FloatingActionButton>
+      </Paper>
+    </div>
