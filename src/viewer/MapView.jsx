@@ -11,6 +11,7 @@ import CloseOnEscape from '../HigherOrder/CloseOnEscape'
 import LoadingIndicator from '../LoadingIndicator'
 import ActiveLayers from './layer/ActiveLayers'
 import ActiveLayersContainer from './layer/ActiveLayersContainer'
+import ReactDOM from 'react-dom'
 
 export default class MainPage extends React.Component {
   state = {
@@ -104,7 +105,9 @@ export default class MainPage extends React.Component {
 
   render () {
     return (
-      <div style={{ width: '100%' }}>
+      <div style={{ width: '100%' }}
+        ref={(me) => { this.rootElement = ReactDOM.findDOMNode(me) }}
+      >
         {false &&
           <div
             style={{
@@ -156,7 +159,7 @@ export default class MainPage extends React.Component {
           <CardStack features={this.state.features} />}
 
         <ActiveLayersContainer>
-          {true && <Map
+          {this.state.showMap && <Map
             animate={this.state.animate}
             layers={this.state.layers}
             onClick={features => this.onClick(features)}
@@ -176,13 +179,22 @@ export default class MainPage extends React.Component {
   }
 
   handleKeyDown = (e) => {
-    if (!e.ctrl) return
+    console.log(e)
+    // if (!e.ctrl) return
     // TODO: only capture key strokes not handled elsewhere
-    if (e.key === 'l') {
-      this.setState(prevState => ({
-        showLayersDialog: !prevState.showLayersDialog
-      }))
-      // e.stopPropagation()
+    switch (e.key) {
+      case 'l':
+        this.setState(prevState => ({
+          showLayersDialog: !prevState.showLayersDialog }))
+        e.stopPropagation()
+        break
+      case 'm':
+        this.setState(prevState => ({
+          showMap: !prevState.showMap }))
+        e.stopPropagation()
+        break
+      default:
+        break
     }
   }
 

@@ -21,7 +21,7 @@ const defaultProps = {
   getColor: x => x.color || DEFAULT_COLOR
 }
 
-export default class HeatmapFromPointsShader extends Layer {
+export default class HeatmapFromPointsLayer extends Layer {
   getShaders (id) {
     const { shaderCache } = this.context
     return { vs, fs, modules: ['project'], shaderCache }
@@ -216,5 +216,5 @@ export default class HeatmapFromPointsShader extends Layer {
   }
 }
 
-HeatmapFromPointsShader.layerName = 'HeatmapFromPointsShader'
-HeatmapFromPointsShader.defaultProps = defaultProps
+HeatmapFromPointsLayer.layerName = 'HeatmapFromPoints'
+HeatmapFromPointsLayer.defaultProps = defaultProps
