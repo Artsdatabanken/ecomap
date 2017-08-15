@@ -20,7 +20,7 @@ const SliderSetting = ({ title, icon, value, onChange }) =>
         sliderStyle={{marginTop: '6px', marginBottom: '0px'}}
         min={0}
         max={1}
-        step={0.05}
+        step={0.01}
         value={value}
         onChange={(event, value) => onChange(value)}
       />
