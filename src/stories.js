@@ -22,7 +22,7 @@ import ScatterplotStoryLocal from './stories/ScatterplotStoryLocal'
 import HexagonStory from './stories/HexagonStory'
 import HexagonStoryLocal from './stories/HexagonStoryLocal'
 import ExperimentalShaderStory from './stories/ExperimentalShaderStory'
-import HeatmapFromPointsShaderStory from './stories/HeatmapFromPointsShaderStory'
+import HeatmapFromPointsStory from './stories/HeatmapFromPointsStory'
 import diagrams from './stories/Diagrams'
 import layerSettings from './stories/layerSettings'
 
@@ -33,7 +33,7 @@ storiesOf('Layer rendering', module)
     <ArcStory />
   </Paper>
 )
-.add('Heatmap from points', () => <HeatmapFromPointsShaderStory />)
+.add('Heatmap from points', () => <HeatmapFromPointsStory />)
 .add('Experimental shader', () => <ExperimentalShaderStory />)
 .add('Scatterplot', () => <ScatterplotStory />)
 .add('Scatterplot local', () => <ScatterplotStoryLocal />)
