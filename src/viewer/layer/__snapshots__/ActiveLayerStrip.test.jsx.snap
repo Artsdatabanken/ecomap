@@ -15,7 +15,6 @@ exports[`renders ok 1`] = `
       onMouseLeave={[Function]}
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
-      onTouchTap={[Function]}
       open={null}
       style={
         Object {
