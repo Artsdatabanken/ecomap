@@ -1,9 +1,6 @@
 import React, { Component } from 'react'
 import DeckGL, { HexagonLayer } from 'deck.gl'
-import {viridis} from '../../graphics/color/ramps.js'
-import {hexToArray} from '../../graphics/color/colorfunc'
-
-const viridisArray = viridis.map(c => hexToArray(c))
+import ramp from '../../graphics/color/ramps/'
 
 const LIGHT_SETTINGS = {
   lightsPosition: [-0.144528, 49.739968, 8000, -3.807751, 54.104682, 8000],
@@ -31,7 +28,7 @@ export default class Hexagon extends Component {
   static displayName = 'Hexagon'
 
   static get defaultColorRange () {
-    return viridisArray
+    return ramp.viridis
   }
 
   constructor (props) {
@@ -88,14 +85,16 @@ export default class Hexagon extends Component {
 
   render () {
     const { data, viewport, radius, coverage, elevationMin, elevationMax,
-      lowerPercentile, upperPercentile, fillOpacity, blendMode } = this.props
+      lowerPercentile, upperPercentile, opacity, blendMode, colorRange } = this.props
     if (!data) { return null }
-
+    console.log('len: ', colorRange.length)
+    console.log(colorRange)
+    console.log(this.props)
     const layers = [
       new HexagonLayer({
         id: 'heatmap',
-//        colorDomain: [0, 10],
-        colorRange: viridisArray,
+        colorRange,
+        opacity: opacity,
         coverage,
         data,
         elevationRange: [elevationMin * 20000, elevationMax * 200000],
@@ -103,7 +102,6 @@ export default class Hexagon extends Component {
         getPosition: d => d,
         lightSettings: LIGHT_SETTINGS,
         onHover: this.props.onHover,
-        opacity: fillOpacity,
         pickable: Boolean(this.props.onHover),
         radius: radius * 20000,
         lowerPercentile: lowerPercentile * 100,

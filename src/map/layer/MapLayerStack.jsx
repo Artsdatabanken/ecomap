@@ -7,6 +7,7 @@ import Hexagon from './Hexagon'
 import Scatterplot from './Scatterplot'
 import HeatmapFromPoints from './HeatmapFromPoints'
 import ArtskartDataSourceContainer from './ArtskartDataSourceContainer'
+import ramp from '../../graphics/color/ramps/'
 
 export default class MapLayerStack extends React.Component {
   static propTypes = {
@@ -86,9 +87,10 @@ const EcoMapLayer = ({
       return (
         <Hexagon
           title={layer.title}
+          colorRange={ramp.sliceInFours(ramp[paint.colorRamp])}
+          opacity={paint.fillOpacity}
           data={data}
           viewport={viewport}
-          {...paint}
           onUpdate={onUpdate}
         />
       )

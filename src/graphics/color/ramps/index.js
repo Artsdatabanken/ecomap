@@ -22,5 +22,12 @@ ramp.inferno = map(inferno)
 ramp.magma = map(magma)
 ramp.plasma = map(plasma)
 ramp.viridis = map(viridis)
+ramp.sliceInFours = function (ramp) {
+  var r = []
+  for (var i = 0; i < ramp.length / 4; i++) {
+    r.push(Array.from(ramp.slice(i * 4, i * 4 + 4)))
+  }
+  return r
+}
 
 export default ramp
