@@ -1,5 +1,5 @@
 import React from 'react'
-import { Paper } from 'material-ui'
+import { FlatButton, Paper } from 'material-ui'
 import FloatingActionButton from 'material-ui/FloatingActionButton'
 import ContentAdd from 'material-ui/svg-icons/content/add'
 import SelectSpeciesDialog from './add/species/SelectSpeciesDialog'
@@ -64,8 +64,6 @@ const Layers = ({
           />
           )
         })}
-        <FloatingActionButton style={{ margin: '12px' }} onTouchTap={onAdd}>
-          <ContentAdd />
-        </FloatingActionButton>
+        <FlatButton label='Add' onTouchTap={onAdd} />
       </Paper>
     </div>

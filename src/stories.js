@@ -42,7 +42,7 @@ storiesOf('Layer rendering', module)
 
 layerSettings()
 
-storiesOf('Add Layer', module)
+storiesOf('Layer Add', module)
 .addDecorator(muiTheme([theme]))
 .add('Species Card', () =>
   <div style={{ margin: 0, width: '20%' }}>
@@ -61,7 +61,7 @@ storiesOf('Add Layer', module)
   <div style={{ margin: 20, width: '70%' }}>
     <SelectSpecies onClick={action('onClick')} />
   </div>)
-.add('Add layer', () => <AddLayer onClick={action('onClick')} />)
+.add('Add Layer', () => <AddLayer onClick={action('onClick')} />)
 
 storiesOf('Common', module)
   .addDecorator(muiTheme([theme]))
@@ -106,7 +106,7 @@ storiesOf('Menu', module)
       <LeftMenu />
     </div>
   )
-  .add('CardStack', () =>
+  .add('Card Stack', () =>
     <div style={{ margin: '20px' }}>
       <CardStack
         features={[
@@ -117,29 +117,30 @@ storiesOf('Menu', module)
     </div>
   )
 
-storiesOf('SearchBar', module).addDecorator(muiTheme()).add('primary', () =>
+storiesOf('Search Bar', module).addDecorator(muiTheme()).add('primary', () =>
   <div style={{ margin: '20px' }}>
     <SearchBar />
   </div>
 )
 
-storiesOf('FilterTag', module)
+storiesOf('Filter', module)
   .addDecorator(muiTheme([theme]))
   .add('primary', () =>
     <div>
-      <FilterTag onRequestDelete={action('requestDelete')}>
+      <FilterTag onRequestDelete={action('requestDelete')}><div style={{position: 'relative', top: '5px'}}>
         <ColorRamp
           steps={viridis}
         />
+      </div>
       </FilterTag>
     </div>
-).add('search criteria', () =>
+).add('Filter string', () =>
   <div style={{display: 'flex', lineHeight: '52px', textAlign: 'center'}}>
     <SpeciesTag onRequestDelete={action('requestDelete')}>Moose</SpeciesTag> observed between the year
   <YearTag onRequestDelete={action('requestDelete')}>2000</YearTag> and
   <YearTag onRequestDelete={action('requestDelete')}>2010</YearTag> in
-  <NatureTag onRequestDelete={action('requestDelete')}>Forests</NatureTag> at minimum altitude of
-  <EnvironmentalTag onRequestDelete={action('requestDelete')}>600 m</EnvironmentalTag>
+  <NatureTag onRequestDelete={action('requestDelete')}>Forests</NatureTag> at minimum
+  <EnvironmentalTag onRequestDelete={action('requestDelete')}>600 m</EnvironmentalTag> above sea level
   </div>)
 
 diagrams()
