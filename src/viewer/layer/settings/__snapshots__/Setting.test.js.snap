@@ -5,21 +5,43 @@ exports[`renders ok 1`] = `
   <div
     style={
       Object {
+        "color": "rgba(0, 0, 0, 0.3)",
+        "fontFamily": "Roboto, sans-serif",
+        "fontSize": "12px",
+        "position": "relative",
+      }
+    }
+  />
+  <div
+    style={
+      Object {
         "display": "inline-block",
+        "left": "8px",
       }
     }
   >
     <div
       style={
         Object {
-          "color": "rgba(0, 0, 0, 0.3)",
-          "fontFamily": "Roboto, sans-serif",
-          "fontSize": "12px",
+          "float": "left",
           "position": "relative",
+          "top": "2px",
         }
       }
     />
-    <div />
+    <div
+      style={
+        Object {
+          "float": "left",
+          "paddingBottom": "8px",
+          "paddingLeft": "16px",
+          "position": "relative",
+          "width": "310px",
+        }
+      }
+    >
+      <div />
+    </div>
   </div>
 </div>
 `;
