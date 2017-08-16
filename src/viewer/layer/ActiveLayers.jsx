@@ -5,7 +5,7 @@ import ContentAdd from 'material-ui/svg-icons/content/add'
 import SelectSpeciesDialog from './add/species/SelectSpeciesDialog'
 import ActiveLayerStrip from './ActiveLayerStrip'
 
-export default class Layers extends React.Component {
+export default class ActiveLayers extends React.Component {
   state = {}
   render () {
     const { layers, onAddLayer, onUpdateLayerProp, onDeleteLayer } = this.props
@@ -19,23 +19,25 @@ export default class Layers extends React.Component {
       )
     }
     return (
-      <ActiveLayers
+      <Layers
         layers={layers}
         onUpdateLayerProp={onUpdateLayerProp}
         onAdd={this.handleShowAddLayers}
+        onAddLinkedLayer={this.handleAddLinkedLayer}
         onDeleteLayer={onDeleteLayer}
       />
     )
   }
 
+  handleAddLinkedLayer = () =>
+    this.setState(prevState => ({ showAddLayersDialog: true, addingLinkedLayer: true }))
   handleShowAddLayers = () =>
     this.setState(prevState => ({ showAddLayersDialog: true }))
-
   handleHideAddLayers = () =>
-    this.setState(prevState => ({ showAddLayersDialog: false }))
+    this.setState(prevState => ({ showAddLayersDialog: false, addingLinkedLayer: false }))
 }
 
-const ActiveLayers = ({
+const Layers = ({
   layers, onUpdateLayerProp, onAdd, onAddLinkedLayer, onDeleteLayer }) =>
     <div
       style={{
@@ -56,7 +58,7 @@ const ActiveLayers = ({
               onChange={(key, value) => {
                 onUpdateLayerProp(layer, key, value)
               }}
-              ononAddLinkedLayer={() => onAddLinkedLayer(layer)}
+              onAddLinkedLayer={() => onAddLinkedLayer(layer)}
               onDelete={() => onDeleteLayer(layer)}
               {...layer}
           />

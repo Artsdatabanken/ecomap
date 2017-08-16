@@ -39,7 +39,7 @@ export default class ActiveLayerStrip extends React.Component {
               showColorDialog={this.state.showColorDialog}
             />
             <div style={{ }}>
-              <FlatButton label='Put something descriptive here' onTouchTap={() => this.props.onAddLinkedLayer()} />
+              <FlatButton label='Show correlation' onTouchTap={() => this.props.onAddLinkedLayer()} />
             </div>
           </div>
       }
