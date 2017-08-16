@@ -1,5 +1,4 @@
 import React from 'react'
-import { FlatButton } from 'material-ui'
 import CustomLayerSettings from './layer/CustomLayerSettings'
 import CompositionBlendMode from './CompositionBlendMode'
 import VisualizationMode from './VisualizationMode'
