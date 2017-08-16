@@ -20,11 +20,11 @@ export default class HeatmapFromPoints extends Component {
       fillOpacity,
       getPosition: d => [d[0], d[1]],
 //      getColor: d => fillOpacity,
-      getRadius: d => radius * 100000,
-      updateTriggers: {
+      getRadius: d => radius * 100000
+/*      updateTriggers: {
         getColorRamp: { c1: colorRamp },
         getRadius: { r1: radius }
-      }
+      } */
     })
     return (
       <DeckGL

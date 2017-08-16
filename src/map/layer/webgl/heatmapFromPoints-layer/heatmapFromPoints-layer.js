@@ -66,7 +66,7 @@ export default class HeatmapFromPointsLayer extends Layer {
       },
       mipmaps: false
     })
-    //   rampTexture.bind(0);
+
     this.setState({
       model: this._getModel(gl),
       model2: this._getModel2(gl),
@@ -102,6 +102,15 @@ export default class HeatmapFromPointsLayer extends Layer {
         model: this._getModel(gl),
         model2: this._getModel2(gl)
       })
+    }
+    console.log(props, oldProps, changeFlags)
+    if (props.colorRamp !== oldProps.colorRamp) {
+      const gl = this.context.gl
+//      gl.bindTexture(gl.TEXTURE_2D, this.state.rampTexture)
+      this.state.rampTexture.bind(0)
+//      gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, false);
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 256, 1, 0, gl.RGBA, gl.UNSIGNED_BYTE, props.colorRamp)
+//      this.state.rampTexture.setImageData({data: props.colorRamp})
     }
     this.updateAttribute({ props, oldProps, changeFlags })
   }

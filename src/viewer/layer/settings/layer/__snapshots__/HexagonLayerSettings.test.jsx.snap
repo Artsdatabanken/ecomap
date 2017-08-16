@@ -6,22 +6,23 @@ exports[`renders ok 1`] = `
     <div
       style={
         Object {
-          "display": "inline-block",
+          "color": "rgba(0, 0, 0, 0.3)",
+          "fontFamily": "Roboto, sans-serif",
+          "fontSize": "12px",
+          "position": "relative",
         }
       }
     >
-      <div
-        style={
-          Object {
-            "color": "rgba(0, 0, 0, 0.3)",
-            "fontFamily": "Roboto, sans-serif",
-            "fontSize": "12px",
-            "position": "relative",
-          }
+      Bin radius
+    </div>
+    <div
+      style={
+        Object {
+          "display": "inline-block",
+          "left": "8px",
         }
-      >
-        Bin radius
-      </div>
+      }
+    >
       <div
         style={
           Object {
@@ -65,6 +66,7 @@ exports[`renders ok 1`] = `
         }
       >
         <div
+          id="1"
           style={
             Object {
               "muiPrepared": true,
@@ -198,22 +200,23 @@ exports[`renders ok 1`] = `
     <div
       style={
         Object {
-          "display": "inline-block",
+          "color": "rgba(0, 0, 0, 0.3)",
+          "fontFamily": "Roboto, sans-serif",
+          "fontSize": "12px",
+          "position": "relative",
         }
       }
     >
-      <div
-        style={
-          Object {
-            "color": "rgba(0, 0, 0, 0.3)",
-            "fontFamily": "Roboto, sans-serif",
-            "fontSize": "12px",
-            "position": "relative",
-          }
+      Lower percentile
+    </div>
+    <div
+      style={
+        Object {
+          "display": "inline-block",
+          "left": "8px",
         }
-      >
-        Lower percentile
-      </div>
+      }
+    >
       <div
         style={
           Object {
@@ -257,6 +260,7 @@ exports[`renders ok 1`] = `
         }
       >
         <div
+          id="2"
           style={
             Object {
               "muiPrepared": true,
@@ -391,22 +395,23 @@ exports[`renders ok 1`] = `
     <div
       style={
         Object {
-          "display": "inline-block",
+          "color": "rgba(0, 0, 0, 0.3)",
+          "fontFamily": "Roboto, sans-serif",
+          "fontSize": "12px",
+          "position": "relative",
         }
       }
     >
-      <div
-        style={
-          Object {
-            "color": "rgba(0, 0, 0, 0.3)",
-            "fontFamily": "Roboto, sans-serif",
-            "fontSize": "12px",
-            "position": "relative",
-          }
+      Upper percentile
+    </div>
+    <div
+      style={
+        Object {
+          "display": "inline-block",
+          "left": "8px",
         }
-      >
-        Upper percentile
-      </div>
+      }
+    >
       <div
         style={
           Object {
@@ -450,6 +455,7 @@ exports[`renders ok 1`] = `
         }
       >
         <div
+          id="3"
           style={
             Object {
               "muiPrepared": true,
@@ -584,22 +590,23 @@ exports[`renders ok 1`] = `
     <div
       style={
         Object {
-          "display": "inline-block",
+          "color": "rgba(0, 0, 0, 0.3)",
+          "fontFamily": "Roboto, sans-serif",
+          "fontSize": "12px",
+          "position": "relative",
         }
       }
     >
-      <div
-        style={
-          Object {
-            "color": "rgba(0, 0, 0, 0.3)",
-            "fontFamily": "Roboto, sans-serif",
-            "fontSize": "12px",
-            "position": "relative",
-          }
+      Opacity
+    </div>
+    <div
+      style={
+        Object {
+          "display": "inline-block",
+          "left": "8px",
         }
-      >
-        Opacity
-      </div>
+      }
+    >
       <div
         style={
           Object {
@@ -643,6 +650,7 @@ exports[`renders ok 1`] = `
         }
       >
         <div
+          id="4"
           style={
             Object {
               "muiPrepared": true,
@@ -776,22 +784,23 @@ exports[`renders ok 1`] = `
     <div
       style={
         Object {
-          "display": "inline-block",
+          "color": "rgba(0, 0, 0, 0.3)",
+          "fontFamily": "Roboto, sans-serif",
+          "fontSize": "12px",
+          "position": "relative",
         }
       }
     >
-      <div
-        style={
-          Object {
-            "color": "rgba(0, 0, 0, 0.3)",
-            "fontFamily": "Roboto, sans-serif",
-            "fontSize": "12px",
-            "position": "relative",
-          }
+      Coverage
+    </div>
+    <div
+      style={
+        Object {
+          "display": "inline-block",
+          "left": "8px",
         }
-      >
-        Coverage
-      </div>
+      }
+    >
       <div
         style={
           Object {
@@ -835,6 +844,7 @@ exports[`renders ok 1`] = `
         }
       >
         <div
+          id="5"
           style={
             Object {
               "muiPrepared": true,
@@ -968,22 +978,23 @@ exports[`renders ok 1`] = `
     <div
       style={
         Object {
-          "display": "inline-block",
+          "color": "rgba(0, 0, 0, 0.3)",
+          "fontFamily": "Roboto, sans-serif",
+          "fontSize": "12px",
+          "position": "relative",
         }
       }
     >
-      <div
-        style={
-          Object {
-            "color": "rgba(0, 0, 0, 0.3)",
-            "fontFamily": "Roboto, sans-serif",
-            "fontSize": "12px",
-            "position": "relative",
-          }
+      Elevation min
+    </div>
+    <div
+      style={
+        Object {
+          "display": "inline-block",
+          "left": "8px",
         }
-      >
-        Elevation min
-      </div>
+      }
+    >
       <div
         style={
           Object {
@@ -1027,6 +1038,7 @@ exports[`renders ok 1`] = `
         }
       >
         <div
+          id="6"
           style={
             Object {
               "muiPrepared": true,
@@ -1161,22 +1173,23 @@ exports[`renders ok 1`] = `
     <div
       style={
         Object {
-          "display": "inline-block",
+          "color": "rgba(0, 0, 0, 0.3)",
+          "fontFamily": "Roboto, sans-serif",
+          "fontSize": "12px",
+          "position": "relative",
         }
       }
     >
-      <div
-        style={
-          Object {
-            "color": "rgba(0, 0, 0, 0.3)",
-            "fontFamily": "Roboto, sans-serif",
-            "fontSize": "12px",
-            "position": "relative",
-          }
+      Elevation max
+    </div>
+    <div
+      style={
+        Object {
+          "display": "inline-block",
+          "left": "8px",
         }
-      >
-        Elevation max
-      </div>
+      }
+    >
       <div
         style={
           Object {
@@ -1220,6 +1233,7 @@ exports[`renders ok 1`] = `
         }
       >
         <div
+          id="7"
           style={
             Object {
               "muiPrepared": true,

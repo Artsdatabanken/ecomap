@@ -6,22 +6,23 @@ exports[`loading standard tile 1`] = `
     <div
       style={
         Object {
-          "display": "inline-block",
+          "color": "rgba(0, 0, 0, 0.3)",
+          "fontFamily": "Roboto, sans-serif",
+          "fontSize": "12px",
+          "position": "relative",
         }
       }
     >
-      <div
-        style={
-          Object {
-            "color": "rgba(0, 0, 0, 0.3)",
-            "fontFamily": "Roboto, sans-serif",
-            "fontSize": "12px",
-            "position": "relative",
-          }
+      Radius
+    </div>
+    <div
+      style={
+        Object {
+          "display": "inline-block",
+          "left": "8px",
         }
-      >
-        Radius
-      </div>
+      }
+    >
       <div
         style={
           Object {
@@ -65,6 +66,7 @@ exports[`loading standard tile 1`] = `
         }
       >
         <div
+          id="1"
           style={
             Object {
               "muiPrepared": true,
