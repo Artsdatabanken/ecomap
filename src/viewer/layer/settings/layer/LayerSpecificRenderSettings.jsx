@@ -3,7 +3,7 @@ import HeatmapLayerSettings from './HeatmapLayerSettings'
 import HexagonLayerSettings from './HexagonLayerSettings'
 import ScatterplotLayerSettings from './ScatterplotLayerSettings'
 
-const CustomLayerSettings = (props) => {
+const LayerSpecificRenderSettings = (props) => {
   switch (props.visualizationMode) {
     case 'heatmap' : return <HeatmapLayerSettings {...props} />
     case 'scatterplot' : return <ScatterplotLayerSettings {...props} />
@@ -12,4 +12,4 @@ const CustomLayerSettings = (props) => {
   }
 }
 
-export default CustomLayerSettings
+export default LayerSpecificRenderSettings

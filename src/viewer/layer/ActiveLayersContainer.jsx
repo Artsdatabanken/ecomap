@@ -18,6 +18,7 @@ export default class ActiveLayersContainer extends React.Component {
         paint: {
           fillColor: '#916446',
           fillOpacity: 0.86,
+          colorRamp: 'viridis',
           coverage: 0.95,
           radius: 0.4,
           visualizationMode: 'heatmap',

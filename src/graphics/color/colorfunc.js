@@ -10,6 +10,24 @@ export function hexToRgba (color, opacity) {
   return rgba
 }
 
+export function hex2rgb (hex) {
+  return {
+    // skip # at position 0
+    r: parseInt(hex.slice(1, 3), 16) / 255,
+    g: parseInt(hex.slice(3, 5), 16) / 255,
+    b: parseInt(hex.slice(5, 7), 16) / 255
+  }
+}
+
+export function hex2rgbint (hex) {
+  return {
+    // skip # at position 0
+    r: parseInt(hex.slice(1, 3), 16),
+    g: parseInt(hex.slice(3, 5), 16),
+    b: parseInt(hex.slice(5, 7), 16)
+  }
+}
+
 export function hexToRgb (hex) {
     // Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
   var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i

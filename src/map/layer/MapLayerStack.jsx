@@ -7,7 +7,6 @@ import Hexagon from './Hexagon'
 import Scatterplot from './Scatterplot'
 import HeatmapFromPoints from './HeatmapFromPoints'
 import ArtskartDataSourceContainer from './ArtskartDataSourceContainer'
-import viridis from '../../graphics/color/ramps/viridis.json'
 
 export default class MapLayerStack extends React.Component {
   static propTypes = {
@@ -68,7 +67,6 @@ const EcoMapLayer = ({
         <HeatmapFromPoints
           title={layer.title}
           data={data}
-          colorRamp={viridis}
           viewport={viewport}
           {...paint}
           onUpdate={onUpdate}
