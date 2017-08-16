@@ -1,7 +1,5 @@
 import React from 'react'
 import { FlatButton, Paper } from 'material-ui'
-import FloatingActionButton from 'material-ui/FloatingActionButton'
-import ContentAdd from 'material-ui/svg-icons/content/add'
 import SelectSpeciesDialog from './add/species/SelectSpeciesDialog'
 import ActiveLayerStrip from './ActiveLayerStrip'
 
