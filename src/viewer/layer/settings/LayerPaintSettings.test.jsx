@@ -3,12 +3,12 @@ import renderer from 'react-test-renderer'
 import muiTheme from '../../../theme_jest'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
-import LayerSettings from './LayerSettings'
+import LayerPaintSettings from './LayerPaintSettings'
 
 it('renders ok', () => {
   const tree = renderer.create(
     <MuiThemeProvider muiTheme={muiTheme}>
-      <LayerSettings
+      <LayerPaintSettings
         visualizationMode='heatmap'
         blendMode='multiply'
         fillOpacity={0.1}
