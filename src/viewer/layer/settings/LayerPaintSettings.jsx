@@ -1,5 +1,5 @@
 import React from 'react'
-import CustomLayerSettings from './layer/CustomLayerSettings'
+import LayerSpecificRenderSettings from './layer/LayerSpecificRenderSettings'
 import CompositionBlendMode from './CompositionBlendMode'
 import VisualizationMode from './VisualizationMode'
 
@@ -19,7 +19,7 @@ export default class LayerPaintSettings extends React.Component {
           mode={this.props.visualizationMode}
           onChange={(event, index, value) =>
             this.props.onChange('visualizationMode', value)} />
-        <CustomLayerSettings {...this.props} />
+        <LayerSpecificRenderSettings {...this.props} />
         <CompositionBlendMode
           blendMode={this.props.blendMode}
           handleBlendModeChange={(event, index, value) =>

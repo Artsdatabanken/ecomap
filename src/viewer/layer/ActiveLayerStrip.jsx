@@ -5,7 +5,7 @@ import LayerPaintSettings from './settings/LayerPaintSettings'
 import PaintSwatch from './PaintSwatch'
 
 export default class ActiveLayerStrip extends React.Component {
-  state = {expanded: false, showColorDialog: true}
+  state = {expanded: true, showColorDialog: true}
 
   render () {
     const paint = this.props.paint

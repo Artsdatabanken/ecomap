@@ -17,7 +17,7 @@ export default class MainPage extends React.Component {
   state = {
     animate: false,
     venstreMenyÅpen: false,
-    showAddLayersDialog: false,
+    showLayersDialog: true,
     feature: {},
     layers: {
       'L1-1': { title: 'Grunn limnisk fastbunn', visible: false },
