@@ -56,7 +56,7 @@ const ActiveLayers = ({
               onChange={(key, value) => {
                 onUpdateLayerProp(layer, key, value)
               }}
-              ononAddLinkedLayer={onAddLinkedLayer(layer)}
+              ononAddLinkedLayer={() => onAddLinkedLayer(layer)}
               onDelete={() => onDeleteLayer(layer)}
               {...layer}
           />
