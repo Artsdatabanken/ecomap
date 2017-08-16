@@ -2,6 +2,7 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
 import { muiTheme } from 'storybook-addon-material-ui'
+import { Paper } from 'material-ui'
 import ActiveLayers from '../viewer/layer/ActiveLayers'
 import HexagonLayerSettings from '../viewer/layer/settings/layer/HexagonLayerSettings'
 import ScatterplotLayerSettings from '../viewer/layer/settings/layer/ScatterplotLayerSettings'
@@ -55,12 +56,12 @@ class ActiveLayersTest extends React.Component {
 }
 
 const layerSettings = () =>
-  storiesOf('Layer settings', module)
+  storiesOf('Layer Settings', module)
     .addDecorator(muiTheme())
     .add('primary', () =>
-      <div style={{ margin: '20px' }}>
+      <NeutralBackground style={{ margin: '20px' }}>
         <ActiveLayersTest />
-      </div>
+      </NeutralBackground>
     )
     .add('Heatmap', () => {
       let paint = {
@@ -72,12 +73,12 @@ const layerSettings = () =>
         blendMode: 'multiply'
       }
       return (
-        <div style={{ width: '400px', padding: '20px' }}>
+        <GiftWrap>
           <HeatmapLayerSettings
             {...paint}
             onChange={action('onUpdateLayerProp')}
           />
-        </div>
+        </GiftWrap>
       )
     })
     .add('Scatterplot', () => {
@@ -90,12 +91,12 @@ const layerSettings = () =>
         blendMode: 'multiply'
       }
       return (
-        <div style={{ width: '400px', padding: '20px' }}>
+        <GiftWrap>
           <ScatterplotLayerSettings
             {...paint}
             onChange={action('onUpdateLayerProp')}
           />
-        </div>
+        </GiftWrap>
       )
     })
     .add('Hexagon', () => {
@@ -108,13 +109,27 @@ const layerSettings = () =>
         blendMode: 'multiply'
       }
       return (
-        <div style={{ width: '400px', padding: '20px' }}>
+        <GiftWrap>
           <HexagonLayerSettings
             {...paint}
             onChange={action('onUpdateLayerProp')}
           />
-        </div>
+        </GiftWrap>
       )
     })
+
+const GiftWrap = ({children}) =>
+  <NeutralBackground>
+    <div style={{ width: '400px', padding: '20px' }}>
+      <Paper zDepth={4} style={{padding: '20px'}}>
+        {children}
+      </Paper>
+    </div>
+  </NeutralBackground>
+
+const NeutralBackground = ({children}) =>
+  <div style={{ position: 'absolute', width: '100%', height: '100%', backgroundColor: '#ccc'}}>
+    {children}
+  </div>
 
 export default layerSettings
