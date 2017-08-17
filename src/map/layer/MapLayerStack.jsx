@@ -90,6 +90,15 @@ const EcoMapLayer = ({
           colorRange={ramp.sliceInFours(ramp[paint.colorRamp])}
           opacity={paint.fillOpacity}
           data={data}
+          radius={paint.radius}
+          coverage={paint.coverage}
+          elevationMin={paint.elevationMin}
+          elevationMax={paint.elevationMax}
+          colorDomainMin={paint.colorDomainMin}
+          colorDomainMax={paint.colorDomainMax}
+          lowerPercentile={paint.lowerPercentile}
+          upperPercentile={paint.upperPercentile}
+          blendMode={paint.blendMode}
           viewport={viewport}
           onUpdate={onUpdate}
         />

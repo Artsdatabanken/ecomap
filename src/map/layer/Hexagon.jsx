@@ -85,25 +85,24 @@ export default class Hexagon extends Component {
 
   render () {
     const { data, viewport, radius, coverage, elevationMin, elevationMax,
-      lowerPercentile, upperPercentile, opacity, blendMode, colorRange } = this.props
+      lowerPercentile, upperPercentile, opacity, blendMode, colorRange,
+      colorDomainMin, colorDomainMax } = this.props
     if (!data) { return null }
-    console.log('len: ', colorRange.length)
-    console.log(colorRange)
-    console.log(this.props)
     const layers = [
       new HexagonLayer({
         id: 'heatmap',
         colorRange,
-        opacity: opacity,
+        colorDomain: [colorDomainMin * 50, colorDomainMax * 50],
+        opacity,
         coverage,
         data,
-        elevationRange: [elevationMin * 20000, elevationMax * 200000],
+        elevationRange: [elevationMin * 200000, elevationMax * 500000],
         extruded: elevationMax > 0,
         getPosition: d => d,
         lightSettings: LIGHT_SETTINGS,
         onHover: this.props.onHover,
         pickable: Boolean(this.props.onHover),
-        radius: radius * 20000,
+        radius: radius * 50000,
         lowerPercentile: lowerPercentile * 100,
         upperPercentile: upperPercentile * 100
       })

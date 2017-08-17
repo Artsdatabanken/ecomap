@@ -24,9 +24,9 @@ ramp.plasma = map(plasma)
 ramp.viridis = map(viridis)
 ramp.sliceInFours = function (ramp) {
   var r = []
-  for (var i = 0; i < ramp.length / 4; i++) {
-    r.push(Array.from(ramp.slice(i * 4, i * 4 + 4)))
-  }
+  const colorCount = ramp.length / 4
+  var o = 0
+  for (var i = 0; i < colorCount; i++) { r[i] = [ramp[o++], ramp[o++], ramp[o++], ramp[o++]] }
   return r
 }
 
