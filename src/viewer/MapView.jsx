@@ -15,6 +15,7 @@ import ReactDOM from 'react-dom'
 
 export default class MainPage extends React.Component {
   state = {
+    showMap: process.env.NODE_ENV !== 'development',
     animate: false,
     venstreMenyÅpen: false,
     showLayersDialog: true,
@@ -104,6 +105,7 @@ export default class MainPage extends React.Component {
   }
 
   render () {
+    if (process.env.NODE_ENV === 'development') console.log("Development build - press 'm' to load map")
     return (
       <div style={{ width: '100%' }}
         ref={(me) => { this.rootElement = ReactDOM.findDOMNode(me) }}

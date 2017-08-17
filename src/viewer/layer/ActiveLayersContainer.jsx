@@ -27,6 +27,8 @@ export default class ActiveLayersContainer extends React.Component {
           upperPercentile: 1.0,
           elevationMin: 0.0,
           elevationMax: 0.5,
+          colorDomainMin: 0,
+          colorDomainMax: 1,
           height: 0.3,
           width: 1.0
         }
@@ -75,7 +77,9 @@ export default class ActiveLayersContainer extends React.Component {
         elevationScale: 500,
         upperPercentile: 1.0,
         elevationMin: 0,
-        elevationMax: 0.5
+        elevationMax: 0.5,
+        colorDomainMin: 0,
+        colorDomainMax: 1
       }
     }
     this.setState(prevState => {

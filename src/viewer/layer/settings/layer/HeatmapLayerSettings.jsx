@@ -15,7 +15,7 @@ export default class HeatmapLayerSettings extends React.Component {
           onChange={value => onChange('colorRamp', value)}
         />
         <SliderSetting
-          title='Width'
+          title='Width (Standard Deviations)'
           value={radius}
           icon={<ActionAllOut />}
           onChange={value => onChange('radius', value)}

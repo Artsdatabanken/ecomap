@@ -20,12 +20,12 @@ export default class Map extends React.Component {
 
   state = {
     viewport: {
-      latitude: 62.285164,
-      longitude: 11.1669,
-      zoom: 5,
+      latitude: 65,
+      longitude: 11,
+      zoom: 4.7,
       minZoom: 3,
       maxZoom: 15,
-      pitch: 20, // 50,
+      pitch: 0, // 50,
       bearing: 0,
       width: window.innerWidth,
       height: window.innerHeight
