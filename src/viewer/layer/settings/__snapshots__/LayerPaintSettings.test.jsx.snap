@@ -536,7 +536,7 @@ exports[`renders ok 1`] = `
           }
         }
       >
-        Width
+        Width (Standard Deviations)
       </div>
       <div
         style={
