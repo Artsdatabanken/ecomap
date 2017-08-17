@@ -2,7 +2,7 @@ import React from 'react'
 import Hexagon from '../map/layer/Hexagon'
 import alces from '../../data/sample/artskart_48103.json'
 import readGeoJsonPoints from '../translate/GeoJson.js'
-import ramp from '../graphics/ramps/'
+import ramp from '../graphics/color/ramps/'
 
 const viewport = {
   width: 900,
