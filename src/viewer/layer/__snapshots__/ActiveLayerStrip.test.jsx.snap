@@ -718,9 +718,7 @@ exports[`renders ok 1`] = `
         </div>
       </div>
     </span>
-    <div
-      style={Object {}}
-    >
+    <div>
       <button
         disabled={false}
         href={undefined}
@@ -788,7 +786,7 @@ exports[`renders ok 1`] = `
               }
             }
           >
-            Show correlation
+            More...
           </span>
         </div>
       </button>

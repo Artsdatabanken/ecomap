@@ -104,7 +104,7 @@ const EcoMapLayer = ({
         />
       )
     default:
-      console.warn('unknown visualizationMode', layer.paint.visualizationMode)
+      console.error('unknown visualization', layer.paint.visualizationMode)
       return null
   }
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import LayerSpecificRenderSettings from './layer/LayerSpecificRenderSettings'
 import CompositionBlendMode from './CompositionBlendMode'
-import VisualizationMode from './VisualizationMode'
+import VisualizationSelector from './visualization/VisualizationSelector'
 
 /* function getCheckBoard() {
 var cv = document.getElementById('body');
@@ -15,7 +15,7 @@ export default class LayerPaintSettings extends React.Component {
   render () {
     return (
       <span>
-        <VisualizationMode
+        <VisualizationSelector
           mode={this.props.visualizationMode}
           onChange={(event, index, value) =>
             this.props.onChange('visualizationMode', value)} />
