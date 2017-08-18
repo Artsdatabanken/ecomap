@@ -3,14 +3,14 @@ import ActionOpacity from 'material-ui/svg-icons/action/opacity'
 import ActionAspectRatio from 'material-ui/svg-icons/action/aspect-ratio'
 import ActionAllOut from 'material-ui/svg-icons/action/all-out'
 import SliderSetting from '../SliderSetting'
-import ColorRamp from '../ColorRamp'
+import ColorRampSelector from '../ColorRampSelector'
 
 export default class HexagonLayerSettings extends React.Component {
   render () {
     const {fillOpacity, coverage, radius, elevationMin, elevationMax,
       lowerPercentile, colorRamp, upperPercentile, colorDomainMin, colorDomainMax, onChange} = this.props
     return (<div>
-      <ColorRamp
+      <ColorRampSelector
         value={colorRamp}
         icon={<ActionOpacity />}
         onChange={value => onChange('colorRamp', value)}
