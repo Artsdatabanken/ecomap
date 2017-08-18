@@ -7,6 +7,7 @@ import ActiveLayers from '../viewer/layer/ActiveLayers'
 import HexagonLayerSettings from '../viewer/layer/settings/layer/HexagonLayerSettings'
 import ScatterplotLayerSettings from '../viewer/layer/settings/layer/ScatterplotLayerSettings'
 import HeatmapLayerSettings from '../viewer/layer/settings/layer/HeatmapLayerSettings'
+import {VisualizationHexagon, VisualizationHeatmap, VisualizationScatterplot} from '../viewer/layer/settings/visualization/'
 
 class ActiveLayersTest extends React.Component {
   state = {
@@ -23,9 +24,9 @@ class ActiveLayersTest extends React.Component {
         visible: true,
         raster: false,
         paint: {
+          visualizationMode: 'heatmap',
           fillColor: '#ff0000',
           fillOpacity: 1,
-          renderMethod: 'heatmap',
           blendMode: 'multiply'
         }
       }
@@ -69,8 +70,9 @@ const layerSettings = () =>
         coverage: 0.95,
         fillOpacity: 1.0,
         radius: 1.0,
-        renderMethod: 'hexagon',
-        blendMode: 'multiply'
+        visualizationMode: 'hexagon',
+        blendMode: 'multiply',
+        colorRamp: 'magma'
       }
       return (
         <GiftWrap>
@@ -87,7 +89,7 @@ const layerSettings = () =>
         coverage: 0.95,
         fillOpacity: 1.0,
         radius: 1.0,
-        renderMethod: 'hexagon',
+        visualizationMode: 'hexagon',
         blendMode: 'multiply'
       }
       return (
@@ -105,8 +107,9 @@ const layerSettings = () =>
         coverage: 0.95,
         fillOpacity: 1.0,
         radius: 1.0,
-        renderMethod: 'hexagon',
-        blendMode: 'multiply'
+        visualizationMode: 'hexagon',
+        blendMode: 'multiply',
+        colorRamp: 'plasma'
       }
       return (
         <GiftWrap>
@@ -114,6 +117,15 @@ const layerSettings = () =>
             {...paint}
             onChange={action('onUpdateLayerProp')}
           />
+        </GiftWrap>
+      )
+    })
+    .add('Visualization Indicators', () => {
+      return (
+        <GiftWrap>
+          <VisualizationScatterplot colorRamp={['#000000', '#ffffff']} />
+          <VisualizationHeatmap colorRamp={['#000000', '#ffffff']} />
+          <VisualizationHexagon colorRamp={['#000000', '#ffffff']} />
         </GiftWrap>
       )
     })

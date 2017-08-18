@@ -4,18 +4,16 @@ import { action } from '@storybook/addon-actions'
 import { muiTheme } from 'storybook-addon-material-ui'
 import {Paper} from 'material-ui'
 import theme from './theme'
-import {FilterTag, NatureTag, SpeciesTag, YearTag, EnvironmentalTag} from './filtertag/FilterTag.story'
+import {NatureTag, SpeciesTag, YearTag, EnvironmentalTag} from './filtertag/FilterTag.story'
 import SearchBar from './viewer/search/SearchBar'
 import LeftMenu from './viewer/menu/LeftMenu.story'
 import LoadingIndicator from './LoadingIndicator'
 import ColorPickers from './stories/ColorPickers'
-import ColorRamp from './graphics/color/ColorRamp'
 import CardStack from './viewer/layer/infocard/CardStack'
 import AddLayer from './viewer/layer/add/AddLayer'
 import SelectSpecies from './viewer/layer/add/species/SelectSpecies'
 import ErrorBanner from './ErrorBanner'
 import SpeciesGridItemCard from './viewer/layer/add/species/SpeciesGridItemCard'
-import {viridis} from './graphics/color/ramps'
 import ArcStory from './stories/ArcStory'
 import ScatterplotStory from './stories/ScatterplotStory'
 import ScatterplotStoryLocal from './stories/ScatterplotStoryLocal'
@@ -23,6 +21,7 @@ import HexagonStory from './stories/HexagonStory'
 import HexagonStoryLocal from './stories/HexagonStoryLocal'
 import ExperimentalShaderStory from './stories/ExperimentalShaderStory'
 import HeatmapFromPointsStory from './stories/HeatmapFromPointsStory'
+import ColorRampStory from './stories/ColorRampStory'
 import diagrams from './stories/Diagrams'
 import layerSettings from './stories/layerSettings'
 
@@ -79,21 +78,10 @@ storiesOf('Common', module)
 
 storiesOf('Colors', module)
   .addDecorator(muiTheme([theme]))
-  .add('RGB', () => {
-
-  })
-  .add('Color ramps', () =>
-    <div style={{ margin: '20px' }}>
-      <ColorRamp steps={['#000000', '#ffffff']} />
-      <ColorRamp steps={['#000000', '#0000ff', '#ffffff']} />
-      <ColorRamp steps={['#000000', '#00ff00', '#ffff00', '#ffffff']} />
-      <ColorRamp steps={['#0000ff', '#ffff00']} />
-      <ColorRamp
-        steps={viridis}
-      />
-    </div>
+  .add('Color Ramps', () =>
+    <ColorRampStory />
   )
-  .add('Color pickers', () =>
+  .add('Color Pickers', () =>
     <div style={{ margin: '20px' }}>
       <ColorPickers />
     </div>
@@ -125,18 +113,9 @@ storiesOf('Search Bar', module).addDecorator(muiTheme()).add('primary', () =>
 
 storiesOf('Filter', module)
   .addDecorator(muiTheme([theme]))
-  .add('primary', () =>
-    <div>
-      <FilterTag onRequestDelete={action('requestDelete')}><div style={{position: 'relative', top: '5px'}}>
-        <ColorRamp
-          steps={viridis}
-        />
-      </div>
-      </FilterTag>
-    </div>
-).add('Filter string', () =>
-  <div style={{display: 'flex', lineHeight: '52px', textAlign: 'center'}}>
-    <SpeciesTag onRequestDelete={action('requestDelete')}>Moose</SpeciesTag> observed between the year
+  .add('Filter string', () =>
+    <div style={{display: 'flex', lineHeight: '52px', textAlign: 'center'}}>
+      <SpeciesTag onRequestDelete={action('requestDelete')}>Moose</SpeciesTag> observed between the year
   <YearTag onRequestDelete={action('requestDelete')}>2000</YearTag> and
   <YearTag onRequestDelete={action('requestDelete')}>2010</YearTag> in
   <NatureTag onRequestDelete={action('requestDelete')}>Forests</NatureTag> at minimum

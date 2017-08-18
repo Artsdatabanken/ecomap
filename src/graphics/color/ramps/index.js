@@ -34,6 +34,7 @@ export function lookupColor (steps, i) {
 }
 
 const ramp = {}
+ramp.gray = map(['#000000', '#ffffff'])
 ramp.inferno = map(inferno)
 ramp.magma = map(magma)
 ramp.plasma = map(plasma)
@@ -53,6 +54,6 @@ ramp.toHex = function (ramp) {
   for (var i = 0; i < colorCount; i++) { r[i] = rgbToHex(ramp[o++], ramp[o++], ramp[o++]); o++ }
   return r
 }
-ramp.ramps = ['inferno', 'magma', 'plasma', 'viridis']//, 'YlGn']
+ramp.ramps = ['inferno', 'magma', 'plasma', 'viridis', 'gray']//, 'YlGn']
 
 export default ramp

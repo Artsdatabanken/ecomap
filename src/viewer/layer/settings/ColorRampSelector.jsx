@@ -8,20 +8,20 @@ import ramp from '../../../graphics/color/ramps/'
 const ColorRampSelector = ({value, onChange}) =>
   <SelectField
     id={getNext()}
-    floatingLabelText='Color ramp'
+    floatingLabelText='Color Ramp'
     value={value}
     onChange={(event, index, value) => onChange(value)}
-    style={{width: 308}}
+    style={{width: 306}}
   >
     {ramp.ramps.map(id =>
       <MenuItem
-        innerDivStyle={{paddingTop: 8, marginBottom: 8, lineHeight: 1}}
+        innerDivStyle={{paddingTop: 8, paddingBottom: 8, lineHeight: 1}}
         key={id}
         value={id}
         primaryText={id}
         secondaryText={<ColorRamp steps={ramp.toHex(ramp[id])} />} />
     )}
-    <MenuItem disabled value='custom' primaryText='Customize...' />
+    <MenuItem disabled value='more' primaryText='More...' />
   </SelectField>
 
 export default ColorRampSelector

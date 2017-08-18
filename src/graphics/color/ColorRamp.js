@@ -1,5 +1,6 @@
 import React from 'react'
 import {lookupColor} from '../../graphics/color/ramps'
+import theme from '../../theme'
 
 class ColorRamp extends React.Component {
   constructor () {
@@ -12,7 +13,7 @@ class ColorRamp extends React.Component {
     // const canvas = ReactDOM.findDOMNode(canvas)
     const context = canvas.getContext('2d')
     canvas.width = 256
-    canvas.height = 24
+    canvas.height = 18
 
     for (let i = 0; i < canvas.width; i++) {
       context.fillStyle = colorFunction(i)
@@ -33,7 +34,7 @@ class ColorRamp extends React.Component {
   }
 
   render () {
-    return <div>
+    return <div style={{display: 'flex', border: '1px solid ' + theme.palette.borderColor}}>
       <canvas ref='colorbar' />
     </div>
   }
