@@ -2,14 +2,14 @@ import React from 'react'
 import ActionAllOut from 'material-ui/svg-icons/action/all-out'
 import ActionOpacity from 'material-ui/svg-icons/action/opacity'
 import SliderSetting from '../SliderSetting'
-import ColorRamp from '../ColorRamp'
+import ColorRampSelector from '../ColorRampSelector'
 
 export default class HeatmapLayerSettings extends React.Component {
   render () {
     const { colorRamp, radius, height, fillOpacity, onChange } = this.props
     return (
       <div>
-        <ColorRamp
+        <ColorRampSelector
           value={colorRamp}
           icon={<ActionOpacity />}
           onChange={value => onChange('colorRamp', value)}

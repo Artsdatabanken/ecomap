@@ -16,7 +16,7 @@ exports[`renders ok 1`] = `
         "muiPrepared": true,
         "position": "relative",
         "transition": "height 200ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
-        "width": 256,
+        "width": 308,
       }
     }
   >
@@ -112,7 +112,7 @@ exports[`renders ok 1`] = `
             }
           }
         >
-          Viridis
+          viridis
         </div>
         <button
           disabled={false}
