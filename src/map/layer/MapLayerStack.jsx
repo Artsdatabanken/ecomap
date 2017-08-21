@@ -41,7 +41,9 @@ export default class MapLayerStack extends React.Component {
 }
 
 const PointBasedLayer = ({ id, layer, viewport, onUpdate }) =>
-  <ArtskartDataSourceContainer dataUrl={layer.dataUrl}>
+  <ArtskartDataSourceContainer
+    title={layer.subTitle}
+    dataUrl={layer.dataUrl}>
     <EcoMapLayer
       key={id}
       id={id}

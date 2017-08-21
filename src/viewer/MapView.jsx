@@ -13,7 +13,7 @@ import ActiveLayers from './layer/ActiveLayers'
 import ActiveLayersContainer from './layer/ActiveLayersContainer'
 import ReactDOM from 'react-dom'
 
-export default class MainPage extends React.Component {
+export default class MapView extends React.Component {
   state = {
     showMap: process.env.NODE_ENV !== 'development',
     animate: false,
@@ -182,7 +182,7 @@ export default class MainPage extends React.Component {
 
   handleKeyDown = (e) => {
     console.log(e)
-    // if (!e.ctrl) return
+    if (!e.altKey) return
     // TODO: only capture key strokes not handled elsewhere
     switch (e.key) {
       case 'l':

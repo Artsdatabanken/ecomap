@@ -32,6 +32,7 @@ class FetchContainer extends React.Component {
   })
 
   handleFetchJson = (description, url, callback) => {
+    this.flashMessage(`Loading ${description}...`)
     this.setState(increment)
     fetch(url)
       .then(checkStatus)
@@ -44,11 +45,11 @@ class FetchContainer extends React.Component {
         this.setState(decrement)
         const message = description + ': ' + error.message
         console.error(message)
-        this.flashError(message)
+        this.flashMessage(message)
       })
   }
 
-  flashError (message) {
+  flashMessage (message) {
     this.setState({ message })
     clearTimeout(this.messageTimer)
     this.messageTimer = window.setTimeout(() => this.setState({ message: null }), 3500)
