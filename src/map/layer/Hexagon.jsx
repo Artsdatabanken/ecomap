@@ -11,9 +11,9 @@ const LIGHT_SETTINGS = {
   numberOfLights: 2
 }
 
-const elevationScale = { min: 1, max: 50 }
-
 export default class Hexagon extends Component {
+  static displayName = 'Hexagon'
+
   static defaultProps = {
     radius: 1000,
     lowerPercentile: 0,
@@ -25,25 +25,16 @@ export default class Hexagon extends Component {
     blendMode: 'multiply'
   }
 
-  static displayName = 'Hexagon'
-
   static get defaultColorRange () {
     return ramp.viridis
   }
 
-  constructor (props) {
-    super(props)
-    this.startAnimationTimer = null
-    this.intervalTimer = null
-    this._startAnimate = this._startAnimate.bind(this)
-    this._animateHeight = this._animateHeight.bind(this)
-  }
-
   state = {
-    elevationScale: elevationScale.min
+    elevationScale: 0
   }
 
   componentWillReceiveProps (nextProps) {
+    console.log(nextProps.data)
     if (nextProps.data === null) {
       this._stopAnimate()
     }
@@ -52,29 +43,42 @@ export default class Hexagon extends Component {
     }
   }
 
+  componentWillMount () {
+    this._animate()
+  }
+
   componentWillUnmount () {
     this._stopAnimate()
   }
 
-  _animate () {
-    this._stopAnimate()
-    this.startAnimationTimer = window.setTimeout(this._startAnimate, 100)
-  }
-
-  _startAnimate () {
-    this.intervalTimer = window.setInterval(this._animateHeight, 15)
-  }
-
-  _stopAnimate () {
+  _stopAnimate = () => {
     window.clearTimeout(this.startAnimationTimer)
     window.clearTimeout(this.intervalTimer)
   }
 
-  _animateHeight () {
-    if (this.state.elevationScale >= elevationScale.max) {
+  _animate () {
+    console.log('_animate')
+    this._stopAnimate()
+    this.setState({elevationScale: 0})
+
+    this.startAnimationTimer = window.setTimeout(this._startAnimate, 100)
+  }
+
+  _startAnimate = () => {
+    console.log('startAnimate')
+    this.intervalTimer = window.setInterval(this._animateHeight, 15)
+  }
+
+  easeInOutCubic = (t) => t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1
+  easeInOutQuad = (t) => t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t
+  easeInOutQuart = (t) => t < 0.5 ? 8 * t * t * t * t : 1 - 8 * (--t) * t * t * t
+
+  _animateHeight = () => {
+    if (this.state.elevationScale >= 1) {
       this._stopAnimate()
     } else {
-      this.setState(prevState => ({ elevationScale: prevState.elevationScale + 0.3 * Math.sqrt(elevationScale.max - prevState.elevationScale) }))
+      this.setState(prevState => ({
+        elevationScale: prevState.elevationScale + 0.018}))
     }
   }
 
@@ -87,6 +91,7 @@ export default class Hexagon extends Component {
     const { data, viewport, radius, coverage, elevationMin, elevationMax,
       lowerPercentile, upperPercentile, opacity, blendMode, colorRange,
       colorDomainMin, colorDomainMax } = this.props
+    console.log(this.state.elevationScale, elevationMin, elevationMax)
     if (!data) { return null }
     const layers = [
       new HexagonLayer({
@@ -97,6 +102,7 @@ export default class Hexagon extends Component {
         coverage,
         data,
         elevationRange: [elevationMin * 200000, elevationMax * 500000],
+        elevationScale: this.easeInOutQuart(this.state.elevationScale),
         extruded: elevationMax > 0,
         getPosition: d => d,
         lightSettings: LIGHT_SETTINGS,

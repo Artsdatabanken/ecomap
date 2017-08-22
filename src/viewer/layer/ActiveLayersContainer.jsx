@@ -2,7 +2,30 @@ import React from 'react'
 
 export default class ActiveLayersContainer extends React.Component {
   state = {
-    layers: {61840: {'id': 61840, 'title': 'Primula stricta', 'subTitle': 'smalnøkleblom (Karplanter)', 'imageUrl': 'https://farm8.staticflickr.com/7376/8859158303_ff6d08b320.jpg', 'dataUrl': 'http://webtjenester.artsdatabanken.no/Artskart/api/listhelper/61840/observations?&fromYear=1981&toYear=2012&fromMonth=1&toMonth=12&type=all&region=all&scientificNameId=101880', 'infoUrl': 'http://artsdatabanken.no/Taxon/61840', 'source': 'geojson', 'visible': true, 'raster': false, 'paint': {'fillColor': '#3A92E3', 'fillOpacity': 1, 'coverage': 1, 'visualizationMode': 'heatmap', 'colorRamp': 'inferno', 'blendMode': 'multiply', 'radius': 0.38, 'height': 0.35, 'extruded': true, 'elevationScale': 500, 'upperPercentile': 1, 'elevationMin': 0, 'elevationMax': 0.5, 'colorDomainMin': 0, 'colorDomainMax': 1}}}
+    layers: {61840: {'id': 61840,
+      'title': 'Primula stricta',
+      'subTitle': 'smalnøkleblom (Karplanter)',
+      'imageUrl': 'https://farm8.staticflickr.com/7376/8859158303_ff6d08b320.jpg',
+      'dataUrl': 'http://webtjenester.artsdatabanken.no/Artskart/api/listhelper/61840/observations?&fromYear=1981&toYear=2012&fromMonth=1&toMonth=12&type=all&region=all&scientificNameId=101880',
+      'infoUrl': 'http://artsdatabanken.no/Taxon/61840',
+      'source': 'geojson',
+      'visible': true,
+      'raster': false,
+      'paint': {'fillColor': '#3A92E3',
+        'fillOpacity': 1,
+        'coverage': 1,
+        'visualizationMode': 'hexagon',
+        'colorRamp': 'inferno',
+        'blendMode': 'multiply',
+        'radius': 0.38,
+        'height': 0.35,
+        'extruded': true,
+        'elevationScale': 500,
+        'upperPercentile': 1,
+        'elevationMin': 0,
+        'elevationMax': 0.5,
+        'colorDomainMin': 0,
+        'colorDomainMax': 1}}}
 /*    layers: {  // norsk malurt, smalnøkleblom
       '31241': {
         id: 31241,
