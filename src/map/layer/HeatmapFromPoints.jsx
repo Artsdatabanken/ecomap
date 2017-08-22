@@ -31,7 +31,6 @@ export default class HeatmapFromPoints extends Component {
         style={{ mixBlendMode: blendMode }}
         {...viewport}
         layers={[layer]}
-//        onWebGLInitialized={this._initialize}
       />
     )
   }
