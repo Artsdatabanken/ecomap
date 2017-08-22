@@ -13,6 +13,7 @@ export default class MapLayerStack extends React.Component {
   static propTypes = {
     layers: PropTypes.object.isRequired
   }
+
   render () {
     const r = []
     for (const id in this.props.layers) {
@@ -22,14 +23,14 @@ export default class MapLayerStack extends React.Component {
       const layer = this.props.layers[id]
       if (!layer.visible) continue
       r.push(
-        <PointBasedLayer
-          key={id}
-          id={id}
-          layer={layer}
-          viewport={this.props.viewport}
-          onUpdate={this.props.onUpdate}
-          zoomFactor={2}
-        />
+        this.renderPointBasedLayer({
+          key: id,
+          id: id,
+          layer: layer,
+          viewport: this.props.viewport,
+          onUpdate: this.props.onUpdate,
+          zoomFactor: 2
+        })
       )
     }
     return (
@@ -38,23 +39,26 @@ export default class MapLayerStack extends React.Component {
       </span>
     )
   }
-}
 
-const PointBasedLayer = ({ id, layer, viewport, onUpdate }) =>
-  <ArtskartDataSourceContainer
-    title={layer.subTitle}
-    dataUrl={layer.dataUrl}>
-    <EcoMapLayer
+  renderPointBasedLayer = ({ id, layer, viewport, onUpdate }) => (
+    <ArtskartDataSourceContainer
       key={id}
-      id={id}
-      layer={layer}
-      viewport={viewport}
-      onUpdate={onUpdate}
-      zoomFactor={2}
-    />
-  </ArtskartDataSourceContainer>
+      title={layer.subTitle}
+      dataUrl={layer.dataUrl}>
+      { this.renderEcoMapLayer(
+        {
+          key: id,
+          id: id,
+          layer: layer,
+          viewport: viewport,
+          onUpdate: onUpdate,
+          zoomFactor: 2
+        }
+    )}
+    </ArtskartDataSourceContainer>
+  )
 
-const EcoMapLayer = ({
+  renderEcoMapLayer = ({
   id,
   layer,
   data,
@@ -62,51 +66,51 @@ const EcoMapLayer = ({
   zoomFactor,
   onUpdate
 }) => {
-  const paint = layer.paint
-  switch (paint.visualizationMode) {
-    //    case 'fill': return <GeoJsonLayer dataUrl={layer.dataURl} />
-    case 'heatmap':
-      return (
-        <HeatmapFromPoints
-          title={layer.title}
-          data={data}
-          viewport={viewport}
-          {...paint}
-          onUpdate={onUpdate}
+    const paint = layer.paint
+    switch (paint.visualizationMode) {
+      case 'heatmap':
+        return (
+          <HeatmapFromPoints
+            title={layer.title}
+            data={data}
+            viewport={viewport}
+            {...paint}
+            onUpdate={onUpdate}
         />
-      )
-    case 'scatterplot':
-      return (
-        <Scatterplot
-          title={layer.title}
-          data={data}
-          viewport={viewport}
-          {...paint}
-          onUpdate={onUpdate}
+        )
+      case 'scatterplot':
+        return (
+          <Scatterplot
+            title={layer.title}
+            data={data}
+            viewport={viewport}
+            {...paint}
+            onUpdate={onUpdate}
         />
-      )
-    case 'hexagon':
-      return (
-        <Hexagon
-          title={layer.title}
-          colorRange={ramp.sliceInFours(ramp[paint.colorRamp])}
-          opacity={paint.fillOpacity}
-          data={data}
-          radius={paint.radius}
-          coverage={paint.coverage}
-          elevationMin={paint.elevationMin}
-          elevationMax={paint.elevationMax}
-          colorDomainMin={paint.colorDomainMin}
-          colorDomainMax={paint.colorDomainMax}
-          lowerPercentile={paint.lowerPercentile}
-          upperPercentile={paint.upperPercentile}
-          blendMode={paint.blendMode}
-          viewport={viewport}
-          onUpdate={onUpdate}
+        )
+      case 'hexagon':
+        return (
+          <Hexagon
+            title={layer.title}
+            colorRange={ramp.sliceInFours(ramp[paint.colorRamp])}
+            opacity={paint.fillOpacity}
+            data={data}
+            radius={paint.radius}
+            coverage={paint.coverage}
+            elevationMin={paint.elevationMin}
+            elevationMax={paint.elevationMax}
+            colorDomainMin={paint.colorDomainMin}
+            colorDomainMax={paint.colorDomainMax}
+            lowerPercentile={paint.lowerPercentile}
+            upperPercentile={paint.upperPercentile}
+            blendMode={paint.blendMode}
+            viewport={viewport}
+            onUpdate={onUpdate}
         />
-      )
-    default:
-      console.error('unknown visualization', layer.paint.visualizationMode)
-      return null
+        )
+      default:
+        console.error('unknown visualization', layer.paint.visualizationMode)
+        return null
+    }
   }
 }

@@ -34,7 +34,6 @@ export default class Hexagon extends Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    console.log(nextProps.data)
     if (nextProps.data === null) {
       this._stopAnimate()
     }
@@ -57,7 +56,6 @@ export default class Hexagon extends Component {
   }
 
   _animate () {
-    console.log('_animate')
     this._stopAnimate()
     this.setState({elevationScale: 0})
 
@@ -65,12 +63,11 @@ export default class Hexagon extends Component {
   }
 
   _startAnimate = () => {
-    console.log('startAnimate')
     this.intervalTimer = window.setInterval(this._animateHeight, 15)
   }
 
-  easeInOutCubic = (t) => t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1
   easeInOutQuad = (t) => t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t
+  easeInOutCubic = (t) => t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1
   easeInOutQuart = (t) => t < 0.5 ? 8 * t * t * t * t : 1 - 8 * (--t) * t * t * t
 
   _animateHeight = () => {
@@ -91,7 +88,6 @@ export default class Hexagon extends Component {
     const { data, viewport, radius, coverage, elevationMin, elevationMax,
       lowerPercentile, upperPercentile, opacity, blendMode, colorRange,
       colorDomainMin, colorDomainMax } = this.props
-    console.log(this.state.elevationScale, elevationMin, elevationMax)
     if (!data) { return null }
     const layers = [
       new HexagonLayer({
