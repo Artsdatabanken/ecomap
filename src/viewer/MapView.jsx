@@ -15,7 +15,7 @@ import ReactDOM from 'react-dom'
 
 export default class MapView extends React.Component {
   state = {
-    showMap: true, // process.env.NODE_ENV !== 'development',
+    showMap: process.env.NODE_ENV !== 'development',
     animate: false,
     venstreMenyÅpen: false,
     showLayersDialog: true,

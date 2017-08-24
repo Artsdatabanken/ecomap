@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import DeckGL, { HexagonLayer } from 'deck.gl'
+import { HexagonLayer } from 'deck.gl'
 import ramp from '../../graphics/color/ramps/'
 
 const LIGHT_SETTINGS = {
@@ -38,12 +38,12 @@ export default class Hexagon extends Component {
       this._stopAnimate()
     }
     if (nextProps.data.length !== this.props.data.length) {
-      this._animate()
+  //    this._animate()
     }
   }
 
   componentWillMount () {
-    this._animate()
+//    this._animate()
   }
 
   componentWillUnmount () {
@@ -79,17 +79,12 @@ export default class Hexagon extends Component {
     }
   }
 
-  _initialize (gl) {
-    gl.enable(gl.DEPTH_TEST)
-    gl.depthFunc(gl.LEQUAL)
-  }
-
   render () {
-    const { data, viewport, radius, coverage, elevationMin, elevationMax,
-      lowerPercentile, upperPercentile, opacity, blendMode, colorRange,
+    const { id, data, radius, coverage, elevationMin, elevationMax,
+      lowerPercentile, upperPercentile, opacity, colorRange,
       colorDomainMin, colorDomainMax } = this.props
     if (!data) { return null }
-    const layers = [
+    const layer =
       new HexagonLayer({
         id: 'heatmap',
         colorRange,
@@ -108,11 +103,6 @@ export default class Hexagon extends Component {
         lowerPercentile: lowerPercentile * 100,
         upperPercentile: upperPercentile * 100
       })
-    ]
-    return <DeckGL
-      style={{mixBlendMode: blendMode}}
-      {...viewport}
-      layers={layers}
-      onWebGLInitialized={this._initialize} />
+    return layer
   }
 }
