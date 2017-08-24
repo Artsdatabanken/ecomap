@@ -21,6 +21,7 @@ export default class ActiveLayersContainer extends React.Component {
         'height': 0.35,
         'extruded': true,
         'elevationScale': 500,
+        'lowerPercentile': 1,
         'upperPercentile': 1,
         'elevationMin': 0,
         'elevationMax': 0.5,
@@ -89,7 +90,22 @@ export default class ActiveLayersContainer extends React.Component {
       source: 'geojson',
       visible: true,
       raster: false,
-      'paint': {'fillColor': '#3A92E3', 'fillOpacity': 1, 'coverage': 1, 'visualizationMode': 'heatmap', 'colorRamp': 'inferno', 'blendMode': 'multiply', 'radius': 0.19, 'height': 0.35, 'extruded': true, 'elevationScale': 500, 'upperPercentile': 1, 'elevationMin': 0, 'elevationMax': 0.5, 'colorDomainMin': 0, 'colorDomainMax': 1}
+      'paint': {'fillColor': '#3A92E3',
+        'fillOpacity': 1,
+        'coverage': 1,
+        'visualizationMode': 'heatmap',
+        'colorRamp': 'inferno',
+        'blendMode': 'multiply',
+        'radius': 0.19,
+        'height': 0.35,
+        'extruded': true,
+        'elevationScale': 500,
+        lowerPercentile: 0,
+        'upperPercentile': 1,
+        'elevationMin': 0,
+        'elevationMax': 0.5,
+        'colorDomainMin': 0,
+        'colorDomainMax': 1}
     }
 
     this.setState(prevState => {
