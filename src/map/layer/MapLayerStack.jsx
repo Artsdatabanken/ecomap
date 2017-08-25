@@ -3,13 +3,12 @@ import PropTypes from 'prop-types'
 // import GeoJsonLayer from './GeoJsonLayer'
 // import RasterTileLayer from './RasterTileLayer'
 // import VectorTileLayer from './VectorTileLayer'
-import Hexagon from './Hexagon'
+import EcoHexagonLayer from './EcoHexagonLayer'
 import Scatterplot from './Scatterplot'
 import HeatmapFromPoints from './HeatmapFromPoints'
 import ArtskartDataSourceContainer from './ArtskartDataSourceContainer'
 import ramp from '../../graphics/color/ramps/'
-import DeckGL from 'deck.gl'
-import { HexagonLayer } from 'deck.gl'
+import DeckGL, { HexagonLayer } from 'deck.gl'
 
 const ACon = ({layers, onData}) => {
   const r = []
@@ -58,18 +57,26 @@ export default class MapLayerStack extends React.Component {
         id: id,
         layer: layer,
         data: data,
-        viewport: viewport
+        viewport: viewport,
+        onHover: this.handleHover
       }))
     }
     return layers
+  }
+
+  handleHover = (a, b) => {
+    console.log(a)
+    console.log(b)
   }
 
   createEcoMapLayer = ({
     id,
     layer,
     data,
-    viewport
+    viewport,
+    onHover
   }) => {
+    console.log('onHover: ', Boolean(onHover))
     const paint = layer.paint
     switch (paint.visualizationMode) {
       case 'heatmap':
@@ -114,9 +121,9 @@ export default class MapLayerStack extends React.Component {
             blendMode={paint.blendMode}
             viewport={viewport}
 */
-new HexagonLayer({
+new EcoHexagonLayer({
 
-  id: 'heatmap',
+  id: `${id}hexa`,
   colorRange: ramp.sliceInFours(ramp[paint.colorRamp]),
   colorDomain: [paint.colorDomainMin * 50, paint.colorDomainMax * 50],
   opacity: paint.fillOpacity,
@@ -126,13 +133,19 @@ new HexagonLayer({
   elevationScale: 1, // this.easeInOutQuart(this.state.elevationScale),
   extruded: paint.elevationMax > 0,
   getPosition: d => d,
-//  lightSettings: LIGHT_SETTINGS,
-  onHover: this.props.onHover,
-  pickable: Boolean(this.props.onHover),
+  lightSettings: {
+    lightsPosition: [-0.144528, 49.739968, 80000, -3.807751, 54.104682, 80000],
+    ambientRatio: 0.5,
+    diffuseRatio: 0.99,
+    specularRatio: 0.50,
+    lightsStrength: [0.8, 0.0, 0.8, 0.0],
+    numberOfLights: 2
+  },
+  onHover: onHover,
+  pickable: Boolean(onHover),
   radius: paint.radius * 50000,
   lowerPercentile: paint.lowerPercentile * 100,
-  upperPercentile: paint.upperPercentile * 100,
-  blendMode: paint.blendMode
+  upperPercentile: paint.upperPercentile * 100
 })
         )
       default:
@@ -145,7 +158,6 @@ new HexagonLayer({
     this.setState((prevState) => {
       let layerdata = prevState.layerdata
       layerdata[id] = data
-      console.log(layerdata)
       return {layerdata: layerdata}
     })
   }
@@ -155,13 +167,13 @@ class Decker extends React.Component {
   render () {
     return <DeckGL
       layers={this.props.layers}
-      style={{mixBlendMode: 'multiply'}}
+      style={{mixBlendMode: 'normal'}}
       {...this.props.viewport}
       onWebGLInitialized={this._initialize} />
   }
 
   _initialize (gl) {
-  //  gl.disable(gl.DEPTH_TEST)
+    gl.enable(gl.DEPTH_TEST)
     gl.depthFunc(gl.LEQUAL)
   }
 }

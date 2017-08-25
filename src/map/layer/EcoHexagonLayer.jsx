@@ -1,4 +1,3 @@
-import React, { Component } from 'react'
 import { HexagonLayer } from 'deck.gl'
 import ramp from '../../graphics/color/ramps/'
 
@@ -11,20 +10,17 @@ const LIGHT_SETTINGS = {
   numberOfLights: 2
 }
 
-export default class Hexagon extends Component {
-  static displayName = 'Hexagon'
-
-  static defaultProps = {
+export default class EcoHexagonLayer extends HexagonLayer {
+/*  static defaultProps = {
     radius: 1000,
     lowerPercentile: 0,
     upperPercentile: 1,
     coverage: 1,
     elevationMin: 0,
     elevationMax: 0,
-    data: [],
-    blendMode: 'multiply'
+    data: []
   }
-
+/*
   static get defaultColorRange () {
     return ramp.viridis
   }
@@ -105,4 +101,5 @@ export default class Hexagon extends Component {
       })
     return layer
   }
+  */
 }
