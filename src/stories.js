@@ -17,7 +17,6 @@ import SpeciesGridItemCard from './viewer/layer/add/species/SpeciesGridItemCard'
 import ArcStory from './stories/ArcStory'
 import ScatterplotStory from './stories/ScatterplotStory'
 import ScatterplotStoryLocal from './stories/ScatterplotStoryLocal'
-import HexagonStory from './stories/HexagonStory'
 import HexagonStoryLocal from './stories/HexagonStoryLocal'
 import ExperimentalShaderStory from './stories/ExperimentalShaderStory'
 import HeatmapFromPointsStory from './stories/HeatmapFromPointsStory'
@@ -36,7 +35,6 @@ storiesOf('Layer rendering', module)
 .add('Experimental shader', () => <ExperimentalShaderStory />)
 .add('Scatterplot', () => <ScatterplotStory />)
 .add('Scatterplot local', () => <ScatterplotStoryLocal />)
-.add('Hexagon', () => <HexagonStory />)
 .add('HexagonLocal', () => <HexagonStoryLocal />)
 
 layerSettings()
