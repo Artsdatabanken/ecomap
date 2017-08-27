@@ -18,6 +18,7 @@ import ArcStory from './stories/ArcStory'
 import ScatterplotStory from './stories/ScatterplotStory'
 import ScatterplotStoryLocal from './stories/ScatterplotStoryLocal'
 import HexagonStoryLocal from './stories/HexagonStoryLocal'
+import HexagonLayer2Story from './stories/HexagonLayer2Story'
 import ExperimentalShaderStory from './stories/ExperimentalShaderStory'
 import HeatmapFromPointsStory from './stories/HeatmapFromPointsStory'
 import ColorRampStory from './stories/ColorRampStory'
@@ -36,6 +37,7 @@ storiesOf('Layer rendering', module)
 .add('Scatterplot', () => <ScatterplotStory />)
 .add('Scatterplot local', () => <ScatterplotStoryLocal />)
 .add('HexagonLocal', () => <HexagonStoryLocal />)
+.add('Hexagon2', () => <HexagonLayer2Story />)
 
 layerSettings()
 

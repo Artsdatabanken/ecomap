@@ -1,16 +1,50 @@
 import { HexagonLayer } from 'deck.gl'
 import ramp from '../../graphics/color/ramps/'
+import EasingFunctions from '../../graphics/bezier-easing'
 
-const LIGHT_SETTINGS = {
-  lightsPosition: [-0.144528, 49.739968, 8000, -3.807751, 54.104682, 8000],
-  ambientRatio: 0.4,
-  diffuseRatio: 0.6,
-  specularRatio: 0.2,
+const DEFAULT_LIGHT_SETTINGS = {
+  lightsPosition: [-0.144528, 49.739968, 80000, -3.807751, 54.104682, 80000],
+  ambientRatio: 0.5,
+  diffuseRatio: 0.19,
+  specularRatio: 0.50,
   lightsStrength: [0.8, 0.0, 0.8, 0.0],
   numberOfLights: 2
 }
 
 export default class EcoHexagonLayer extends HexagonLayer {
+  constructor (options) {
+    const defaults = {
+      colorRange: ramp.sliceInFours(options.colorRamp),
+      colorDomain: [0, 20],
+      opacity: 1.0,
+      coverage: 1.0,
+      elevationRange: [0, 200000],
+      elevationScale: 1.0, // () => Math.cos(new Date().getSeconds()),
+      extruded: true,
+      getPosition: d => d,
+      xgetPosition: d => d,
+      updateTriggers: {
+        rampUp: new Date().getTime()
+      },
+      lowerPercentile: 0,
+      upperPercentile: 100,
+      lightSettings: DEFAULT_LIGHT_SETTINGS,
+      radius: 9000
+    }
+    const merged = Object.assign(defaults, options)
+    super(merged)
+  }
+  static rampUp (p) {
+//    this.time += 0.01
+//    debugger
+    console.log('date', new Date().getSeconds())
+    return p * Math.sin(new Date().getSeconds())
+  }
+  shouldUpdateState (updateParams) {
+    console.log(updateParams)
+    return true
+  }
+
 /*  static defaultProps = {
     radius: 1000,
     lowerPercentile: 0,
@@ -36,10 +70,6 @@ export default class EcoHexagonLayer extends HexagonLayer {
     if (nextProps.data.length !== this.props.data.length) {
   //    this._animate()
     }
-  }
-
-  componentWillMount () {
-//    this._animate()
   }
 
   componentWillUnmount () {

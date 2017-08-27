@@ -1,7 +1,7 @@
 import React from 'react'
 import DeckGL from 'deck.gl'
 import {Paper} from 'material-ui'
-import EcoHexagonLayer from '../map/layer/EcoHexagonLayer'
+import HexagonLayer2 from '../map/layer/HexagonLayer2'
 import alces from '../../data/sample/artskart_48103.json'
 import readGeoJsonPoints from '../translate/GeoJson.js'
 import ramp from '../graphics/color/ramps/'
@@ -18,8 +18,9 @@ const viewport = {
 
 const points = readGeoJsonPoints(alces)
 
-export default HexagonStoryLocal => {
-  let layer = new EcoHexagonLayer({
+export default Hexagon2StoryLocal => {
+  let layer = new HexagonLayer2({
+    layerName: 'hexagon2',
     colorRamp: ramp.magma,
     data: points,
     viewport: viewport
