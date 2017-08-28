@@ -122,9 +122,8 @@ export default class MapLayerStack extends React.Component {
             viewport={viewport}
 */
 new EcoHexagonLayer({
-
   id: `${id}hexa`,
-  colorRange: ramp.sliceInFours(ramp[paint.colorRamp]),
+  colorRamp: ramp[paint.colorRamp], // ramp.sliceInFours(ramp[paint.colorRamp]),
   colorDomain: [paint.colorDomainMin * 50, paint.colorDomainMax * 50],
   opacity: paint.fillOpacity,
   coverage: paint.coverage,

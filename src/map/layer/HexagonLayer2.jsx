@@ -30,39 +30,43 @@ export default class HexagonLayer2 extends HexagonLayer {
       radius: 9000
     }
     const merged = Object.assign(defaults, options)
-    console.log(merged)
     super(merged)
   }
 
+  timerUpdate () {
+    this.setState({
+      elevationScale: this.state.elevationScale * 1.1})
+  }
   initializeState () {
     super.initializeState()
-    console.log('initializeState', this)
-/*    this.state.attributeManager.addInstanced({
-      time: {size: 1, accessor: 'getTime', defaultValue: 0, update: this.calculateTime}
-    }) */
+    this.setState({timer: setInterval(() => { this.timerUpdate(this) }, 1260)})
+//    this.state.elevationScale = 0.2
   }
-
-  calculateTime (a) {
-    console.log('calctime')
-    console.log('a', a)
-  }
-
+/*
   _onGetSublayerColor (cell) {
     return super._onGetSublayerColor(cell)
-//    return [0, 0, 255, 255]
   }
-
-  shouldUpdateState ({changeFlags}) {
-    console.log('shouldUpdateState', changeFlags)
-//    return true
-    return super.shouldUpdateState({changeFlags})
-  }
-
+*/
   updateState ({oldProps, props, changeFlags}) {
-    console.log('elevationScale', this.props.elevationScale)
+    console.log('updateState', this)
+//    this.state.elevationScale *= 1.03
+//    this.setState({elevationScale: this.state.elevationScale * 1.1})
+  //  console.log(this.state.elevationScale)
+    this.props.updateTriggers.rampUp = new Date().getUTCMilliseconds()
 //    this.props.elevationScale = this.props.elevationScale * 1.01
 //    return true
-    let newProps = {...props, elevationScale: 0.5}
-    return super.updateState({oldProps, newProps, changeFlags})
+    let newProps = {...props}
+    Object.assign(this.state, {elevationScale: this.state.elevationScale})
+
+    console.log(newProps.elevationScale)
+    return super.updateState({oldProps, props: newProps, changeFlags})
+  }
+
+  renderLayers () {
+    console.log(':__')
+    debugger
+    super.renderLayers()
   }
 }
+
+HexagonLayer2.layerName = 'Hexagon2'
