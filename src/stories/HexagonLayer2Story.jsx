@@ -20,7 +20,7 @@ const points = readGeoJsonPoints(alces)
 
 export default Hexagon2StoryLocal => {
   let layer = new HexagonLayer2({
-    layerName: 'hexagon2',
+    id: 'hexstory',
     colorRamp: ramp.magma,
     data: points,
     viewport: viewport

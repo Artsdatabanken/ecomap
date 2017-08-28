@@ -197,6 +197,7 @@ export default class Map extends React.Component {
     )
   }
 }
+
 /*
   onStyleLoad={(s, t) => this.handleStyleLoad(s, t)}
   containerStyle={{
