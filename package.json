@@ -55,7 +55,7 @@
     "react-color": "^2.11.7",
     "react-dev-utils": "^4.0.0",
     "react-dom": "^15.5.4",
-    "react-error-overlay": "^1.0.9",
+    "react-error-overlay": "^2.0.0",
     "react-map-gl": "^3.0.4",
     "react-router-dom": "^4.0.0",
     "react-tap-event-plugin": "^2.0.1",
