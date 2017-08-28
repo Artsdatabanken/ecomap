@@ -30,20 +30,21 @@ export default class HexagonLayer2 extends HexagonLayer {
       radius: 9000
     }
     const merged = Object.assign(defaults, options)
+    console.log(merged)
     super(merged)
   }
 
   initializeState () {
     super.initializeState()
-    console.log(this)
-    this.state.attributeManager.addInstanced({
+    console.log('initializeState', this)
+/*    this.state.attributeManager.addInstanced({
       time: {size: 1, accessor: 'getTime', defaultValue: 0, update: this.calculateTime}
-    })
+    }) */
   }
 
   calculateTime (a) {
     console.log('calctime')
-    console.log(a)
+    console.log('a', a)
   }
 
   _onGetSublayerColor (cell) {
@@ -52,15 +53,16 @@ export default class HexagonLayer2 extends HexagonLayer {
   }
 
   shouldUpdateState ({changeFlags}) {
-    console.log(super.shouldUpdateState({changeFlags}))
-    return true
-//    return super.shouldUpdateState({changeFlags})
+    console.log('shouldUpdateState', changeFlags)
+//    return true
+    return super.shouldUpdateState({changeFlags})
   }
 
   updateState ({oldProps, props, changeFlags}) {
-    console.log(this.props.elevationScale)
+    console.log('elevationScale', this.props.elevationScale)
 //    this.props.elevationScale = this.props.elevationScale * 1.01
 //    return true
-    return super.updateState({oldProps, props, changeFlags})
+    let newProps = {...props, elevationScale: 0.5}
+    return super.updateState({oldProps, newProps, changeFlags})
   }
 }
