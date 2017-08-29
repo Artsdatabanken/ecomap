@@ -8,6 +8,7 @@ import vs from './heatmapFromPoints-layer-vertex.glsl'
 import fs from './heatmapFromPoints-layer-fragment.glsl'
 import fsScreen from './grayscaleToColor-fragment.glsl'
 import vsScreen from './screenQuad-vertex.glsl'
+import ramp from '../../../../graphics/color/ramps/'
 
 const DEFAULT_COLOR = [0, 0, 0, 255]
 
@@ -18,10 +19,27 @@ const defaultProps = {
   fp64: false,
   getPosition: x => x.position,
   getRadius: x => x.radius || 1,
-  getColor: x => x.color || DEFAULT_COLOR
+  getColor: x => x.color || DEFAULT_COLOR,
+  _dataComparator: (a, b) => a.length === b.length
 }
 
 export default class HeatmapFromPointsLayer extends Layer {
+  constructor (options) {
+    const opts = {
+      data: options.data,
+      colorRamp: options.colorRamp,
+      height: Math.sqrt(options.height + 1, 2) - 1,
+      radiusScale: options.radiusScale * 2,
+      getPosition: d => [d[0], d[1]],
+      getRadius: d => options.radius * 100000,
+      fillOpacity: options.fillOpacity
+    }
+    super(opts)
+    console.log(opts)
+//    window.luma.log.priority = 3
+    window.deck.log.priority = 3
+  }
+
   getShaders (id) {
     const { shaderCache } = this.context
     return { vs, fs, modules: ['project'], shaderCache }
@@ -113,7 +131,8 @@ export default class HeatmapFromPointsLayer extends Layer {
   }
 
   draw ({ uniforms }) {
-    const gl = this.state.model.gl
+    console.log('heat draw')
+    const { gl } = this.context
     var fbHeat = this.state.fbHeat
 
     const {width, height} = gl.canvas
@@ -126,6 +145,7 @@ export default class HeatmapFromPointsLayer extends Layer {
       fillOpacity,
       height: this.props.height
     })
+    console.log(args)
 
     gl.blendFunc(gl.ONE, gl.ONE)
     //   window.luma.log.priority = 4;

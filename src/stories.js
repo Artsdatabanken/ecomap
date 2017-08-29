@@ -19,6 +19,7 @@ import ScatterplotStory from './stories/ScatterplotStory'
 import ScatterplotStoryLocal from './stories/ScatterplotStoryLocal'
 import HexagonStoryLocal from './stories/HexagonStoryLocal'
 import HexagonLayer2Story from './stories/HexagonLayer2Story'
+import HeatMapLayerStory from './stories/HeatmapLayerStory'
 import ExperimentalShaderStory from './stories/ExperimentalShaderStory'
 import HeatmapFromPointsStory from './stories/HeatmapFromPointsStory'
 import ColorRampStory from './stories/ColorRampStory'
@@ -27,6 +28,7 @@ import layerSettings from './stories/layerSettings'
 
 storiesOf('Layer rendering', module)
 .addDecorator(muiTheme([theme]))
+.add('Heatmap', () => <HeatMapLayerStory />)
 .add('Arc', () =>
   <Paper style={{margin: '20px'}}>
     <ArcStory />

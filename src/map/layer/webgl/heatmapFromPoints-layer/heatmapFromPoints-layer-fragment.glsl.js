@@ -19,7 +19,5 @@ void main(void) {
   else {
     discard;
   }
-//  gl_FragColor = vec4(255.,55.,77.,255.);
-//gl_FragColor = vec4(gl_FragCoord.x*0.002, gl_FragCoord.y*0.002, 255.-gl_FragCoord.x, 255.);
 }
 `
