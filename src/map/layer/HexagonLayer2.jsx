@@ -63,8 +63,7 @@ export default class HexagonLayer2 extends HexagonLayer {
   }
 
   renderLayers () {
-    console.log(':__')
-    debugger
+    console.log('hex.renderLayers')
     super.renderLayers()
   }
 }

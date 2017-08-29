@@ -5,10 +5,10 @@ import PropTypes from 'prop-types'
 // import VectorTileLayer from './VectorTileLayer'
 import EcoHexagonLayer from './EcoHexagonLayer'
 import Scatterplot from './Scatterplot'
-import HeatmapFromPoints from './HeatmapFromPoints'
+import HeatmapFromPointsLayer from './webgl/heatmapFromPoints-layer/heatmapFromPoints-layer'
 import ArtskartDataSourceContainer from './ArtskartDataSourceContainer'
 import ramp from '../../graphics/color/ramps/'
-import DeckGL, { HexagonLayer } from 'deck.gl'
+import DeckGL from 'deck.gl'
 
 const ACon = ({layers, onData}) => {
   const r = []
@@ -81,14 +81,15 @@ export default class MapLayerStack extends React.Component {
     switch (paint.visualizationMode) {
       case 'heatmap':
         return (
-          <HeatmapFromPoints
-            key={'heat' + id}
-            id={id}
-            title={layer.title}
-            data={data}
-            viewport={viewport}
-            {...paint}
-        />
+           new HeatmapFromPointsLayer({
+             id: 'heat' + id,
+             title: layer.title,
+             data: data,
+             colorRamp: ramp[paint.colorRamp],
+             fillOpacity: paint.fillOpacity,
+             height: paint.height,
+             radiusScale: paint.radiusScale * 20000
+           })
         )
       case 'scatterplot':
         return (
@@ -142,7 +143,7 @@ new EcoHexagonLayer({
   },
   onHover: onHover,
   pickable: Boolean(onHover),
-  radius: paint.radius * 50000,
+  radius: paint.radiusScale * 50000,
   lowerPercentile: paint.lowerPercentile * 100,
   upperPercentile: paint.upperPercentile * 100
 })

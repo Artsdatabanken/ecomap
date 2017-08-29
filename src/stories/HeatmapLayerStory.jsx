@@ -1,7 +1,7 @@
 import React from 'react'
 import DeckGL from 'deck.gl'
 import {Paper} from 'material-ui'
-import HexagonLayer2 from '../map/layer/HexagonLayer2'
+import HeatmapLayer from '../map/layer/webgl/heatmapFromPoints-layer/heatmapFromPoints-layer'
 import alces from '../../data/sample/artskart_48103.json'
 import readGeoJsonPoints from '../translate/GeoJson.js'
 import ramp from '../graphics/color/ramps/'
@@ -18,20 +18,23 @@ const viewport = {
 
 const points = readGeoJsonPoints(alces)
 
-export default Hexagon2StoryLocal => {
-  let layer = new HexagonLayer2({
-    id: 'hexstory',
+export default HeatmapLayerStory => {
+  let layer = new HeatmapLayer({
+    id: 'heatstory',
     colorRamp: ramp.magma,
+    radiusScale: 11111.0,
+    fillOpacity: 1.0,
+    height: 1.0,
     data: points,
     viewport: viewport
   })
 
-  window.deck.log.priority = 4
   return <Paper style={{backgroundColor: '#ccc', width: viewport.width, height: viewport.height, margin: '10px'}}>
     <DeckGL {...viewport} layers={[layer]}
       onWebGLInitialized={(gl) => {
         gl.enable(gl.DEPTH_TEST)
         gl.depthFunc(gl.LEQUAL)
       }}
-  /></Paper>
+    />
+  </Paper>
 }
