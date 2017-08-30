@@ -8,7 +8,6 @@ import vs from './heatmapFromPoints-layer-vertex.glsl'
 import fs from './heatmapFromPoints-layer-fragment.glsl'
 import fsScreen from './grayscaleToColor-fragment.glsl'
 import vsScreen from './screenQuad-vertex.glsl'
-import ramp from '../../../../graphics/color/ramps/'
 
 const DEFAULT_COLOR = [0, 0, 0, 255]
 
@@ -131,7 +130,6 @@ export default class HeatmapFromPointsLayer extends Layer {
   }
 
   draw ({ uniforms }) {
-    console.log('heat draw')
     const { gl } = this.context
     var fbHeat = this.state.fbHeat
 
@@ -145,10 +143,8 @@ export default class HeatmapFromPointsLayer extends Layer {
       fillOpacity,
       height: this.props.height
     })
-    console.log(args)
 
     gl.blendFunc(gl.ONE, gl.ONE)
-    //   window.luma.log.priority = 4;
     this.state.model.draw({
       framebuffer: fbHeat,
       uniforms: args

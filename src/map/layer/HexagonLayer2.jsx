@@ -48,7 +48,6 @@ export default class HexagonLayer2 extends HexagonLayer {
   }
 */
   updateState ({oldProps, props, changeFlags}) {
-    console.log('updateState', this)
 //    this.state.elevationScale *= 1.03
 //    this.setState({elevationScale: this.state.elevationScale * 1.1})
   //  console.log(this.state.elevationScale)
@@ -63,7 +62,6 @@ export default class HexagonLayer2 extends HexagonLayer {
   }
 
   renderLayers () {
-    console.log('hex.renderLayers')
     super.renderLayers()
   }
 }

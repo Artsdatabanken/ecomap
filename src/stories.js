@@ -16,12 +16,9 @@ import ErrorBanner from './ErrorBanner'
 import SpeciesGridItemCard from './viewer/layer/add/species/SpeciesGridItemCard'
 import ArcStory from './stories/ArcStory'
 import ScatterplotStory from './stories/ScatterplotStory'
-import ScatterplotStoryLocal from './stories/ScatterplotStoryLocal'
 import HexagonStoryLocal from './stories/HexagonStoryLocal'
-import HexagonLayer2Story from './stories/HexagonLayer2Story'
 import HeatMapLayerStory from './stories/HeatmapLayerStory'
 import ExperimentalShaderStory from './stories/ExperimentalShaderStory'
-import HeatmapFromPointsStory from './stories/HeatmapFromPointsStory'
 import ColorRampStory from './stories/ColorRampStory'
 import diagrams from './stories/Diagrams'
 import layerSettings from './stories/layerSettings'
@@ -34,12 +31,9 @@ storiesOf('Layer rendering', module)
     <ArcStory />
   </Paper>
 )
-.add('Heatmap from points', () => <HeatmapFromPointsStory />)
 .add('Experimental shader', () => <ExperimentalShaderStory />)
 .add('Scatterplot', () => <ScatterplotStory />)
-.add('Scatterplot local', () => <ScatterplotStoryLocal />)
 .add('HexagonLocal', () => <HexagonStoryLocal />)
-.add('Hexagon2', () => <HexagonLayer2Story />)
 
 layerSettings()
 

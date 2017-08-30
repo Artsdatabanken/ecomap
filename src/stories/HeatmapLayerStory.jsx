@@ -25,8 +25,7 @@ export default HeatmapLayerStory => {
     radiusScale: 11111.0,
     fillOpacity: 1.0,
     height: 1.0,
-    data: points,
-    viewport: viewport
+    data: points
   })
 
   return <Paper style={{backgroundColor: '#ccc', width: viewport.width, height: viewport.height, margin: '10px'}}>
