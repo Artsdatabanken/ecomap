@@ -1,6 +1,6 @@
 import { HexagonLayer } from 'deck.gl'
 import ramp from '../../graphics/color/ramps/'
-import EasingFunctions from '../../graphics/bezier-easing'
+// import EasingFunctions from '../../graphics/bezier-easing'
 
 const DEFAULT_LIGHT_SETTINGS = {
   lightsPosition: [-0.144528, 49.739968, 80000, -3.807751, 54.104682, 80000],
