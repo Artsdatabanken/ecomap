@@ -34,12 +34,14 @@ export default class EcoHexagonLayer extends HexagonLayer {
     const merged = Object.assign(defaults, options)
     super(merged)
   }
+  
   static rampUp (p) {
 //    this.time += 0.01
 //    debugger
     console.log('date', new Date().getSeconds())
     return p * Math.sin(new Date().getSeconds())
   }
+
   shouldUpdateState (updateParams) {
     console.log(updateParams)
     return true
