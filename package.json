@@ -74,7 +74,7 @@
     "canvas-prebuilt": "^1.6.5-prerelease.1",
     "coveralls": "^2.13.1",
     "flow-bin": "^0.54.0",
-    "jest-junit": "^2.0.1",
+    "jest-junit": "^3.0.0",
     "pixelmatch": "^4.0.2",
     "precommit-hook": "^3.0.0",
     "react-test-renderer": "^15.4.2",
