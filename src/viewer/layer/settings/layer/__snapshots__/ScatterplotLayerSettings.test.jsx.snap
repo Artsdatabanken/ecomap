@@ -272,15 +272,15 @@ exports[`loading standard tile 1`] = `
           >
             <style>
               
-                        .saturation-white {
-                          background: -webkit-linear-gradient(to right, #fff, rgba(255,255,255,0));
-                          background: linear-gradient(to right, #fff, rgba(255,255,255,0));
-                        }
-                        .saturation-black {
-                          background: -webkit-linear-gradient(to top, #000, rgba(0,0,0,0));
-                          background: linear-gradient(to top, #000, rgba(0,0,0,0));
-                        }
-                      
+          .saturation-white {
+            background: -webkit-linear-gradient(to right, #fff, rgba(255,255,255,0));
+            background: linear-gradient(to right, #fff, rgba(255,255,255,0));
+          }
+          .saturation-black {
+            background: -webkit-linear-gradient(to top, #000, rgba(0,0,0,0));
+            background: linear-gradient(to top, #000, rgba(0,0,0,0));
+          }
+        
             </style>
             <div
               className="saturation-white"
@@ -336,24 +336,24 @@ exports[`loading standard tile 1`] = `
                     Object {
                       "MozBorderRadius": "50%",
                       "MozBoxShadow": "0 0 0 1.5px #fff, inset 0 0 1px 1px rgba(0,0,0,.3),
-                                0 0 1px 2px rgba(0,0,0,.4)",
+            0 0 1px 2px rgba(0,0,0,.4)",
                       "MozTransform": "translate(-2px, -2px)",
                       "OBorderRadius": "50%",
                       "OBoxShadow": "0 0 0 1.5px #fff, inset 0 0 1px 1px rgba(0,0,0,.3),
-                                0 0 1px 2px rgba(0,0,0,.4)",
+            0 0 1px 2px rgba(0,0,0,.4)",
                       "OTransform": "translate(-2px, -2px)",
                       "WebkitBorderRadius": "50%",
                       "WebkitBoxShadow": "0 0 0 1.5px #fff, inset 0 0 1px 1px rgba(0,0,0,.3),
-                                0 0 1px 2px rgba(0,0,0,.4)",
+            0 0 1px 2px rgba(0,0,0,.4)",
                       "WebkitTransform": "translate(-2px, -2px)",
                       "borderRadius": "50%",
                       "boxShadow": "0 0 0 1.5px #fff, inset 0 0 1px 1px rgba(0,0,0,.3),
-                                0 0 1px 2px rgba(0,0,0,.4)",
+            0 0 1px 2px rgba(0,0,0,.4)",
                       "cursor": "hand",
                       "height": "4px",
                       "msBorderRadius": "50%",
                       "msBoxShadow": "0 0 0 1.5px #fff, inset 0 0 1px 1px rgba(0,0,0,.3),
-                                0 0 1px 2px rgba(0,0,0,.4)",
+            0 0 1px 2px rgba(0,0,0,.4)",
                       "msTransform": "translate(-2px, -2px)",
                       "transform": "translate(-2px, -2px)",
                       "width": "4px",
@@ -429,20 +429,20 @@ exports[`loading standard tile 1`] = `
                 >
                   <style>
                     
-                                .hue-horizontal {
-                                  background: linear-gradient(to right, #f00 0%, #ff0 17%, #0f0
-                                    33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);
-                                  background: -webkit-linear-gradient(to right, #f00 0%, #ff0
-                                    17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);
-                                }
-                    
-                                .hue-vertical {
-                                  background: linear-gradient(to top, #f00 0%, #ff0 17%, #0f0 33%,
-                                    #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);
-                                  background: -webkit-linear-gradient(to top, #f00 0%, #ff0 17%,
-                                    #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);
-                                }
-                              
+            .hue-horizontal {
+              background: linear-gradient(to right, #f00 0%, #ff0 17%, #0f0
+                33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);
+              background: -webkit-linear-gradient(to right, #f00 0%, #ff0
+                17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);
+            }
+
+            .hue-vertical {
+              background: linear-gradient(to top, #f00 0%, #ff0 17%, #0f0 33%,
+                #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);
+              background: -webkit-linear-gradient(to top, #f00 0%, #ff0 17%,
+                #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);
+            }
+          
                   </style>
                   <div
                     style={
@@ -552,7 +552,7 @@ exports[`loading standard tile 1`] = `
                       "WebkitBorderRadius": undefined,
                       "WebkitBoxShadow": undefined,
                       "background": "linear-gradient(to right, rgba(255,128,64, 0) 0%,
-                               rgba(255,128,64, 1) 100%)",
+           rgba(255,128,64, 1) 100%)",
                       "borderRadius": undefined,
                       "bottom": "0px",
                       "boxShadow": undefined,
