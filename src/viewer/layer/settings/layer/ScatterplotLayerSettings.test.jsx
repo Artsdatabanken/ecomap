@@ -11,7 +11,7 @@ it('loading standard tile', () => {
       <ScatterplotLayerSettings
         fillColor={'#ff8040'}
         fillOpacity={0.1}
-        radius={0.2}
+        radiusScale={0.2}
       />
     </MuiThemeProvider>
   )

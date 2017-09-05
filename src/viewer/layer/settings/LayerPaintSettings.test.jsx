@@ -12,7 +12,7 @@ it('renders ok', () => {
         visualizationMode='heatmap'
         blendMode='multiply'
         fillOpacity={0.1}
-        radius={0.2}
+        radiusScale={0.2}
         coverage={0.3} />
     </MuiThemeProvider>
       )
