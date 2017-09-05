@@ -6,7 +6,7 @@ import ColorRampSelector from '../ColorRampSelector'
 
 export default class HeatmapLayerSettings extends React.Component {
   render () {
-    const { colorRamp, radius, height, fillOpacity, onChange } = this.props
+    const { colorRamp, radiusScale, height, fillOpacity, onChange } = this.props
     return (
       <div>
         <ColorRampSelector
@@ -16,7 +16,7 @@ export default class HeatmapLayerSettings extends React.Component {
         />
         <SliderSetting
           title='Width'
-          value={radius}
+          value={radiusScale}
           icon={<ActionAllOut />}
           onChange={value => onChange('radiusScale', value)}
         />
