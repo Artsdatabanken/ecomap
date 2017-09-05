@@ -5,14 +5,14 @@ import ColorpickerSetting from '../ColorpickerSetting'
 
 export default class ScatterplotLayerSettings extends React.Component {
   render () {
-    const { radius, onChange, fillColor, fillOpacity } = this.props
+    const { radiusScale, onChange, fillColor, fillOpacity } = this.props
     return (
       <div>
         <SliderSetting
           title='Radius'
-          value={radius}
+          value={radiusScale}
           icon={<ActionAllOut />}
-          onChange={value => onChange('radius', value)}
+          onChange={value => onChange('radiusScale', value)}
         />
         <ColorpickerSetting
           onChange={onChange}

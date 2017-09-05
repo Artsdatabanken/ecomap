@@ -8,7 +8,7 @@ import HexagonLayerSettings from './HexagonLayerSettings'
 it('renders ok', () => {
   const tree = renderer.create(
     <MuiThemeProvider muiTheme={muiTheme}>
-      <HexagonLayerSettings fillOpacity={0.1} radius={0.2} coverage={0.3} />
+      <HexagonLayerSettings fillOpacity={0.1} radiusScale={0.2} coverage={0.3} />
     </MuiThemeProvider>
       )
   expect(tree.toJSON()).toMatchSnapshot()

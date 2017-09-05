@@ -7,7 +7,7 @@ import ColorRampSelector from '../ColorRampSelector'
 
 export default class HexagonLayerSettings extends React.Component {
   render () {
-    const {fillOpacity, coverage, radius, elevationMin, elevationMax,
+    const {fillOpacity, coverage, radiusScale, elevationMin, elevationMax,
       lowerPercentile, colorRamp, upperPercentile, colorDomainMin, colorDomainMax, onChange} = this.props
     return (<div>
       <ColorRampSelector
@@ -16,7 +16,7 @@ export default class HexagonLayerSettings extends React.Component {
         onChange={value => onChange('colorRamp', value)}
         />
       <SliderSetting title='Opacity' value={fillOpacity} icon={<ActionOpacity />} onChange={value => onChange('fillOpacity', value)} />
-      <SliderSetting title='Bin radius' value={radius} icon={<ActionAllOut />} onChange={value => onChange('radius', value)} />
+      <SliderSetting title='Bin radius' value={radiusScale} icon={<ActionAllOut />} onChange={value => onChange('radiusScale', value)} />
       <SliderSetting title='Lower percentile filter' value={lowerPercentile} icon={<ActionAllOut />} onChange={value => onChange('lowerPercentile', value)} />
       <SliderSetting title='Upper percentile filter' value={upperPercentile} icon={<ActionAllOut />} onChange={value => onChange('upperPercentile', value)} />
       <SliderSetting title='Hexagon coverage %' value={coverage} icon={<ActionAspectRatio />} onChange={value => onChange('coverage', value)} />
