@@ -34,7 +34,7 @@ export default class EcoHexagonLayer extends HexagonLayer {
     const merged = Object.assign(defaults, options)
     super(merged)
   }
-  
+
   static rampUp (p) {
 //    this.time += 0.01
 //    debugger
