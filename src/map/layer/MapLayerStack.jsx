@@ -27,7 +27,8 @@ const ACon = ({ layers, onData }) => {
 
 export default class MapLayerStack extends React.Component {
   static propTypes = {
-    layers: PropTypes.object.isRequired
+    layers: PropTypes.object.isRequired,
+    paint: PropTypes.object.isRequired
   }
 
   state = { layerdata: {} }
@@ -40,6 +41,7 @@ export default class MapLayerStack extends React.Component {
           viewport={this.props.viewport}
           layers={this.createGLLayers()}
           onWebGLInitialized={this._initialize}
+          blendMode={this.props.paint.blendMode}
         />
       </span>
     )
@@ -104,7 +106,7 @@ export default class MapLayerStack extends React.Component {
         return (
           new EcoHexagonLayer({
             id: `${id}hexa`,
-            colorRamp: ramp[paint.colorRamp], // ramp.sliceInFours(ramp[paint.colorRamp]),
+            colorRamp: ramp[paint.colorRamp],
             colorDomain: [paint.colorDomainMin * 50, paint.colorDomainMax * 50],
             opacity: paint.fillOpacity,
             coverage: paint.coverage,
@@ -158,7 +160,7 @@ class Decker extends React.Component {
     return (
       <DeckGL
         layers={this.props.layers}
-        style={{ mixBlendMode: 'normal' }}
+        style={{ mixBlendMode: this.props.blendMode }}
         {...this.props.viewport}
         onWebGLInitialized={this._initialize}
       />

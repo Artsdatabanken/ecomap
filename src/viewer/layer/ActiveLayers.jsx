@@ -1,12 +1,13 @@
 import React from 'react'
-import { FlatButton, Paper } from 'material-ui'
+import { FlatButton, ListItem, Paper } from 'material-ui'
 import SelectSpeciesDialog from './add/species/SelectSpeciesDialog'
 import ActiveLayerStrip from './ActiveLayerStrip'
+import CompositionBlendMode from './settings/CompositionBlendMode'
 
 export default class ActiveLayers extends React.Component {
   state = {}
   render () {
-    const { layers, onAddLayer, onUpdateLayerProp, onDeleteLayer } = this.props
+    const { paint, layers, onAddLayer, onUpdatePaintProp, onUpdateLayerProp, onDeleteLayer } = this.props
     const { showAddLayersDialog } = this.state
     if (showAddLayersDialog) {
       return (
@@ -19,6 +20,8 @@ export default class ActiveLayers extends React.Component {
     return (
       <Layers
         layers={layers}
+        paint={paint}
+        onUpdatePaintProp={onUpdatePaintProp}
         onUpdateLayerProp={onUpdateLayerProp}
         onAdd={this.handleShowAddLayers}
         onAddLinkedLayer={this.handleAddLinkedLayer}
@@ -36,7 +39,7 @@ export default class ActiveLayers extends React.Component {
 }
 
 const Layers = ({
-  layers, onUpdateLayerProp, onAdd, onAddLinkedLayer, onDeleteLayer }) =>
+  layers, paint, onUpdateLayerProp, onUpdatePaintProp, onAdd, onAddLinkedLayer, onDeleteLayer }) =>
     <div
       style={{
         width: '400px',
@@ -62,6 +65,13 @@ const Layers = ({
           />
           )
         })}
+        <ListItem>
+          <CompositionBlendMode
+            blendMode={paint.blendMode}
+            handleBlendModeChange={(event, index, value) =>
+            onUpdatePaintProp('blendMode', value)}
+        />
+        </ListItem>
         <FlatButton label='Add' onTouchTap={onAdd} />
       </Paper>
     </div>

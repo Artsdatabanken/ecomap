@@ -10,6 +10,7 @@ const MAPBOX_TOKEN = process.env.MapboxAccessToken; // eslint-disable-line
 export default class Map extends React.Component {
   static propTypes = {
     layers: PropTypes.object.isRequired,
+    paint: PropTypes.object.isRequired,
     animate: PropTypes.bool,
     onClick: PropTypes.func.isRequired
   }
@@ -192,7 +193,7 @@ export default class Map extends React.Component {
         //        mapStyle='mapbox://styles/mapbox/dark-v9'
         onViewportChange={v => this._onViewportChange(v)}
         mapboxApiAccessToken={MAPBOX_TOKEN} >
-        <MapLayerStack layers={this.props.layers} viewport={viewport} />
+        <MapLayerStack paint={this.props.paint} layers={this.props.layers} viewport={viewport} />
       </MapGL>
     )
   }

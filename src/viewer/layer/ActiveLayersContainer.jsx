@@ -52,7 +52,7 @@ export default class ActiveLayersContainer extends React.Component {
         'visualizationMode': 'heatmap',
         'colorRamp': 'inferno',
         'blendMode': 'multiply',
-        'radiusScale': 0.19,
+        'radiusScale': 0.39,
         'height': 0.35,
         'extruded': true,
         'elevationScale': 500,
