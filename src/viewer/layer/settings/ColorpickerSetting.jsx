@@ -18,7 +18,7 @@ const ColorPickerSetting = ({ onChange, fillColor, fillOpacity, children }) =>
           onChange('fillOpacity', e.rgb.a)
         }}
         color={hexToRgba(fillColor, fillOpacity)}
-        width='100%'
+        width={330}
     />
     </div>
   </div>
