@@ -8,13 +8,12 @@ import Color from 'color'
 
 function map (ramp) {
   const len = ramp.length
-  const r = new Uint8Array(len * 4)
+  const r = new Uint8Array(len * 3)
   for (var i = 0, o = 0; i < ramp.length; i++) {
     const rgba = hex2rgbint(ramp[i])
     r[o++] = rgba.r
     r[o++] = rgba.g
     r[o++] = rgba.b
-    r[o++] = 255
   }
   return r
 }
@@ -42,16 +41,16 @@ ramp.viridis = map(viridis)
 ramp.YlGn = map(customRamps.YlGn['9'])
 ramp.sliceInFours = function (ramp) {
   var r = []
-  const colorCount = ramp.length / 4
+  const colorCount = ramp.length / 3
   var o = 0
-  for (var i = 0; i < colorCount; i++) { r[i] = [ramp[o++], ramp[o++], ramp[o++], ramp[o++]] }
+  for (var i = 0; i < colorCount; i++) { r[i] = [ramp[o++], ramp[o++], ramp[o++]] }
   return r
 }
 ramp.toHex = function (ramp) {
   var r = []
-  const colorCount = ramp.length / 4
+  const colorCount = ramp.length / 3
   var o = 0
-  for (var i = 0; i < colorCount; i++) { r[i] = rgbToHex(ramp[o++], ramp[o++], ramp[o++]); o++ }
+  for (var i = 0; i < colorCount; i++) { r[i] = rgbToHex(ramp[o++], ramp[o++], ramp[o++]) }
   return r
 }
 ramp.ramps = ['inferno', 'magma', 'plasma', 'viridis', 'gray']//, 'YlGn']
