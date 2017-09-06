@@ -73,9 +73,9 @@ export default class HeatmapFromPointsLayer extends Layer {
     /* eslint-enable max-len */
 
     const rampTexture = new Texture2D(gl, {
-      width: this.props.colorRamp.length / 4, // 256
+      width: this.props.colorRamp.length / 3,
       height: 1,
-      format: GL.RGBA,
+      format: GL.RGB,
       pixels: this.props.colorRamp,
       parameters: {
         [GL.TEXTURE_MAG_FILTER]: GL.LINEAR,
@@ -124,8 +124,8 @@ export default class HeatmapFromPointsLayer extends Layer {
     if (props.colorRamp !== oldProps.colorRamp) {
       const gl = this.context.gl
       this.state.rampTexture.bind(0)
-      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, props.colorRamp.length / 4, // 256,
-        1, 0, gl.RGBA,
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, props.colorRamp.length / 3,
+        1, 0, gl.RGB,
         gl.UNSIGNED_BYTE, props.colorRamp)
     }
     this.updateAttribute({ props, oldProps, changeFlags })
