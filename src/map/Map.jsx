@@ -118,7 +118,7 @@ export default class Map extends React.Component {
     if (features.length <= 0) {
       // || !features[0].layer.id.startsWith('NIN ')) {
       this.resetSelection()
-      map.getCanvas().style.cursor = ''
+//      map.getCanvas().style.cursor = ''
       return
     }
     if (this.selectedLayerId === features[0].layer.id) return
@@ -137,7 +137,7 @@ export default class Map extends React.Component {
       )
     }
     this.props.onClick(features)
-    map.getCanvas().style.cursor = 'pointer'
+//    map.getCanvas().style.cursor = 'pointer'
   }
 
   resetSelection () {
