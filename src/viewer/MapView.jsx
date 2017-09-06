@@ -20,6 +20,7 @@ export default class MapView extends React.Component {
     venstreMenyÅpen: false,
     showLayersDialog: true,
     feature: {},
+    paint: {blendMode: 'multiply'},
     layers: {
       'L1-1': { title: 'Grunn limnisk fastbunn', visible: false },
       T4: { title: 'Skogsmark', visible: false },
@@ -164,11 +165,14 @@ export default class MapView extends React.Component {
           {this.state.showMap && <Map
             animate={this.state.animate}
             layers={this.state.layers}
+            paint={this.state.paint}
             onClick={features => this.onClick(features)}
           />}
           {this.state.showLayersDialog &&
           <CloseOnEscape onEscape={() => this.setState({ showLayersDialog: false })}>
-            <ActiveLayers layers={this.state.layers} />
+            <ActiveLayers layers={this.state.layers} paint={this.state.paint}
+              onUpdatePaintProp={(key, value) =>
+              this.setState(prevState => { prevState.paint[key] = value; return prevState })} />
           </CloseOnEscape>
           }
         </ActiveLayersContainer>

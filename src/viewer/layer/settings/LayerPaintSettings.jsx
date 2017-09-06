@@ -1,6 +1,5 @@
 import React from 'react'
 import LayerSpecificRenderSettings from './layer/LayerSpecificRenderSettings'
-import CompositionBlendMode from './CompositionBlendMode'
 import VisualizationSelector from './visualization/VisualizationSelector'
 
 /* function getCheckBoard() {
@@ -20,11 +19,6 @@ export default class LayerPaintSettings extends React.Component {
           onChange={(event, index, value) =>
             this.props.onChange('visualizationMode', value)} />
         <LayerSpecificRenderSettings {...this.props} />
-        <CompositionBlendMode
-          blendMode={this.props.blendMode}
-          handleBlendModeChange={(event, index, value) =>
-            this.props.onChange('blendMode', value)}
-        />
       </span>
     )
   }
