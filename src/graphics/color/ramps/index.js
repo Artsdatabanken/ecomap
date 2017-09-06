@@ -3,7 +3,6 @@ import magma from './hex/magma.json'
 import plasma from './hex/plasma.json'
 import viridis from './hex/viridis.json'
 import {hex2rgbint, rgbToHex} from '../colorfunc'
-import customRamps from 'color_ramps'
 import Color from 'color'
 
 function map (ramp) {
@@ -38,7 +37,6 @@ ramp.inferno = map(inferno)
 ramp.magma = map(magma)
 ramp.plasma = map(plasma)
 ramp.viridis = map(viridis)
-ramp.YlGn = map(customRamps.YlGn['9'])
 ramp.sliceInFours = function (ramp) {
   var r = []
   const colorCount = ramp.length / 3
@@ -53,6 +51,6 @@ ramp.toHex = function (ramp) {
   for (var i = 0; i < colorCount; i++) { r[i] = rgbToHex(ramp[o++], ramp[o++], ramp[o++]) }
   return r
 }
-ramp.ramps = ['inferno', 'magma', 'plasma', 'viridis', 'gray']//, 'YlGn']
+ramp.ramps = ['inferno', 'magma', 'plasma', 'viridis', 'gray']
 
 export default ramp
