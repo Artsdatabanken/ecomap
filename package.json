@@ -84,7 +84,9 @@
   "homepage": ".",
   "standard": {
     "parser": "babel-eslint",
-    "plugins": [ "flowtype" ],
+    "plugins": [
+      "flowtype"
+    ],
     "globals": [
       "it",
       "expect",

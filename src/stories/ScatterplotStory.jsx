@@ -45,5 +45,5 @@ const layers = {
 
 export default ScatterplotStory =>
   <FetchContainer>
-    <MapLayerStack layers={layers} viewport={viewport} />
+    <MapLayerStack paint={{blendMode: 'multiply'}} layers={layers} viewport={viewport} />
   </FetchContainer>
