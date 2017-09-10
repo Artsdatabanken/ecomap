@@ -2,27 +2,29 @@ import React from 'react'
 import DeckGL from 'deck.gl'
 import {Paper} from 'material-ui'
 import TemporalHeatmapLayer from '../map/layer/webgl/temporalHeatmap-layer/temporalHeatmap-layer'
-import sampleData from '../../data/sample/temporalAnimationSource.png'
+// import sampleData from '../../data/sample/temporalAnimationSource.png'
+import sampleData from '../../data/sample/yearofbirds.png'
 import ramp from '../graphics/color/ramps/'
 import FetchContainer from '../FetchContainer'
 import PropTypes from 'prop-types'
 import {rgbToHex} from '../graphics/color/colorfunc'
 
-const viewport = {
-  width: 900,
-  height: 800,
-  longitude: 15,
-  latitude: 64,
-  zoom: 4.3,
-  pitch: 30,
-  bearing: -20
-}
-
 class TemporalHeatmapLayerStory extends React.Component {
-  state = { time: 0.0 }
+  state = {
+    viewport: {
+      width: 900,
+      height: 1100,
+      longitude: 15, // --4 - 32  = 28
+      latitude: 64, // -- 57 - 72 = 15
+      zoom: 4.6,
+      pitch: 0,
+      bearing: 5
+    },
+    time: 0.0
+  }
 
   _animate = () => {
-    this.setState({time: (this.state.time + 0.015)})
+    this.setState({time: (this.state.time + 0.055)})
   }
 
   componentWillMount () {
@@ -30,7 +32,8 @@ class TemporalHeatmapLayerStory extends React.Component {
   }
 
   render () {
-    const time = this.state.time + 4
+    const time = (this.state.time % 24) / 24 * 52
+    const viewport = this.state.viewport
     return (<div>Time: {time}
       <Paper style={{backgroundColor: '#ccc', width: viewport.width, height: viewport.height, margin: '10px'}}>
         <FetchContainer>
@@ -77,16 +80,16 @@ class Loader extends React.Component {
 
     this.context.fetchImage(this.props.title, this.props.dataUrl,
       image => {
-        // this.ctx.drawImage(image, 0, 0)
-
+        this.ctx.drawImage(image, 0, 0)
+/*
         for (var x = 0; x < 256; x++) {
           for (var y = 0; y < 256; y++) {
             var r = 255 - Math.trunc(Math.sqrt((Math.pow(128 - x, 2) + Math.pow(128 - y, 2))))
             this.ctx.fillStyle = rgbToHex(r, x, y)
-            this.ctx.fillRect(x * 3, y * 3, 3, 3)
+            this.ctx.fillRect(x * 2, y * 2, 2, 2)
           }
         }
-
+*/
         this.setState({temporalData: this.refs.canvas})
       })
   }
@@ -107,7 +110,7 @@ class Loader extends React.Component {
           {childrenWithProps}
         </div>
         Temporal source data:
-        <canvas ref='canvas' width='802' height='640' />
+        <canvas ref='canvas' width='1024' height='1024' />
       </div>)
   }
 
