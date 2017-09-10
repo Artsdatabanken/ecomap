@@ -87,10 +87,6 @@ export default class TemporalHeatmapLayer extends Layer {
       mipmaps: false
     })
 
-    console.warn('****temporal', this.props.temporalData)
-//    rampTexture = rampTexture.setImageData({pixels: this.props.temporalData})
-    console.warn('****temporal', rampTexture)
-
     this.setState({
       model: this._getModel(gl),
       model2: this._getModel2(gl),
@@ -148,7 +144,7 @@ export default class TemporalHeatmapLayer extends Layer {
     gl.clear(gl.COLOR_BUFFER_BIT)
     const { radiusScale, fillOpacity } = this.props
 
-    const time = 0
+    const time = 4
     gl.blendFunc(gl.ONE, gl.ONE)
     this.state.model.draw({
       framebuffer: fbHeat,

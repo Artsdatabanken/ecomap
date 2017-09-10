@@ -16,7 +16,7 @@ varying vec2 unitPosition;
 void main(void) {
   // Multiply out radius and clamp to limits
   float outerRadiusPixels = clamp(
-    project_scale(radiusScale *25.* instanceRadius),
+    project_scale(radiusScale * instanceRadius),
     0., 123456789.
   );
 

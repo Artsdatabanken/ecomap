@@ -32,7 +32,7 @@ const WebGlStuffs = ({viewport, temporalData}) => {
   let layer = new TemporalHeatmapLayer({
     id: 'temporalheatstory',
     colorRamp: ramp.magma,
-    radiusScale: 11111.0,
+    radiusScale: 293210.0,
     fillOpacity: 1.0,
     height: 1.0,
     data: [[14, 66, 0]],
@@ -42,7 +42,7 @@ const WebGlStuffs = ({viewport, temporalData}) => {
   return <DeckGL
     {...viewport}
     layers={[layer]}
-    glOptions={{webgl2: true}}
+//    glOptions={{webgl2: true}}
     onWebGLInitialized={(gl) => {
       gl.enable(gl.DEPTH_TEST)
       gl.depthFunc(gl.LEQUAL)
