@@ -39,9 +39,10 @@ const WebGlStuffs = ({viewport, temporalData}) => {
     temporalData: temporalData
   })
 
-return <DeckGL
+  return <DeckGL
     {...viewport}
     layers={[layer]}
+    glOptions={{webgl2: true}}
     onWebGLInitialized={(gl) => {
       gl.enable(gl.DEPTH_TEST)
       gl.depthFunc(gl.LEQUAL)
@@ -68,7 +69,6 @@ class Loader extends React.Component {
     const props = {...this.props,
       temporalData: this.state.temporalData
     }
-    console.log('props', props)
     const childrenWithProps = React.Children.map(this.props.children,
       (child) => {
         if (!child) return child // result of conditionals for example

@@ -147,16 +147,18 @@ export default class TemporalHeatmapLayer extends Layer {
     fbHeat.bind(gl.FRAMEBUFFER)
     gl.clear(gl.COLOR_BUFFER_BIT)
     const { radiusScale, fillOpacity } = this.props
-    const args = Object.assign({}, uniforms, {
-      radiusScale,
-      fillOpacity,
-      height: this.props.height
-    })
 
+    const time = 0
     gl.blendFunc(gl.ONE, gl.ONE)
     this.state.model.draw({
       framebuffer: fbHeat,
-      uniforms: args
+      uniforms: {
+        time,
+        radiusScale,
+        fillOpacity,
+        height: this.props.height,
+        temporalTexture: this.state.temporalTexture
+      }
     })
 
     gl.blendFuncSeparate(
