@@ -90,7 +90,7 @@ export default class TemporalHeatmapLayer extends Layer {
 
     this.setState({
       model: this._getModel(gl),
-      model2: this._getModelColorRamp(gl),
+      modelColorRamp: this._getModelColorRamp(gl),
       fbHeat,
       rampTexture,
       temporalTexture
@@ -106,7 +106,7 @@ export default class TemporalHeatmapLayer extends Layer {
       const { gl } = this.context
       this.setState({
         model: this._getModel(gl),
-        model2: this._getModelColorRamp(gl)
+        modelColorRamp: this._getModelColorRamp(gl)
       })
     }
     if (props.colorRamp !== oldProps.colorRamp) {
@@ -147,7 +147,7 @@ export default class TemporalHeatmapLayer extends Layer {
       gl.ONE_MINUS_SRC_ALPHA
 )
 
-    this.state.model2.draw({
+    this.state.modelColorRamp.draw({
       framebuffer: null,
       uniforms: {
         colorRamp: this.state.rampTexture,
