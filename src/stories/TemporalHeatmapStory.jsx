@@ -28,7 +28,7 @@ class TemporalHeatmapLayerStory extends React.Component {
   }
 
   componentWillMount () {
-    this.animationTimer = window.setInterval(this._animate, 50)
+//    this.animationTimer = window.setInterval(this._animate, 50)
   }
 
   render () {

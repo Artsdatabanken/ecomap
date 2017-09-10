@@ -5,6 +5,9 @@ export default `\
 precision highp float;
 #endif
 
+uniform sampler2D sourceTexture;
+uniform vec2 iResolution;
+
 const int blur_size = 20;
 const float blur_width = 1.;
 
@@ -13,10 +16,9 @@ float gauss(float x, float e)
     return exp(-pow(x, 2.)/e);
 }
 
-// Horizontal blurring
-void mainImage( out vec4 fragColor, in vec2 fragCoord )
-{
-   vec2 pos = fragCoord.xy / iResolution.xy;
+// Vertical blurring
+void main(void) {
+   vec2 pos = gl_FragCoord.xy / iResolution;
    vec4 pixval = vec4(0.);
    float tot = 0.;
 
@@ -25,10 +27,11 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
    for (int x=0; x<nb; x++)
    {
        float x2 = blur_width*float(x-blur_size);
-       vec2 ipos = pos + vec2(x2/iResolution.x, 0.);
-       float g = gauss(x2, float(20*blur_size)*0.5);
-       pixval+= g*texture(iChannel0, ipos);
+       vec2 ipos = pos + vec2(x2/iResolution.x, 0);
+       float g = gauss(x2, float(20*blur_size)*(0.5*0.5));
+       pixval+= g*texture2D(sourceTexture, ipos);
        tot+= g;
    }
-   fragColor = pixval/tot;
+   gl_FragColor = pixval/tot;
 }
+`

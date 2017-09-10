@@ -3,6 +3,8 @@ import { GL, Framebuffer, Texture2D, Model, Geometry } from 'luma.gl'
 
 import vs from './temporalHeatmap-animation-vertex.glsl'
 import fs from './temporalHeatmap-animation-fragment.glsl'
+import fsBlurHorizontal from './horizontalGaussian-fragment.glsl'
+import fsBlurVertical from './verticalGaussian-fragment.glsl'
 import fsScreen from './grayscaleToColor-fragment.glsl'
 import vsScreen from './screenQuad-vertex.glsl'
 
@@ -43,9 +45,19 @@ export default class TemporalHeatmapLayer extends Layer {
     return { vs, fs, modules: ['project'], shaderCache }
   }
 
+  getShadersBlurVertical (id) {
+    const { shaderCache } = this.context
+    return { vs: vsScreen, fs: fsBlurVertical, modules: [], shaderCache }
+  }
+
+  getShadersBlurHorizontal (id) {
+    const { shaderCache } = this.context
+    return { vs: vsScreen, fs: fsBlurHorizontal, modules: [], shaderCache }
+  }
+
   getShadersColorRamp (id) {
     const { shaderCache } = this.context
-    return { vs: vsScreen, fs: fsScreen, modules: ['project'], shaderCache }
+    return { vs: vsScreen, fs: fsScreen, modules: [], shaderCache }
   }
 
   initializeState () {
@@ -90,6 +102,8 @@ export default class TemporalHeatmapLayer extends Layer {
 
     this.setState({
       model: this._getModel(gl),
+      modelBlurVertical: this._getModelBlurVertical(gl),
+      modelBlurHorizontal: this._getModelBlurHorizontal(gl),
       modelColorRamp: this._getModelColorRamp(gl),
       fbHeat,
       rampTexture,
@@ -129,6 +143,7 @@ export default class TemporalHeatmapLayer extends Layer {
     const { time, radiusScale, fillOpacity } = this.props
 
     gl.blendFunc(gl.ONE, gl.ONE)
+
     this.state.model.draw({
       framebuffer: fbHeat,
       uniforms: {
@@ -144,8 +159,7 @@ export default class TemporalHeatmapLayer extends Layer {
       gl.SRC_ALPHA,
       gl.ONE_MINUS_SRC_ALPHA,
       gl.ONE,
-      gl.ONE_MINUS_SRC_ALPHA
-)
+      gl.ONE_MINUS_SRC_ALPHA)
 
     this.state.modelColorRamp.draw({
       framebuffer: null,
@@ -175,6 +189,42 @@ export default class TemporalHeatmapLayer extends Layer {
         shaderCache: this.context.shaderCache
       })
     )
+  }
+
+  _getModelBlurHorizontal (gl) {
+    // a square that minimally cover the unit circle
+    const positions = [-1, -1, 0, -1, 1, 0, 1, 1, 0, 1, -1, 0]
+
+    return new Model(
+          gl,
+          Object.assign(this.getShadersBlurHorizontal(), {
+            id: this.props.id,
+            geometry: new Geometry({
+              drawMode: GL.TRIANGLE_FAN,
+              positions: new Float32Array(positions)
+            }),
+            isInstanced: false,
+            shaderCache: this.context.shaderCache
+          })
+        )
+  }
+
+  _getModelBlurVertical (gl) {
+    // a square that minimally cover the unit circle
+    const positions = [-1, -1, 0, -1, 1, 0, 1, 1, 0, 1, -1, 0]
+
+    return new Model(
+          gl,
+          Object.assign(this.getShadersBlurVertical(), {
+            id: this.props.id,
+            geometry: new Geometry({
+              drawMode: GL.TRIANGLE_FAN,
+              positions: new Float32Array(positions)
+            }),
+            isInstanced: false,
+            shaderCache: this.context.shaderCache
+          })
+        )
   }
 
   _getModelColorRamp (gl) {
