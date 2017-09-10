@@ -34,7 +34,7 @@ class TemporalHeatmapLayerStory extends React.Component {
   render () {
     const time = (this.state.time % 24) / 24 * 52
     const viewport = this.state.viewport
-    return (<div>Time: {time}
+    return (<div>Week: {time + 1}
       <Paper style={{backgroundColor: '#ccc', width: viewport.width, height: viewport.height, margin: '10px'}}>
         <FetchContainer>
           <Loader title='adfas' dataUrl={sampleData}>

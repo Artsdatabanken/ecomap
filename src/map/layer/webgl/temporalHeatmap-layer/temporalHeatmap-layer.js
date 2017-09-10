@@ -43,7 +43,7 @@ export default class TemporalHeatmapLayer extends Layer {
     return { vs, fs, modules: ['project'], shaderCache }
   }
 
-  getShaders2 (id) {
+  getShadersColorRamp (id) {
     const { shaderCache } = this.context
     return { vs: vsScreen, fs: fsScreen, modules: ['project'], shaderCache }
   }
@@ -90,7 +90,7 @@ export default class TemporalHeatmapLayer extends Layer {
 
     this.setState({
       model: this._getModel(gl),
-      model2: this._getModel2(gl),
+      model2: this._getModelColorRamp(gl),
       fbHeat,
       rampTexture,
       temporalTexture
@@ -106,7 +106,7 @@ export default class TemporalHeatmapLayer extends Layer {
       const { gl } = this.context
       this.setState({
         model: this._getModel(gl),
-        model2: this._getModel2(gl)
+        model2: this._getModelColorRamp(gl)
       })
     }
     if (props.colorRamp !== oldProps.colorRamp) {
@@ -177,13 +177,13 @@ export default class TemporalHeatmapLayer extends Layer {
     )
   }
 
-  _getModel2 (gl) {
+  _getModelColorRamp (gl) {
     // a square that minimally cover the unit circle
     const positions = [-1, -1, 0, -1, 1, 0, 1, 1, 0, 1, -1, 0]
 
     return new Model(
       gl,
-      Object.assign(this.getShaders2(), {
+      Object.assign(this.getShadersColorRamp(), {
         id: this.props.id,
         geometry: new Geometry({
           drawMode: GL.TRIANGLE_FAN,
