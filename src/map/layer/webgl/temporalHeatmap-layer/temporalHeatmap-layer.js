@@ -70,6 +70,7 @@ export default class TemporalHeatmapLayer extends Layer {
       height: 640, // this.props.colorRamp.height,
       format: GL.RGB,
 //      pixels: this.props.colorRamp,
+      pixels: this.props.temporalData,
       parameters: {
         [GL.TEXTURE_MAG_FILTER]: GL.LINEAR,
         [GL.TEXTURE_MIN_FILTER]: GL.LINEAR,
@@ -79,7 +80,8 @@ export default class TemporalHeatmapLayer extends Layer {
     })
 
     console.warn('****temporal', this.props.temporalData)
-    if (this.props.temporalData) { rampTexture = rampTexture.setImageData({data: this.props.temporalData}) }
+//    rampTexture = rampTexture.setImageData({pixels: this.props.temporalData})
+    console.warn('****temporal', rampTexture)
 
     this.setState({
       model: this._getModel(gl),
@@ -110,7 +112,7 @@ export default class TemporalHeatmapLayer extends Layer {
 
   updateState ({ props, oldProps, changeFlags }) {
     super.updateState({ props, oldProps, changeFlags })
-    if (props.fp64 !== oldProps.fp64) {
+/*    if (props.fp64 !== oldProps.fp64) {
       const { gl } = this.context
       this.setState({
         model: this._getModel(gl),
@@ -123,7 +125,7 @@ export default class TemporalHeatmapLayer extends Layer {
       gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, props.colorRamp.length / 3,
         1, 0, gl.RGB,
         gl.UNSIGNED_BYTE, props.colorRamp)
-    }
+    } */
     this.updateAttribute({ props, oldProps, changeFlags })
   }
 

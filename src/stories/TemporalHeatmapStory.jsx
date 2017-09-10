@@ -59,7 +59,7 @@ class Loader extends React.Component {
     this.context.fetchImage(this.props.title, this.props.dataUrl,
       image => {
         this.ctx.drawImage(image, 0, 0)
-        this.setState({temporalData: this.ctx})
+        this.setState({temporalData: this.refs.canvas})
       })
   }
 
@@ -76,7 +76,7 @@ class Loader extends React.Component {
       })
     return (
       <div>
-        <canvas ref='canvas' width='480' height='480' />
+        <canvas ref='canvas' width='802' height='640' />
         <div>
           {childrenWithProps}
         </div>
