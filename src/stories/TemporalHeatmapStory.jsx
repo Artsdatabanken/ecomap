@@ -52,7 +52,7 @@ const WebGlStuffs = ({viewport, time, temporalData}) => {
   let layer = new TemporalHeatmapLayer({
     time: time,
     id: 'temporalheatstory',
-    colorRamp: ramp.gray,
+    colorRamp: ramp.viridis,
     radiusScale: 293210.0,
     fillOpacity: 1.0,
     height: 1.0,
