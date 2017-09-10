@@ -22,7 +22,7 @@ class TemporalHeatmapLayerStory extends React.Component {
   state = { time: 0.0 }
 
   _animate = () => {
-    this.setState({time: this.state.time + 0.045})
+    this.setState({time: (this.state.time + 0.015)})
   }
 
   componentWillMount () {
@@ -30,11 +30,12 @@ class TemporalHeatmapLayerStory extends React.Component {
   }
 
   render () {
-    return (<div>Time: {this.state.time}
+    const time = this.state.time + 4
+    return (<div>Time: {time}
       <Paper style={{backgroundColor: '#ccc', width: viewport.width, height: viewport.height, margin: '10px'}}>
         <FetchContainer>
           <Loader title='adfas' dataUrl={sampleData}>
-            <WebGlStuffs viewport={viewport} time={this.state.time} />
+            <WebGlStuffs viewport={viewport} time={time} />
           </Loader>
         </FetchContainer>
       </Paper>

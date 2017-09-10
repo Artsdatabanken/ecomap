@@ -31,23 +31,27 @@ float isBitSet(vec4 i, float b) {
 
 vec4 sample(in sampler2D temporalTexture, in vec2 texCoord )
 {
-  float fraction = time - floor(time);
+  float seconds = floor(time);
+  float fraction = time - seconds;
   vec4 cc = texture2D(temporalTexture, texCoord);
-  float bitNo1 = fmod(floor(time),24.);
+  float bitNo1 = fmod(floor(seconds),24.);
   float bitNo2 = fmod(bitNo1+1.,24.);
   float bit1 = isBitSet(cc, bitNo1);
   float bit2 = isBitSet(cc, bitNo2);
   float r = mix(bit1,bit2, fraction);
-//	return vec4(bit1,bit1,bit1,1.);
-	return vec4(r,r,r,1.);
-}
+//  if(texCoord.x < 0.34)
+ //   return vec4(bit1,bit1,bit1,1.);
+ //   if(texCoord.x > 0.66)
+   // return vec4(bit2,bit2,bit2,1.);
+    return vec4(r,r,r,1.);
+  }
 
 void main(void) {
   vec2 texCoord = 0.5*unitPosition+vec2(0.5,0.5);
   vec4 sample = sample(temporalTexture, texCoord);
-  if(sample.r > 0.00001)
+//  if(sample.r > 0.00001)
     gl_FragColor = sample;
-  else
-    discard;
+//  else
+  //  discard;
 }
 `
