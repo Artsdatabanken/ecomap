@@ -7,6 +7,7 @@ precision highp float;
 
 uniform sampler2D colorRamp;
 uniform sampler2D heatTexture;
+uniform sampler2D temporalTexture;
 uniform float fillOpacity;
 uniform vec2 uRes;
 
@@ -17,8 +18,9 @@ void main(void) {
 
   gl_FragColor = vec4(1.0, 1.0, 0., 1.0);
   gl_FragColor = color;
-  if(intensity < 0.) {
+  if(intensity > 0.) {
     gl_FragColor = texture2D(colorRamp, vec2(intensity, 0.5));
+    gl_FragColor = texture2D(temporalTexture, vec2(intensity, 0.5));
     gl_FragColor.a = smoothstep(intensity, 0., 0.05)*fillOpacity;
   }
 //  else

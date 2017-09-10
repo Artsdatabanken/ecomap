@@ -38,8 +38,8 @@ const WebGlStuffs = ({viewport, temporalData}) => {
     data: [[14, 66, 0]],
     temporalData: temporalData
   })
-  console.log('viewport', viewport)
-  return <DeckGL
+
+return <DeckGL
     {...viewport}
     layers={[layer]}
     onWebGLInitialized={(gl) => {
@@ -76,10 +76,11 @@ class Loader extends React.Component {
       })
     return (
       <div>
-        <canvas ref='canvas' width='802' height='640' />
         <div>
           {childrenWithProps}
         </div>
+        Temporal source data:
+        <canvas ref='canvas' width='802' height='640' />
       </div>)
   }
 

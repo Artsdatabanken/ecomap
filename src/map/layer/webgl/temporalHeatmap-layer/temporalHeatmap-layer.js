@@ -65,12 +65,20 @@ export default class TemporalHeatmapLayer extends Layer {
       }
     })
 
-    var rampTexture = new Texture2D(gl, {
-      width: 802, // this.props.colorRamp.width,
-      height: 640, // this.props.colorRamp.height,
+    var temporalTexture = new Texture2D(gl, {
       format: GL.RGB,
-//      pixels: this.props.colorRamp,
       pixels: this.props.temporalData,
+      parameters: {
+        [GL.TEXTURE_MAG_FILTER]: GL.LINEAR,
+        [GL.TEXTURE_MIN_FILTER]: GL.LINEAR,
+        [GL.TEXTURE_WRAP_S]: GL.CLAMP_TO_EDGE
+      },
+      mipmaps: false
+    })
+
+    var rampTexture = new Texture2D(gl, {
+      format: GL.RGB,
+      pixels: this.props.colorRamp,
       parameters: {
         [GL.TEXTURE_MAG_FILTER]: GL.LINEAR,
         [GL.TEXTURE_MIN_FILTER]: GL.LINEAR,
@@ -87,7 +95,8 @@ export default class TemporalHeatmapLayer extends Layer {
       model: this._getModel(gl),
       model2: this._getModel2(gl),
       fbHeat,
-      rampTexture
+      rampTexture,
+      temporalTexture
     })
   }
 
@@ -161,6 +170,7 @@ export default class TemporalHeatmapLayer extends Layer {
       framebuffer: null,
       uniforms: {
         colorRamp: this.state.rampTexture,
+        temporalTexture: this.state.temporalTexture,
         heatTexture: fbHeat.texture,
         fillOpacity: this.props.fillOpacity,
         uRes: [gl.canvas.width, gl.canvas.height]

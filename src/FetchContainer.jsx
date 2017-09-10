@@ -36,29 +36,11 @@ class FetchContainer extends React.Component {
   })
 
   handleFetchImage = (description, url, callback) => {
-    let img = new Image()
-    var ctx = this.ctx
+    let img = new Image() // TODO: Error handling
     img.onload = function () {
-      console.log('img', img)
       callback(img)
-//      console.log('this.ctx', ctx)
-      //      var canvas = document.getElementById('body')
-  //    console.log(canvas)
-//      var ctx = canvas.getContext('2d')
- //     ctx.drawImage(img, 0, 0)
-  //    console.log(ctx)
-//      this.setState('img', ctx)
-   //   return ctx
-//        callback(canvas)
     }
-    img.src = url// 'http://myserver/nextimage.cgi'
-  /*  this.handleFetch(description, url, response => {
-      const image = new Image(response.blob())
-      copyCanvas(image)
-//      image.src = URL.createObjectURL(response.blob())
-//      var canvas = document.getElementById('canvas');
-      callback(image)
-    }) */
+    img.src = url
   }
 
   handleFetchJson = (description, url, callback) => {
@@ -80,7 +62,7 @@ class FetchContainer extends React.Component {
       }).catch(error => {
         this.setState(decrement)
         const message = description + ': ' + error.message
-          console.error(message)
+        console.error(message)
         this.flashMessage(message)
       })
   }

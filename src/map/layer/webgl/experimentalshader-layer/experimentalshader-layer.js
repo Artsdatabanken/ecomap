@@ -1,4 +1,4 @@
-import {Layer, COORDINATE_SYSTEM, fp64ify} from 'deck.gl'
+import {Layer, COORDINATE_SYSTEM} from 'deck.gl'
 // import {enable64bitSupport} from 'deck.gl/lib/utils/fp64.js'
 import {GL, Model, Geometry} from 'luma.gl'
 
@@ -113,17 +113,6 @@ export default class ExperimentalShader extends Layer {
       value[i++] = position[0]
       value[i++] = position[1]
       value[i++] = position[2] || 0
-    }
-  }
-
-  calculateInstancePositions64xyLow (attribute) {
-    const {data, getPosition} = this.props
-    const {value} = attribute
-    let i = 0
-    for (const point of data) {
-      const position = getPosition(point)
-      value[i++] = fp64ify(position[0])[1]
-      value[i++] = fp64ify(position[1])[1]
     }
   }
 
