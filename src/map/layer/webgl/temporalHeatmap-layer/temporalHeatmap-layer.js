@@ -9,6 +9,7 @@ import vsScreen from './screenQuad-vertex.glsl'
 const DEFAULT_COLOR = [0, 0, 0, 255]
 
 const defaultProps = {
+  time: 0,
   radiusScale: 1,
   fillOpacity: 1.0,
   height: 1.0,
@@ -29,10 +30,10 @@ export default class TemporalHeatmapLayer extends Layer {
       radiusScale: options.radiusScale * 2,
       getPosition: d => [d[0], d[1]],
       getRadius: d => options.radius * 100000,
-      fillOpacity: options.fillOpacity
+      fillOpacity: options.fillOpacity,
+      time: options.time
     }
     super(opts)
-//    console.log(opts)
     window.luma.log.priority = 1
     window.deck.log.priority = 3
   }
@@ -97,27 +98,11 @@ export default class TemporalHeatmapLayer extends Layer {
   }
 
   updateAttribute ({ props, oldProps, changeFlags }) {
-    if (props.fp64 !== oldProps.fp64) {
-      const { attributeManager } = this.state
-      attributeManager.invalidateAll()
-
-      if (props.fp64 && props.projectionMode === COORDINATE_SYSTEM.LNGLAT) {
-        attributeManager.addInstanced({
-          instancePositions64xyLow: {
-            size: 2,
-            accessor: 'getPosition',
-            update: this.calculateInstancePositions64xyLow
-          }
-        })
-      } else {
-        attributeManager.remove(['instancePositions64xyLow'])
-      }
-    }
   }
 
   updateState ({ props, oldProps, changeFlags }) {
     super.updateState({ props, oldProps, changeFlags })
-/*    if (props.fp64 !== oldProps.fp64) {
+    if (props.fp64 !== oldProps.fp64) {
       const { gl } = this.context
       this.setState({
         model: this._getModel(gl),
@@ -130,21 +115,19 @@ export default class TemporalHeatmapLayer extends Layer {
       gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, props.colorRamp.length / 3,
         1, 0, gl.RGB,
         gl.UNSIGNED_BYTE, props.colorRamp)
-    } */
+    }
     this.updateAttribute({ props, oldProps, changeFlags })
   }
 
   draw ({ uniforms }) {
     const { gl } = this.context
     var fbHeat = this.state.fbHeat
-
     const {width, height} = gl.canvas
     fbHeat.resize({width, height})
     fbHeat.bind(gl.FRAMEBUFFER)
     gl.clear(gl.COLOR_BUFFER_BIT)
-    const { radiusScale, fillOpacity } = this.props
+    const { time, radiusScale, fillOpacity } = this.props
 
-    const time = 4
     gl.blendFunc(gl.ONE, gl.ONE)
     this.state.model.draw({
       framebuffer: fbHeat,

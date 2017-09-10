@@ -17,19 +17,35 @@ const viewport = {
   bearing: -20
 }
 
-const TemporalHeatmapLayerStory = () => {
-  return <Paper style={{backgroundColor: '#ccc', width: viewport.width, height: viewport.height, margin: '10px'}}>
-    <FetchContainer>
-      <Loader title='adfas' dataUrl={sampleData}>
-        <WebGlStuffs viewport={viewport} />
-      </Loader>
-    </FetchContainer>
-  </Paper>
+class TemporalHeatmapLayerStory extends React.Component {
+  state = { time: 0.0 }
+
+  _animate = () => {
+    this.setState({time: this.state.time + 0.145})
+  }
+
+  componentWillMount () {
+    this.animationTimer = window.setInterval(this._animate, 100)
+  }
+
+  render () {
+    return (<div>Time: {this.state.time}
+      <Paper style={{backgroundColor: '#ccc', width: viewport.width, height: viewport.height, margin: '10px'}}>
+        <FetchContainer>
+          <Loader title='adfas' dataUrl={sampleData}>
+            <WebGlStuffs viewport={viewport} time={this.state.time} />
+          </Loader>
+        </FetchContainer>
+      </Paper>
+    </div>
+    )
+  }
 }
 
-const WebGlStuffs = ({viewport, temporalData}) => {
+const WebGlStuffs = ({viewport, time, temporalData}) => {
   if (!temporalData) return <div>Loading...</div>
   let layer = new TemporalHeatmapLayer({
+    time: time,
     id: 'temporalheatstory',
     colorRamp: ramp.magma,
     radiusScale: 293210.0,

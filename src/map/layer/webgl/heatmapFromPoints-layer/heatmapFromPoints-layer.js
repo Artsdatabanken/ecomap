@@ -34,9 +34,8 @@ export default class HeatmapFromPointsLayer extends Layer {
       fillOpacity: options.fillOpacity
     }
     super(opts)
-    console.log(opts)
 //    window.luma.log.priority = 3
-    window.deck.log.priority = 3
+//    window.deck.log.priority = 3
   }
 
   getShaders (id) {
