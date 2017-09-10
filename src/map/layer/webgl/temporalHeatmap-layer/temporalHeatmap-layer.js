@@ -1,8 +1,8 @@
-import { Layer, COORDINATE_SYSTEM } from 'deck.gl'
+import { Layer } from 'deck.gl'
 import { GL, Framebuffer, Texture2D, Model, Geometry } from 'luma.gl'
 
-import vs from './temporalHeatmap-layer-vertex.glsl'
-import fs from './temporalHeatmap-layer-fragment.glsl'
+import vs from './temporalHeatmap-animation-vertex.glsl'
+import fs from './temporalHeatmap-animation-fragment.glsl'
 import fsScreen from './grayscaleToColor-fragment.glsl'
 import vsScreen from './screenQuad-vertex.glsl'
 
@@ -81,8 +81,8 @@ export default class TemporalHeatmapLayer extends Layer {
       format: GL.RGB,
       pixels: this.props.colorRamp,
       parameters: {
-        [GL.TEXTURE_MAG_FILTER]: GL.LINEAR,
-        [GL.TEXTURE_MIN_FILTER]: GL.LINEAR,
+        [GL.TEXTURE_MAG_FILTER]: GL.NEAREST,
+        [GL.TEXTURE_MIN_FILTER]: GL.NEAREST,
         [GL.TEXTURE_WRAP_S]: GL.CLAMP_TO_EDGE
       },
       mipmaps: false

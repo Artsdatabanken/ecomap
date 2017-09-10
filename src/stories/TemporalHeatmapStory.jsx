@@ -6,6 +6,7 @@ import sampleData from '../../data/sample/temporalAnimationSource.png'
 import ramp from '../graphics/color/ramps/'
 import FetchContainer from '../FetchContainer'
 import PropTypes from 'prop-types'
+import {rgbToHex} from '../graphics/color/colorfunc'
 
 const viewport = {
   width: 900,
@@ -21,11 +22,11 @@ class TemporalHeatmapLayerStory extends React.Component {
   state = { time: 0.0 }
 
   _animate = () => {
-    this.setState({time: this.state.time + 0.145})
+    this.setState({time: this.state.time + 0.045})
   }
 
   componentWillMount () {
-    this.animationTimer = window.setInterval(this._animate, 100)
+    this.animationTimer = window.setInterval(this._animate, 50)
   }
 
   render () {
@@ -47,7 +48,7 @@ const WebGlStuffs = ({viewport, time, temporalData}) => {
   let layer = new TemporalHeatmapLayer({
     time: time,
     id: 'temporalheatstory',
-    colorRamp: ramp.magma,
+    colorRamp: ramp.gray,
     radiusScale: 293210.0,
     fillOpacity: 1.0,
     height: 1.0,
@@ -75,7 +76,16 @@ class Loader extends React.Component {
 
     this.context.fetchImage(this.props.title, this.props.dataUrl,
       image => {
-        this.ctx.drawImage(image, 0, 0)
+        // this.ctx.drawImage(image, 0, 0)
+
+        for (var x = 0; x < 256; x++) {
+          for (var y = 0; y < 256; y++) {
+            var r = 255 - Math.trunc(Math.sqrt((Math.pow(128 - x, 2) + Math.pow(128 - y, 2))))
+            this.ctx.fillStyle = rgbToHex(r, x, y)
+            this.ctx.fillRect(x * 3, y * 3, 3, 3)
+          }
+        }
+
         this.setState({temporalData: this.refs.canvas})
       })
   }
