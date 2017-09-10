@@ -161,29 +161,31 @@ export default class TemporalHeatmapLayer extends Layer {
       }
     })
 
-    gl.blendFuncSeparate(
-      gl.SRC_ALPHA,
-      gl.ONE_MINUS_SRC_ALPHA,
-      gl.ONE,
-      gl.ONE_MINUS_SRC_ALPHA)
-
     this.state.modelBlurHorizontal.draw({
-      framebuffer: fbBlur1,
+      framebuffer: null, // fbBlur1,
       uniforms: {
         sourceTexture: fbHeat.texture,
         iResolution: [gl.canvas.width, gl.canvas.height]
       }
     })
 
+    /*
+    gl.blendFuncSeparate(
+      gl.SRC_ALPHA,
+      gl.ONE_MINUS_SRC_ALPHA,
+      gl.ONE,
+      gl.ONE_MINUS_SRC_ALPHA)
+
     this.state.modelColorRamp.draw({
       framebuffer: null,
       uniforms: {
         colorRamp: this.state.rampTexture,
-        sourceTexture: fbHeat.texture,
+        sourceTexture: fbBlur1.texture,
         fillOpacity: this.props.fillOpacity,
         uRes: [gl.canvas.width, gl.canvas.height]
       }
     })
+*/
   }
 
   _getModel (gl) {

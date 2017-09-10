@@ -8,7 +8,7 @@ precision highp float;
 uniform sampler2D sourceTexture;
 uniform vec2 iResolution;
 
-const int blur_size = 20;
+const int blur_size = 5;
 const float blur_width = 1.;
 
 float gauss(float x, float e)
@@ -22,16 +22,17 @@ void main(void) {
    vec4 pixval = vec4(0.);
    float tot = 0.;
 
-   const int nb = 2*blur_size+1;
+   const int nb = 2 * blur_size + 1;
 
    for (int x=0; x<nb; x++)
    {
        float x2 = blur_width*float(x-blur_size);
        vec2 ipos = pos + vec2(x2/iResolution.x, 0);
-       float g = gauss(x2, float(20*blur_size)*(0.5*0.5));
+       float g = gauss(x2, float(blur_size));
        pixval+= g*texture2D(sourceTexture, ipos);
        tot+= g;
    }
    gl_FragColor = pixval/tot;
+   gl_FragColor = pixval;//vec4(pixval,0.,1.,1.);//pixval/tot;
 }
 `
