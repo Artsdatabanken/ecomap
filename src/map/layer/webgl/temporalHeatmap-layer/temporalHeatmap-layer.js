@@ -161,15 +161,30 @@ export default class TemporalHeatmapLayer extends Layer {
       }
     })
 
+    fbBlur1.resize({width, height})
+    fbBlur1.bind(gl.FRAMEBUFFER)
+    gl.clear(gl.COLOR_BUFFER_BIT)
+
     this.state.modelBlurHorizontal.draw({
-      framebuffer: null, // fbBlur1,
+      framebuffer: fbBlur1,
       uniforms: {
         sourceTexture: fbHeat.texture,
         iResolution: [gl.canvas.width, gl.canvas.height]
       }
     })
 
-    /*
+    fbBlur2.resize({width, height})
+    fbBlur2.bind(gl.FRAMEBUFFER)
+    gl.clear(gl.COLOR_BUFFER_BIT)
+
+    this.state.modelBlurVertical.draw({
+      framebuffer: fbBlur2,
+      uniforms: {
+        sourceTexture: fbBlur1.texture,
+        iResolution: [gl.canvas.width, gl.canvas.height]
+      }
+    })
+
     gl.blendFuncSeparate(
       gl.SRC_ALPHA,
       gl.ONE_MINUS_SRC_ALPHA,
@@ -180,12 +195,11 @@ export default class TemporalHeatmapLayer extends Layer {
       framebuffer: null,
       uniforms: {
         colorRamp: this.state.rampTexture,
-        sourceTexture: fbBlur1.texture,
+        sourceTexture: fbBlur2.texture,
         fillOpacity: this.props.fillOpacity,
         uRes: [gl.canvas.width, gl.canvas.height]
       }
     })
-*/
   }
 
   _getModel (gl) {
