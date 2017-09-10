@@ -23,6 +23,7 @@ export default class TemporalHeatmapLayer extends Layer {
   constructor (options) {
     const opts = {
       data: options.data,
+      temporalData: options.temporalData,
       colorRamp: options.colorRamp,
       height: Math.sqrt(options.height + 1, 2) - 1,
       radiusScale: options.radiusScale * 2,
@@ -31,7 +32,7 @@ export default class TemporalHeatmapLayer extends Layer {
       fillOpacity: options.fillOpacity
     }
     super(opts)
-    console.log(opts)
+//    console.log(opts)
     window.luma.log.priority = 1
     window.deck.log.priority = 3
   }
@@ -50,10 +51,6 @@ export default class TemporalHeatmapLayer extends Layer {
     const { gl } = this.context
     var fbHeat = new Framebuffer(gl, {depth: false})
 
-    /* eslint-disable max-len */
-    /* deprecated props check */
-    this._checkRemovedProp('radius', 'radiusScale')
-
     this.state.attributeManager.addInstanced({
       instancePositions: {
         size: 3,
@@ -67,13 +64,12 @@ export default class TemporalHeatmapLayer extends Layer {
         update: this.calculateInstanceRadius
       }
     })
-    /* eslint-enable max-len */
 
-    const rampTexture = new Texture2D(gl, {
-      width: this.props.colorRamp.length / 3,
-      height: 1,
+    var rampTexture = new Texture2D(gl, {
+      width: 802, // this.props.colorRamp.width,
+      height: 640, // this.props.colorRamp.height,
       format: GL.RGB,
-      pixels: this.props.colorRamp,
+//      pixels: this.props.colorRamp,
       parameters: {
         [GL.TEXTURE_MAG_FILTER]: GL.LINEAR,
         [GL.TEXTURE_MIN_FILTER]: GL.LINEAR,
@@ -81,6 +77,9 @@ export default class TemporalHeatmapLayer extends Layer {
       },
       mipmaps: false
     })
+
+    console.warn('****temporal', this.props.temporalData)
+    if (this.props.temporalData) { rampTexture = rampTexture.setImageData({data: this.props.temporalData}) }
 
     this.setState({
       model: this._getModel(gl),
@@ -207,7 +206,6 @@ export default class TemporalHeatmapLayer extends Layer {
     const { data, getPosition } = this.props
     const { value } = attribute
     let i = 0
-    console.log('attribute', attribute)
     for (const point of data) {
       const position = getPosition(point)
       value[i++] = position[0]

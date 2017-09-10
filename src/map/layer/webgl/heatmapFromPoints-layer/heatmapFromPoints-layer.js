@@ -73,8 +73,8 @@ export default class HeatmapFromPointsLayer extends Layer {
     /* eslint-enable max-len */
 
     const rampTexture = new Texture2D(gl, {
-      width: this.props.colorRamp.length / 3,
-      height: 1,
+      width: this.props.colorRamp.width,
+      height: this.props.colorRamp.height,
       format: GL.RGB,
       pixels: this.props.colorRamp,
       parameters: {

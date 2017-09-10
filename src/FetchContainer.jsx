@@ -20,26 +20,62 @@ class FetchContainer extends React.Component {
       })
     )
 
-    return <div>{childrenWithProps}</div>
+    return <div>
+      <div>{childrenWithProps}</div>
+    </div>
   }
 
   static childContextTypes = {
-    fetchJson: PropTypes.func
+    fetchJson: PropTypes.func,
+    fetchImage: PropTypes.func
   }
 
   getChildContext = () => ({
-    fetchJson: this.handleFetchJson
+    fetchJson: this.handleFetchJson,
+    fetchImage: this.handleFetchImage
   })
 
+  handleFetchImage = (description, url, callback) => {
+    let img = new Image()
+    var ctx = this.ctx
+    img.onload = function () {
+      console.log('img', img)
+      callback(img)
+//      console.log('this.ctx', ctx)
+      //      var canvas = document.getElementById('body')
+  //    console.log(canvas)
+//      var ctx = canvas.getContext('2d')
+ //     ctx.drawImage(img, 0, 0)
+  //    console.log(ctx)
+//      this.setState('img', ctx)
+   //   return ctx
+//        callback(canvas)
+    }
+    img.src = url// 'http://myserver/nextimage.cgi'
+  /*  this.handleFetch(description, url, response => {
+      const image = new Image(response.blob())
+      copyCanvas(image)
+//      image.src = URL.createObjectURL(response.blob())
+//      var canvas = document.getElementById('canvas');
+      callback(image)
+    }) */
+  }
+
   handleFetchJson = (description, url, callback) => {
+    this.handleFetch(description, url, response => {
+      const json = response.json()
+      callback(json)
+    })
+  }
+
+  handleFetch = (description, url, callback) => {
     this.flashMessage(`Loading ${description}...`)
     this.setState(increment)
     fetch(url)
       .then(checkStatus)
       .then(response => {
         if (!response.ok) throw new Error(response)
-        const json = response.json()
-        callback(json)
+        callback(response)
         this.setState(decrement)
       }).catch(error => {
         this.setState(decrement)
