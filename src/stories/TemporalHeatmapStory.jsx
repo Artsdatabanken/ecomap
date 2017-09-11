@@ -1,22 +1,34 @@
 import React from 'react'
 import DeckGL from 'deck.gl'
-import {Paper} from 'material-ui'
 import TemporalHeatmapLayer from '../map/layer/webgl/temporalHeatmap-layer/temporalHeatmap-layer'
 // import sampleData from '../../data/sample/temporalAnimationSource.png'
-import sampleData from '../../data/sample/yearofbirds.png'
+// import sampleData from '../../data/sample/yearofbirds.png'
+// import sampleData from '../../data/sample/kortnebbgås.png'
+import sampleData from '../../data/sample/yearoflovsanger.png'
 import ramp from '../graphics/color/ramps/'
 import FetchContainer from '../FetchContainer'
 import PropTypes from 'prop-types'
 import {rgbToHex} from '../graphics/color/colorfunc'
+import SliderSetting from '../viewer/layer/settings/SliderSetting'
 
 class TemporalHeatmapLayerStory extends React.Component {
   state = {
+    viewport2: {
+      width: 800,
+      height: 800,
+      longitude: 11.5, // --4 - 32  = 28
+      latitude: 63.5, // -- 57 - 72 = 15
+      zoom: 3.0,
+      pitch: 0,
+      bearing: 5
+    },
+    time: 0.0,
     viewport: {
       width: 900,
       height: 1100,
-      longitude: 15, // --4 - 32  = 28
-      latitude: 64, // -- 57 - 72 = 15
-      zoom: 4.6,
+      longitude: 12, // --4 - 32  = 28
+      latitude: 63, // -- 57 - 72 = 15
+      zoom: 4.7,
       pitch: 0,
       bearing: 5
     },
@@ -24,24 +36,32 @@ class TemporalHeatmapLayerStory extends React.Component {
   }
 
   _animate = () => {
-    this.setState({time: (this.state.time + 0.055)})
+    this.state.time = (this.state.time + 0.105)
+    this.state.viewport.pitch = Math.sin(this.state.time / 10) * 10
+    this.setState(this.state)
   }
 
-  componentWillMount () {
+  componentDidMount () {
     this.animationTimer = window.setInterval(this._animate, 50)
   }
 
+  componentWillUnMount () {
+    this.animationTimer = window.clearInterval()
+  }
+
   render () {
-    const time = (this.state.time % 24) / 24 * 52
+    const time = (this.state.time % 24)
+    const week = time / 24 * 52
     const viewport = this.state.viewport
-    return (<div>Week: {time + 1}
-      <Paper style={{backgroundColor: '#ccc', width: viewport.width, height: viewport.height, margin: '10px'}}>
-        <FetchContainer>
-          <Loader title='adfas' dataUrl={sampleData}>
-            <WebGlStuffs viewport={viewport} time={time} />
-          </Loader>
-        </FetchContainer>
-      </Paper>
+    const title = 'Løvsanger: observasjoner i uke ' + Math.trunc(week + 1)
+    return (<div style={{backgroundColor: '#ddd', padding: '50px'}}>
+      <SliderSetting
+        title={title} style={{width: '500px'}} width={500} value={week / 52} />
+      <FetchContainer>
+        <Loader title='adfas' dataUrl={sampleData}>
+          <WebGlStuffs viewport={viewport} time={time} />
+        </Loader>
+      </FetchContainer>
     </div>
     )
   }
