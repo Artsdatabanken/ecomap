@@ -142,12 +142,12 @@ export default class TemporalHeatmapLayer extends Layer {
   draw ({ uniforms }) {
     const { gl } = this.context
     var { fbHeat, fbBlur } = this.state
+    const { time, radiusScale, fillOpacity } = this.props
     const { width, height } = gl.canvas
 
     fbHeat.resize({ width, height })
     fbHeat.bind(gl.FRAMEBUFFER)
     gl.clear(gl.COLOR_BUFFER_BIT)
-    const { time, radiusScale, fillOpacity } = this.props
 
     gl.blendFunc(gl.ONE, gl.ONE)
 
@@ -198,25 +198,28 @@ export default class TemporalHeatmapLayer extends Layer {
         colorRamp: this.state.rampTexture,
         sourceTexture: fbHeat.texture,
         fillOpacity: this.props.fillOpacity,
-        uRes: [width, height],
         iResolution: [width, height]
       }
     })
   }
 
   _getModel (gl) {
-    return this._getModel2(gl, this.getShaders())
+    return this._createModel(gl, this.getShaders())
   }
 
   _getModelBlurHorizontal (gl) {
-    return this._getModel2(gl, this.getShadersBlurHorizontal())
+    return this._createModel(gl, this.getShadersBlurHorizontal())
   }
 
   _getModelBlurVertical (gl) {
-    return this._getModel2(gl, this.getShadersBlurVertical())
+    return this._createModel(gl, this.getShadersBlurVertical())
   }
 
-  _getModel2 (gl, shaders) {
+  _getModelColorRamp (gl) {
+    return this._createModel(gl, this.getShadersColorRamp())
+  }
+
+  _createModel (gl, shaders) {
     return new Model(gl,
       Object.assign(shaders, this._getUnitCircle(shaders)))
   }
@@ -233,24 +236,6 @@ export default class TemporalHeatmapLayer extends Layer {
       isInstanced: false,
       shaderCache: this.context.shaderCache
     }
-  }
-
-  _getModelColorRamp (gl) {
-    // a square that minimally cover the unit circle
-    const positions = [-1, -1, 0, -1, 1, 0, 1, 1, 0, 1, -1, 0]
-
-    return new Model(
-      gl,
-      Object.assign(this.getShadersColorRamp(), {
-        id: this.props.id,
-        geometry: new Geometry({
-          drawMode: GL.TRIANGLE_FAN,
-          positions: new Float32Array(positions)
-        }),
-        isInstanced: false,
-        shaderCache: this.context.shaderCache
-      })
-    )
   }
 
   calculateInstancePositions (attribute) {
