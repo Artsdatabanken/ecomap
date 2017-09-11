@@ -9,7 +9,6 @@ uniform sampler2D sourceTexture;
 uniform vec2 iResolution;
 
 const int blur_size = 10;
-const float blur_width = 1.;
 
 float gauss(float x, float e)
 {
@@ -26,7 +25,7 @@ void main(void) {
 
    for (int x=0; x<nb; x++)
    {
-       float x2 = blur_width*float(x-blur_size);
+       float x2 = float(x-blur_size);
        vec2 ipos = pos + vec2(0., x2/iResolution.x);
        float g = gauss(x2, float(blur_size));
        pixval+= g*texture2D(sourceTexture, ipos);

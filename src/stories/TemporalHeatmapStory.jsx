@@ -10,25 +10,19 @@ import FetchContainer from '../FetchContainer'
 import PropTypes from 'prop-types'
 import {rgbToHex} from '../graphics/color/colorfunc'
 import SliderSetting from '../viewer/layer/settings/SliderSetting'
+import ColorRampSelector from '../viewer/layer/settings/ColorRampSelector'
 
 class TemporalHeatmapLayerStory extends React.Component {
   state = {
-    viewport2: {
-      width: 800,
-      height: 800,
-      longitude: 11.5, // --4 - 32  = 28
-      latitude: 63.5, // -- 57 - 72 = 15
-      zoom: 3.0,
-      pitch: 0,
-      bearing: 5
-    },
+    ramp: 'plasma',
     time: 0.0,
+    speedFactor: 0.1,
     viewport: {
-      width: 1024,
-      height: 1024,
-      longitude: 12, // --4 - 32  = 28
-      latitude: 64, // -- 57 - 72 = 15
-      zoom: 4.7,
+      width: 700,
+      height: 700,
+      longitude: 10, // --4 - 32  = 28
+      latitude: 66, // -- 57 - 72 = 15
+      zoom: 4.4,
       pitch: 0,
       bearing: 0
     },
@@ -36,7 +30,7 @@ class TemporalHeatmapLayerStory extends React.Component {
   }
 
   _animate = () => {
-    this.state.time = (this.state.time + 0.105)
+    this.state.time = (this.state.time + this.state.speedFactor * 0.5)
     this.state.viewport.pitch = 10 + Math.sin(this.state.time / 25) * 10
     this.state.viewport.bearing = -10 + Math.sin(this.state.time / 30) * 5
     this.setState(this.state)
@@ -54,26 +48,38 @@ class TemporalHeatmapLayerStory extends React.Component {
     const time = (this.state.time % 24)
     const week = time / 24 * 52
     const viewport = this.state.viewport
-    const title = 'Løvsanger: observasjoner i uke ' + Math.trunc(week + 1)
-    return (<div style={{backgroundColor: '#ddd', padding: '50px'}}>
-      <SliderSetting
-        title={title} width='1500px' value={week / 52} />
-      <FetchContainer>
-        <Loader title='adfas' dataUrl={sampleData}>
-          <WebGlStuffs viewport={viewport} time={time} />
-        </Loader>
-      </FetchContainer>
+    const title = 'Willow warbler observations during week ' + Math.trunc(week + 1)
+    return (<div>
+      <div style={{float: 'left', backgroundColor: '#ddd'}}>
+        <FetchContainer>
+          <Loader dataUrl={sampleData}>
+            <WebGlStuffs viewport={viewport}
+              time={time} ramp={ramp[this.state.ramp]} />
+          </Loader>
+        </FetchContainer>
+      </div>
+      <div style={{float: 'left', margin: '20px'}}>
+        <SliderSetting
+          title={title} value={week / 52} />
+        <SliderSetting
+          title='Speed'
+          value={this.state.speedFactor}
+          onChange={(v) => this.setState({speedFactor: v})} />
+        <ColorRampSelector
+          value={this.state.ramp}
+          onChange={(v) => this.setState({ramp: v})} />
+      </div>
     </div>
     )
   }
 }
 
-const WebGlStuffs = ({viewport, time, temporalData}) => {
+const WebGlStuffs = ({viewport, time, temporalData, ramp}) => {
   if (!temporalData) return <div>Loading...</div>
   let layer = new TemporalHeatmapLayer({
     time: time,
     id: 'temporalheatstory',
-    colorRamp: ramp.magma,
+    colorRamp: ramp,
     radiusScale: 593210.0,
     fillOpacity: 1.0,
     height: 1.0,
@@ -121,8 +127,10 @@ class Loader extends React.Component {
         <div>
           {childrenWithProps}
         </div>
-        Temporal source data:
-        <canvas ref='canvas' width='1024' height='1024' />
+        <p>
+        Temporal source data:<br />
+          <canvas ref='canvas' width='1024' height='1024' />
+        </p>
       </div>)
   }
 
