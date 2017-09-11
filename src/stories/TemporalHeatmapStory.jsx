@@ -24,8 +24,8 @@ class TemporalHeatmapLayerStory extends React.Component {
     },
     time: 0.0,
     viewport: {
-      width: 900,
-      height: 1100,
+      width: 1024,
+      height: 1024,
       longitude: 12, // --4 - 32  = 28
       latitude: 63, // -- 57 - 72 = 15
       zoom: 4.7,
@@ -42,7 +42,7 @@ class TemporalHeatmapLayerStory extends React.Component {
   }
 
   componentDidMount () {
-    this.animationTimer = window.setInterval(this._animate, 50)
+    this.animationTimer = window.setInterval(this._animate, 30)
   }
 
   componentWillUnMount () {
@@ -72,7 +72,7 @@ const WebGlStuffs = ({viewport, time, temporalData}) => {
   let layer = new TemporalHeatmapLayer({
     time: time,
     id: 'temporalheatstory',
-    colorRamp: ramp.viridis,
+    colorRamp: ramp.magma,
     radiusScale: 293210.0,
     fillOpacity: 1.0,
     height: 1.0,
