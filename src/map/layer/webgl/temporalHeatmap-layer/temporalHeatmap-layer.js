@@ -64,7 +64,6 @@ export default class TemporalHeatmapLayer extends Layer {
     const { gl } = this.context
     var fbHeat = new Framebuffer(gl, {depth: false})
     var fbBlur1 = new Framebuffer(gl, {depth: false})
-    var fbBlur2 = new Framebuffer(gl, {depth: false})
 
     this.state.attributeManager.addInstanced({
       instancePositions: {
@@ -109,7 +108,6 @@ export default class TemporalHeatmapLayer extends Layer {
       modelColorRamp: this._getModelColorRamp(gl),
       fbHeat,
       fbBlur1,
-      fbBlur2,
       rampTexture,
       temporalTexture
     })
@@ -141,7 +139,6 @@ export default class TemporalHeatmapLayer extends Layer {
     const { gl } = this.context
     var fbHeat = this.state.fbHeat
     var fbBlur1 = this.state.fbBlur1
-    var fbBlur2 = this.state.fbBlur2
     const {width, height} = gl.canvas
     fbHeat.resize({width, height})
     fbHeat.bind(gl.FRAMEBUFFER)
@@ -173,12 +170,11 @@ export default class TemporalHeatmapLayer extends Layer {
       }
     })
 
-    fbBlur2.resize({width, height})
-    fbBlur2.bind(gl.FRAMEBUFFER)
+    fbHeat.bind(gl.FRAMEBUFFER)
     gl.clear(gl.COLOR_BUFFER_BIT)
 
     this.state.modelBlurVertical.draw({
-      framebuffer: fbBlur2,
+      framebuffer: fbHeat,
       uniforms: {
         sourceTexture: fbBlur1.texture,
         iResolution: [gl.canvas.width, gl.canvas.height]
@@ -195,7 +191,7 @@ export default class TemporalHeatmapLayer extends Layer {
       framebuffer: null,
       uniforms: {
         colorRamp: this.state.rampTexture,
-        sourceTexture: fbBlur2.texture,
+        sourceTexture: fbHeat.texture,
         fillOpacity: this.props.fillOpacity,
         uRes: [gl.canvas.width, gl.canvas.height]
       }
