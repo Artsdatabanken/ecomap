@@ -164,7 +164,7 @@ export default class HeatmapFromPointsLayer extends Layer {
         colorRamp: this.state.rampTexture,
         heatTexture: fbHeat.texture,
         fillOpacity: this.props.fillOpacity,
-        uRes: [gl.canvas.width, gl.canvas.height]
+        iResolution: [width, height]
       }
     })
   }

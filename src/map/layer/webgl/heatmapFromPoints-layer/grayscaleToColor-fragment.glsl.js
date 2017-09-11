@@ -8,10 +8,10 @@ precision highp float;
 uniform sampler2D colorRamp;
 uniform sampler2D heatTexture;
 uniform float fillOpacity;
-uniform vec2 uRes;
+uniform vec2 iResolution;
 
 void main(void) {
-  vec2 p = gl_FragCoord.xy / uRes.xy;
+  vec2 p = gl_FragCoord.xy / iResolution.xy;
   vec4 color = texture2D(heatTexture, p);
   float intensity = color.r; // TODO: Convert to single channel texture
 
