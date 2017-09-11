@@ -28,16 +28,14 @@ export default class TemporalHeatmapLayer extends Layer {
       data: options.data,
       temporalData: options.temporalData,
       colorRamp: options.colorRamp,
-      height: Math.sqrt(options.height + 1, 2) - 1,
-      radiusScale: options.radiusScale * 2,
+      height: options.height,
+      radiusScale: options.radiusScale,
       getPosition: d => [d[0], d[1]],
       getRadius: d => options.radius * 100000,
       fillOpacity: options.fillOpacity,
       time: options.time
     }
     super(opts)
-    window.luma.log.priority = 1
-    window.deck.log.priority = 3
   }
 
   getShaders (id) {
@@ -62,9 +60,8 @@ export default class TemporalHeatmapLayer extends Layer {
 
   initializeState () {
     const { gl } = this.context
-    var fbHeat = new Framebuffer(gl, {depth: false})
-    var fbBlur1 = new Framebuffer(gl, {depth: false})
-    var fbBlur2 = new Framebuffer(gl, {depth: false})
+    var fbHeat = new Framebuffer(gl, { depth: false })
+    var fbBlur = new Framebuffer(gl, { depth: false })
 
     this.state.attributeManager.addInstanced({
       instancePositions: {
@@ -84,9 +81,8 @@ export default class TemporalHeatmapLayer extends Layer {
       format: GL.RGB,
       pixels: this.props.temporalData,
       parameters: {
-        [GL.TEXTURE_MAG_FILTER]: GL.LINEAR,
-        [GL.TEXTURE_MIN_FILTER]: GL.LINEAR,
-        [GL.TEXTURE_WRAP_S]: GL.CLAMP_TO_EDGE
+        [GL.TEXTURE_MAG_FILTER]: GL.NEAREST,
+        [GL.TEXTURE_MIN_FILTER]: GL.NEAREST
       },
       mipmaps: false
     })
@@ -108,15 +104,13 @@ export default class TemporalHeatmapLayer extends Layer {
       modelBlurHorizontal: this._getModelBlurHorizontal(gl),
       modelColorRamp: this._getModelColorRamp(gl),
       fbHeat,
-      fbBlur1,
-      fbBlur2,
+      fbBlur,
       rampTexture,
       temporalTexture
     })
   }
 
-  updateAttribute ({ props, oldProps, changeFlags }) {
-  }
+  updateAttribute ({ props, oldProps, changeFlags }) {}
 
   updateState ({ props, oldProps, changeFlags }) {
     super.updateState({ props, oldProps, changeFlags })
@@ -130,23 +124,30 @@ export default class TemporalHeatmapLayer extends Layer {
     if (props.colorRamp !== oldProps.colorRamp) {
       const gl = this.context.gl
       this.state.rampTexture.bind(0)
-      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, props.colorRamp.length / 3,
-        1, 0, gl.RGB,
-        gl.UNSIGNED_BYTE, props.colorRamp)
+      gl.texImage2D(
+        gl.TEXTURE_2D,
+        0,
+        gl.RGB,
+        props.colorRamp.length / 3,
+        1,
+        0,
+        gl.RGB,
+        gl.UNSIGNED_BYTE,
+        props.colorRamp
+      )
     }
     this.updateAttribute({ props, oldProps, changeFlags })
   }
 
   draw ({ uniforms }) {
     const { gl } = this.context
-    var fbHeat = this.state.fbHeat
-    var fbBlur1 = this.state.fbBlur1
-    var fbBlur2 = this.state.fbBlur2
-    const {width, height} = gl.canvas
-    fbHeat.resize({width, height})
+    var { fbHeat, fbBlur } = this.state
+    const { time, radiusScale, fillOpacity } = this.props
+    const iResolution = [gl.canvas.width, gl.canvas.height]
+    const size = {width: gl.canvas.width, height: gl.canvas.height}
+    fbHeat.resize(size)
     fbHeat.bind(gl.FRAMEBUFFER)
     gl.clear(gl.COLOR_BUFFER_BIT)
-    const { time, radiusScale, fillOpacity } = this.props
 
     gl.blendFunc(gl.ONE, gl.ONE)
 
@@ -161,27 +162,26 @@ export default class TemporalHeatmapLayer extends Layer {
       }
     })
 
-    fbBlur1.resize({width, height})
-    fbBlur1.bind(gl.FRAMEBUFFER)
+    fbBlur.resize(size)
+    fbBlur.bind(gl.FRAMEBUFFER)
     gl.clear(gl.COLOR_BUFFER_BIT)
 
     this.state.modelBlurHorizontal.draw({
-      framebuffer: fbBlur1,
+      framebuffer: fbBlur,
       uniforms: {
         sourceTexture: fbHeat.texture,
-        iResolution: [gl.canvas.width, gl.canvas.height]
+        iResolution: iResolution
       }
     })
 
-    fbBlur2.resize({width, height})
-    fbBlur2.bind(gl.FRAMEBUFFER)
+    fbHeat.bind(gl.FRAMEBUFFER)
     gl.clear(gl.COLOR_BUFFER_BIT)
 
     this.state.modelBlurVertical.draw({
-      framebuffer: fbBlur2,
+      framebuffer: fbHeat,
       uniforms: {
-        sourceTexture: fbBlur1.texture,
-        iResolution: [gl.canvas.width, gl.canvas.height]
+        sourceTexture: fbBlur.texture,
+        iResolution: iResolution
       }
     })
 
@@ -189,89 +189,53 @@ export default class TemporalHeatmapLayer extends Layer {
       gl.SRC_ALPHA,
       gl.ONE_MINUS_SRC_ALPHA,
       gl.ONE,
-      gl.ONE_MINUS_SRC_ALPHA)
+      gl.ONE_MINUS_SRC_ALPHA
+    )
 
     this.state.modelColorRamp.draw({
       framebuffer: null,
       uniforms: {
         colorRamp: this.state.rampTexture,
-        sourceTexture: fbBlur2.texture,
+        sourceTexture: fbHeat.texture,
         fillOpacity: this.props.fillOpacity,
-        uRes: [gl.canvas.width, gl.canvas.height]
+        iResolution: iResolution
       }
     })
   }
 
   _getModel (gl) {
-    // a square that minimally cover the unit circle
-    const positions = [-1, -1, 0, -1, 1, 0, 1, 1, 0, 1, -1, 0]
-
-    return new Model(
-      gl,
-      Object.assign(this.getShaders(), {
-        id: this.props.id,
-        geometry: new Geometry({
-          drawMode: GL.TRIANGLE_FAN,
-          positions: new Float32Array(positions)
-        }),
-        isInstanced: true,
-        shaderCache: this.context.shaderCache
-      })
-    )
+    return this._createModel(gl, this.getShaders())
   }
 
   _getModelBlurHorizontal (gl) {
-    // a square that minimally cover the unit circle
-    const positions = [-1, -1, 0, -1, 1, 0, 1, 1, 0, 1, -1, 0]
-
-    return new Model(
-          gl,
-          Object.assign(this.getShadersBlurHorizontal(), {
-            id: this.props.id,
-            geometry: new Geometry({
-              drawMode: GL.TRIANGLE_FAN,
-              positions: new Float32Array(positions)
-            }),
-            isInstanced: false,
-            shaderCache: this.context.shaderCache
-          })
-        )
+    return this._createModel(gl, this.getShadersBlurHorizontal())
   }
 
   _getModelBlurVertical (gl) {
-    // a square that minimally cover the unit circle
-    const positions = [-1, -1, 0, -1, 1, 0, 1, 1, 0, 1, -1, 0]
-
-    return new Model(
-          gl,
-          Object.assign(this.getShadersBlurVertical(), {
-            id: this.props.id,
-            geometry: new Geometry({
-              drawMode: GL.TRIANGLE_FAN,
-              positions: new Float32Array(positions)
-            }),
-            isInstanced: false,
-            shaderCache: this.context.shaderCache
-          })
-        )
+    return this._createModel(gl, this.getShadersBlurVertical())
   }
 
   _getModelColorRamp (gl) {
+    return this._createModel(gl, this.getShadersColorRamp())
+  }
+
+  _createModel (gl, shaders) {
+    return new Model(gl,
+      Object.assign(shaders, this._getUnitCircle(shaders)))
+  }
+
+  _getUnitCircle (shaders) {
     // a square that minimally cover the unit circle
     const positions = [-1, -1, 0, -1, 1, 0, 1, 1, 0, 1, -1, 0]
-
-    return new Model(
-      gl,
-      Object.assign(this.getShadersColorRamp(), {
-        id: this.props.id,
-        geometry: new Geometry({
-          drawMode: GL.TRIANGLE_FAN,
-          positions: new Float32Array(positions)
-        }),
-        isInstanced: false,
-        shaderCache: this.context.shaderCache
-      })
-    )
+    return {
+      id: this.props.id,
+      geometry: new Geometry({
+        drawMode: GL.TRIANGLE_FAN,
+        positions: new Float32Array(positions)
+      }),
+      isInstanced: false,
+      shaderCache: this.context.shaderCache
+    }
   }
 
   calculateInstancePositions (attribute) {

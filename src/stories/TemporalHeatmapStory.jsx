@@ -24,29 +24,30 @@ class TemporalHeatmapLayerStory extends React.Component {
     },
     time: 0.0,
     viewport: {
-      width: 900,
-      height: 1100,
+      width: 1024,
+      height: 1024,
       longitude: 12, // --4 - 32  = 28
-      latitude: 63, // -- 57 - 72 = 15
+      latitude: 64, // -- 57 - 72 = 15
       zoom: 4.7,
       pitch: 0,
-      bearing: 5
+      bearing: 0
     },
     time: 0.0
   }
 
   _animate = () => {
     this.state.time = (this.state.time + 0.105)
-    this.state.viewport.pitch = Math.sin(this.state.time / 10) * 10
+    this.state.viewport.pitch = 10 + Math.sin(this.state.time / 25) * 10
+    this.state.viewport.bearing = -10 + Math.sin(this.state.time / 30) * 5
     this.setState(this.state)
   }
 
   componentDidMount () {
-    this.animationTimer = window.setInterval(this._animate, 50)
+    this.animationTimer = window.setInterval(this._animate, 20)
   }
 
-  componentWillUnMount () {
-    this.animationTimer = window.clearInterval()
+  componentWillUnmount () {
+    window.clearInterval(this.animationTimer)
   }
 
   render () {
@@ -56,7 +57,7 @@ class TemporalHeatmapLayerStory extends React.Component {
     const title = 'Løvsanger: observasjoner i uke ' + Math.trunc(week + 1)
     return (<div style={{backgroundColor: '#ddd', padding: '50px'}}>
       <SliderSetting
-        title={title} style={{width: '500px'}} width={500} value={week / 52} />
+        title={title} width='1500px' value={week / 52} />
       <FetchContainer>
         <Loader title='adfas' dataUrl={sampleData}>
           <WebGlStuffs viewport={viewport} time={time} />
@@ -72,8 +73,8 @@ const WebGlStuffs = ({viewport, time, temporalData}) => {
   let layer = new TemporalHeatmapLayer({
     time: time,
     id: 'temporalheatstory',
-    colorRamp: ramp.viridis,
-    radiusScale: 293210.0,
+    colorRamp: ramp.magma,
+    radiusScale: 593210.0,
     fillOpacity: 1.0,
     height: 1.0,
     data: [[14, 66, 0]],
@@ -101,15 +102,6 @@ class Loader extends React.Component {
     this.context.fetchImage(this.props.title, this.props.dataUrl,
       image => {
         this.ctx.drawImage(image, 0, 0)
-/*
-        for (var x = 0; x < 256; x++) {
-          for (var y = 0; y < 256; y++) {
-            var r = 255 - Math.trunc(Math.sqrt((Math.pow(128 - x, 2) + Math.pow(128 - y, 2))))
-            this.ctx.fillStyle = rgbToHex(r, x, y)
-            this.ctx.fillRect(x * 2, y * 2, 2, 2)
-          }
-        }
-*/
         this.setState({temporalData: this.refs.canvas})
       })
   }
