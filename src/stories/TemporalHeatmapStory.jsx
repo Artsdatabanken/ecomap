@@ -33,6 +33,8 @@ class TemporalHeatmapLayerStory extends React.Component {
     this.state.time = (this.state.time + this.state.speedFactor * 0.5)
     this.state.viewport.pitch = 10 + Math.sin(this.state.time / 25) * 10
     this.state.viewport.bearing = -10 + Math.sin(this.state.time / 30) * 5
+    this.state.viewport.zoom = 4.4 + Math.sin(this.state.time / 30)
+    this.state.viewport.lat = 66 + Math.sin(this.state.time / 30) * 2
     this.setState(this.state)
   }
 
