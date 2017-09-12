@@ -31,11 +31,12 @@ export default class TemporalHeatmapLayer extends Layer {
       height: options.height,
       radiusScale: options.radiusScale,
       getPosition: d => [d[0], d[1]],
-      getRadius: d => options.radius * 100000,
+      getRadius: d => options.radius,
       fillOpacity: options.fillOpacity,
       time: options.time
     }
     super(opts)
+//    window.luma.log.priority = 4
   }
 
   getShaders (id) {
@@ -62,20 +63,6 @@ export default class TemporalHeatmapLayer extends Layer {
     const { gl } = this.context
     var fbHeat = new Framebuffer(gl, { depth: false })
     var fbBlur = new Framebuffer(gl, { depth: false })
-
-    this.state.attributeManager.addInstanced({
-      instancePositions: {
-        size: 3,
-        accessor: 'getPosition',
-        update: this.calculateInstancePositions
-      },
-      instanceRadius: {
-        size: 1,
-        accessor: 'getRadius',
-        defaultValue: 1,
-        update: this.calculateInstanceRadius
-      }
-    })
 
     var temporalTexture = new Texture2D(gl, {
       format: GL.RGB,
@@ -157,6 +144,8 @@ export default class TemporalHeatmapLayer extends Layer {
         time,
         radiusScale,
         fillOpacity,
+        positionCenter: [14, 66, 0],
+        radius: 1.0,
         height: this.props.height,
         temporalTexture: this.state.temporalTexture
       }
@@ -235,28 +224,6 @@ export default class TemporalHeatmapLayer extends Layer {
       }),
       isInstanced: false,
       shaderCache: this.context.shaderCache
-    }
-  }
-
-  calculateInstancePositions (attribute) {
-    const { data, getPosition } = this.props
-    const { value } = attribute
-    let i = 0
-    for (const point of data) {
-      const position = getPosition(point)
-      value[i++] = position[0]
-      value[i++] = position[1]
-      value[i++] = position[2] || 0
-    }
-  }
-
-  calculateInstanceRadius (attribute) {
-    const { data, getRadius } = this.props
-    const { value } = attribute
-    let i = 0
-    for (const point of data) {
-      const radius = getRadius(point)
-      value[i++] = isNaN(radius) ? 1 : radius
     }
   }
 }

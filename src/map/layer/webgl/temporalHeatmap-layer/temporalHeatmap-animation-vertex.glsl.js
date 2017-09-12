@@ -3,8 +3,8 @@ export default `\
 
 attribute vec3 positions;
 
-attribute vec3 instancePositions;
-attribute float instanceRadius;
+uniform vec3 positionCenter;
+uniform float radius;
 
 uniform float opacity;
 uniform float radiusScale;
@@ -16,7 +16,7 @@ varying vec2 unitPosition;
 void main(void) {
   // Multiply out radius and clamp to limits
   float outerRadiusPixels = clamp(
-    project_scale(radiusScale * instanceRadius),
+    project_scale(radiusScale * radius),
     0., 123456789.
   );
 
@@ -24,7 +24,7 @@ void main(void) {
   unitPosition = positions.xy;
 
   // Find the center of the point and add the current vertex
-  vec3 center = project_position(instancePositions);
+  vec3 center = project_position(positionCenter);
   vec3 vertex = positions * outerRadiusPixels;
   gl_Position = project_to_clipspace(vec4(center + vertex, 1.0));
 }
