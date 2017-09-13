@@ -34,9 +34,8 @@ export default class HeatmapFromPointsLayer extends Layer {
       fillOpacity: options.fillOpacity
     }
     super(opts)
-    console.log(opts)
 //    window.luma.log.priority = 3
-    window.deck.log.priority = 3
+//    window.deck.log.priority = 3
   }
 
   getShaders (id) {
@@ -73,8 +72,8 @@ export default class HeatmapFromPointsLayer extends Layer {
     /* eslint-enable max-len */
 
     const rampTexture = new Texture2D(gl, {
-      width: this.props.colorRamp.length / 3,
-      height: 1,
+      width: this.props.colorRamp.width,
+      height: this.props.colorRamp.height,
       format: GL.RGB,
       pixels: this.props.colorRamp,
       parameters: {
@@ -165,7 +164,7 @@ export default class HeatmapFromPointsLayer extends Layer {
         colorRamp: this.state.rampTexture,
         heatTexture: fbHeat.texture,
         fillOpacity: this.props.fillOpacity,
-        uRes: [gl.canvas.width, gl.canvas.height]
+        iResolution: [width, height]
       }
     })
   }
