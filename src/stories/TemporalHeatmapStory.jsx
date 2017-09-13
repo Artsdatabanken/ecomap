@@ -25,8 +25,7 @@ class TemporalHeatmapLayerStory extends React.Component {
       zoom: 4.4,
       pitch: 0,
       bearing: 0
-    },
-    time: 0.0
+    }
   }
 
   _animate = () => {
