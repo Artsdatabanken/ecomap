@@ -220,7 +220,7 @@ exports[`loading standard tile 1`] = `
       }
     >
       <div
-        className="sketch-picker"
+        className="sketch-picker "
         style={
           Object {
             "MozBorderRadius": "4px",
