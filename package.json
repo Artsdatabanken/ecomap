@@ -71,7 +71,7 @@
     "@storybook/addon-storyshots": "^3.0.0",
     "@storybook/react": "^3.0.1",
     "canvas-prebuilt": "^1.6.5-prerelease.1",
-    "coveralls": "^2.13.1",
+    "coveralls": "^3.0.0",
     "flow-bin": "^0.55.0",
     "jest-junit": "^3.0.0",
     "pixelmatch": "^4.0.2",
