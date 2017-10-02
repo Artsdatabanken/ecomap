@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import EcoHexagonLayer from './EcoHexagonLayer'
 import HeatmapFromPointsLayer from './webgl/heatmapFromPoints-layer/heatmapFromPoints-layer'
+import TemporalHeatmapLayer from './webgl/temporalHeatmap-layer/temporalHeatmap-layer'
 import ArtskartDataSourceContainer from './ArtskartDataSourceContainer'
 import ramp from '../../graphics/color/ramps/'
 import DeckGL, { ScatterplotLayer } from 'deck.gl'
@@ -75,6 +76,27 @@ export default class MapLayerStack extends React.Component {
     console.log('onHover: ', Boolean(onHover))
     const paint = layer.paint
     switch (paint.visualizationMode) {
+      case 'temporal':
+        return new TemporalHeatmapLayer({
+          time: 0, // time,
+          id: 'temporalheatstory',
+          colorRamp: ramp,
+          radiusScale: 593210.0,
+          fillOpacity: 1.0,
+          height: 1.0,
+          data: [[14, 66, 0]],
+          temporalData: temporalData
+        })
+/*
+        return new TemporalHeatmapLayer({
+          id: 'theat' + id,
+          title: layer.title,
+          temporalData: data,
+          colorRamp: ramp[paint.colorRamp],
+          fillOpacity: paint.fillOpacity,
+          height: paint.height,
+          radiusScale: paint.radiusScale * 20000
+        }) */
       case 'heatmap':
         return new HeatmapFromPointsLayer({
           id: 'heat' + id,
@@ -86,10 +108,7 @@ export default class MapLayerStack extends React.Component {
           radiusScale: paint.radiusScale * 20000
         })
       case 'scatterplot':
-        const fillColor = hexToArray(
-          paint.fillColor,
-          paint.fillOpacity
-        )
+        const fillColor = hexToArray(paint.fillColor, paint.fillOpacity)
         return new ScatterplotLayer({
           id: 'scat' + id,
           data,
@@ -103,43 +122,41 @@ export default class MapLayerStack extends React.Component {
           }
         })
       case 'hexagon':
-        return (
-          new EcoHexagonLayer({
-            id: `${id}hexa`,
-            colorRamp: ramp[paint.colorRamp],
-            colorDomain: [paint.colorDomainMin * 50, paint.colorDomainMax * 50],
-            opacity: paint.fillOpacity,
-            coverage: paint.coverage,
-            data: data,
-            elevationRange: [
-              paint.elevationMin * 200000,
-              paint.elevationMax * 500000
+        return new EcoHexagonLayer({
+          id: `${id}hexa`,
+          colorRamp: ramp[paint.colorRamp],
+          colorDomain: [paint.colorDomainMin * 50, paint.colorDomainMax * 50],
+          opacity: paint.fillOpacity,
+          coverage: paint.coverage,
+          data: data,
+          elevationRange: [
+            paint.elevationMin * 200000,
+            paint.elevationMax * 500000
+          ],
+          elevationScale: 1, // this.easeInOutQuart(this.state.elevationScale),
+          extruded: paint.elevationMax > 0,
+          getPosition: d => d,
+          lightSettings: {
+            lightsPosition: [
+              -0.144528,
+              49.739968,
+              80000,
+              -3.807751,
+              54.104682,
+              80000
             ],
-            elevationScale: 1, // this.easeInOutQuart(this.state.elevationScale),
-            extruded: paint.elevationMax > 0,
-            getPosition: d => d,
-            lightSettings: {
-              lightsPosition: [
-                -0.144528,
-                49.739968,
-                80000,
-                -3.807751,
-                54.104682,
-                80000
-              ],
-              ambientRatio: 0.5,
-              diffuseRatio: 0.99,
-              specularRatio: 0.5,
-              lightsStrength: [0.8, 0.0, 0.8, 0.0],
-              numberOfLights: 2
-            },
-            onHover: onHover,
-            pickable: Boolean(onHover),
-            radius: paint.radiusScale * 50000,
-            lowerPercentile: paint.lowerPercentile * 100,
-            upperPercentile: paint.upperPercentile * 100
-          })
-        )
+            ambientRatio: 0.5,
+            diffuseRatio: 0.99,
+            specularRatio: 0.5,
+            lightsStrength: [0.8, 0.0, 0.8, 0.0],
+            numberOfLights: 2
+          },
+          onHover: onHover,
+          pickable: Boolean(onHover),
+          radius: paint.radiusScale * 50000,
+          lowerPercentile: paint.lowerPercentile * 100,
+          upperPercentile: paint.upperPercentile * 100
+        })
       default:
         console.error('unknown visualization', layer.paint.visualizationMode)
         return null

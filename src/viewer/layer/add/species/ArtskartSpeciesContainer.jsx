@@ -1,4 +1,4 @@
-import React from 'react'
+  import React from 'react'
 import ErrorBanner from '../../../../ErrorBanner'
 
 export default class ArtskartSpeciesContainer extends React.Component {

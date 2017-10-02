@@ -103,20 +103,11 @@ export default TemporalHeatmapLayerStory
 
 class Loader extends React.Component {
   state = {}
-  componentDidMount () {
-    this.ctx = this.refs.canvas.getContext('2d')
-
-    this.context.fetchImage(this.props.title, this.props.dataUrl,
-      image => {
-        this.ctx.drawImage(image, 0, 0)
-        this.setState({temporalData: this.refs.canvas})
-      })
-  }
 
   render () {
     // Pass the loaded data to child components
     const props = {...this.props,
-      temporalData: this.state.temporalData
+      temporalData: this.props.dataUrl
     }
     const childrenWithProps = React.Children.map(this.props.children,
       (child) => {
@@ -133,9 +124,5 @@ class Loader extends React.Component {
           <canvas ref='canvas' width='1024' height='1024' />
         </p>
       </div>)
-  }
-
-  static contextTypes = {
-    fetchImage: PropTypes.func
   }
 }
