@@ -26,7 +26,7 @@ export default class TemporalHeatmapLayer extends Layer {
   constructor (options) {
     const opts = {
       data: options.data,
-      temporalData: options.temporalData,
+      dataUrl: options.dataUrl,
       colorRamp: options.colorRamp,
       height: options.height,
       radiusScale: options.radiusScale,
@@ -65,11 +65,11 @@ export default class TemporalHeatmapLayer extends Layer {
     var fbBlur = new Framebuffer(gl, { depth: false })
 
     // var temporalTexture =
-    this.loadTexture(gl, null, 'temporalTexture', this.props.temporalData)
+    this.loadTexture(gl, null, 'temporalTexture', this.props.dataUrl)
     /*
     var temporalTexture = new Texture2D(gl, {
       format: GL.RGB,
-      pixels: this.props.temporalData,
+      pixels: this.props.dataUrl,
       parameters: {
         [GL.TEXTURE_MAG_FILTER]: GL.NEAREST,
         [GL.TEXTURE_MIN_FILTER]: GL.NEAREST
