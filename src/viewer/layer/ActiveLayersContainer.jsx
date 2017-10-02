@@ -8,7 +8,7 @@ export default class ActiveLayersContainer extends React.Component {
   componentWillMount () {
     this.handleAddLayer(
       {
-        id: 61840,
+        id: 1281, // 61840,
         scientificName: 'Primula stricta',
         popularName: 'smalnøkleblom',
         taxonGroup: 'Karplanter',
@@ -49,7 +49,7 @@ export default class ActiveLayersContainer extends React.Component {
       'paint': {'fillColor': '#3A92E3',
         'fillOpacity': 1,
         'coverage': 1,
-        'visualizationMode': 'heatmap',
+        'visualizationMode': 'temporal',
         'colorRamp': 'inferno',
         'blendMode': 'multiply',
         'radiusScale': 0.39,
