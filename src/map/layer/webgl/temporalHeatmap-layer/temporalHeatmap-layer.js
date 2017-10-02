@@ -64,19 +64,8 @@ export default class TemporalHeatmapLayer extends Layer {
     var fbHeat = new Framebuffer(gl, { depth: false })
     var fbBlur = new Framebuffer(gl, { depth: false })
 
-    // var temporalTexture =
     this.loadTexture(gl, null, 'temporalTexture', this.props.dataUrl)
-    /*
-    var temporalTexture = new Texture2D(gl, {
-      format: GL.RGB,
-      pixels: this.props.dataUrl,
-      parameters: {
-        [GL.TEXTURE_MAG_FILTER]: GL.NEAREST,
-        [GL.TEXTURE_MIN_FILTER]: GL.NEAREST
-      },
-      mipmaps: false
-    })
-*/
+
     var rampTexture = new Texture2D(gl, {
       format: GL.RGB,
       pixels: this.props.colorRamp,
