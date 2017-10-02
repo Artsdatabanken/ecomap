@@ -75,17 +75,18 @@ export default class MapLayerStack extends React.Component {
   createEcoMapLayer = ({ id, layer, data, onHover }) => {
     console.log('onHover: ', Boolean(onHover))
     const paint = layer.paint
+    console.log(data)
     switch (paint.visualizationMode) {
       case 'temporal':
         return new TemporalHeatmapLayer({
           time: 0, // time,
           id: 'temporalheatstory',
-          colorRamp: ramp,
+          colorRamp: ramp[paint.colorRamp],
           radiusScale: 593210.0,
           fillOpacity: 1.0,
           height: 1.0,
           data: [[14, 66, 0]],
-          temporalData: temporalData
+          dataUrl: 'http://localhost:8084/map/biweekly/' + id + '.png'
         })
 /*
         return new TemporalHeatmapLayer({

@@ -7,6 +7,7 @@ import fsBlurHorizontal from './horizontalGaussian-fragment.glsl'
 import fsBlurVertical from './verticalGaussian-fragment.glsl'
 import fsScreen from './grayscaleToColor-fragment.glsl'
 import vsScreen from './screenQuad-vertex.glsl'
+import sampleData from '../../../../yearoflovsanger.png'
 
 const DEFAULT_COLOR = [0, 0, 0, 255]
 
@@ -223,6 +224,7 @@ export default class TemporalHeatmapLayer extends Layer {
     const image = new Image()
     image.crossOrigin = 'Anonymous'
     image.onload = (a, b) => {
+      console.log(a, b, image)
       var t = new Texture2D(gl, {
         format: GL.RGB,
         data: image,
@@ -241,8 +243,9 @@ export default class TemporalHeatmapLayer extends Layer {
         `Could not load texture ${bitmapName} from ${image.src} ${error}`
       )
     }
-    image.crossOrigin = 'Anonymous'
-    image.src = filename
+
+    image.src = sampleData
+//    image.src = filename
   }
 }
 
