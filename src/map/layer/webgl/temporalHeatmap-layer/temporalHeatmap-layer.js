@@ -222,7 +222,6 @@ export default class TemporalHeatmapLayer extends Layer {
         drawMode: GL.TRIANGLE_FAN,
         positions: new Float32Array(positions)
       }),
-      isInstanced: false,
       shaderCache: this.context.shaderCache
     }
   }
