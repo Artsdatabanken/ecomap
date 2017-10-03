@@ -85,7 +85,7 @@ export default class MapLayerStack extends React.Component {
           fillOpacity: paint.fillOpacity,
           height: paint.height,
           data: [[27, 66, 0]],
-          dataUrl: 'http://localhost:8084/map/biweekly/' + id + '.png'
+          dataUrl: '//nodeyoda.westeurope.cloudapp.azure.com/map/biweekly/' + id + '.png'
         })
       case 'heatmap':
         return new HeatmapFromPointsLayer({
