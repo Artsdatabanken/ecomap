@@ -7,6 +7,7 @@ import ActiveLayers from '../viewer/layer/ActiveLayers'
 import HexagonLayerSettings from '../viewer/layer/settings/layer/HexagonLayerSettings'
 import ScatterplotLayerSettings from '../viewer/layer/settings/layer/ScatterplotLayerSettings'
 import HeatmapLayerSettings from '../viewer/layer/settings/layer/HeatmapLayerSettings'
+import TemporalHeatmapLayerSettings from '../viewer/layer/settings/layer/TemporalHeatmapLayerSettings'
 import {VisualizationHexagon, VisualizationHeatmap, VisualizationScatterplot} from '../viewer/layer/settings/visualization/'
 
 class ActiveLayersTest extends React.Component {
@@ -49,6 +50,7 @@ class ActiveLayersTest extends React.Component {
     return (
       <ActiveLayers
         layers={this.state.layers}
+        paint={{blendMode: 'multiply'}}
         onUpdateLayerProp={this.handleUpdateLayerProp}
         onDeleteLayer={(layer) => this.handleDeleteLayer(layer)}
       />
@@ -77,6 +79,24 @@ const layerSettings = () =>
       return (
         <GiftWrap>
           <HeatmapLayerSettings
+            {...paint}
+            onChange={action('onUpdateLayerProp')}
+          />
+        </GiftWrap>
+      )
+    }) .add('Temporal Heatmap', () => {
+      let paint = {
+        fillColor: '#ff0000',
+        coverage: 0.95,
+        fillOpacity: 1.0,
+        radius: 1.0,
+        visualizationMode: 'hexagon',
+        blendMode: 'multiply',
+        colorRamp: 'magma'
+      }
+      return (
+        <GiftWrap>
+          <TemporalHeatmapLayerSettings
             {...paint}
             onChange={action('onUpdateLayerProp')}
           />

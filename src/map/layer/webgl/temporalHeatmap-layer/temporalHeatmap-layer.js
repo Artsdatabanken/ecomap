@@ -164,7 +164,7 @@ export default class TemporalHeatmapLayer extends Layer {
       }
     })
 
-    gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+    gl.bindFramebuffer(gl.FRAMEBUFFER, null)
 
     gl.blendFuncSeparate(
       gl.SRC_ALPHA,
@@ -174,7 +174,6 @@ export default class TemporalHeatmapLayer extends Layer {
     )
 
     this.state.modelColorRamp.draw({
-      framebuffer: null,
       uniforms: {
         colorRamp: this.state.rampTexture,
         height: this.props.height * 2.86,

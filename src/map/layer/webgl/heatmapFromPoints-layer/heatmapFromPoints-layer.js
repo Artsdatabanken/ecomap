@@ -158,6 +158,8 @@ export default class HeatmapFromPointsLayer extends Layer {
       gl.ONE_MINUS_SRC_ALPHA
 )
 
+    gl.bindFramebuffer(gl.FRAMEBUFFER, null)
+
     this.state.model2.draw({
       framebuffer: null,
       uniforms: {
