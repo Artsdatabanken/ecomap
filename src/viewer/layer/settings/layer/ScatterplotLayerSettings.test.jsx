@@ -1,7 +1,7 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import muiTheme from '../../../../theme_jest'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
 import ScatterplotLayerSettings from './ScatterplotLayerSettings'
 
