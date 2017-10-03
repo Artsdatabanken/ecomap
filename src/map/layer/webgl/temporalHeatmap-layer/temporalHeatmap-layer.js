@@ -164,6 +164,8 @@ export default class TemporalHeatmapLayer extends Layer {
       }
     })
 
+    gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+
     gl.blendFuncSeparate(
       gl.SRC_ALPHA,
       gl.ONE_MINUS_SRC_ALPHA,
