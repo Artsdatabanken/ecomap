@@ -3,17 +3,13 @@ import renderer from 'react-test-renderer'
 import muiTheme from '../../../../theme_jest'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
-import ScatterplotLayerSettings from './ScatterplotLayerSettings'
+import TemporalHeatmapLayerSettings from './TemporalHeatmapLayerSettings'
 
-it('loading standard tile', () => {
+it('renders ok', () => {
   const tree = renderer.create(
     <MuiThemeProvider muiTheme={muiTheme}>
-      <ScatterplotLayerSettings
-        fillColor={'#ff8040'}
-        fillOpacity={0.1}
-        radiusScale={0.2}
-      />
+      <TemporalHeatmapLayerSettings fillOpacity={0.1} radiusScale={0.2} height={0.3} colorRamp='viridis' />
     </MuiThemeProvider>
-  )
+      )
   expect(tree.toJSON()).toMatchSnapshot()
 })
