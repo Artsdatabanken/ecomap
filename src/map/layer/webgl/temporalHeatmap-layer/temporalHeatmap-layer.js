@@ -121,7 +121,7 @@ export default class TemporalHeatmapLayer extends Layer {
     if (!this.state.temporalTexture) return
     const { gl } = this.context
     var { fbHeat, fbBlur } = this.state
-    const { time, radiusScale, fillOpacity } = this.props
+    const { time, radiusScale } = this.props
     const iResolution = [gl.canvas.width, gl.canvas.height]
     const size = { width: gl.canvas.width, height: gl.canvas.height }
     fbHeat.resize(size)
@@ -135,10 +135,8 @@ export default class TemporalHeatmapLayer extends Layer {
       uniforms: {
         time,
         radiusScale,
-        fillOpacity,
-        positionCenter: [14, 66, 0],
+        positionCenter: [19, 65, 0],
         radius: 1.0,
-        height: this.props.height,
         temporalTexture: this.state.temporalTexture
       }
     })
@@ -177,6 +175,7 @@ export default class TemporalHeatmapLayer extends Layer {
       framebuffer: null,
       uniforms: {
         colorRamp: this.state.rampTexture,
+        height: this.props.height * 2.86,
         sourceTexture: fbHeat.texture,
         fillOpacity: this.props.fillOpacity,
         iResolution: iResolution
@@ -218,7 +217,6 @@ export default class TemporalHeatmapLayer extends Layer {
   }
 
   loadTexture (gl, model, bitmapName, filename) {
-    console.log('loadTexture')
     /* global Image */
     const image = new Image()
     image.crossOrigin = 'Anonymous'
