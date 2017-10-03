@@ -26,7 +26,7 @@ export default class TemporalHeatmapLayer extends Layer {
   constructor (options) {
     const opts = {
       data: options.data,
-      temporalData: options.temporalData,
+      dataUrl: options.dataUrl,
       colorRamp: options.colorRamp,
       height: options.height,
       radiusScale: options.radiusScale,
@@ -36,7 +36,7 @@ export default class TemporalHeatmapLayer extends Layer {
       time: options.time
     }
     super(opts)
-//    window.luma.log.priority = 4
+    //    window.luma.log.priority = 4
   }
 
   getShaders (id) {
@@ -64,15 +64,7 @@ export default class TemporalHeatmapLayer extends Layer {
     var fbHeat = new Framebuffer(gl, { depth: false })
     var fbBlur = new Framebuffer(gl, { depth: false })
 
-    var temporalTexture = new Texture2D(gl, {
-      format: GL.RGB,
-      pixels: this.props.temporalData,
-      parameters: {
-        [GL.TEXTURE_MAG_FILTER]: GL.NEAREST,
-        [GL.TEXTURE_MIN_FILTER]: GL.NEAREST
-      },
-      mipmaps: false
-    })
+    this.loadTexture(gl, null, 'temporalTexture', this.props.dataUrl)
 
     var rampTexture = new Texture2D(gl, {
       format: GL.RGB,
@@ -92,8 +84,7 @@ export default class TemporalHeatmapLayer extends Layer {
       modelColorRamp: this._getModelColorRamp(gl),
       fbHeat,
       fbBlur,
-      rampTexture,
-      temporalTexture
+      rampTexture
     })
   }
 
@@ -127,11 +118,12 @@ export default class TemporalHeatmapLayer extends Layer {
   }
 
   draw ({ uniforms }) {
+    if (!this.state.temporalTexture) return
     const { gl } = this.context
     var { fbHeat, fbBlur } = this.state
-    const { time, radiusScale, fillOpacity } = this.props
+    const { time, radiusScale } = this.props
     const iResolution = [gl.canvas.width, gl.canvas.height]
-    const size = {width: gl.canvas.width, height: gl.canvas.height}
+    const size = { width: gl.canvas.width, height: gl.canvas.height }
     fbHeat.resize(size)
     fbHeat.bind(gl.FRAMEBUFFER)
     gl.clear(gl.COLOR_BUFFER_BIT)
@@ -143,10 +135,8 @@ export default class TemporalHeatmapLayer extends Layer {
       uniforms: {
         time,
         radiusScale,
-        fillOpacity,
-        positionCenter: [14, 66, 0],
+        positionCenter: [19, 65, 0],
         radius: 1.0,
-        height: this.props.height,
         temporalTexture: this.state.temporalTexture
       }
     })
@@ -185,6 +175,7 @@ export default class TemporalHeatmapLayer extends Layer {
       framebuffer: null,
       uniforms: {
         colorRamp: this.state.rampTexture,
+        height: this.props.height * 2.86,
         sourceTexture: fbHeat.texture,
         fillOpacity: this.props.fillOpacity,
         iResolution: iResolution
@@ -209,8 +200,7 @@ export default class TemporalHeatmapLayer extends Layer {
   }
 
   _createModel (gl, shaders) {
-    return new Model(gl,
-      Object.assign(shaders, this._getUnitCircle(shaders)))
+    return new Model(gl, Object.assign(shaders, this._getUnitCircle(shaders)))
   }
 
   _getUnitCircle (shaders) {
@@ -224,6 +214,33 @@ export default class TemporalHeatmapLayer extends Layer {
       }),
       shaderCache: this.context.shaderCache
     }
+  }
+
+  loadTexture (gl, model, bitmapName, filename) {
+    /* global Image */
+    const image = new Image()
+    image.crossOrigin = 'Anonymous'
+    image.onload = (a, b) => {
+      var t = new Texture2D(gl, {
+        format: GL.RGB,
+        data: image,
+        parameters: {
+          [GL.TEXTURE_MAG_FILTER]: GL.NEAREST,
+          [GL.TEXTURE_MIN_FILTER]: GL.NEAREST
+        },
+        mipmaps: false,
+        unpackFlipY: false
+      })
+      this.setState({'temporalTexture': t})
+    }
+
+    image.onerror = (error = '') => {
+      throw new Error(
+        `Could not load texture ${bitmapName} from ${image.src} ${error}`
+      )
+    }
+
+    image.src = filename
   }
 }
 

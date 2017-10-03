@@ -10,6 +10,7 @@ const VisualizationSelector = ({mode, onChange}) =>
     onChange={onChange}
   >
     <MenuItem value='heatmap' primaryText='Heatmap' />
+    <MenuItem value='temporal' primaryText='Temporal Heatmap' />
     <MenuItem value='hexagon' primaryText='Hexagonal binning' />
     <MenuItem value='scatterplot' primaryText='Scatterplot' />
   </SelectField>

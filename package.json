@@ -51,7 +51,7 @@
     "prop-types": "^15.5.10",
     "r-dom": "^2.3.2",
     "react": "^15.5.4",
-    "react-color": "^2.11.7",
+    "react-color": "^2.13.8",
     "react-dev-utils": "^4.0.0",
     "react-dom": "^15.5.4",
     "react-error-overlay": "^2.0.0",
