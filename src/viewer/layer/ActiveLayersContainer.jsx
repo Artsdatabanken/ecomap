@@ -7,8 +7,8 @@ export default class ActiveLayersContainer extends React.Component {
 
   componentWillMount () {
     this.handleAddLayer(
-      {
-        id: 1281, // 61840,
+      {  // animalia, noen planter, 
+        id: 196, //1281, // 61840,
         scientificName: 'Magnoliophyta',
         popularName: 'dekkfroete blomsterplanter',
         taxonGroup: '3+ mill points',
@@ -59,6 +59,10 @@ export default class ActiveLayersContainer extends React.Component {
         lowerPercentile: 0,
         'upperPercentile': 1,
         weekNo: 0.5,
+        latitude: 0.5,
+        longitude: 0.5,
+        zoom: 0.5,
+        aspect: 0.5,
         'elevationMin': 0,
         'elevationMax': 0.5,
         'colorDomainMin': 0,

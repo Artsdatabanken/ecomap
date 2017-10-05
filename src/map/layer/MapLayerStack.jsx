@@ -81,11 +81,14 @@ export default class MapLayerStack extends React.Component {
           id: 'temporalheatstory',
           title: layer.title,
           colorRamp: ramp[paint.colorRamp],
-          radiusScale: paint.radiusScale * 2110000, // 593210.0,
           fillOpacity: paint.fillOpacity,
           height: paint.height,
-          data: [[27, 66, 0]],
-          dataUrl: '//nodeyoda.westeurope.cloudapp.azure.com/map/biweekly/' + id + '.png'
+          longitude: paint.longitude,
+          latitude: paint.latitude,
+          zoom: paint.zoom,
+          aspect: paint.aspect,
+          // dataUrl: '//localhost:8080/map/biweekly/3857/' + id + '.png'
+          dataUrl: '//nodeyoda.westeurope.cloudapp.azure.com/map/biweekly/4326/' + id + '.png'
         })
       case 'heatmap':
         return new HeatmapFromPointsLayer({
