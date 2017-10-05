@@ -26,13 +26,18 @@ export default class TemporalHeatmapLayer extends Layer {
   constructor (options) {
     const opts = {
       data: options.data,
-      dataUrl: options.dataUrl,
+      dataUrl: options.dataUrl, // 'http://nodeyoda.westeurope.cloudapp.azure.com/whitenoise.jpg',
+      // 'http://nodeyoda.westeurope.cloudapp.azure.com/b.jpg', // options.dataUrl,
       colorRamp: options.colorRamp,
       height: options.height,
       radiusScale: options.radiusScale,
       getPosition: d => [d[0], d[1]],
       getRadius: d => options.radius,
       fillOpacity: options.fillOpacity,
+      latitude: options.latitude,
+      longitude: options.longitude,
+      zoom: options.zoom,
+      aspect: options.aspect,
       time: options.time
     }
     super(opts)
@@ -121,22 +126,20 @@ export default class TemporalHeatmapLayer extends Layer {
     if (!this.state.temporalTexture) return
     const { gl } = this.context
     var { fbHeat, fbBlur } = this.state
-    const { time, radiusScale } = this.props
     const iResolution = [gl.canvas.width, gl.canvas.height]
     const size = { width: gl.canvas.width, height: gl.canvas.height }
     fbHeat.resize(size)
     fbHeat.bind(gl.FRAMEBUFFER)
     gl.clear(gl.COLOR_BUFFER_BIT)
-
     gl.blendFunc(gl.ONE, gl.ONE)
 
     this.state.model.draw({
       framebuffer: fbHeat,
       uniforms: {
-        time,
-        radiusScale,
-        positionCenter: [19, 65, 0],
-        radius: 1.0,
+        aspect: this.props.aspect + 1.86666666666667 - 0.5,
+        latitude: this.props.latitude + 63,
+        longitude: this.props.longitude * 3.0 + 17,
+        zoom: this.props.zoom + 7.5 - 0.5,
         temporalTexture: this.state.temporalTexture
       }
     })
@@ -226,13 +229,13 @@ export default class TemporalHeatmapLayer extends Layer {
         format: GL.RGB,
         data: image,
         parameters: {
-          [GL.TEXTURE_MAG_FILTER]: GL.NEAREST,
-          [GL.TEXTURE_MIN_FILTER]: GL.NEAREST
+          [GL.TEXTURE_MAG_FILTER]: GL.LINEAR,
+          [GL.TEXTURE_MIN_FILTER]: GL.LINEAR
         },
         mipmaps: false,
-        unpackFlipY: false
+        unpackFlipY: true
       })
-      this.setState({'temporalTexture': t})
+      this.setState({ temporalTexture: t })
     }
 
     image.onerror = (error = '') => {

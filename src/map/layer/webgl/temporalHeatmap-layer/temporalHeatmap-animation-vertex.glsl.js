@@ -4,28 +4,26 @@ export default `\
 attribute vec3 positions;
 
 uniform vec3 positionCenter;
-uniform float radius;
-
-uniform float opacity;
-uniform float radiusScale;
-uniform float height;
-uniform float fillOpacity;
+uniform float latitude;
+uniform float longitude;
+uniform float aspect;
+uniform float zoom;
 
 varying vec2 unitPosition;
 
 void main(void) {
-  // Multiply out radius and clamp to limits
-  float outerRadiusPixels = clamp(
-    project_scale(radiusScale * radius),
-    0., 123456789.
-  );
-
-  // position on the containing square in [-1, 1] space
   unitPosition = positions.xy;
+  vec2 a = project_position(unitPosition * vec2(aspect*zoom,zoom) +
+    vec2(longitude,latitude));
+  gl_Position = project_to_clipspace(vec4(a, 0.0, 1));
 
-  // Find the center of the point and add the current vertex
-  vec3 center = project_position(positionCenter);
-  vec3 vertex = positions * outerRadiusPixels;
-  gl_Position = project_to_clipspace(vec4(center + vertex, 1.0));
+  /*
+  unitPosition = positions.xy;
+  float aspect = 1.7;
+  float yzoom = 7.7;
+  vec2 a = project_position(unitPosition * vec2(aspect*yzoom,yzoom) +
+    vec2(19.5,63.6));
+  gl_Position = project_to_clipspace(vec4(a, 0.0, 1));
+*/
 }
 `
