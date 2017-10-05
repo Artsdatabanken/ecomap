@@ -15,12 +15,12 @@ import ReactDOM from 'react-dom'
 
 export default class MapView extends React.Component {
   state = {
-    showMap: process.env.NODE_ENV !== 'development',
+    showMap: true, // process.env.NODE_ENV !== 'development',
     animate: false,
     venstreMenyÅpen: false,
     showLayersDialog: true,
     feature: {},
-    paint: {blendMode: 'multiply'},
+    paint: {blendMode: 'normal'},
     layers: {
       'L1-1': { title: 'Grunn limnisk fastbunn', visible: false },
       T4: { title: 'Skogsmark', visible: false },
