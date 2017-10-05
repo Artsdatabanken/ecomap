@@ -87,8 +87,8 @@ export default class MapLayerStack extends React.Component {
           latitude: paint.latitude,
           zoom: paint.zoom,
           aspect: paint.aspect,
-          dataUrl: '//localhost:8080/map/biweekly/3857/' + id + '.png'
-//          dataUrl: '//nodeyoda.westeurope.cloudapp.azure.com/map/biweekly/' + id + '.png'
+          // dataUrl: '//localhost:8080/map/biweekly/3857/' + id + '.png'
+          dataUrl: '//nodeyoda.westeurope.cloudapp.azure.com/map/biweekly/4326/' + id + '.png'
         })
       case 'heatmap':
         return new HeatmapFromPointsLayer({

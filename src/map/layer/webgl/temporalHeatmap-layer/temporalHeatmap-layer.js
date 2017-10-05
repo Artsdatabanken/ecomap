@@ -40,6 +40,7 @@ export default class TemporalHeatmapLayer extends Layer {
       aspect: options.aspect,
       time: options.time
     }
+    console.log(opts.time)
     super(opts)
     //    window.luma.log.priority = 4
   }
@@ -136,6 +137,7 @@ export default class TemporalHeatmapLayer extends Layer {
     this.state.model.draw({
       framebuffer: fbHeat,
       uniforms: {
+        time: this.props.time,
         aspect: this.props.aspect + 1.86666666666667 - 0.5,
         latitude: this.props.latitude + 63,
         longitude: this.props.longitude * 3.0 + 17,
