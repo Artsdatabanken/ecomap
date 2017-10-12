@@ -60,10 +60,6 @@ yarn build
 
 Builds are triggered for each commit.  Deployment is done automtically by travis on a successful build.
 
-### Versioning
-
-We use [SemVer 2.0](http://semver.org/) for versioning. For the versions available, see the [link to tags on this repository](https://github.com/artsdatabanken/ecomap/blob/master/tags).
-
 ### Configuration
 
 ### Tests
@@ -75,13 +71,13 @@ yarn test
 ```
 ### Style guide
 
-We use [JavaScript Stanard Style](https://standardjs.com/). Run
+We use [Prettier](https://github.com/prettier/prettier). Style is automatically improved on commit or you can run
 
 ```javascript
-standard --fix
+prettier --write ./src/**
 ```
 
-to automatically fix most style issues.  The remaining will be listed.  Style is checked on commit.
+to automatically fix style issues.
 
 ### Api Reference
 

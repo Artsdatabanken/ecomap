@@ -7,11 +7,11 @@ export default class ActiveLayersContainer extends React.Component {
 
   componentWillMount () {
     this.handleAddLayer(
-      {
-        id: 61840,
-        scientificName: 'Primula stricta',
-        popularName: 'smalnøkleblom',
-        taxonGroup: 'Karplanter',
+      {  // animalia, noen planter, 
+        id: 196, //1281, // 61840,
+        scientificName: 'Magnoliophyta',
+        popularName: 'dekkfroete blomsterplanter',
+        taxonGroup: '3+ mill points',
         imageUrl: 'https://farm8.staticflickr.com/7376/8859158303_ff6d08b320.jpg',
         dataUrl: 'http://webtjenester.artsdatabanken.no/Artskart/api/listhelper/61840/observations?&fromYear=1981&toYear=2012&fromMonth=1&toMonth=12&type=all&region=all&scientificNameId=101880',
         infoUrl: 'http://artsdatabanken.no/Taxon/61840'
@@ -49,19 +49,25 @@ export default class ActiveLayersContainer extends React.Component {
       'paint': {'fillColor': '#3A92E3',
         'fillOpacity': 1,
         'coverage': 1,
-        'visualizationMode': 'heatmap',
+        'visualizationMode': 'temporal',
         'colorRamp': 'inferno',
         'blendMode': 'multiply',
-        'radiusScale': 0.39,
+        'radiusScale': 0.36,
         'height': 0.35,
         'extruded': true,
         'elevationScale': 500,
         lowerPercentile: 0,
         'upperPercentile': 1,
+        weekNo: 0.5,
+        latitude: 0.5,
+        longitude: 0.5,
+        zoom: 0.5,
+        aspect: 0.5,
         'elevationMin': 0,
         'elevationMax': 0.5,
         'colorDomainMin': 0,
-        'colorDomainMax': 1}
+        'colorDomainMax': 1
+      }
     }
 
     this.setState(prevState => {
@@ -83,7 +89,7 @@ export default class ActiveLayersContainer extends React.Component {
     this.setState(prevState => {
       let layers = this.state.layers
       let _layer = prevState.layers[layer.id]
-      console.log(JSON.stringify(_layer))
+    //  console.log(JSON.stringify(_layer))
       _layer.paint[key] = value
       return layers
     })

@@ -28,7 +28,6 @@ const layers = {
       'fillOpacity': 1,
       'coverage': 1,
       'colorRamp': 'inferno',
-      'blendMode': 'multiply',
       'radiusScale': 0.88,
       'height': 0.35,
       'extruded': true,
@@ -45,5 +44,5 @@ const layers = {
 
 export default ScatterplotStory =>
   <FetchContainer>
-    <MapLayerStack layers={layers} viewport={viewport} />
+    <MapLayerStack layers={layers} paint={{blendMode: 'multiply'}} viewport={viewport} />
   </FetchContainer>

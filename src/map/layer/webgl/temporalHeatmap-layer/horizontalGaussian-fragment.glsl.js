@@ -8,7 +8,7 @@ precision highp float;
 uniform sampler2D sourceTexture;
 uniform vec2 iResolution;
 
-const int blur_size = 10;
+const int blur_size = 15;
 
 float gauss(float x, float e)
 {

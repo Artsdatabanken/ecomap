@@ -3,7 +3,7 @@ import renderer from 'react-test-renderer'
 import muiTheme from '../../../../theme_jest'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
-import HeatmapLayerSettings from './HexagonLayerSettings'
+import HeatmapLayerSettings from './HeatmapLayerSettings'
 
 it('renders ok', () => {
   const tree = renderer.create(

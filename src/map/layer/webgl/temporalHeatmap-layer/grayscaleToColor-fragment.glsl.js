@@ -9,11 +9,12 @@ uniform sampler2D colorRamp;
 uniform sampler2D sourceTexture;
 uniform float fillOpacity;
 uniform vec2 iResolution;
+uniform float height;
 
 void main(void) {
   vec2 p = gl_FragCoord.xy / iResolution.xy;
   vec4 color = texture2D(sourceTexture, p);
-  float intensity = color.r; // TODO: Convert to single channel texture
+  float intensity = color.r * height; // TODO: Convert to single channel texture
 
 //  gl_FragColor = color;
   if(intensity > 0.) {
