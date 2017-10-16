@@ -240,9 +240,9 @@ export default class TemporalHeatmapLayer extends Layer {
       this.setState({ temporalTexture: t })
     }
 
-    image.onerror = (error = '') => {
+    image.onerror = () => {
       throw new Error(
-        `Could not load texture ${bitmapName} from ${image.src} ${error}`
+        `Could not load texture ${bitmapName} from ${image.src}`
       )
     }
 
