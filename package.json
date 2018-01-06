@@ -72,7 +72,7 @@
     "@storybook/react": "^3.0.1",
     "canvas-prebuilt": "^1.6.5-prerelease.1",
     "coveralls": "^3.0.0",
-    "flow-bin": "^0.56.0",
+    "flow-bin": "^0.63.0",
     "jest-junit": "^3.0.0",
     "pixelmatch": "^4.0.2",
     "precommit-hook": "^3.0.0",
