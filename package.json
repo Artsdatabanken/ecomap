@@ -40,7 +40,7 @@
     "file-loader": "^1.0.0",
     "fs-extra": "^4.0.1",
     "html-webpack-plugin": "^2.30.0",
-    "jest": "^21.0.0",
+    "jest": "^22.1.0",
     "luma.gl": "^4.0.1",
     "mapbox-gl": "^0.41.0",
     "material-ui": "^0.19.0",
