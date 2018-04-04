@@ -52,7 +52,7 @@
     "r-dom": "^2.3.2",
     "react": "^15.5.4",
     "react-color": "^2.13.8",
-    "react-dev-utils": "^4.0.0",
+    "react-dev-utils": "^5.0.1",
     "react-dom": "^15.5.4",
     "react-error-overlay": "^3.0.0",
     "react-map-gl": "^3.0.4",
