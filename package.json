@@ -28,7 +28,7 @@
     "chalk": "^2.1.0",
     "css-loader": "^0.28.4",
     "deck.gl": "^4.1.1",
-    "dotenv": "^4.0.0",
+    "dotenv": "^5.0.0",
     "eslint": "^4.4.1",
     "eslint-config-react-app": "^2.0.0",
     "eslint-loader": "^1.7.1",
